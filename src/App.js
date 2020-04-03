@@ -36,8 +36,6 @@ class App extends React.Component {
     console.log(newProducts);
   };
 
-
-
   render() {
     return (
       <div className="App">

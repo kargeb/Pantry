@@ -1,8 +1,17 @@
 import React from "react";
 import Product from "../product/Product";
+import styled from "styled-components";
 
-const ProductList = ({ products, addProductQuantity, subtractProductQuantity }) => (
-  <ul>
+const StyledList = styled.ul`
+  list-style-type: none;
+`;
+
+const ProductList = ({
+  products,
+  addProductQuantity,
+  subtractProductQuantity
+}) => (
+  <StyledList>
     {products.map(item => {
       const { name, number, unit } = item;
       return (
@@ -17,7 +26,7 @@ const ProductList = ({ products, addProductQuantity, subtractProductQuantity }) 
         </li>
       );
     })}
-  </ul>
+  </StyledList>
 );
 
 export default ProductList;
