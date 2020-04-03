@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "../product/Product";
 
-const ProductList = ({ products, addNumber }) => (
+const ProductList = ({ products, addProductQuantity, subtractProductQuantity }) => (
   <ul>
     {products.map(item => {
       const { name, number, unit } = item;
@@ -11,7 +11,8 @@ const ProductList = ({ products, addNumber }) => (
             name={name}
             number={number}
             unit={unit}
-            addNumber={addNumber}
+            addProductQuantity={addProductQuantity}
+            subtractProductQuantity={subtractProductQuantity}
           />
         </li>
       );
