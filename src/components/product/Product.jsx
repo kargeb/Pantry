@@ -18,14 +18,14 @@ const StyledWrapper = styled.div`
 
 const Product = ({
   name,
-  number,
+  quantity,
   unit,
   addProductQuantity,
   subtractProductQuantity,
   deleteProduct
 }) => (
   <StyledWrapper>
-    {name} {number} {unit}
+    {name} {quantity} {unit}
     {/* <div onClick={() => addProductQuantity(name)}>+</div>
     <div onClick={() => subtractProductQuantity(name)}>-</div> */}
     <FontAwesomeIcon icon={faTrash} onClick={() => deleteProduct(name)} />
