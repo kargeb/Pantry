@@ -8,7 +8,8 @@ class NewProductForm extends React.Component {
     "name": "",
     "quantity": "",
     "category": "",
-    "min": "1"
+    "min": "1",
+    "unit": "szt"
   }
 
   handleForm = (e) => {
@@ -21,17 +22,20 @@ class NewProductForm extends React.Component {
   }
 
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+
+    e.preventDefault();
     
-    const {name, quantity, category, min} = this.state;
+    const {name, quantity, category, min, unit} = this.state;
     
-    if(name && quantity && category && min) {
+    if(name && quantity && category && min && unit) {
       
       const newProduct = {
         name,
         quantity,
         category,
-        min
+        min,
+        unit
       }
       
       console.log("wypelnoine wszystkie")
@@ -40,7 +44,9 @@ class NewProductForm extends React.Component {
       this.setState({"name": "",
       "quantity": "",
       "category": "",
-      "min": "1"})
+      "min": "1",
+      "unit": "szt"
+    })
 
     } else {
       console.log("WYPEŁNIJ  SZYSTKIE POLA")
@@ -68,6 +74,14 @@ class NewProductForm extends React.Component {
             value={this.state.quantity}
           />
         </label>
+        <label htmlFor="unit">
+          Jednostka:
+          <select id="unit" onChange={this.handleForm} value={this.state.unit}>
+         <option value="szt">szt</option>
+         <option value="l">l</option>
+         <option value="kg">kg</option>
+          </select>
+        </label>
         <label htmlFor="min">
           Minimalna ilość:
           <input
@@ -87,7 +101,7 @@ class NewProductForm extends React.Component {
          {categories.map( category => <option key={category} value="category">{category}</option>  )}
           </select>
         </label>
-        <button type="button" onClick={this.handleSubmit}>Dodaj</button>
+        <button type="submit" onClick={this.handleSubmit}>Dodaj</button>
       </form>
     );
   }

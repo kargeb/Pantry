@@ -58,6 +58,16 @@ class App extends React.Component {
       <div className="App">
         <h1>Pantry</h1>
         <NewProductForm addNewProduct={this.addNewProduct} categories={this.state.categories}/>
+        <ul>
+            {this.state.categories.map(  category => {
+
+              const productsOfCategory = this.state.products.filter( product => product.category === category )
+
+              console.log(`w categorii: ${category} mamy nastepujace produkty`);
+              console.log(productsOfCategory)
+
+            }  )}
+        </ul>
         <ProductList
           products={this.state.products}
           addProductQuantity={this.addProductQuantity}
