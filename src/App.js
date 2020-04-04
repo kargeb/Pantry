@@ -50,6 +50,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Pantry</h1>
+        <h1>Pantry</h1>
         <NewQuestionForm />
         <ProductList
           products={this.state.products}
