@@ -1,0 +1,10 @@
+{
+  "products": 
+  [
+    { "name": "MĄKA", "number": "2", "unit": "kg", "category": "Artykuły spożywcze" },
+    { "name": "Coca-cola", "number": "3", "unit": "l", "category": "Napoje / alkohol" },
+    { "name": "biszkopty", "number": "1", "unit": "szt", "category": "Słodycze" }
+  ],
+  "categories": ["nabiał", "Napoje / Alkohol", "Owoce / Warzywa", "Piewczywo", "Art. spożywcze", "Kosmetyki", "Chemia"]
+}
+

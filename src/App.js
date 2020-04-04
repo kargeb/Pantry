@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import data from "./data/products";
+import data from "./data/db";
 import ProductList from "./components/productList/ProductList";
 import NewQuestionForm from "../src/components/newQuestionForm/NewQuestionForm";
 
@@ -9,7 +9,8 @@ import NewQuestionForm from "../src/components/newQuestionForm/NewQuestionForm";
 
 class App extends React.Component {
   state = {
-    products: [...data]
+    products: [...data.products],
+    categories: [...data.categories]
   };
 
   addProductQuantity = name => {
@@ -49,7 +50,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Pantry</h1>
         <h1>Pantry</h1>
         <NewQuestionForm />
         <ProductList
