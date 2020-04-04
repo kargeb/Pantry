@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 import data from "./data/db";
 import ProductList from "./components/productList/ProductList";
-import NewQuestionForm from "../src/components/newQuestionForm/NewQuestionForm";
+import NewProductForm from "../src/components/newProductForm/NewProductForm";
 
 // const producsFromLocalStorage = JSON.parse(localStorage.localProducts);
 // localStorage.localProducts = JSON.stringify(newProducts);
@@ -16,7 +16,7 @@ class App extends React.Component {
   addProductQuantity = name => {
     const newProducts = this.state.products.map(product => {
       if (product.name === name) {
-        product.number++;
+        product.quantity++;
       }
       return product;
     });
@@ -28,7 +28,7 @@ class App extends React.Component {
   subtractProductQuantity = name => {
     const newProducts = this.state.products.map(product => {
       if (product.name === name) {
-        product.number--;
+        product.quantity--;
       }
       return product;
     });
@@ -47,11 +47,17 @@ class App extends React.Component {
     console.log(remainingProducts);
   };
 
+  addNewProduct = (newProduct) => {
+      console.log(newProduct)
+
+      this.setState( prevState => ({products: [...prevState.products, newProduct]}))
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Pantry</h1>
-        <NewQuestionForm />
+        <NewProductForm addNewProduct={this.addNewProduct} categories={this.state.categories}/>
         <ProductList
           products={this.state.products}
           addProductQuantity={this.addProductQuantity}
