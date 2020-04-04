@@ -9,7 +9,8 @@ const StyledList = styled.ul`
 const ProductList = ({
   products,
   addProductQuantity,
-  subtractProductQuantity
+  subtractProductQuantity,
+  deleteProduct
 }) => (
   <StyledList>
     {products.map(item => {
@@ -22,6 +23,7 @@ const ProductList = ({
             unit={unit}
             addProductQuantity={addProductQuantity}
             subtractProductQuantity={subtractProductQuantity}
+            deleteProduct={deleteProduct}
           />
         </li>
       );

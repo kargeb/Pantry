@@ -1,7 +1,5 @@
 [
-  { "name": "mąka", "number": "2", "unit": "kg", "category": "Artykuły spozywcze" },
-  { "name": "Coca-cola", "number": "3", "unit": "l", "category": "Napoje i alkohol" },
-  { "name": "biszkopty", "number": "1", "unit": "szt", "category": "Artykuły spozywcze" },
-  { "name": "Jack Daniels", "number": "1", "unit": "l", "category": "Napoje i alkohol" },
-  { "name": "Rexona", "number": "3", "unit": "sz", "category": "Kosmetyki" }
+  { "name": "mąka", "number": "2", "unit": "kg" },
+  { "name": "Coca-cola", "number": "3", "unit": "l" },
+  { "name": "biszkopty", "number": "1", "unit": "szt" }
 ]
