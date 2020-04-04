@@ -1,20 +1,33 @@
 import React from 'react';
 import './styles.css';
+import styled from 'styled-components';
 import data from './data/db';
 import ProductList from './components/productList/ProductList';
 import NewProductForm from './components/newProductForm/NewProductForm';
 
-// const producsFromLocalStorage = JSON.parse(localStorage.localProducts);
-// localStorage.localProducts = JSON.stringify(newProducts);
+const StyledMenu = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 class App extends React.Component {
   state = {
     products: [...data.products],
     categories: [...data.categories],
+    isFormVisible: false,
+    shoppingCart: [],
   };
 
-  addProductQuantity = (name) => {
-    const newProducts = this.state.products.map((product) => {
+  componentDidUpdate() {
+    console.log('did Update');
+    const productsToShoppingCart = this.state.products.filter(
+      product => product.quantity < product.min,
+    );
+    console.log(productsToShoppingCart);
+  }
+
+  addProductQuantity = name => {
+    const newProducts = this.state.products.map(product => {
       if (product.name === name) {
         product.quantity++;
       }
@@ -25,8 +38,8 @@ class App extends React.Component {
     console.log(newProducts);
   };
 
-  subtractProductQuantity = (name) => {
-    const newProducts = this.state.products.map((product) => {
+  subtractProductQuantity = name => {
+    const newProducts = this.state.products.map(product => {
       if (product.name === name) {
         product.quantity--;
       }
@@ -37,9 +50,9 @@ class App extends React.Component {
     console.log(newProducts);
   };
 
-  deleteProduct = (name) => {
+  deleteProduct = name => {
     const remainingProducts = this.state.products.filter(
-      (product) => product.name !== name,
+      product => product.name !== name,
     );
 
     this.setState({ products: [...remainingProducts] });
@@ -47,38 +60,60 @@ class App extends React.Component {
     console.log(remainingProducts);
   };
 
-  addNewProduct = (newProduct) => {
+  addNewProduct = newProduct => {
     console.log(newProduct);
 
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       products: [...prevState.products, newProduct],
     }));
   };
 
+  handleFormVisibility = () => {
+    this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
+  };
+
   render() {
+    const { categories, products } = this.state;
+
     return (
       <div className="App">
-        <h1>Pantry</h1>
-        <NewProductForm
-          addNewProduct={this.addNewProduct}
-          categories={this.state.categories}
-        />
+        <h4>Settings</h4>
+        <StyledMenu>
+          <h3>Pantry</h3>
+          <h3>Shopping List</h3>
+        </StyledMenu>
+        <button type="button" onClick={this.handleFormVisibility}>
+          Dodaj
+        </button>
+        {this.state.isFormVisible && (
+          <NewProductForm
+            handleFormVisibility={this.handleFormVisibility}
+            addNewProduct={this.addNewProduct}
+            categories={categories}
+          />
+        )}
         <ul>
-          {this.state.categories.map((category) => {
-            const productsOfCategory = this.state.products.filter(
-              (product) => product.category === category,
+          {categories.map(category => {
+            const productsOfCategory = products.filter(
+              product => product.category === category,
             );
-
-            console.log(`w categorii: ${category} mamy nastepujace produkty`);
-            console.log(productsOfCategory);
+            if (productsOfCategory.length) {
+              console.log(`w categorii: ${category} mamy nastepujace produkty`);
+              console.log(productsOfCategory);
+              return (
+                <li>
+                  <p>{category}</p>
+                  <ProductList
+                    products={productsOfCategory}
+                    addProductQuantity={this.addProductQuantity}
+                    subtractProductQuantity={this.subtractProductQuantity}
+                    deleteProduct={this.deleteProduct}
+                  />
+                </li>
+              );
+            }
           })}
         </ul>
-        <ProductList
-          products={this.state.products}
-          addProductQuantity={this.addProductQuantity}
-          subtractProductQuantity={this.subtractProductQuantity}
-          deleteProduct={this.deleteProduct}
-        />
       </div>
     );
   }

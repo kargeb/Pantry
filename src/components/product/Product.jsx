@@ -1,13 +1,13 @@
-import React from "react";
-import styles from "./Product.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTrash,
   faPen,
   faPlusCircle,
-  faMinusCircle
-} from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
+  faMinusCircle,
+} from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
+import styles from './Product.module.css';
 
 // localStorage.dummyData = "test";
 
@@ -22,7 +22,7 @@ const Product = ({
   unit,
   addProductQuantity,
   subtractProductQuantity,
-  deleteProduct
+  deleteProduct,
 }) => (
   <StyledWrapper>
     {name} {quantity} {unit}
@@ -38,6 +38,7 @@ const Product = ({
       icon={faMinusCircle}
       onClick={() => subtractProductQuantity(name)}
     />
+    {quantity ? <div> </div> : <div>!!</div>}
   </StyledWrapper>
 );
 
