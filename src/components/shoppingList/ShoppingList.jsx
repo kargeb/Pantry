@@ -1,16 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import AppContext from '../../context';
 
-const ShoppingList = ({ shoppingList }) => (
-  <div>
-    <h3>Shopping list</h3>
-    <ul>
-      {console.log('jestem w KOMPONENTCIE shopping list')}
-      {shoppingList.map(product => (
-        <li>{product.name}</li>
-      ))}
-    </ul>
-  </div>
+const ShoppingList = () => (
+  <AppContext.Consumer>
+    {context => (
+      <div>
+        <h3>Shopping list</h3>
+        <ul>
+          {console.log('jestem w KOMPONENTCIE shopping list')}
+          {context.shoppingList.map(product => (
+            <li>{product.name}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </AppContext.Consumer>
 );
 
 export default ShoppingList;
