@@ -15,12 +15,13 @@ const ProductList = ({
 }) => (
   <StyledList>
     {products.map(item => {
-      const { name, quantity, unit, id } = item;
+      const { name, quantity, unit, id, min } = item;
       return (
         <li key={name}>
           <Product
             id={id}
             name={name}
+            min={min}
             quantity={quantity}
             unit={unit}
             addProductQuantity={addProductQuantity}
