@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 import styled from 'styled-components';
+
 import data from './data/db';
 import ProductList from './components/productList/ProductList';
 import NewProductForm from './components/newProductForm/NewProductForm';

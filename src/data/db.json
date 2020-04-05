@@ -1,6 +1,7 @@
 {
   "products": [
     {
+      "id": "9bb85eda-23d2-488f-bb04-f71dc231e57c",
       "name": "MĄKA",
       "quantity": "2",
       "unit": "kg",
@@ -8,6 +9,7 @@
       "min": "2"
     },
     {
+      "id": "fb5d383f-3e95-477e-9bba-14098213bc4f",
       "name": "Coca-cola",
       "quantity": "3",
       "unit": "l",
@@ -15,6 +17,7 @@
       "min": "2"
     },
     {
+      "id": "21fcbe45-048e-4905-a517-3a0919e599ac",
       "name": "biszkopty",
       "quantity": "1",
       "unit": "szt",

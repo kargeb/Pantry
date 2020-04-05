@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -38,6 +39,7 @@ class NewProductForm extends React.Component {
         category,
         min,
         unit,
+        id: uuidv4(),
       };
 
       console.log('wypelnoine wszystkie');
