@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
         background-color: #ddd;
     }
 
+    body{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
     .test{
         background-color: red;
         color: blue

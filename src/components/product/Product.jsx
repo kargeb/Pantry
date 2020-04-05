@@ -9,7 +9,6 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import styles from './Product.module.css';
 
 const StyledWrapper = styled.div`
   display: flex;
