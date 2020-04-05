@@ -12,13 +12,25 @@ const StyledWrapper = styled.div`
 `;
 
 class NewProductForm extends React.Component {
-  state = {
-    name: '',
-    quantity: '',
-    category: '',
-    min: '1',
-    unit: 'szt',
-  };
+  constructor(props) {
+    super(props);
+
+    const { name, quantity, category, min, unit, id } = props.defaultProduct;
+
+    console.log(unit);
+
+    this.state = {
+      name,
+      quantity,
+      category,
+      min,
+      unit,
+      id,
+    };
+
+    // componentDidMount() {
+    //   // const { name } = this.props.defaultProduct.name;
+  }
 
   handleForm = e => {
     console.log(e.target.value);
@@ -30,7 +42,7 @@ class NewProductForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { name, quantity, category, min, unit } = this.state;
+    const { name, quantity, category, min, unit, id } = this.state;
 
     if (name && quantity && category && min && unit) {
       const newProduct = {
@@ -39,7 +51,7 @@ class NewProductForm extends React.Component {
         category,
         min,
         unit,
-        id: uuidv4(),
+        id,
       };
 
       console.log('wypelnoine wszystkie');

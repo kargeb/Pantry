@@ -11,19 +11,22 @@ const ProductList = ({
   addProductQuantity,
   subtractProductQuantity,
   deleteProduct,
+  editProduct,
 }) => (
   <StyledList>
-    {products.map((item) => {
-      const { name, quantity, unit } = item;
+    {products.map(item => {
+      const { name, quantity, unit, id } = item;
       return (
         <li key={name}>
           <Product
+            id={id}
             name={name}
             quantity={quantity}
             unit={unit}
             addProductQuantity={addProductQuantity}
             subtractProductQuantity={subtractProductQuantity}
             deleteProduct={deleteProduct}
+            editProduct={editProduct}
           />
         </li>
       );

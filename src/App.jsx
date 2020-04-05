@@ -18,6 +18,14 @@ class App extends React.Component {
     categories: [...data.categories],
     isFormVisible: false,
     shoppingList: [],
+    defaultProduct: {
+      name: '',
+      quantity: '',
+      category: '',
+      min: '3',
+      unit: 'szt',
+      id: null,
+    },
   };
 
   componentDidMount() {
@@ -31,7 +39,7 @@ class App extends React.Component {
       console.log(`produkt: ${product.name} powinien byc na liscie:`);
 
       const isProductInShoppintList = this.state.shoppingList.filter(
-        prevProduct => prevProduct.name === product.name,
+        prevProduct => prevProduct.id === product.id,
       );
 
       console.log(`isProductInShoppintList ${isProductInShoppintList.length}`);
@@ -47,26 +55,16 @@ class App extends React.Component {
       }
     } else {
       const newShoppingList = this.state.shoppingList.filter(
-        prevProduct => prevProduct.name !== product.name,
+        prevProduct => prevProduct.id !== product.id,
       );
 
       this.setState({ shoppingList: [...newShoppingList] });
     }
   };
 
-  // componentDidUpdate() {
-  //   console.log('did Update');
-  //   const productsToshoppingList = this.state.products.filter(
-  //     product => product.quantity < product.min,
-  //   );
-
-  //   this.setState({ shoppingList: [...productsToshoppingList] });
-  //   console.log(productsToshoppingList);
-  // }
-
-  addProductQuantity = name => {
+  addProductQuantity = id => {
     const newProducts = this.state.products.map(product => {
-      if (product.name === name) {
+      if (product.id === id) {
         product.quantity++;
         this.checkShoppingList(product);
       }
@@ -77,9 +75,10 @@ class App extends React.Component {
     console.log(newProducts);
   };
 
-  subtractProductQuantity = name => {
+  subtractProductQuantity = id => {
+    console.log(`ID => ${id}`);
     const newProducts = this.state.products.map(product => {
-      if (product.name === name) {
+      if (product.id === id) {
         product.quantity--;
         this.checkShoppingList(product);
       }
@@ -90,13 +89,13 @@ class App extends React.Component {
     console.log(newProducts);
   };
 
-  deleteProduct = name => {
+  deleteProduct = id => {
     const remainingProducts = this.state.products.filter(
-      product => product.name !== name,
+      product => product.id !== id,
     );
 
     const shoppingListWithoutDeleteProduct = this.state.shoppingList.filter(
-      prevProduct => prevProduct.name !== name,
+      prevProduct => prevProduct.id !== id,
     );
 
     this.setState({
@@ -109,10 +108,35 @@ class App extends React.Component {
 
   addNewProduct = newProduct => {
     console.log(newProduct);
+    console.log(`ID : ${newProduct.id}`);
 
-    this.setState(prevState => ({
-      products: [...prevState.products, newProduct],
-    }));
+    if (newProduct.id) {
+      const newProducts = this.state.products.map(product => {
+        if (product.id === newProduct.id) {
+          product = { ...newProduct };
+          return product;
+        }
+        return product;
+      });
+
+      this.setState({ products: [...newProducts] });
+    } else {
+      this.setState(prevState => ({
+        products: [...prevState.products, newProduct],
+      }));
+    }
+  };
+
+  editProduct = id => {
+    const editingProduct = this.state.products.filter(
+      product => product.id === id,
+    )[0];
+
+    this.setState({ defaultProduct: { ...editingProduct } });
+    this.handleFormVisibility();
+
+    console.log('product do edycji');
+    console.log(editingProduct);
   };
 
   handleFormVisibility = () => {
@@ -134,6 +158,7 @@ class App extends React.Component {
         </button>
         {this.state.isFormVisible && (
           <NewProductForm
+            defaultProduct={this.state.defaultProduct}
             handleFormVisibility={this.handleFormVisibility}
             addNewProduct={this.addNewProduct}
             categories={categories}
@@ -155,6 +180,7 @@ class App extends React.Component {
                     addProductQuantity={this.addProductQuantity}
                     subtractProductQuantity={this.subtractProductQuantity}
                     deleteProduct={this.deleteProduct}
+                    editProduct={this.editProduct}
                   />
                 </li>
               );

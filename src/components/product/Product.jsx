@@ -16,6 +16,10 @@ const StyledWrapper = styled.div`
   color: blue;
 `;
 
+const StledIcon = styled(FontAwesomeIcon)`
+  margin: 0 5px;
+`;
+
 const Product = ({
   name,
   quantity,
@@ -23,20 +27,19 @@ const Product = ({
   addProductQuantity,
   subtractProductQuantity,
   deleteProduct,
+  editProduct,
+  id,
 }) => (
   <StyledWrapper>
     {name} {quantity} {unit}
     {/* <div onClick={() => addProductQuantity(name)}>+</div>
     <div onClick={() => subtractProductQuantity(name)}>-</div> */}
-    <FontAwesomeIcon icon={faTrash} onClick={() => deleteProduct(name)} />
-    <FontAwesomeIcon icon={faPen} />
-    <FontAwesomeIcon
-      icon={faPlusCircle}
-      onClick={() => addProductQuantity(name)}
-    />
-    <FontAwesomeIcon
+    <StledIcon icon={faTrash} onClick={() => deleteProduct(id)} />
+    <StledIcon icon={faPen} onClick={() => editProduct(id)} />
+    <StledIcon icon={faPlusCircle} onClick={() => addProductQuantity(id)} />
+    <StledIcon
       icon={faMinusCircle}
-      onClick={() => subtractProductQuantity(name)}
+      onClick={() => subtractProductQuantity(id)}
     />
     {quantity ? <div> </div> : <div>!!</div>}
   </StyledWrapper>
