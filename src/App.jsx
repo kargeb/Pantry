@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import styled from 'styled-components';
 
-import data from './data/db';
+import data from './data/db.json';
 import ProductList from './components/productList/ProductList';
 import NewProductForm from './components/newProductForm/NewProductForm';
 import ShoppingList from './components/shoppingList/ShoppingList';
@@ -29,24 +29,14 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log('jestem w did mount');
     this.state.products.forEach(product => this.checkShoppingList(product));
   }
 
   checkShoppingList = product => {
-    console.log('jestem w czekongui shopping lisy');
     if (product.min > product.quantity) {
-      console.log(`produkt: ${product.name} powinien byc na liscie:`);
-
       const isProductInShoppintList = this.state.shoppingList.filter(
         prevProduct => prevProduct.id === product.id,
       );
-
-      console.log(`isProductInShoppintList ${isProductInShoppintList.length}`);
-
-      if (isProductInShoppintList) {
-        console.log(`ten produkt ${product.name}juz jest w liscie`);
-      }
 
       if (!isProductInShoppintList.length) {
         this.setState(prevState => ({
@@ -57,7 +47,6 @@ class App extends React.Component {
       const newShoppingList = this.state.shoppingList.filter(
         prevProduct => prevProduct.id !== product.id,
       );
-
       this.setState({ shoppingList: [...newShoppingList] });
     }
   };
@@ -71,12 +60,9 @@ class App extends React.Component {
       return product;
     });
     this.setState({ products: [...newProducts] });
-    console.log(JSON.stringify(newProducts));
-    console.log(newProducts);
   };
 
   subtractProductQuantity = id => {
-    console.log(`ID => ${id}`);
     const newProducts = this.state.products.map(product => {
       if (product.id === id) {
         product.quantity--;
@@ -85,8 +71,6 @@ class App extends React.Component {
       return product;
     });
     this.setState({ products: [...newProducts] });
-    console.log(JSON.stringify(newProducts));
-    console.log(newProducts);
   };
 
   deleteProduct = id => {
