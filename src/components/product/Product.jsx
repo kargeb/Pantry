@@ -5,6 +5,8 @@ import {
   faPen,
   faPlusCircle,
   faMinusCircle,
+  faExclamation,
+  faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import styles from './Product.module.css';
@@ -28,9 +30,11 @@ const Product = ({
   subtractProductQuantity,
   deleteProduct,
   editProduct,
+  min,
   id,
 }) => (
   <StyledWrapper>
+    {quantity < min && <StledIcon icon={faShoppingCart} />}
     {name} {quantity} {unit}
     {/* <div onClick={() => addProductQuantity(name)}>+</div>
     <div onClick={() => subtractProductQuantity(name)}>-</div> */}
@@ -41,7 +45,7 @@ const Product = ({
       icon={faMinusCircle}
       onClick={() => subtractProductQuantity(id)}
     />
-    {quantity ? <div> </div> : <div>!!</div>}
+    {quantity ? <div> </div> : <StledIcon icon={faExclamation} />}
   </StyledWrapper>
 );
 
