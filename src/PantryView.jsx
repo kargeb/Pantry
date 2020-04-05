@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import data from './data/db.json';
 import ProductList from './components/productList/ProductList';
 import NewProductForm from './components/newProductForm/NewProductForm';
-import ShoppingList from './components/shoppingList/ShoppingList';
+import AppContext from './context';
 
 const StyledMenu = styled.div`
   display: flex;
@@ -131,49 +131,55 @@ class PantryView extends React.Component {
     const { categories, products } = this.state;
 
     return (
-      <div className="App">
-        <h4>Settings</h4>
-        <StyledMenu>
-          <h3>Pantry</h3>
-          <Link to="/shoppinglist">
-            <h3>Shopping List {this.state.shoppingList.length}</h3>{' '}
-          </Link>
-        </StyledMenu>
-        <button type="button" onClick={this.handleFormVisibility}>
-          Dodaj
-        </button>
-        {this.state.isFormVisible && (
-          <NewProductForm
-            defaultProduct={this.state.defaultProduct}
-            handleFormVisibility={this.handleFormVisibility}
-            addNewProduct={this.addNewProduct}
-            categories={categories}
-          />
+      <AppContext.Consumer>
+        {context => (
+          <div className="App">
+            <h4>Settings {context.czosz}</h4>
+            <StyledMenu>
+              <h3>Pantry</h3>
+              <Link to="/shoppinglist">
+                <h3>Shopping List {this.state.shoppingList.length}</h3>{' '}
+              </Link>
+            </StyledMenu>
+            <button type="button" onClick={this.handleFormVisibility}>
+              Dodaj
+            </button>
+            {this.state.isFormVisible && (
+              <NewProductForm
+                defaultProduct={this.state.defaultProduct}
+                handleFormVisibility={this.handleFormVisibility}
+                addNewProduct={this.addNewProduct}
+                categories={categories}
+              />
+            )}
+            <ul>
+              {categories.map(category => {
+                const productsOfCategory = products.filter(
+                  product => product.category === category,
+                );
+                if (productsOfCategory.length) {
+                  console.log(
+                    `w categorii: ${category} mamy nastepujace produkty`,
+                  );
+                  console.log(productsOfCategory);
+                  return (
+                    <li>
+                      <p>{category}</p>
+                      <ProductList
+                        products={productsOfCategory}
+                        addProductQuantity={this.addProductQuantity}
+                        subtractProductQuantity={this.subtractProductQuantity}
+                        deleteProduct={this.deleteProduct}
+                        editProduct={this.editProduct}
+                      />
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
         )}
-        <ul>
-          {categories.map(category => {
-            const productsOfCategory = products.filter(
-              product => product.category === category,
-            );
-            if (productsOfCategory.length) {
-              console.log(`w categorii: ${category} mamy nastepujace produkty`);
-              console.log(productsOfCategory);
-              return (
-                <li>
-                  <p>{category}</p>
-                  <ProductList
-                    products={productsOfCategory}
-                    addProductQuantity={this.addProductQuantity}
-                    subtractProductQuantity={this.subtractProductQuantity}
-                    deleteProduct={this.deleteProduct}
-                    editProduct={this.editProduct}
-                  />
-                </li>
-              );
-            }
-          })}
-        </ul>
-      </div>
+      </AppContext.Consumer>
     );
   }
 }
