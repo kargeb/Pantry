@@ -1,18 +1,11 @@
 import React from 'react';
-import './styles.css';
-import styled from 'styled-components';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PantryView from './PantryView';
+import ShoppingListView from './components/views/ShoppingListView';
+import AppContext from './context';
 import data from './data/db.json';
-import ProductList from './components/productList/ProductList';
-import NewProductForm from './components/newProductForm/NewProductForm';
-import ShoppingList from './components/shoppingList/ShoppingList';
 
-const StyledMenu = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-class App extends React.Component {
+class Root extends React.Component {
   state = {
     products: [...data.products],
     categories: [...data.categories],
@@ -128,53 +121,27 @@ class App extends React.Component {
   };
 
   render() {
-    const { categories, products } = this.state;
-
+    const contextElements = {
+      czosz: 'czosz',
+      ...this.state,
+      handleFormVisibility: this.handleFormVisibility,
+      editProduct: this.editProduct,
+      addNewProduct: this.addNewProduct,
+      deleteProduct: this.deleteProduct,
+      subtractProductQuantity: this.subtractProductQuantity,
+      addProductQuantity: this.addProductQuantity,
+    };
     return (
-      <div className="App">
-        <h4>Settings</h4>
-        <StyledMenu>
-          <h3>Pantry</h3>
-          <h3>Shopping List {this.state.shoppingList.length}</h3>
-        </StyledMenu>
-        <button type="button" onClick={this.handleFormVisibility}>
-          Dodaj
-        </button>
-        {this.state.isFormVisible && (
-          <NewProductForm
-            defaultProduct={this.state.defaultProduct}
-            handleFormVisibility={this.handleFormVisibility}
-            addNewProduct={this.addNewProduct}
-            categories={categories}
-          />
-        )}
-        <ul>
-          {categories.map(category => {
-            const productsOfCategory = products.filter(
-              product => product.category === category,
-            );
-            if (productsOfCategory.length) {
-              console.log(`w categorii: ${category} mamy nastepujace produkty`);
-              console.log(productsOfCategory);
-              return (
-                <li>
-                  <p>{category}</p>
-                  <ProductList
-                    products={productsOfCategory}
-                    addProductQuantity={this.addProductQuantity}
-                    subtractProductQuantity={this.subtractProductQuantity}
-                    deleteProduct={this.deleteProduct}
-                    editProduct={this.editProduct}
-                  />
-                </li>
-              );
-            }
-          })}
-        </ul>
-        <ShoppingList shoppingList={this.state.shoppingList} />
-      </div>
+      <BrowserRouter>
+        <AppContext.Provider value={contextElements}>
+          <Switch>
+            <Route exact path="/" component={PantryView} />
+            <Route exact path="/shoppinglist" component={ShoppingListView} />
+          </Switch>
+        </AppContext.Provider>
+      </BrowserRouter>
     );
   }
 }
 
-export default App;
+export default Root;

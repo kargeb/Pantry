@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+// import ShoppingList from '../shoppingList/ShoppingList';
 import AppContext from '../../context';
 
-const ShoppingList = () => (
+const ShoppingListView = () => (
   <AppContext.Consumer>
     {context => (
       <div>
@@ -18,4 +19,4 @@ const ShoppingList = () => (
   </AppContext.Consumer>
 );
 
-export default ShoppingList;
+export default ShoppingListView;
