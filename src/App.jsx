@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import data from './data/db';
 import ProductList from './components/productList/ProductList';
 import NewProductForm from './components/newProductForm/NewProductForm';
+import ShoppingList from './components/shoppingList/ShoppingList';
 
 const StyledMenu = styled.div`
   display: flex;
@@ -15,21 +16,58 @@ class App extends React.Component {
     products: [...data.products],
     categories: [...data.categories],
     isFormVisible: false,
-    shoppingCart: [],
+    shoppingList: [],
   };
 
-  componentDidUpdate() {
-    console.log('did Update');
-    const productsToShoppingCart = this.state.products.filter(
-      product => product.quantity < product.min,
-    );
-    console.log(productsToShoppingCart);
+  componentDidMount() {
+    console.log('jestem w did mount');
+    this.state.products.forEach(product => this.checkShoppingList(product));
   }
+
+  checkShoppingList = product => {
+    console.log('jestem w czekongui shopping lisy');
+    if (product.min > product.quantity) {
+      console.log(`produkt: ${product.name} powinien byc na liscie:`);
+
+      const isProductInShoppintList = this.state.shoppingList.filter(
+        prevProduct => prevProduct.name === product.name,
+      );
+
+      console.log(`isProductInShoppintList ${isProductInShoppintList.length}`);
+
+      if (isProductInShoppintList) {
+        console.log(`ten produkt ${product.name}juz jest w liscie`);
+      }
+
+      if (!isProductInShoppintList.length) {
+        this.setState(prevState => ({
+          shoppingList: [...prevState.shoppingList, product],
+        }));
+      }
+    } else {
+      const newShoppingList = this.state.shoppingList.filter(
+        prevProduct => prevProduct.name !== product.name,
+      );
+
+      this.setState({ shoppingList: [...newShoppingList] });
+    }
+  };
+
+  // componentDidUpdate() {
+  //   console.log('did Update');
+  //   const productsToshoppingList = this.state.products.filter(
+  //     product => product.quantity < product.min,
+  //   );
+
+  //   this.setState({ shoppingList: [...productsToshoppingList] });
+  //   console.log(productsToshoppingList);
+  // }
 
   addProductQuantity = name => {
     const newProducts = this.state.products.map(product => {
       if (product.name === name) {
         product.quantity++;
+        this.checkShoppingList(product);
       }
       return product;
     });
@@ -42,6 +80,7 @@ class App extends React.Component {
     const newProducts = this.state.products.map(product => {
       if (product.name === name) {
         product.quantity--;
+        this.checkShoppingList(product);
       }
       return product;
     });
@@ -114,6 +153,7 @@ class App extends React.Component {
             }
           })}
         </ul>
+        <ShoppingList shoppingList={this.state.shoppingList} />
       </div>
     );
   }
