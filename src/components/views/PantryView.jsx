@@ -1,11 +1,11 @@
 import React from 'react';
-import './styles.css';
+// import './styles.css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 // import data from './data/db.json';
-import ProductList from './components/productList/ProductList';
-import NewProductForm from './components/newProductForm/NewProductForm';
-import AppContext from './context';
+import ProductList from '../productList/ProductList';
+import NewProductForm from '../newProductForm/NewProductForm';
+import AppContext from '../../context';
 
 const StyledMenu = styled.div`
   display: flex;

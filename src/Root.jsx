@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import PantryView from './PantryView';
+import PantryView from './components/views/PantryView';
 import ShoppingListView from './components/views/ShoppingListView';
 import AppContext from './context';
 import data from './data/db.json';
@@ -58,8 +58,10 @@ class Root extends React.Component {
   subtractProductQuantity = id => {
     const newProducts = this.state.products.map(product => {
       if (product.id === id) {
-        product.quantity--;
-        this.checkShoppingList(product);
+        if (product.quantity > 0) {
+          product.quantity--;
+          this.checkShoppingList(product);
+        }
       }
       return product;
     });
@@ -120,6 +122,17 @@ class Root extends React.Component {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
   };
 
+  completeProductQuantityToMin = id => {
+    const newProducts = this.state.products.map(product => {
+      if (product.id === id) {
+        product.quantity = product.min;
+        this.checkShoppingList(product);
+      }
+      return product;
+    });
+    this.setState({ products: [...newProducts] });
+  };
+
   render() {
     const contextElements = {
       czosz: 'czosz',
@@ -130,6 +143,7 @@ class Root extends React.Component {
       deleteProduct: this.deleteProduct,
       subtractProductQuantity: this.subtractProductQuantity,
       addProductQuantity: this.addProductQuantity,
+      completeProductQuantityToMin: this.completeProductQuantityToMin,
     };
     return (
       <BrowserRouter>

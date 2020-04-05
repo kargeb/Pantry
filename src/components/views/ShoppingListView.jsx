@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 // import ShoppingList from '../shoppingList/ShoppingList';
 import AppContext from '../../context';
+import ShoppingList from '../productList/ShoppingList';
 
 const StyledMenu = styled.div`
   display: flex;
@@ -20,12 +21,7 @@ const ShoppingListView = () => (
           </Link>
           <h3>Shopping List {context.shoppingList.length}</h3>{' '}
         </StyledMenu>
-        <ul>
-          {console.log('jestem w KOMPONENTCIE shopping list')}
-          {context.shoppingList.map(product => (
-            <li>{product.name}</li>
-          ))}
-        </ul>
+        <ShoppingList />
       </div>
     )}
   </AppContext.Consumer>
