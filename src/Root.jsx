@@ -23,6 +23,7 @@ class Root extends React.Component {
       id: null,
     },
     darkMode: false,
+    isShoppingListPromptVisible: false,
   };
 
   componentDidMount() {
@@ -141,6 +142,12 @@ class Root extends React.Component {
     this.setState({ darkMode: !this.state.darkMode });
   };
 
+  toggleShoppingListPrompt = () => {
+    this.setState({
+      isShoppingListPromptVisible: !this.state.isShoppingListPromptVisible,
+    });
+  };
+
   render() {
     const contextElements = {
       czosz: 'czosz',
@@ -153,10 +160,10 @@ class Root extends React.Component {
       addProductQuantity: this.addProductQuantity,
       completeProductQuantityToMin: this.completeProductQuantityToMin,
       toggleDarkmode: this.toggleDarkmode,
+      toggleShoppingListPrompt: this.toggleShoppingListPrompt,
     };
     return (
       <BrowserRouter>
-        <GlobalStyleDark />
         {this.state.darkMode ? <GlobalStyleDark /> : <GlobalStyle />}
         <AppContext.Provider value={contextElements}>
           <Switch>

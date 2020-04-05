@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
         background-color: #ddd;
     }
 
+    .test{
+        background-color: red;
+        color: blue
+    }
+
 `;
 
 export default GlobalStyle;

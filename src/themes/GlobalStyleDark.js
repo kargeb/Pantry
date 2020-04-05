@@ -13,6 +13,10 @@ const GlobalStyleDark = createGlobalStyle`
         background-color: #555;
     }
 
+    .test{
+        background-color: black;
+        color: white
+    }
 `;
 
 export default GlobalStyleDark;
