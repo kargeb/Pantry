@@ -127,7 +127,7 @@ class App extends React.Component {
         <h4>Settings</h4>
         <StyledMenu>
           <h3>Pantry</h3>
-          <h3>Shopping List</h3>
+          <h3>Shopping List {this.state.shoppingList.length}</h3>
         </StyledMenu>
         <button type="button" onClick={this.handleFormVisibility}>
           Dodaj
