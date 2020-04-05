@@ -94,7 +94,14 @@ class App extends React.Component {
       product => product.name !== name,
     );
 
-    this.setState({ products: [...remainingProducts] });
+    const shoppingListWithoutDeleteProduct = this.state.shoppingList.filter(
+      prevProduct => prevProduct.name !== name,
+    );
+
+    this.setState({
+      products: [...remainingProducts],
+      shoppingList: [...shoppingListWithoutDeleteProduct],
+    });
 
     console.log(remainingProducts);
   };
