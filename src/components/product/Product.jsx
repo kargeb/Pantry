@@ -11,11 +11,9 @@ import {
 import styled from 'styled-components';
 import styles from './Product.module.css';
 
-// localStorage.dummyData = "test";
-
 const StyledWrapper = styled.div`
   display: flex;
-  color: blue;
+  color: ${props => props.fontColor};
 `;
 
 const StledIcon = styled(FontAwesomeIcon)`
@@ -32,21 +30,35 @@ const Product = ({
   editProduct,
   min,
   id,
-}) => (
-  <StyledWrapper>
-    {quantity < min && <StledIcon icon={faShoppingCart} />}
-    {name} {quantity} {unit}
-    {/* <div onClick={() => addProductQuantity(name)}>+</div>
-    <div onClick={() => subtractProductQuantity(name)}>-</div> */}
-    <StledIcon icon={faTrash} onClick={() => deleteProduct(id)} />
-    <StledIcon icon={faPen} onClick={() => editProduct(id)} />
-    <StledIcon icon={faPlusCircle} onClick={() => addProductQuantity(id)} />
-    <StledIcon
-      icon={faMinusCircle}
-      onClick={() => subtractProductQuantity(id)}
-    />
-    {quantity ? <div> </div> : <StledIcon icon={faExclamation} />}
-  </StyledWrapper>
-);
+}) => {
+  const cartIconShow = quantity < min;
+  const exclamationIconShow = !quantity;
+
+  let fontColor;
+
+  if (exclamationIconShow) {
+    fontColor = 'red';
+  } else if (cartIconShow) {
+    fontColor = 'orange';
+  } else {
+    fontColor = 'black';
+  }
+
+  return (
+    <StyledWrapper fontColor={fontColor}>
+      {console.log(`fontColor: ${fontColor}`)}
+      {cartIconShow && <StledIcon icon={faShoppingCart} />}
+      {name} {quantity} {unit}
+      <StledIcon icon={faTrash} onClick={() => deleteProduct(id)} />
+      <StledIcon icon={faPen} onClick={() => editProduct(id)} />
+      <StledIcon icon={faPlusCircle} onClick={() => addProductQuantity(id)} />
+      <StledIcon
+        icon={faMinusCircle}
+        onClick={() => subtractProductQuantity(id)}
+      />
+      {exclamationIconShow && <StledIcon icon={faExclamation} />}
+    </StyledWrapper>
+  );
+};
 
 export default Product;
