@@ -4,6 +4,9 @@ import PantryView from './components/views/PantryView';
 import ShoppingListView from './components/views/ShoppingListView';
 import AppContext from './context';
 import data from './data/db.json';
+import GlobalStyle from './themes/GlobalStyle';
+import GlobalStyleDark from './themes/GlobalStyleDark';
+import SettingsView from './components/views/SettingsView';
 
 class Root extends React.Component {
   state = {
@@ -19,6 +22,8 @@ class Root extends React.Component {
       unit: 'szt',
       id: null,
     },
+    darkMode: false,
+    isShoppingListPromptVisible: false,
   };
 
   componentDidMount() {
@@ -133,6 +138,16 @@ class Root extends React.Component {
     this.setState({ products: [...newProducts] });
   };
 
+  toggleDarkmode = () => {
+    this.setState({ darkMode: !this.state.darkMode });
+  };
+
+  toggleShoppingListPrompt = () => {
+    this.setState({
+      isShoppingListPromptVisible: !this.state.isShoppingListPromptVisible,
+    });
+  };
+
   render() {
     const contextElements = {
       czosz: 'czosz',
@@ -144,13 +159,17 @@ class Root extends React.Component {
       subtractProductQuantity: this.subtractProductQuantity,
       addProductQuantity: this.addProductQuantity,
       completeProductQuantityToMin: this.completeProductQuantityToMin,
+      toggleDarkmode: this.toggleDarkmode,
+      toggleShoppingListPrompt: this.toggleShoppingListPrompt,
     };
     return (
       <BrowserRouter>
+        {this.state.darkMode ? <GlobalStyleDark /> : <GlobalStyle />}
         <AppContext.Provider value={contextElements}>
           <Switch>
             <Route exact path="/" component={PantryView} />
-            <Route exact path="/shoppinglist" component={ShoppingListView} />
+            <Route path="/shoppinglist" component={ShoppingListView} />
+            <Route path="/settings" component={SettingsView} />
           </Switch>
         </AppContext.Provider>
       </BrowserRouter>

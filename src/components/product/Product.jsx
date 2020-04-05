@@ -83,6 +83,7 @@ class Product extends React.Component {
           onClick={() => addProductQuantity(id)}
         />
         <StyledIcon
+          className="test"
           icon={faMinusCircle}
           onClick={() => subtractProductQuantity(id)}
         />

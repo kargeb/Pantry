@@ -16,7 +16,9 @@ const PantryView = () => (
   <AppContext.Consumer>
     {context => (
       <div className="App">
-        <h4>Settings {context.czosz}</h4>
+        <Link to="/settings">
+          <h4>Settings</h4>
+        </Link>
         <StyledMenu>
           <h3>Pantry</h3>
           <Link to="/shoppinglist">
