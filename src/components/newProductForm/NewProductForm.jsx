@@ -1,13 +1,65 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faTimesCircle,
+  faCheckSquare,
+} from '@fortawesome/free-solid-svg-icons';
+
+const StyledForm = styled.form`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10%;
+  background-color: white;
+`;
 
 const StyledWrapper = styled.div`
   position: absolute;
-  width: 90vw;
-  height: 90vh;
-  background-color: grey;
-  top: 5vh;
-  left: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+  background-color: white;
+  box-shadow: 1px 0px 18px 4px rgba(0, 0, 0, 0.66);
+`;
+
+const StyledNameInput = styled.input`
+  width: 150px;
+`;
+
+const StyledNumberInput = styled.input`
+  width: 50px;
+`;
+
+const StyledButtonsWrapper = styled.div`
+  display: flex;
+  width: 130px;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+const StyledConfirmIcon = styled(FontAwesomeIcon)`
+  font-size: 40px;
+  color: #01a39d;
+`;
+
+const StyledCancelIcon = styled(FontAwesomeIcon)`
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.54);
+`;
+
+const StyledLabel = styled.label`
+  margin-bottom: 10px;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  background-color: white;
 `;
 
 class NewProductForm extends React.Component {
@@ -26,9 +78,6 @@ class NewProductForm extends React.Component {
       unit,
       id,
     };
-
-    // componentDidMount() {
-    //   // const { name } = this.props.defaultProduct.name;
   }
 
   handleForm = e => {
@@ -85,28 +134,28 @@ class NewProductForm extends React.Component {
 
     return (
       <StyledWrapper>
-        <form>
-          <label htmlFor="name">
+        <StyledForm>
+          <StyledLabel htmlFor="name">
             Nazwa:
-            <input
+            <StyledNameInput
               id="name"
               placeholder="nazwa"
               type="text"
               onChange={this.handleForm}
               value={this.state.name}
             />
-          </label>
-          <label htmlFor="quantity">
+          </StyledLabel>
+          <StyledLabel htmlFor="quantity">
             Ilość:
-            <input
+            <StyledNumberInput
               id="quantity"
-              placeholder="posiadana ilość"
+              placeholder="ilość"
               type="number"
               onChange={this.handleForm}
               value={this.state.quantity}
             />
-          </label>
-          <label htmlFor="unit">
+          </StyledLabel>
+          <StyledLabel htmlFor="unit">
             Jednostka:
             <select
               id="unit"
@@ -117,18 +166,18 @@ class NewProductForm extends React.Component {
               <option value="l">l</option>
               <option value="kg">kg</option>
             </select>
-          </label>
-          <label htmlFor="min">
+          </StyledLabel>
+          <StyledLabel htmlFor="min">
             Minimalna ilość:
-            <input
+            <StyledNumberInput
               id="min"
               type="number"
               placeholder="minimalna ilość"
               onChange={this.handleForm}
               value={this.state.min}
             />
-          </label>
-          <label htmlFor="category">
+          </StyledLabel>
+          <StyledLabel htmlFor="category">
             Kategoria:
             <select
               id="category"
@@ -142,19 +191,22 @@ class NewProductForm extends React.Component {
                 </option>
               ))}
             </select>
-          </label>
-          <button type="submit" onClick={this.handleSubmit}>
-            Dodaj
-          </button>
-        </form>
-        <button
-          type="button"
-          onClick={() =>
-            this.handleCloseForm(handleFormVisibility, resetDefaultProduct)
-          }
-        >
-          Close
-        </button>
+          </StyledLabel>
+          <StyledButtonsWrapper>
+            <StyledButton type="submit" onClick={this.handleSubmit}>
+              <StyledConfirmIcon icon={faCheckSquare} />
+            </StyledButton>
+
+            <StyledButton
+              type="button"
+              onClick={() =>
+                this.handleCloseForm(handleFormVisibility, resetDefaultProduct)
+              }
+            >
+              <StyledCancelIcon icon={faTimesCircle} />
+            </StyledButton>
+          </StyledButtonsWrapper>
+        </StyledForm>
       </StyledWrapper>
     );
   }

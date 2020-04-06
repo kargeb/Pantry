@@ -100,10 +100,14 @@ const StyledMain = styled.main`
   background-color: white;
 `;
 
+const StyledContainer = styled.div`
+  position: relative;
+`;
+
 const PantryView = () => (
   <AppContext.Consumer>
     {context => (
-      <div>
+      <StyledContainer>
         <StyledHeader>
           <Link to="/settings">
             <StyledSettingsIconWrapper>
@@ -122,15 +126,6 @@ const PantryView = () => (
             </StyledShoppingListCounter>
           </StyledMenuItem>
         </StyledMenu>
-        {context.isFormVisible && (
-          <NewProductForm
-            resetDefaultProduct={context.resetDefaultProduct}
-            defaultProduct={context.defaultProduct}
-            handleFormVisibility={context.handleFormVisibility}
-            addNewProduct={context.addNewProduct}
-            categories={context.categories}
-          />
-        )}
         <StyledMain>
           <StyledListWrapper>
             {context.categories.map(category => {
@@ -166,7 +161,16 @@ const PantryView = () => (
             </StyledAddProductButton>
           </StyledAddButtonWrapper>
         </StyledMain>
-      </div>
+        {context.isFormVisible && (
+          <NewProductForm
+            resetDefaultProduct={context.resetDefaultProduct}
+            defaultProduct={context.defaultProduct}
+            handleFormVisibility={context.handleFormVisibility}
+            addNewProduct={context.addNewProduct}
+            categories={context.categories}
+          />
+        )}
+      </StyledContainer>
     )}
   </AppContext.Consumer>
 );
