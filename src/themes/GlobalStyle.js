@@ -21,11 +21,8 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         max-width: 600px;
         margin: 0 auto;
         height: 100vh;
-    }
-
-    .test{
-        background-color: red;
-        color: blue
+        background-color: white;
+        color: black
     }
 
     ul{

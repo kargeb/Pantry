@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "9bb85eda-23d2-488f-bb04-f71dc231e57c",
-      "name": "MĄKA",
+      "name": "Mąka",
       "quantity": "2",
       "unit": "kg",
       "category": "Artykuły spożywcze",
@@ -18,7 +18,7 @@
     },
     {
       "id": "fb5d383f-3e95-477e-9bba-12298213bc4f",
-      "name": "Piwo Tyskie",
+      "name": "Tyskie",
       "quantity": "3",
       "unit": "l",
       "category": "Napoje / Alkohol",
@@ -26,7 +26,7 @@
     },
     {
       "id": "21fcbe45-048e-4905-a517-3a0919e599ac",
-      "name": "biszkopty",
+      "name": "Biszkopty",
       "quantity": "1",
       "unit": "szt",
       "category": "Słodycze",

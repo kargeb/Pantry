@@ -56,7 +56,7 @@ const StyledMenuItem = styled.div`
 `;
 
 const StyledListWrapper = styled.ul`
-  background-color: #fff;
+  /* background-color: #fff; */
 `;
 
 const StyledCategoryLabel = styled.div`
@@ -97,7 +97,7 @@ const StyledShoppingListCounter = styled.div`
 const StyledMain = styled.main`
   height: calc(100vh - 120px);
   /* height: 1000px; */
-  background-color: white;
+  /* background-color: white; */
 `;
 
 const StyledContainer = styled.div`

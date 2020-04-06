@@ -65,9 +65,16 @@ const StyledUnitWrapper = styled.div`
 
 const StyledPrompt = styled.div`
   position: absolute;
-  width: 50vw;
-  height: 50vw;
-  background-color: green;
+  display: flex;
+  top: 25%;
+  left: 25%;
+  width: %;
+  height: 50%;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  padding: 10%;
+  background-color: white;
 `;
 
 const StyledDelteIconWrapper = styled.div`
@@ -87,9 +94,10 @@ const StyledExclamationIcon = styled(FontAwesomeIcon)`
   color: red;
 `;
 
-const Prompt = ({ handleDelete, deleteProduct, id }) => (
+const Prompt = ({ handleDelete, deleteProduct, id, name }) => (
   <StyledPrompt>
-    Napewno chcesz usunąc ?
+    <p>Usunąc ?</p>
+    <p>{name}</p>
     <button onClick={() => deleteProduct(id)}>tak</button>
     <button onClick={handleDelete}>nie</button>
   </StyledPrompt>
@@ -179,6 +187,7 @@ class Product extends React.Component {
             handleDelete={this.handleDelete}
             id={id}
             deleteProduct={deleteProduct}
+            name={name}
           />
         )}
       </StyledWrapper>
