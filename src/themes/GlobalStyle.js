@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto', sans-serif;
         max-width: 600px;
         margin: 0 auto;
+        height: 100vh;
     }
 
     .test{

@@ -11,12 +11,11 @@ import {
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
-  /* background-color: green; */
   margin-left: 40px;
   height: 40px;
   line-height: 40px;
   display: flex;
-  color: ${props => props.fontColor};
+  /* color: ${props => props.fontColor}; */
 `;
 
 const StyledCartIconWrapper = styled.div`
@@ -24,12 +23,25 @@ const StyledCartIconWrapper = styled.div`
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  line-height: 40px;
   margin: 0 5px;
   color: rgba(0, 0, 0, 0.54);
 `;
 
 const StyledNameWrapper = styled.div`
+  text-transform: capitalize;
   width: 30%;
+`;
+const StyledQuantityWrapper = styled.div`
+  font-weight: 900;
+  width: 25px;
+  text-align: center;
+`;
+const StyledUnitWrapper = styled.div`
+  text-transform: capitalize;
+  width: 25px;
+  text-align: center;
 `;
 
 const StyledPrompt = styled.div`
@@ -37,6 +49,11 @@ const StyledPrompt = styled.div`
   width: 50vw;
   height: 50vw;
   background-color: green;
+`;
+
+const StyledEditIconWrapper = styled.div`
+  margin-left: 100px;
+  margin-right: 10px;
 `;
 
 const Prompt = ({ handleDelete, deleteProduct, id }) => (
@@ -72,36 +89,45 @@ class Product extends React.Component {
     const cartIconShow = quantity < min;
     const exclamationIconShow = !quantity;
 
-    let fontColor;
+    // let fontColor;
 
-    if (exclamationIconShow) {
-      fontColor = 'red';
-    } else if (cartIconShow) {
-      fontColor = 'orange';
-    } else {
-      fontColor = 'black';
-    }
+    // if (exclamationIconShow) {
+    //   fontColor = 'red';
+    // } else if (cartIconShow) {
+    //   fontColor = 'orange';
+    // } else {
+    //   fontColor = 'black';
+    // }
 
     return (
-      <StyledWrapper fontColor={fontColor}>
-        {console.log(`fontColor: ${fontColor}`)}
+      // <StyledWrapper fontColor={fontColor}>
+      <StyledWrapper>
+        {/* {console.log(`fontColor: ${fontColor}`)} */}
         <StyledCartIconWrapper>
           {cartIconShow && <StyledIcon icon={faShoppingCart} />}
         </StyledCartIconWrapper>
         <StyledNameWrapper>{name}</StyledNameWrapper>
         <div>
           <StyledIcon
-            icon={faPlusCircle}
-            onClick={() => addProductQuantity(id)}
-          />
-          {quantity} {unit}
-          <StyledIcon
             icon={faMinusCircle}
             onClick={() => subtractProductQuantity(id)}
           />
-          <StyledIcon icon={faTrash} onClick={this.handleDelete} />
-          <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
         </div>
+        <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
+        <StyledUnitWrapper>{unit}</StyledUnitWrapper>
+        <div>
+          <StyledIcon
+            icon={faPlusCircle}
+            onClick={() => addProductQuantity(id)}
+          />
+        </div>
+        <StyledEditIconWrapper>
+          <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
+        </StyledEditIconWrapper>
+        <div>
+          <StyledIcon icon={faTrash} onClick={this.handleDelete} />
+        </div>
+
         {exclamationIconShow && <StyledIcon icon={faExclamation} />}
         {this.state.isPromptVisibile && (
           <Prompt

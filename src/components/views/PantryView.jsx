@@ -7,6 +7,10 @@ import ProductList from '../productList/ProductList';
 import NewProductForm from '../newProductForm/NewProductForm';
 import AppContext from '../../context';
 
+const StyledContainer = styled.div`
+  height: 100vh;
+`;
+
 const StyledHeader = styled.div`
   height: 50px;
   background-color: #202020;
@@ -71,7 +75,7 @@ const StyledAddProductButton = styled.button`
 const PantryView = () => (
   <AppContext.Consumer>
     {context => (
-      <div className="App">
+      <StyledContainer>
         <Link to="/settings">
           <StyledHeader>Settings</StyledHeader>
         </Link>
@@ -122,7 +126,7 @@ const PantryView = () => (
             Dodaj
           </StyledAddProductButton>
         </StyledAddButtonWrapper>
-      </div>
+      </StyledContainer>
     )}
   </AppContext.Consumer>
 );
