@@ -31,6 +31,10 @@ class Root extends React.Component {
     this.state.products.forEach(product => this.checkShoppingList(product));
   }
 
+  componentDidUpdate() {
+    console.log('UPDATE');
+  }
+
   checkShoppingList = product => {
     if (product.min > product.quantity) {
       const isProductInShoppintList = this.state.shoppingList.filter(
