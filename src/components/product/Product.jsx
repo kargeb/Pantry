@@ -22,6 +22,7 @@ padding-left: 5%;
 
 const StyledCartIconWrapper = styled.div`
   width: 40px;
+  /* cursor: auto !important; */
 `;
 
 const StyledNameWrapper = styled.div`
