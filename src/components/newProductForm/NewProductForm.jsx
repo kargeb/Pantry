@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   position: absolute;
-  width: 90vw;
-  height: 90vh;
+  width: 90%;
+  height: 90%;
   background-color: grey;
-  top: 5vh;
-  left: 5vw;
+  top: 5%;
+  left: 5%;
 `;
 
 class NewProductForm extends React.Component {
