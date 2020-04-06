@@ -11,12 +11,25 @@ import {
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
+  /* background-color: green; */
+  margin-left: 40px;
+  height: 40px;
+  line-height: 40px;
   display: flex;
   color: ${props => props.fontColor};
 `;
 
+const StyledCartIconWrapper = styled.div`
+  width: 40px;
+`;
+
 const StyledIcon = styled(FontAwesomeIcon)`
   margin: 0 5px;
+  color: rgba(0, 0, 0, 0.54);
+`;
+
+const StyledNameWrapper = styled.div`
+  width: 30%;
 `;
 
 const StyledPrompt = styled.div`
@@ -72,20 +85,23 @@ class Product extends React.Component {
     return (
       <StyledWrapper fontColor={fontColor}>
         {console.log(`fontColor: ${fontColor}`)}
-        {cartIconShow && <StyledIcon icon={faShoppingCart} />}
-        {name} {quantity} {unit}
-        {/* <StyledIcon icon={faTrash} onClick={() => deleteProduct(id)} /> */}
-        <StyledIcon icon={faTrash} onClick={this.handleDelete} />
-        <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
-        <StyledIcon
-          icon={faPlusCircle}
-          onClick={() => addProductQuantity(id)}
-        />
-        <StyledIcon
-          className="test"
-          icon={faMinusCircle}
-          onClick={() => subtractProductQuantity(id)}
-        />
+        <StyledCartIconWrapper>
+          {cartIconShow && <StyledIcon icon={faShoppingCart} />}
+        </StyledCartIconWrapper>
+        <StyledNameWrapper>{name}</StyledNameWrapper>
+        <div>
+          <StyledIcon
+            icon={faPlusCircle}
+            onClick={() => addProductQuantity(id)}
+          />
+          {quantity} {unit}
+          <StyledIcon
+            icon={faMinusCircle}
+            onClick={() => subtractProductQuantity(id)}
+          />
+          <StyledIcon icon={faTrash} onClick={this.handleDelete} />
+          <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
+        </div>
         {exclamationIconShow && <StyledIcon icon={faExclamation} />}
         {this.state.isPromptVisibile && (
           <Prompt

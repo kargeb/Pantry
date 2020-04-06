@@ -12,11 +12,16 @@ const StyledMenu = styled.div`
   justify-content: space-between;
 `;
 
+const StyledHeader = styled.div`
+  height: 50px;
+  background-color: #202020;
+`;
+
 const ShoppingListView = () => (
   <AppContext.Consumer>
     {context => (
       <div>
-        <h4>Settings</h4>
+        <StyledHeader>Settings</StyledHeader>
         <StyledMenu>
           <Link to="/">
             <h3>Pantry</h3>
