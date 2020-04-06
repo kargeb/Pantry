@@ -3,6 +3,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 // import data from './data/db.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import ProductList from '../productList/ProductList';
 import NewProductForm from '../newProductForm/NewProductForm';
 import AppContext from '../../context';
@@ -12,23 +14,37 @@ const StyledContainer = styled.div`
 `;
 
 const StyledHeader = styled.div`
+  display: flex;
   height: 50px;
   background-color: #202020;
   color: white;
-  font-size: 20px;
+  /* font-size: 20px; */
+`;
+
+const StyledSettingsIconWrapper = styled.div`
+  height: 100%;
+  padding: 5px;
+  font-size: 30px;
+  line-height: 40px;
+  /* background-color: green; */
 `;
 
 const StyledMenu = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: #6202ee;
+
   /* height: 80px; */
   color: white;
 `;
 
 const StyledMenuItem = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
   width: 50%;
   font-size: 20px;
+  line-height: 30px;
   padding: 20px 0;
   text-align: center;
   background-color: #6202ee;
@@ -72,19 +88,36 @@ const StyledAddProductButton = styled.button`
   text-transform: uppercase;
 `;
 
+const StyledShoppingListCounter = styled.div`
+  background-color: #fff;
+  color: #6202ee;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  margin-left: 2px;
+  font-weight: 900;
+`;
+
 const PantryView = () => (
   <AppContext.Consumer>
     {context => (
       <StyledContainer>
         <Link to="/settings">
-          <StyledHeader>Settings</StyledHeader>
+          <StyledHeader>
+            <StyledSettingsIconWrapper>
+              <FontAwesomeIcon icon={faCogs} />
+            </StyledSettingsIconWrapper>
+          </StyledHeader>
         </Link>
         <StyledMenu>
           <StyledMenuItem active>Products</StyledMenuItem>
           <StyledMenuItem>
-            <Link to="/shoppinglist">
-              Shopping List {context.shoppingList.length}
-            </Link>
+            <div>
+              <Link to="/shoppinglist">Shopping List</Link>
+            </div>
+            <StyledShoppingListCounter>
+              {context.shoppingList.length}
+            </StyledShoppingListCounter>
           </StyledMenuItem>
         </StyledMenu>
         {context.isFormVisible && (
