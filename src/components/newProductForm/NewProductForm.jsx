@@ -63,6 +63,7 @@ class NewProductForm extends React.Component {
         category: '',
         min: '1',
         unit: 'szt',
+        id: null,
       });
 
       this.props.handleFormVisibility();
@@ -71,8 +72,17 @@ class NewProductForm extends React.Component {
     }
   };
 
+  handleCloseForm = (handleFormVisibility, resetDefaultProduct) => {
+    resetDefaultProduct();
+    handleFormVisibility();
+  };
+
   render() {
-    const { categories, handleFormVisibility } = this.props;
+    const {
+      categories,
+      handleFormVisibility,
+      resetDefaultProduct,
+    } = this.props;
 
     return (
       <StyledWrapper>
@@ -138,7 +148,12 @@ class NewProductForm extends React.Component {
             Dodaj
           </button>
         </form>
-        <button type="button" onClick={handleFormVisibility}>
+        <button
+          type="button"
+          onClick={() =>
+            this.handleCloseForm(handleFormVisibility, resetDefaultProduct)
+          }
+        >
           Close
         </button>
       </StyledWrapper>

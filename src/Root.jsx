@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import PantryView from './components/views/PantryView';
 import ShoppingListView from './components/views/ShoppingListView';
 import AppContext from './context';
@@ -105,10 +106,22 @@ class Root extends React.Component {
 
       this.setState({ products: [...newProducts] });
     } else {
+      newProduct.id = uuidv4();
       this.setState(prevState => ({
         products: [...prevState.products, newProduct],
       }));
     }
+
+    this.setState({
+      defaultProduct: {
+        name: '',
+        quantity: '',
+        category: '',
+        min: '3',
+        unit: 'szt',
+        id: null,
+      },
+    });
   };
 
   editProduct = id => {
@@ -148,6 +161,19 @@ class Root extends React.Component {
     });
   };
 
+  resetDefaultProduct = () => {
+    this.setState({
+      defaultProduct: {
+        name: '',
+        quantity: '',
+        category: '',
+        min: '3',
+        unit: 'szt',
+        id: null,
+      },
+    });
+  };
+
   render() {
     const contextElements = {
       czosz: 'czosz',
@@ -161,6 +187,7 @@ class Root extends React.Component {
       completeProductQuantityToMin: this.completeProductQuantityToMin,
       toggleDarkmode: this.toggleDarkmode,
       toggleShoppingListPrompt: this.toggleShoppingListPrompt,
+      resetDefaultProduct: this.resetDefaultProduct,
     };
     return (
       <BrowserRouter>

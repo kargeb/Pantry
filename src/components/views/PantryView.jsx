@@ -9,16 +9,21 @@ import ProductList from '../productList/ProductList';
 import NewProductForm from '../newProductForm/NewProductForm';
 import AppContext from '../../context';
 
-const StyledContainer = styled.div`
-  height: 100vh;
-`;
-
-const StyledHeader = styled.div`
+const StyledHeader = styled.header`
   display: flex;
   height: 50px;
   background-color: #202020;
   color: white;
   /* font-size: 20px; */
+`;
+
+const StyledMenu = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  background-color: #6202ee;
+
+  height: 70px;
+  color: white;
 `;
 
 const StyledSettingsIconWrapper = styled.div`
@@ -27,15 +32,6 @@ const StyledSettingsIconWrapper = styled.div`
   font-size: 30px;
   line-height: 40px;
   /* background-color: green; */
-`;
-
-const StyledMenu = styled.div`
-  display: flex;
-  justify-content: space-between;
-  background-color: #6202ee;
-
-  /* height: 80px; */
-  color: white;
 `;
 
 const StyledMenuItem = styled.div`
@@ -98,17 +94,23 @@ const StyledShoppingListCounter = styled.div`
   font-weight: 900;
 `;
 
+const StyledMain = styled.main`
+  height: calc(100vh - 120px);
+  /* height: 1000px; */
+  background-color: white;
+`;
+
 const PantryView = () => (
   <AppContext.Consumer>
     {context => (
-      <StyledContainer>
-        <Link to="/settings">
-          <StyledHeader>
+      <div>
+        <StyledHeader>
+          <Link to="/settings">
             <StyledSettingsIconWrapper>
               <FontAwesomeIcon icon={faCogs} />
             </StyledSettingsIconWrapper>
-          </StyledHeader>
-        </Link>
+          </Link>
+        </StyledHeader>
         <StyledMenu>
           <StyledMenuItem active>Products</StyledMenuItem>
           <StyledMenuItem>
@@ -122,44 +124,49 @@ const PantryView = () => (
         </StyledMenu>
         {context.isFormVisible && (
           <NewProductForm
+            resetDefaultProduct={context.resetDefaultProduct}
             defaultProduct={context.defaultProduct}
             handleFormVisibility={context.handleFormVisibility}
             addNewProduct={context.addNewProduct}
             categories={context.categories}
           />
         )}
-        <StyledListWrapper>
-          {context.categories.map(category => {
-            const productsOfCategory = context.products.filter(
-              product => product.category === category,
-            );
-            if (productsOfCategory.length) {
-              console.log(`w categorii: ${category} mamy nastepujace produkty`);
-              console.log(productsOfCategory);
-              return (
-                <li>
-                  <StyledCategoryLabel>{category}</StyledCategoryLabel>
-                  <ProductList
-                    products={productsOfCategory}
-                    addProductQuantity={context.addProductQuantity}
-                    subtractProductQuantity={context.subtractProductQuantity}
-                    deleteProduct={context.deleteProduct}
-                    editProduct={context.editProduct}
-                  />
-                </li>
+        <StyledMain>
+          <StyledListWrapper>
+            {context.categories.map(category => {
+              const productsOfCategory = context.products.filter(
+                product => product.category === category,
               );
-            }
-          })}
-        </StyledListWrapper>
-        <StyledAddButtonWrapper>
-          <StyledAddProductButton
-            type="button"
-            onClick={context.handleFormVisibility}
-          >
-            Dodaj
-          </StyledAddProductButton>
-        </StyledAddButtonWrapper>
-      </StyledContainer>
+              if (productsOfCategory.length) {
+                console.log(
+                  `w categorii: ${category} mamy nastepujace produkty`,
+                );
+                console.log(productsOfCategory);
+                return (
+                  <li>
+                    <StyledCategoryLabel>{category}</StyledCategoryLabel>
+                    <ProductList
+                      products={productsOfCategory}
+                      addProductQuantity={context.addProductQuantity}
+                      subtractProductQuantity={context.subtractProductQuantity}
+                      deleteProduct={context.deleteProduct}
+                      editProduct={context.editProduct}
+                    />
+                  </li>
+                );
+              }
+            })}
+          </StyledListWrapper>
+          <StyledAddButtonWrapper>
+            <StyledAddProductButton
+              type="button"
+              onClick={context.handleFormVisibility}
+            >
+              Dodaj
+            </StyledAddProductButton>
+          </StyledAddButtonWrapper>
+        </StyledMain>
+      </div>
     )}
   </AppContext.Consumer>
 );
