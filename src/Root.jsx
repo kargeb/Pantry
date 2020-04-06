@@ -13,7 +13,7 @@ class Root extends React.Component {
   state = {
     products: [...data.products],
     categories: [...data.categories],
-    isFormVisible: false,
+    isFormVisible: true,
     shoppingList: [],
     defaultProduct: {
       name: '',
