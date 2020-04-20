@@ -63,22 +63,14 @@ const StyledButton = styled.button`
 `;
 
 class NewProductForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const { name, quantity, category, min, unit, id } = props.defaultProduct;
-
-    console.log(unit);
-
-    this.state = {
-      name,
-      quantity,
-      category,
-      min,
-      unit,
-      id,
-    };
-  }
+  state = {
+    name: '',
+    quantity: '',
+    category: '',
+    min: '3',
+    unit: 'szt',
+    id: null,
+  };
 
   handleForm = e => {
     console.log(e.target.value);
@@ -120,17 +112,12 @@ class NewProductForm extends React.Component {
     }
   };
 
-  handleCloseForm = (handleFormVisibility, resetDefaultProduct) => {
-    resetDefaultProduct();
+  handleCloseForm = handleFormVisibility => {
     handleFormVisibility();
   };
 
   render() {
-    const {
-      categories,
-      handleFormVisibility,
-      resetDefaultProduct,
-    } = this.props;
+    const { categories, toggleFormVisibility } = this.props;
 
     return (
       <StyledWrapper>
@@ -197,12 +184,7 @@ class NewProductForm extends React.Component {
               <StyledConfirmIcon icon={faCheckSquare} />
             </StyledButton>
 
-            <StyledButton
-              type="button"
-              onClick={() =>
-                this.handleCloseForm(handleFormVisibility, resetDefaultProduct)
-              }
-            >
+            <StyledButton type="button" onClick={toggleFormVisibility}>
               <StyledCancelIcon icon={faTimesCircle} />
             </StyledButton>
           </StyledButtonsWrapper>

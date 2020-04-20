@@ -104,75 +104,87 @@ const StyledContainer = styled.div`
   position: relative;
 `;
 
-const PantryView = () => (
-  <AppContext.Consumer>
-    {context => (
-      <StyledContainer>
-        <StyledHeader>
-          <Link to="/settings">
-            <StyledSettingsIconWrapper>
-              <FontAwesomeIcon icon={faCogs} />
-            </StyledSettingsIconWrapper>
-          </Link>
-        </StyledHeader>
-        <StyledMenu>
-          <StyledMenuItem active>Products</StyledMenuItem>
-          <StyledMenuItem>
-            <div>
-              <Link to="/shoppinglist">Shopping List</Link>
-            </div>
-            <StyledShoppingListCounter>
-              {context.shoppingList.length}
-            </StyledShoppingListCounter>
-          </StyledMenuItem>
-        </StyledMenu>
-        <StyledMain>
-          <StyledListWrapper>
-            {context.categories.map(category => {
-              const productsOfCategory = context.products.filter(
-                product => product.category === category,
-              );
-              if (productsOfCategory.length) {
-                console.log(
-                  `w categorii: ${category} mamy nastepujace produkty`,
-                );
-                console.log(productsOfCategory);
-                return (
-                  <li>
-                    <StyledCategoryLabel>{category}</StyledCategoryLabel>
-                    <ProductList
-                      products={productsOfCategory}
-                      addProductQuantity={context.addProductQuantity}
-                      subtractProductQuantity={context.subtractProductQuantity}
-                      deleteProduct={context.deleteProduct}
-                      editProduct={context.editProduct}
-                    />
-                  </li>
-                );
-              }
-            })}
-          </StyledListWrapper>
-          <StyledAddButtonWrapper>
-            <StyledAddProductButton
-              type="button"
-              onClick={context.handleFormVisibility}
-            >
-              Dodaj
-            </StyledAddProductButton>
-          </StyledAddButtonWrapper>
-        </StyledMain>
-        {context.isFormVisible && (
-          <NewProductForm
-            resetDefaultProduct={context.resetDefaultProduct}
-            defaultProduct={context.defaultProduct}
-            handleFormVisibility={context.handleFormVisibility}
-            addNewProduct={context.addNewProduct}
-            categories={context.categories}
-          />
+class PantryView extends React.Component {
+  state = {
+    isFormVisible: false,
+  };
+
+  toggleFormVisibility = () => {
+    this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
+  };
+
+  render() {
+    return (
+      <AppContext.Consumer>
+        {context => (
+          <StyledContainer>
+            <StyledHeader>
+              <Link to="/settings">
+                <StyledSettingsIconWrapper>
+                  <FontAwesomeIcon icon={faCogs} />
+                </StyledSettingsIconWrapper>
+              </Link>
+            </StyledHeader>
+            <StyledMenu>
+              <StyledMenuItem active>Products</StyledMenuItem>
+              <StyledMenuItem>
+                <div>
+                  <Link to="/shoppinglist">Shopping List</Link>
+                </div>
+                <StyledShoppingListCounter>
+                  {context.shoppingList.length}
+                </StyledShoppingListCounter>
+              </StyledMenuItem>
+            </StyledMenu>
+            <StyledMain>
+              <StyledListWrapper>
+                {context.categories.map(category => {
+                  const productsOfCategory = context.products.filter(
+                    product => product.category === category,
+                  );
+                  if (productsOfCategory.length) {
+                    console.log(
+                      `w categorii: ${category} mamy nastepujace produkty`,
+                    );
+                    console.log(productsOfCategory);
+                    return (
+                      <li>
+                        <StyledCategoryLabel>{category}</StyledCategoryLabel>
+                        <ProductList
+                          products={productsOfCategory}
+                          addProductQuantity={context.addProductQuantity}
+                          subtractProductQuantity={
+                            context.subtractProductQuantity
+                          }
+                          deleteProduct={context.deleteProduct}
+                          editProduct={context.editProduct}
+                        />
+                      </li>
+                    );
+                  }
+                })}
+              </StyledListWrapper>
+              <StyledAddButtonWrapper>
+                <StyledAddProductButton
+                  type="button"
+                  onClick={this.toggleFormVisibility}
+                >
+                  Dodaj
+                </StyledAddProductButton>
+              </StyledAddButtonWrapper>
+            </StyledMain>
+            {this.state.isFormVisible && (
+              <NewProductForm
+                toggleFormVisibility={this.toggleFormVisibility}
+                addNewProduct={context.addNewProduct}
+                categories={context.categories}
+              />
+            )}
+          </StyledContainer>
         )}
-      </StyledContainer>
-    )}
-  </AppContext.Consumer>
-);
+      </AppContext.Consumer>
+    );
+  }
+}
 
 export default PantryView;
