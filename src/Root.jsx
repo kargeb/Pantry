@@ -6,7 +6,6 @@ import ShoppingListView from './components/views/ShoppingListView';
 import AppContext from './context';
 import data from './data/db.json';
 import GlobalStyle from './themes/GlobalStyle';
-import GlobalStyleDark from './themes/GlobalStyleDark';
 import SettingsView from './components/views/SettingsView';
 
 class Root extends React.Component {
@@ -23,7 +22,6 @@ class Root extends React.Component {
       unit: 'szt',
       id: null,
     },
-    darkMode: false,
     isShoppingListPromptVisible: false,
   };
 
@@ -155,10 +153,6 @@ class Root extends React.Component {
     this.setState({ products: [...newProducts] });
   };
 
-  toggleDarkmode = () => {
-    this.setState({ darkMode: !this.state.darkMode });
-  };
-
   toggleShoppingListPrompt = () => {
     this.setState({
       isShoppingListPromptVisible: !this.state.isShoppingListPromptVisible,
@@ -195,7 +189,7 @@ class Root extends React.Component {
     };
     return (
       <BrowserRouter>
-        {this.state.darkMode ? <GlobalStyleDark /> : <GlobalStyle />}
+        <GlobalStyle />
         <AppContext.Provider value={contextElements}>
           <Switch>
             <Route exact path="/" component={PantryView} />
