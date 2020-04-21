@@ -14,14 +14,14 @@ class Root extends React.Component {
     categories: [...data.categories],
     isFormVisible: false,
     shoppingList: [],
-    defaultProduct: {
-      name: '',
-      quantity: '',
-      category: '',
-      min: '3',
-      unit: 'szt',
-      id: null,
-    },
+    // defaultProduct: {
+    //   name: '',
+    //   quantity: '',
+    //   category: '',
+    //   min: '3',
+    //   unit: 'szt',
+    //   id: null,
+    // },
     isShoppingListPromptVisible: false,
   };
 
@@ -95,47 +95,45 @@ class Root extends React.Component {
 
   addNewProduct = newProduct => {
     console.log(newProduct);
-    console.log(`ID : ${newProduct.id}`);
+    // console.log(`ID : ${newProduct.id}`);
 
-    if (newProduct.id) {
-      const newProducts = this.state.products.map(product => {
-        if (product.id === newProduct.id) {
-          product = { ...newProduct };
-          return product;
-        }
-        return product;
-      });
+    // if (newProduct.id) {
+    //   const newProducts = this.state.products.map(product => {
+    //     if (product.id === newProduct.id) {
+    //       product = { ...newProduct };
+    //       return product;
+    //     }
+    //     return product;
+    //   });
 
-      this.setState({ products: [...newProducts] });
-    } else {
-      newProduct.id = uuidv4();
-      this.setState(prevState => ({
-        products: [...prevState.products, newProduct],
-      }));
-    }
+    //   this.setState({ products: [...newProducts] });
+    // } else {
+    newProduct.id = uuidv4();
+    this.setState(prevState => ({
+      products: [...prevState.products, newProduct],
+    }));
+    // }
 
-    this.setState({
-      defaultProduct: {
-        name: '',
-        quantity: '',
-        category: '',
-        min: '3',
-        unit: 'szt',
-        id: null,
-      },
-    });
+    // this.setState({
+    //   defaultProduct: {
+    //     name: '',
+    //     quantity: '',
+    //     category: '',
+    //     min: '3',
+    //     unit: 'szt',
+    //     id: null,
+    //   },
+    // });
   };
 
   editProduct = id => {
-    const editingProduct = this.state.products.filter(
-      product => product.id === id,
-    )[0];
-
-    this.setState({ defaultProduct: { ...editingProduct } });
-    this.handleFormVisibility();
-
-    console.log('product do edycji');
-    console.log(editingProduct);
+    // const editingProduct = this.state.products.filter(
+    //   product => product.id === id,
+    // )[0];
+    // this.setState({ defaultProduct: { ...editingProduct } });
+    // this.handleFormVisibility();
+    // console.log('product do edycji');
+    // console.log(editingProduct);
   };
 
   handleFormVisibility = () => {
@@ -159,22 +157,21 @@ class Root extends React.Component {
     });
   };
 
-  resetDefaultProduct = () => {
-    this.setState({
-      defaultProduct: {
-        name: '',
-        quantity: '',
-        category: '',
-        min: '3',
-        unit: 'szt',
-        id: null,
-      },
-    });
-  };
+  // resetDefaultProduct = () => {
+  //   this.setState({
+  //     defaultProduct: {
+  //       name: '',
+  //       quantity: '',
+  //       category: '',
+  //       min: '3',
+  //       unit: 'szt',
+  //       id: null,
+  //     },
+  //   });
+  // };
 
   render() {
     const contextElements = {
-      czosz: 'czosz',
       ...this.state,
       handleFormVisibility: this.handleFormVisibility,
       editProduct: this.editProduct,
@@ -183,9 +180,7 @@ class Root extends React.Component {
       subtractProductQuantity: this.subtractProductQuantity,
       addProductQuantity: this.addProductQuantity,
       completeProductQuantityToMin: this.completeProductQuantityToMin,
-      toggleDarkmode: this.toggleDarkmode,
       toggleShoppingListPrompt: this.toggleShoppingListPrompt,
-      resetDefaultProduct: this.resetDefaultProduct,
     };
     return (
       <BrowserRouter>

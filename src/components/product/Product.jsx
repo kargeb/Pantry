@@ -9,6 +9,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import AppContext from '../../context';
 
 const StyledWrapper = styled.div`
 padding-left: 5%;
@@ -48,6 +49,7 @@ const StyledLeftWrapper = styled.div`
 
 const StyledIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
+  user-select: none;
   line-height: 40px;
   margin: 0 10px;
   color: rgba(0, 0, 0, 0.54);
@@ -140,57 +142,61 @@ class Product extends React.Component {
 
     return (
       // <StyledWrapper fontColor={fontColor}>
-      <StyledWrapper>
-        <StyledLeftWrapper>
-          <StyledExclamationIconWrapper>
-            {exclamationIconShow && (
-              <StyledExclamationIcon icon={faExclamation} />
+      <AppContext.Consumer>
+        {context => (
+          <StyledWrapper>
+            <StyledLeftWrapper>
+              <StyledExclamationIconWrapper>
+                {exclamationIconShow && (
+                  <StyledExclamationIcon icon={faExclamation} />
+                )}
+              </StyledExclamationIconWrapper>
+              <StyledCartIconWrapper>
+                {cartIconShow && <StyledIcon icon={faShoppingCart} />}
+              </StyledCartIconWrapper>
+              <div>
+                <StyledNameWrapper>{name}</StyledNameWrapper>
+              </div>
+            </StyledLeftWrapper>
+            <StyledCenterWrapper>
+              <div>
+                <StyledIcon
+                  icon={faMinusCircle}
+                  onClick={() => subtractProductQuantity(id)}
+                />
+              </div>
+
+              <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
+              <StyledUnitWrapper>{unit}</StyledUnitWrapper>
+              <div>
+                <StyledIcon
+                  icon={faPlusCircle}
+                  onClick={() => addProductQuantity(id)}
+                />
+              </div>
+            </StyledCenterWrapper>
+            <StyledRightWrapper>
+              <div>
+                {/* <StyledEditIconWrapper> */}
+                <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
+                {/* </StyledEditIconWrapper> */}
+              </div>
+              <StyledDelteIconWrapper>
+                <StyledIcon icon={faTrash} onClick={this.handleDelete} />
+              </StyledDelteIconWrapper>
+            </StyledRightWrapper>
+
+            {this.state.isPromptVisibile && (
+              <Prompt
+                handleDelete={this.handleDelete}
+                id={id}
+                deleteProduct={deleteProduct}
+                name={name}
+              />
             )}
-          </StyledExclamationIconWrapper>
-          <StyledCartIconWrapper>
-            {cartIconShow && <StyledIcon icon={faShoppingCart} />}
-          </StyledCartIconWrapper>
-          <div>
-            <StyledNameWrapper>{name}</StyledNameWrapper>
-          </div>
-        </StyledLeftWrapper>
-        <StyledCenterWrapper>
-          <div>
-            <StyledIcon
-              icon={faMinusCircle}
-              onClick={() => subtractProductQuantity(id)}
-            />
-          </div>
-
-          <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
-          <StyledUnitWrapper>{unit}</StyledUnitWrapper>
-          <div>
-            <StyledIcon
-              icon={faPlusCircle}
-              onClick={() => addProductQuantity(id)}
-            />
-          </div>
-        </StyledCenterWrapper>
-        <StyledRightWrapper>
-          <div>
-            {/* <StyledEditIconWrapper> */}
-            <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
-            {/* </StyledEditIconWrapper> */}
-          </div>
-          <StyledDelteIconWrapper>
-            <StyledIcon icon={faTrash} onClick={this.handleDelete} />
-          </StyledDelteIconWrapper>
-        </StyledRightWrapper>
-
-        {this.state.isPromptVisibile && (
-          <Prompt
-            handleDelete={this.handleDelete}
-            id={id}
-            deleteProduct={deleteProduct}
-            name={name}
-          />
+          </StyledWrapper>
         )}
-      </StyledWrapper>
+      </AppContext.Consumer>
     );
   }
 }
