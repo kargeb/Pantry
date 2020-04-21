@@ -113,6 +113,14 @@ class PantryView extends React.Component {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
   };
 
+  componentDidMount() {
+    console.log(' Zamontyowanie Pantry DID MONUT');
+  }
+
+  componentWillUnmount() {
+    console.log('Pantry WILL UNMONUT odmontowanie');
+  }
+
   render() {
     return (
       <AppContext.Consumer>
@@ -143,10 +151,6 @@ class PantryView extends React.Component {
                     product => product.category === category,
                   );
                   if (productsOfCategory.length) {
-                    console.log(
-                      `w categorii: ${category} mamy nastepujace produkty`,
-                    );
-                    console.log(productsOfCategory);
                     return (
                       <li>
                         <StyledCategoryLabel>{category}</StyledCategoryLabel>
