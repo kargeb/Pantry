@@ -155,6 +155,8 @@ class PantryView extends React.Component {
   };
 
   render() {
+    const { products } = this.state;
+
     return (
       <AppContext.Consumer>
         {context => (
@@ -179,11 +181,7 @@ class PantryView extends React.Component {
               </StyledMenuItem>
             </StyledMenu>
             <StyledMain>
-              {this.state.products.length ? (
-                <span />
-              ) : (
-                <img src={loadingGif} alt="Loading gif" />
-              )}
+              {!products.length && <img src={loadingGif} alt="Loading gif" />}
               <StyledListWrapper>
                 {this.state.categories.map(category => {
                   const productsOfCategory = this.state.products.filter(
