@@ -109,39 +109,51 @@ const StyledContainer = styled.div`
 class PantryView extends React.Component {
   state = {
     products: [],
+    categories: [],
     isFormVisible: false,
     pending: true,
   };
 
   componentDidMount() {
     console.log(' Zamontyowanie Pantry DID MONUT');
-    console.log('CZEEEJ');
-    this.unsubscribe = db
-      .collection('products')
-      .get()
-      .then(function (querySnapshot) {
-        const downloadedProducts = [];
-        querySnapshot.forEach(function (doc) {
-          // doc.data() is never undefined for query doc snapshots
-          const { name, quantity, category, min, unit, id } = doc.data();
-          const newProduct = {
-            name,
-            quantity,
-            category,
-            min,
-            unit,
-            id,
-          };
 
-          downloadedProducts.push(newProduct);
-          console.log(doc.id, ' => ', name);
-        });
+    this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
+      const downloadedProducts = [];
+      const categories = [];
 
-        return downloadedProducts;
-      })
-      .then(downloadedProducts =>
-        this.setState({ products: [...downloadedProducts], pending: false }),
-      );
+      querySnapshot.forEach(doc => {
+        const {
+          name,
+          quantity,
+          category,
+          min,
+          unit,
+          id,
+          onShoppingList,
+        } = doc.data();
+        const newProduct = {
+          name,
+          quantity,
+          category,
+          min,
+          unit,
+          onShoppingList,
+          id,
+        };
+
+        downloadedProducts.push(newProduct);
+
+        if (!categories.includes(category)) {
+          categories.push(category);
+        }
+      });
+
+      this.setState({
+        products: [...downloadedProducts],
+        categories,
+        pending: false,
+      });
+    });
   }
 
   componentWillUnmount() {
@@ -154,8 +166,6 @@ class PantryView extends React.Component {
   };
 
   render() {
-    // const categories =
-
     return (
       <AppContext.Consumer>
         {context => (
@@ -182,29 +192,28 @@ class PantryView extends React.Component {
               {this.state.pending ? (
                 <img src={loadingGif} alt="Loading gif" />
               ) : (
-                <span>JEST</span>
+                <span />
               )}
               <StyledListWrapper>
-                {context.categories.map(category => {
-                  const productsOfCategory = context.products.filter(
+                {this.state.categories.map(category => {
+                  const productsOfCategory = this.state.products.filter(
                     product => product.category === category,
                   );
-                  if (productsOfCategory.length) {
-                    return (
-                      <li>
-                        <StyledCategoryLabel>{category}</StyledCategoryLabel>
-                        <ProductList
-                          products={productsOfCategory}
-                          addProductQuantity={context.addProductQuantity}
-                          subtractProductQuantity={
-                            context.subtractProductQuantity
-                          }
-                          deleteProduct={context.deleteProduct}
-                          editProduct={context.editProduct}
-                        />
-                      </li>
-                    );
-                  }
+
+                  return (
+                    <li key={category}>
+                      <StyledCategoryLabel>{category}</StyledCategoryLabel>
+                      <ProductList
+                        products={productsOfCategory}
+                        addProductQuantity={context.addProductQuantity}
+                        subtractProductQuantity={
+                          context.subtractProductQuantity
+                        }
+                        deleteProduct={context.deleteProduct}
+                        editProduct={context.editProduct}
+                      />
+                    </li>
+                  );
                 })}
               </StyledListWrapper>
               <StyledAddButtonWrapper>
