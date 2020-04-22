@@ -9,6 +9,7 @@ import ProductList from '../productList/ProductList';
 import NewProductForm from '../newProductForm/NewProductForm';
 import AppContext from '../../context';
 import db from '../../fbase';
+import loadingGif from '../../images/loading_dots.gif';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -178,7 +179,11 @@ class PantryView extends React.Component {
               </StyledMenuItem>
             </StyledMenu>
             <StyledMain>
-              {this.state.pending ? <span>CZEEJ</span> : <span>JEST</span>}
+              {this.state.pending ? (
+                <img src={loadingGif} alt="Loading gif" />
+              ) : (
+                <span>JEST</span>
+              )}
               <StyledListWrapper>
                 {context.categories.map(category => {
                   const productsOfCategory = context.products.filter(
