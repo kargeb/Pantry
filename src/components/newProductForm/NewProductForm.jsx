@@ -5,6 +5,8 @@ import {
   faTimesCircle,
   faCheckSquare,
 } from '@fortawesome/free-solid-svg-icons';
+import { v4 as uuidv4 } from 'uuid';
+import db from '../../fbase';
 
 const StyledForm = styled.form`
   position: absolute;
@@ -69,7 +71,6 @@ class NewProductForm extends React.Component {
     category: '',
     min: '3',
     unit: 'szt',
-    id: null,
   };
 
   handleForm = e => {
@@ -82,7 +83,8 @@ class NewProductForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { name, quantity, category, min, unit, id } = this.state;
+    const { name, quantity, category, min, unit } = this.state;
+    const { toggleFormVisibility } = this.props;
 
     if (name && quantity && category && min && unit) {
       const newProduct = {
@@ -91,11 +93,14 @@ class NewProductForm extends React.Component {
         category,
         min,
         unit,
-        id,
+        id: uuidv4(),
       };
 
-      console.log('wypelnoine wszystkie');
-      this.props.addNewProduct(newProduct);
+      console.log('wypelnoine wszystkie, nowty produkt');
+      console.log(newProduct);
+
+      // this.props.addNewProduct(newProduct);
+      db().collection('products').doc(newProduct.id).set(newProduct);
 
       this.setState({
         name: '',
@@ -103,21 +108,17 @@ class NewProductForm extends React.Component {
         category: '',
         min: '1',
         unit: 'szt',
-        id: null,
       });
 
-      this.props.handleFormVisibility();
+      toggleFormVisibility();
     } else {
       console.log('WYPEŁNIJ  SZYSTKIE POLA');
     }
   };
 
-  handleCloseForm = handleFormVisibility => {
-    handleFormVisibility();
-  };
-
   render() {
     const { categories, toggleFormVisibility } = this.props;
+    const { name, quantity, unit, min, category } = this.state;
 
     return (
       <StyledWrapper>
@@ -129,7 +130,7 @@ class NewProductForm extends React.Component {
               placeholder="nazwa"
               type="text"
               onChange={this.handleForm}
-              value={this.state.name}
+              value={name}
             />
           </StyledLabel>
           <StyledLabel htmlFor="quantity">
@@ -139,16 +140,12 @@ class NewProductForm extends React.Component {
               placeholder="ilość"
               type="number"
               onChange={this.handleForm}
-              value={this.state.quantity}
+              value={quantity}
             />
           </StyledLabel>
           <StyledLabel htmlFor="unit">
             Jednostka:
-            <select
-              id="unit"
-              onChange={this.handleForm}
-              value={this.state.unit}
-            >
+            <select id="unit" onChange={this.handleForm} value={unit}>
               <option value="szt">szt</option>
               <option value="l">l</option>
               <option value="kg">kg</option>
@@ -161,16 +158,12 @@ class NewProductForm extends React.Component {
               type="number"
               placeholder="minimalna ilość"
               onChange={this.handleForm}
-              value={this.state.min}
+              value={min}
             />
           </StyledLabel>
           <StyledLabel htmlFor="category">
             Kategoria:
-            <select
-              id="category"
-              onChange={this.handleForm}
-              value={this.state.category}
-            >
+            <select id="category" onChange={this.handleForm} value={category}>
               <option value="" disabled hidden />
               {categories.map(category => (
                 <option key={category} value={category}>
