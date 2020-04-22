@@ -8,7 +8,6 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import ProductList from '../productList/ProductList';
 import NewProductForm from '../newProductForm/NewProductForm';
 import AppContext from '../../context';
-import db from '../../fbase';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -56,18 +55,18 @@ const StyledMenuItem = styled.div`
     `};
 `;
 
-const StyledListWrapper = styled.ul`
-  /* background-color: #fff; */
-`;
+// const StyledListWrapper = styled.ul`
+//   /* background-color: #fff; */
+// `;
 
-const StyledCategoryLabel = styled.div`
-  padding: 5px 0 5px 20px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-`;
+// const StyledCategoryLabel = styled.div`
+//   padding: 5px 0 5px 20px;
+//   font-family: Roboto;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 20px;
+//   line-height: 23px;
+// `;
 
 const StyledAddButtonWrapper = styled.div`
   background-color: #fff;
@@ -107,27 +106,50 @@ const StyledContainer = styled.div`
 
 class PantryView extends React.Component {
   state = {
+    // products: [],
+    // categories: [],
     isFormVisible: false,
   };
 
-  componentDidMount() {
-    console.log(' Zamontyowanie Pantry DID MONUT');
-    db.collection('products')
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, ' => ', doc.data());
-        });
-      });
-  }
+  // componentDidMount() {
+  //   console.log(' Zamontyowanie Pantry DID MONUT');
 
-  componentWillUnmount() {
-    console.log('Pantry WILL UNMONUT odmontowanie');
-  }
+  //   this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
+  //     const downloadedProducts = [];
+  //     const categories = [];
+
+  //     querySnapshot.forEach(doc => {
+  //       const newProduct = { ...doc.data() };
+  //       downloadedProducts.push(newProduct);
+
+  //       const { category } = newProduct;
+  //       if (!categories.includes(category)) {
+  //         categories.push(category);
+  //       }
+  //     });
+
+  //     this.setState({
+  //       products: [...downloadedProducts],
+  //       categories,
+  //     });
+  //   });
+  // }
+
+  // componentWillUnmount() {
+  //   console.log('Pantry WILL UNMONUT odmontowanie');
+  //   this.unsubscribe();
+  // }
 
   toggleFormVisibility = () => {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
+  };
+
+  numberOfProductsOnShoppingList = () => {
+    // const { products } = this.state;
+    // const productsOnShoppingList = products.filter(
+    //   product => product.onShoppingList,
+    // );
+    // return productsOnShoppingList.length;
   };
 
   render() {
@@ -149,34 +171,35 @@ class PantryView extends React.Component {
                   <Link to="/shoppinglist">Shopping List</Link>
                 </div>
                 <StyledShoppingListCounter>
-                  {context.shoppingList.length}
+                  {/* {context.shoppingList.length} */}
+                  {this.numberOfProductsOnShoppingList()}
                 </StyledShoppingListCounter>
               </StyledMenuItem>
             </StyledMenu>
             <StyledMain>
-              <StyledListWrapper>
-                {context.categories.map(category => {
-                  const productsOfCategory = context.products.filter(
+              <ProductList />
+              {/* <StyledListWrapper>
+                {this.state.categories.map(category => {
+                  const productsOfCategory = this.state.products.filter(
                     product => product.category === category,
                   );
-                  if (productsOfCategory.length) {
-                    return (
-                      <li>
-                        <StyledCategoryLabel>{category}</StyledCategoryLabel>
-                        <ProductList
-                          products={productsOfCategory}
-                          addProductQuantity={context.addProductQuantity}
-                          subtractProductQuantity={
-                            context.subtractProductQuantity
-                          }
-                          deleteProduct={context.deleteProduct}
-                          editProduct={context.editProduct}
-                        />
-                      </li>
-                    );
-                  }
+
+                  return (
+                    <li key={category}>
+                      <StyledCategoryLabel>{category}</StyledCategoryLabel>
+                      <ProductList
+                        products={productsOfCategory}
+                        addProductQuantity={context.addProductQuantity}
+                        subtractProductQuantity={
+                          context.subtractProductQuantity
+                        }
+                        deleteProduct={context.deleteProduct}
+                        editProduct={context.editProduct}
+                      />
+                    </li>
+                  );
                 })}
-              </StyledListWrapper>
+              </StyledListWrapper> */}
               <StyledAddButtonWrapper>
                 <StyledAddProductButton
                   type="button"

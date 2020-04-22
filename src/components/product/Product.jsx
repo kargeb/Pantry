@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import AppContext from '../../context';
+import db from '../../fbase';
 
 const StyledWrapper = styled.div`
 padding-left: 5%;
