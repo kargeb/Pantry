@@ -111,7 +111,6 @@ class PantryView extends React.Component {
     products: [],
     categories: [],
     isFormVisible: false,
-    pending: true,
   };
 
   componentDidMount() {
@@ -122,27 +121,10 @@ class PantryView extends React.Component {
       const categories = [];
 
       querySnapshot.forEach(doc => {
-        const {
-          name,
-          quantity,
-          category,
-          min,
-          unit,
-          id,
-          onShoppingList,
-        } = doc.data();
-        const newProduct = {
-          name,
-          quantity,
-          category,
-          min,
-          unit,
-          onShoppingList,
-          id,
-        };
-
+        const newProduct = { ...doc.data() };
         downloadedProducts.push(newProduct);
 
+        const { category } = newProduct;
         if (!categories.includes(category)) {
           categories.push(category);
         }
@@ -151,7 +133,6 @@ class PantryView extends React.Component {
       this.setState({
         products: [...downloadedProducts],
         categories,
-        pending: false,
       });
     });
   }
@@ -163,6 +144,14 @@ class PantryView extends React.Component {
 
   toggleFormVisibility = () => {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
+  };
+
+  numberOfProductsOnShoppingList = () => {
+    const { products } = this.state;
+    const productsOnShoppingList = products.filter(
+      product => product.onShoppingList,
+    );
+    return productsOnShoppingList.length;
   };
 
   render() {
@@ -184,15 +173,16 @@ class PantryView extends React.Component {
                   <Link to="/shoppinglist">Shopping List</Link>
                 </div>
                 <StyledShoppingListCounter>
-                  {context.shoppingList.length}
+                  {/* {context.shoppingList.length} */}
+                  {this.numberOfProductsOnShoppingList()}
                 </StyledShoppingListCounter>
               </StyledMenuItem>
             </StyledMenu>
             <StyledMain>
-              {this.state.pending ? (
-                <img src={loadingGif} alt="Loading gif" />
-              ) : (
+              {this.state.products.length ? (
                 <span />
+              ) : (
+                <img src={loadingGif} alt="Loading gif" />
               )}
               <StyledListWrapper>
                 {this.state.categories.map(category => {
