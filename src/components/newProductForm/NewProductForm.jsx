@@ -93,6 +93,7 @@ class NewProductForm extends React.Component {
         category,
         min,
         unit,
+        onShoppingList: quantity < min,
         id: uuidv4(),
       };
 
@@ -100,7 +101,7 @@ class NewProductForm extends React.Component {
       console.log(newProduct);
 
       // this.props.addNewProduct(newProduct);
-      db().collection('products').doc(newProduct.id).set(newProduct);
+      db.collection('products').doc(newProduct.id).set(newProduct);
 
       this.setState({
         name: '',
