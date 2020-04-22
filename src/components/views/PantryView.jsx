@@ -8,6 +8,7 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import ProductList from '../productList/ProductList';
 import NewProductForm from '../newProductForm/NewProductForm';
 import AppContext from '../../context';
+import db from '../../fbase';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -109,17 +110,25 @@ class PantryView extends React.Component {
     isFormVisible: false,
   };
 
-  toggleFormVisibility = () => {
-    this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
-  };
-
   componentDidMount() {
     console.log(' Zamontyowanie Pantry DID MONUT');
+    db.collection('products')
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, ' => ', doc.data());
+        });
+      });
   }
 
   componentWillUnmount() {
     console.log('Pantry WILL UNMONUT odmontowanie');
   }
+
+  toggleFormVisibility = () => {
+    this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
+  };
 
   render() {
     return (
