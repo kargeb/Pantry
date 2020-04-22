@@ -8,8 +8,6 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import ProductList from '../productList/ProductList';
 import NewProductForm from '../newProductForm/NewProductForm';
 import AppContext from '../../context';
-import db from '../../fbase';
-import loadingGif from '../../images/loading_dots.gif';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -57,18 +55,18 @@ const StyledMenuItem = styled.div`
     `};
 `;
 
-const StyledListWrapper = styled.ul`
-  /* background-color: #fff; */
-`;
+// const StyledListWrapper = styled.ul`
+//   /* background-color: #fff; */
+// `;
 
-const StyledCategoryLabel = styled.div`
-  padding: 5px 0 5px 20px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-`;
+// const StyledCategoryLabel = styled.div`
+//   padding: 5px 0 5px 20px;
+//   font-family: Roboto;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 20px;
+//   line-height: 23px;
+// `;
 
 const StyledAddButtonWrapper = styled.div`
   background-color: #fff;
@@ -108,55 +106,53 @@ const StyledContainer = styled.div`
 
 class PantryView extends React.Component {
   state = {
-    products: [],
-    categories: [],
+    // products: [],
+    // categories: [],
     isFormVisible: false,
   };
 
-  componentDidMount() {
-    console.log(' Zamontyowanie Pantry DID MONUT');
+  // componentDidMount() {
+  //   console.log(' Zamontyowanie Pantry DID MONUT');
 
-    this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
-      const downloadedProducts = [];
-      const categories = [];
+  //   this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
+  //     const downloadedProducts = [];
+  //     const categories = [];
 
-      querySnapshot.forEach(doc => {
-        const newProduct = { ...doc.data() };
-        downloadedProducts.push(newProduct);
+  //     querySnapshot.forEach(doc => {
+  //       const newProduct = { ...doc.data() };
+  //       downloadedProducts.push(newProduct);
 
-        const { category } = newProduct;
-        if (!categories.includes(category)) {
-          categories.push(category);
-        }
-      });
+  //       const { category } = newProduct;
+  //       if (!categories.includes(category)) {
+  //         categories.push(category);
+  //       }
+  //     });
 
-      this.setState({
-        products: [...downloadedProducts],
-        categories,
-      });
-    });
-  }
+  //     this.setState({
+  //       products: [...downloadedProducts],
+  //       categories,
+  //     });
+  //   });
+  // }
 
-  componentWillUnmount() {
-    console.log('Pantry WILL UNMONUT odmontowanie');
-    this.unsubscribe();
-  }
+  // componentWillUnmount() {
+  //   console.log('Pantry WILL UNMONUT odmontowanie');
+  //   this.unsubscribe();
+  // }
 
   toggleFormVisibility = () => {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
   };
 
   numberOfProductsOnShoppingList = () => {
-    const { products } = this.state;
-    const productsOnShoppingList = products.filter(
-      product => product.onShoppingList,
-    );
-    return productsOnShoppingList.length;
+    // const { products } = this.state;
+    // const productsOnShoppingList = products.filter(
+    //   product => product.onShoppingList,
+    // );
+    // return productsOnShoppingList.length;
   };
 
   render() {
-    const { products } = this.state;
-
     return (
       <AppContext.Consumer>
         {context => (
@@ -181,8 +177,8 @@ class PantryView extends React.Component {
               </StyledMenuItem>
             </StyledMenu>
             <StyledMain>
-              {!products.length && <img src={loadingGif} alt="Loading gif" />}
-              <StyledListWrapper>
+              <ProductList />
+              {/* <StyledListWrapper>
                 {this.state.categories.map(category => {
                   const productsOfCategory = this.state.products.filter(
                     product => product.category === category,
@@ -203,7 +199,7 @@ class PantryView extends React.Component {
                     </li>
                   );
                 })}
-              </StyledListWrapper>
+              </StyledListWrapper> */}
               <StyledAddButtonWrapper>
                 <StyledAddProductButton
                   type="button"
