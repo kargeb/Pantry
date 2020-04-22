@@ -107,23 +107,45 @@ const StyledContainer = styled.div`
 
 class PantryView extends React.Component {
   state = {
+    products: [],
     isFormVisible: false,
+    pending: true,
   };
 
   componentDidMount() {
     console.log(' Zamontyowanie Pantry DID MONUT');
-    db.collection('products')
+    console.log('CZEEEJ');
+    this.unsubscribe = db
+      .collection('products')
       .get()
       .then(function (querySnapshot) {
+        const downloadedProducts = [];
         querySnapshot.forEach(function (doc) {
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, ' => ', doc.data());
+          const { name, quantity, category, min, unit, id } = doc.data();
+          const newProduct = {
+            name,
+            quantity,
+            category,
+            min,
+            unit,
+            id,
+          };
+
+          downloadedProducts.push(newProduct);
+          console.log(doc.id, ' => ', name);
         });
-      });
+
+        return downloadedProducts;
+      })
+      .then(downloadedProducts =>
+        this.setState({ products: [...downloadedProducts], pending: false }),
+      );
   }
 
   componentWillUnmount() {
     console.log('Pantry WILL UNMONUT odmontowanie');
+    this.unsubscribe();
   }
 
   toggleFormVisibility = () => {
@@ -131,6 +153,8 @@ class PantryView extends React.Component {
   };
 
   render() {
+    // const categories =
+
     return (
       <AppContext.Consumer>
         {context => (
@@ -154,6 +178,7 @@ class PantryView extends React.Component {
               </StyledMenuItem>
             </StyledMenu>
             <StyledMain>
+              {this.state.pending ? <span>CZEEJ</span> : <span>JEST</span>}
               <StyledListWrapper>
                 {context.categories.map(category => {
                   const productsOfCategory = context.products.filter(
