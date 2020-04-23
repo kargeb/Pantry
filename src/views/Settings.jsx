@@ -7,7 +7,7 @@ import {
   faToggleOn,
   faToggleOff,
 } from '@fortawesome/free-solid-svg-icons';
-import AppContext from '../../context';
+import AppContext from '../context';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -124,7 +124,7 @@ const SettingsView = () => (
             <StyledDarkModeWrapper>
               <div>Toggle Dark Mode:</div>
               <div>
-                <button onClick={context.toggleDarkmode}>
+                <button type="button" onClick={context.toggleDarkmode}>
                   {console.log(`constextDarkMode: ${context.darkMode}`)}
                   {context.darkMode ? (
                     <FontAwesomeIcon icon={faToggleOn} />

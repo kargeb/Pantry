@@ -13,18 +13,18 @@ const StyledCategoryLabel = styled.div`
   line-height: 23px;
 `;
 
-const Categories = styled.ul``;
+const CategoriesList = styled.ul``;
 
-const Products = styled.ul``;
+const ProductsList = styled.ul``;
 
-class ProductList extends React.Component {
+class PantryProductsList extends React.Component {
   state = {
     products: [],
     categories: [],
   };
 
   componentDidMount() {
-    console.log(' Zamontyowanie ProductList DID MONUT');
+    console.log(' Zamontyowanie PantryProductsList DID MONUT');
 
     this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
       const downloadedProducts = [];
@@ -48,7 +48,7 @@ class ProductList extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('ProductList WILL UNMONUT odmontowanie');
+    console.log('PantryProductsList WILL UNMONUT odmontowanie');
     this.unsubscribe();
   }
 
@@ -58,17 +58,17 @@ class ProductList extends React.Component {
       <>
         {!products.length && <img src={loadingGif} alt="Loading gif" />}
 
-        <Categories>
+        <CategoriesList>
           {categories.map(currentCategory => {
             const productsInCurrentCategory = products.filter(
-              currentProduct => currentProduct.category === currentCategory,
+              product => product.category === currentCategory,
             );
 
             return (
               <li key={currentCategory}>
                 <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
 
-                <Products>
+                <ProductsList>
                   {productsInCurrentCategory.map(currentProduct => {
                     const { name, quantity, unit, id, min } = currentProduct;
                     return (
@@ -83,14 +83,14 @@ class ProductList extends React.Component {
                       </li>
                     );
                   })}
-                </Products>
+                </ProductsList>
               </li>
             );
           })}
-        </Categories>
+        </CategoriesList>
       </>
     );
   }
 }
 
-export default ProductList;
+export default PantryProductsList;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import PantryView from './components/views/PantryView';
-import ShoppingListView from './components/views/ShoppingListView';
+import Pantry from './views/Pantry';
+import ShoppingList from './views/ShoppingList';
 import AppContext from './context';
 import data from './data/db.json';
 import GlobalStyle from './themes/GlobalStyle';
-import SettingsView from './components/views/SettingsView';
+import Settings from './views/Settings';
 
 class Root extends React.Component {
   state = {
@@ -155,19 +155,6 @@ class Root extends React.Component {
     });
   };
 
-  // resetDefaultProduct = () => {
-  //   this.setState({
-  //     defaultProduct: {
-  //       name: '',
-  //       quantity: '',
-  //       category: '',
-  //       min: '3',
-  //       unit: 'szt',
-  //       id: null,
-  //     },
-  //   });
-  // };
-
   render() {
     const contextElements = {
       ...this.state,
@@ -185,9 +172,9 @@ class Root extends React.Component {
         <GlobalStyle />
         <AppContext.Provider value={contextElements}>
           <Switch>
-            <Route exact path="/" component={PantryView} />
-            <Route path="/shoppinglist" component={ShoppingListView} />
-            <Route path="/settings" component={SettingsView} />
+            <Route exact path="/" component={Pantry} />
+            <Route path="/shoppinglist" component={ShoppingList} />
+            <Route path="/settings" component={Settings} />
           </Switch>
         </AppContext.Provider>
       </BrowserRouter>

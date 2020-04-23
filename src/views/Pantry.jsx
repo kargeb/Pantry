@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 // import data from './data/db.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
-import ProductList from '../productList/ProductList';
-import NewProductForm from '../newProductForm/NewProductForm';
-import AppContext from '../../context';
+import PantryProductsList from '../components/productList/PantryProductsList';
+import NewProductForm from '../components/newProductForm/NewProductForm';
+import AppContext from '../context';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -104,41 +104,10 @@ const StyledContainer = styled.div`
   position: relative;
 `;
 
-class PantryView extends React.Component {
+class Pantry extends React.Component {
   state = {
-    // products: [],
-    // categories: [],
     isFormVisible: false,
   };
-
-  // componentDidMount() {
-  //   console.log(' Zamontyowanie Pantry DID MONUT');
-
-  //   this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
-  //     const downloadedProducts = [];
-  //     const categories = [];
-
-  //     querySnapshot.forEach(doc => {
-  //       const newProduct = { ...doc.data() };
-  //       downloadedProducts.push(newProduct);
-
-  //       const { category } = newProduct;
-  //       if (!categories.includes(category)) {
-  //         categories.push(category);
-  //       }
-  //     });
-
-  //     this.setState({
-  //       products: [...downloadedProducts],
-  //       categories,
-  //     });
-  //   });
-  // }
-
-  // componentWillUnmount() {
-  //   console.log('Pantry WILL UNMONUT odmontowanie');
-  //   this.unsubscribe();
-  // }
 
   toggleFormVisibility = () => {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
@@ -153,6 +122,8 @@ class PantryView extends React.Component {
   };
 
   render() {
+    const { isFormVisible } = this.state;
+
     return (
       <AppContext.Consumer>
         {context => (
@@ -171,35 +142,13 @@ class PantryView extends React.Component {
                   <Link to="/shoppinglist">Shopping List</Link>
                 </div>
                 <StyledShoppingListCounter>
-                  {/* {context.shoppingList.length} */}
                   {this.numberOfProductsOnShoppingList()}
                 </StyledShoppingListCounter>
               </StyledMenuItem>
             </StyledMenu>
             <StyledMain>
-              <ProductList />
-              {/* <StyledListWrapper>
-                {this.state.categories.map(category => {
-                  const productsOfCategory = this.state.products.filter(
-                    product => product.category === category,
-                  );
+              <PantryProductsList />
 
-                  return (
-                    <li key={category}>
-                      <StyledCategoryLabel>{category}</StyledCategoryLabel>
-                      <ProductList
-                        products={productsOfCategory}
-                        addProductQuantity={context.addProductQuantity}
-                        subtractProductQuantity={
-                          context.subtractProductQuantity
-                        }
-                        deleteProduct={context.deleteProduct}
-                        editProduct={context.editProduct}
-                      />
-                    </li>
-                  );
-                })}
-              </StyledListWrapper> */}
               <StyledAddButtonWrapper>
                 <StyledAddProductButton
                   type="button"
@@ -209,7 +158,7 @@ class PantryView extends React.Component {
                 </StyledAddProductButton>
               </StyledAddButtonWrapper>
             </StyledMain>
-            {this.state.isFormVisible && (
+            {isFormVisible && (
               <NewProductForm
                 toggleFormVisibility={this.toggleFormVisibility}
                 addNewProduct={context.addNewProduct}
@@ -223,4 +172,4 @@ class PantryView extends React.Component {
   }
 }
 
-export default PantryView;
+export default Pantry;

@@ -47,7 +47,7 @@ const StyledNameWrapper = styled.div`
   width: 50%;
 `;
 
-const ShoppingList = () => (
+const ShoppingProductsList = () => (
   <AppContext.Consumer>
     {context => (
       <StyledListWrapper>
@@ -72,4 +72,4 @@ const ShoppingList = () => (
   </AppContext.Consumer>
 );
 
-export default ShoppingList;
+export default ShoppingProductsList;

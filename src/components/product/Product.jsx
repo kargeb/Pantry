@@ -71,7 +71,7 @@ const StyledPrompt = styled.div`
   display: flex;
   top: 25%;
   left: 25%;
-  width: %;
+  width: 50%;
   height: 50%;
   margin: 0 auto;
   flex-direction: column;

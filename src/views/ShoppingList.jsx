@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
 // import ShoppingList from '../shoppingList/ShoppingList';
-import AppContext from '../../context';
-import ShoppingList from '../productList/ShoppingList';
+import AppContext from '../context';
+import ShoppingProductsList from '../components/productList/ShoppingProductsList';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -69,7 +69,7 @@ const StyledMain = styled.main`
   background-color: white;
 `;
 
-const ShoppingListView = () => (
+const ShoppingList = () => (
   <AppContext.Consumer>
     {context => (
       <div>
@@ -98,11 +98,11 @@ const ShoppingListView = () => (
         </StyledMenu>
 
         <StyledMain>
-          <ShoppingList />
+          <ShoppingProductsList />
         </StyledMain>
       </div>
     )}
   </AppContext.Consumer>
 );
 
-export default ShoppingListView;
+export default ShoppingList;
