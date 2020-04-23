@@ -7,6 +7,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import db from '../../fbase';
 
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  z-index: 5;
+`;
+
 const Wrapper = styled.div`
   position: absolute;
   display: flex;
@@ -58,19 +69,24 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   };
 
   return (
-    <Wrapper>
-      <p>Na pewno usunąć:</p>
-      <p>{name} ?</p>
-      <StyledButtonsWrapper>
-        <StyledButton type="submit" onClick={deleteProduct}>
-          <StyledConfirmIcon icon={faCheckSquare} />
-        </StyledButton>
+    <Background>
+      <Wrapper>
+        <p>Na pewno usunąć:</p>
+        <p>
+          {' '}
+          <strong>{name} </strong> ?
+        </p>
+        <StyledButtonsWrapper>
+          <StyledButton type="submit" onClick={deleteProduct}>
+            <StyledConfirmIcon icon={faCheckSquare} />
+          </StyledButton>
 
-        <StyledButton type="button" onClick={toggleDeleteModal}>
-          <StyledCancelIcon icon={faTimesCircle} />
-        </StyledButton>
-      </StyledButtonsWrapper>
-    </Wrapper>
+          <StyledButton type="button" onClick={toggleDeleteModal}>
+            <StyledCancelIcon icon={faTimesCircle} />
+          </StyledButton>
+        </StyledButtonsWrapper>
+      </Wrapper>
+    </Background>
   );
 };
 
