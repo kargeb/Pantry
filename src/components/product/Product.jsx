@@ -10,7 +10,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import AppContext from '../../context';
-import db from '../../fbase';
+
+import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 
 const StyledWrapper = styled.div`
 padding-left: 5%;
@@ -97,21 +98,21 @@ const StyledExclamationIcon = styled(FontAwesomeIcon)`
   color: red;
 `;
 
-const Prompt = ({ handleDelete, deleteProduct, id, name }) => (
-  <StyledPrompt>
-    <p>Usunąc ?</p>
-    <p>{name}</p>
-    <button onClick={() => deleteProduct(id)}>tak</button>
-    <button onClick={handleDelete}>nie</button>
-  </StyledPrompt>
-);
+// const Prompt = ({ handleDelete, deleteProduct, id, name }) => (
+//   <StyledPrompt>
+//     <p>Usunąc ?</p>
+//     <p>{name}</p>
+//     <button onClick={() => deleteProduct(id)}>tak</button>
+//     <button onClick={handleDelete}>nie</button>
+//   </StyledPrompt>
+// );
 
 class Product extends React.Component {
   state = {
     isPromptVisibile: false,
   };
 
-  handleDelete = () => {
+  toggleDeleteModal = () => {
     this.setState({ isPromptVisibile: !this.state.isPromptVisibile });
   };
 
@@ -183,16 +184,15 @@ class Product extends React.Component {
                 {/* </StyledEditIconWrapper> */}
               </div>
               <StyledDelteIconWrapper>
-                <StyledIcon icon={faTrash} onClick={this.handleDelete} />
+                <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} />
               </StyledDelteIconWrapper>
             </StyledRightWrapper>
 
             {this.state.isPromptVisibile && (
-              <Prompt
-                handleDelete={this.handleDelete}
+              <DeleteProductModal
                 id={id}
-                deleteProduct={deleteProduct}
                 name={name}
+                toggleDeleteModal={this.toggleDeleteModal}
               />
             )}
           </StyledWrapper>
@@ -201,31 +201,5 @@ class Product extends React.Component {
     );
   }
 }
-
-// = ({
-//   name,
-//   quantity,
-//   unit,
-//   addProductQuantity,
-//   subtractProductQuantity,
-//   deleteProduct,
-//   editProduct,
-//   min,
-//   id,
-// }) => {
-//   const cartIconShow = quantity < min;
-//   const exclamationIconShow = !quantity;
-
-//   let fontColor;
-
-//   if (exclamationIconShow) {
-//     fontColor = 'red';
-//   } else if (cartIconShow) {
-//     fontColor = 'orange';
-//   } else {
-//     fontColor = 'black';
-//   }
-
-// };
 
 export default Product;
