@@ -61,42 +61,41 @@ const StyledShoppingListCounter = styled.div`
   font-weight: 900;
 `;
 
-const Nav = ({ current }) => (
-  <nav>
-    <StyledHeader>
-      <Link to="/settings">
-        <StyledSettingsIconWrapper>
-          <FontAwesomeIcon icon={faCogs} />
-        </StyledSettingsIconWrapper>
-      </Link>
-    </StyledHeader>
+const Nav = ({ current }) => {
+  const numberOfProductsOnShoppingList = products => {
+    const productsOnShoppingList = products.filter(
+      product => product.onShoppingList,
+    );
+    return productsOnShoppingList.length;
+  };
 
-    <StyledMenu>
-      <StyledMenuItem active={current === 'pantry'}>
-        <Link to="/">Products</Link>
-      </StyledMenuItem>
-      <StyledMenuItem active={current === 'shoppingList'}>
-        <Link to="/shoppinglist">Shopping List</Link>
-        <StyledShoppingListCounter>
-          {/* {this.numberOfProductsOnShoppingList()} */}
-        </StyledShoppingListCounter>
-      </StyledMenuItem>
-    </StyledMenu>
+  return (
+    <AppContext.Consumer>
+      {context => (
+        <nav>
+          <StyledHeader>
+            <Link to="/settings">
+              <StyledSettingsIconWrapper>
+                <FontAwesomeIcon icon={faCogs} />
+              </StyledSettingsIconWrapper>
+            </Link>
+          </StyledHeader>
 
-    {/* {active === 'shoppingList' && (
-      <StyledMenu>
-        <StyledMenuItem>
-          <Link to="/">Products</Link>
-        </StyledMenuItem>
-        <StyledMenuItem active>
-          <Link to="/shoppinglist">Shopping List</Link>
-          <StyledShoppingListCounter>
-         
-          </StyledShoppingListCounter>
-        </StyledMenuItem>
-      </StyledMenu>
-    )} */}
-  </nav>
-);
+          <StyledMenu>
+            <StyledMenuItem active={current === 'pantry'}>
+              <Link to="/">Products</Link>
+            </StyledMenuItem>
+            <StyledMenuItem active={current === 'shoppingList'}>
+              <Link to="/shoppinglist">Shopping List</Link>
+              <StyledShoppingListCounter>
+                {numberOfProductsOnShoppingList(context.products)}
+              </StyledShoppingListCounter>
+            </StyledMenuItem>
+          </StyledMenu>
+        </nav>
+      )}
+    </AppContext.Consumer>
+  );
+};
 
 export default Nav;
