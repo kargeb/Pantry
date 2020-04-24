@@ -18,65 +18,53 @@ const CategoriesList = styled.ul``;
 
 const ProductsList = styled.ul``;
 
-class PantryProductsList extends React.Component {
-  state = {
-    pies: [],
-    // categories: [],
-  };
+const PantryProductsList = () => (
+  <AppContext.Consumer>
+    {context => (
+      <>
+        {!context.products.length && <img src={loadingGif} alt="Loading gif" />}
 
-  render() {
-    // const { products, categories } = this.state;
-    return (
-      <AppContext.Consumer>
-        {context => (
-          <>
-            {!context.products.length && (
-              <img src={loadingGif} alt="Loading gif" />
-            )}
+        <CategoriesList>
+          {context.categories.map(currentCategory => {
+            const productsInCurrentCategory = context.products.filter(
+              product => product.category === currentCategory,
+            );
 
-            <CategoriesList>
-              {context.categories.map(currentCategory => {
-                const productsInCurrentCategory = context.products.filter(
-                  product => product.category === currentCategory,
-                );
+            return (
+              <li key={currentCategory}>
+                <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
 
-                return (
-                  <li key={currentCategory}>
-                    <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
-
-                    <ProductsList>
-                      {productsInCurrentCategory.map(currentProduct => {
-                        const {
-                          name,
-                          quantity,
-                          unit,
-                          id,
-                          min,
-                          category,
-                        } = currentProduct;
-                        return (
-                          <li key={id}>
-                            <Product
-                              id={id}
-                              name={name}
-                              min={min}
-                              quantity={quantity}
-                              unit={unit}
-                              category={category}
-                            />
-                          </li>
-                        );
-                      })}
-                    </ProductsList>
-                  </li>
-                );
-              })}
-            </CategoriesList>
-          </>
-        )}
-      </AppContext.Consumer>
-    );
-  }
-}
+                <ProductsList>
+                  {productsInCurrentCategory.map(currentProduct => {
+                    const {
+                      name,
+                      quantity,
+                      unit,
+                      id,
+                      min,
+                      category,
+                    } = currentProduct;
+                    return (
+                      <li key={id}>
+                        <Product
+                          id={id}
+                          name={name}
+                          min={min}
+                          quantity={quantity}
+                          unit={unit}
+                          category={category}
+                        />
+                      </li>
+                    );
+                  })}
+                </ProductsList>
+              </li>
+            );
+          })}
+        </CategoriesList>
+      </>
+    )}
+  </AppContext.Consumer>
+);
 
 export default PantryProductsList;
