@@ -1,9 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs } from '@fortawesome/free-solid-svg-icons';
-// import ShoppingList from '../shoppingList/ShoppingList';
+import styled from 'styled-components';
 import AppContext from '../context';
 import ShoppingProductsList from '../components/productList/ShoppingProductsList';
 import Nav from '../components/Nav/Nav';

@@ -1,10 +1,5 @@
 import React from 'react';
-// import './styles.css';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-// import data from './data/db.json';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 import PantryProductsList from '../components/productList/PantryProductsList';
 import NewProductForm from '../components/newProductForm/NewProductForm';
 import AppContext from '../context';
