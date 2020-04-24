@@ -130,8 +130,6 @@ class Product extends React.Component {
       name,
       quantity,
       unit,
-      addProductQuantity,
-      subtractProductQuantity,
       deleteProduct,
       editProduct,
       min,
@@ -154,72 +152,63 @@ class Product extends React.Component {
 
     return (
       // <StyledWrapper fontColor={fontColor}>
-      <AppContext.Consumer>
-        {context => (
-          <StyledWrapper>
-            <StyledLeftWrapper>
-              <StyledExclamationIconWrapper>
-                {exclamationIconShow && (
-                  <StyledExclamationIcon icon={faExclamation} />
-                )}
-              </StyledExclamationIconWrapper>
-              <StyledCartIconWrapper>
-                {cartIconShow && <StyledIcon icon={faShoppingCart} />}
-              </StyledCartIconWrapper>
-              <div>
-                <StyledNameWrapper>{name}</StyledNameWrapper>
-              </div>
-            </StyledLeftWrapper>
-            <StyledCenterWrapper>
-              <div>
-                <StyledIcon
-                  icon={faMinusCircle}
-                  onClick={() => subtractProductQuantity(id)}
-                />
-              </div>
 
-              <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
-              <StyledUnitWrapper>{unit}</StyledUnitWrapper>
-              <div>
-                <StyledIcon
-                  icon={faPlusCircle}
-                  onClick={() => addProductQuantity(id)}
-                />
-              </div>
-            </StyledCenterWrapper>
-            <StyledRightWrapper>
-              <div>
-                {/* <StyledEditIconWrapper> */}
-                <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
-                {/* </StyledEditIconWrapper> */}
-              </div>
-              <StyledDelteIconWrapper>
-                <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} />
-              </StyledDelteIconWrapper>
-            </StyledRightWrapper>
-
-            {this.state.isDeleteModalVisibile && (
-              <DeleteProductModal
-                id={id}
-                name={name}
-                toggleDeleteModal={this.toggleDeleteModal}
-              />
+      <StyledWrapper>
+        <StyledLeftWrapper>
+          <StyledExclamationIconWrapper>
+            {exclamationIconShow && (
+              <StyledExclamationIcon icon={faExclamation} />
             )}
+          </StyledExclamationIconWrapper>
+          <StyledCartIconWrapper>
+            {cartIconShow && <StyledIcon icon={faShoppingCart} />}
+          </StyledCartIconWrapper>
+          <div>
+            <StyledNameWrapper>{name}</StyledNameWrapper>
+          </div>
+        </StyledLeftWrapper>
+        <StyledCenterWrapper>
+          <div>
+            <StyledIcon icon={faMinusCircle} onClick={() => {}} />
+          </div>
 
-            {this.state.isEditModalVisible && (
-              <EditProductForm
-                id={id}
-                name={name}
-                quantity={quantity}
-                unit={unit}
-                min={min}
-                category={category}
-                toggleEditProductForm={this.toggleEditProductForm}
-              />
-            )}
-          </StyledWrapper>
+          <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
+          <StyledUnitWrapper>{unit}</StyledUnitWrapper>
+          <div>
+            <StyledIcon icon={faPlusCircle} onClick={() => {}} />
+          </div>
+        </StyledCenterWrapper>
+        <StyledRightWrapper>
+          <div>
+            {/* <StyledEditIconWrapper> */}
+            <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
+            {/* </StyledEditIconWrapper> */}
+          </div>
+          <StyledDelteIconWrapper>
+            <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} />
+          </StyledDelteIconWrapper>
+        </StyledRightWrapper>
+
+        {this.state.isDeleteModalVisibile && (
+          <DeleteProductModal
+            id={id}
+            name={name}
+            toggleDeleteModal={this.toggleDeleteModal}
+          />
         )}
-      </AppContext.Consumer>
+
+        {this.state.isEditModalVisible && (
+          <EditProductForm
+            id={id}
+            name={name}
+            quantity={quantity}
+            unit={unit}
+            min={min}
+            category={category}
+            toggleEditProductForm={this.toggleEditProductForm}
+          />
+        )}
+      </StyledWrapper>
     );
   }
 }
