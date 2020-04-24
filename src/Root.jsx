@@ -4,21 +4,43 @@ import Pantry from './views/Pantry';
 import ShoppingList from './views/ShoppingList';
 import AppContext from './context';
 import data from './data/db.json';
+import db from './fbase';
 import GlobalStyle from './themes/GlobalStyle';
 import Settings from './views/Settings';
 
 class Root extends React.Component {
   state = {
-    products: [...data.products],
-    categories: [...data.categories],
+    products: [],
+    categories: [],
   };
 
   componentDidMount() {
-    console.log('Root did mount');
+    console.log(' Zamontyowanie PantryProductsList DID MONUT');
+
+    this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
+      const downloadedProducts = [];
+      const categories = [];
+
+      querySnapshot.forEach(doc => {
+        const newProduct = { ...doc.data() };
+        downloadedProducts.push(newProduct);
+
+        const { category } = newProduct;
+        if (!categories.includes(category)) {
+          categories.push(category);
+        }
+      });
+
+      this.setState({
+        products: [...downloadedProducts],
+        categories,
+      });
+    });
   }
 
-  componentDidUpdate() {
-    console.log('UPDATE');
+  componentWillUnmount() {
+    console.log('PantryProductsList WILL UNMONUT odmontowanie');
+    this.unsubscribe();
   }
 
   render() {
