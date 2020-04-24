@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import AppContext from '../../context';
-
+import EditProductForm from '../editProductForm/EditProductForm';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 
 const StyledWrapper = styled.div`
@@ -109,11 +109,20 @@ const StyledExclamationIcon = styled(FontAwesomeIcon)`
 
 class Product extends React.Component {
   state = {
-    isPromptVisibile: false,
+    isDeleteModalVisibile: false,
+    isEditModalVisible: false,
   };
 
   toggleDeleteModal = () => {
-    this.setState({ isPromptVisibile: !this.state.isPromptVisibile });
+    this.setState(prevState => ({
+      isDeleteModalVisibile: !prevState.isDeleteModalVisibile,
+    }));
+  };
+
+  toggleEditProductForm = () => {
+    this.setState(prevState => ({
+      isEditModalVisible: !prevState.isEditModalVisible,
+    }));
   };
 
   render() {
@@ -127,6 +136,7 @@ class Product extends React.Component {
       editProduct,
       min,
       id,
+      category,
     } = this.props;
 
     const cartIconShow = quantity < min;
@@ -180,7 +190,7 @@ class Product extends React.Component {
             <StyledRightWrapper>
               <div>
                 {/* <StyledEditIconWrapper> */}
-                <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
+                <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
                 {/* </StyledEditIconWrapper> */}
               </div>
               <StyledDelteIconWrapper>
@@ -188,11 +198,23 @@ class Product extends React.Component {
               </StyledDelteIconWrapper>
             </StyledRightWrapper>
 
-            {this.state.isPromptVisibile && (
+            {this.state.isDeleteModalVisibile && (
               <DeleteProductModal
                 id={id}
                 name={name}
                 toggleDeleteModal={this.toggleDeleteModal}
+              />
+            )}
+
+            {this.state.isEditModalVisible && (
+              <EditProductForm
+                id={id}
+                name={name}
+                quantity={quantity}
+                unit={unit}
+                min={min}
+                category={category}
+                toggleEditProductForm={this.toggleEditProductForm}
               />
             )}
           </StyledWrapper>

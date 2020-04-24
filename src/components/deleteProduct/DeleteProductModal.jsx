@@ -73,7 +73,6 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
       <Wrapper>
         <p>Na pewno usunąć:</p>
         <p>
-          {' '}
           <strong>{name} </strong> ?
         </p>
         <StyledButtonsWrapper>
