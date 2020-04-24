@@ -4,169 +4,50 @@ import Pantry from './views/Pantry';
 import ShoppingList from './views/ShoppingList';
 import AppContext from './context';
 import data from './data/db.json';
+import db from './fbase';
 import GlobalStyle from './themes/GlobalStyle';
 import Settings from './views/Settings';
 
 class Root extends React.Component {
   state = {
-    products: [...data.products],
-    categories: [...data.categories],
-    isFormVisible: false,
-    shoppingList: [],
-    // defaultProduct: {
-    //   name: '',
-    //   quantity: '',
-    //   category: '',
-    //   min: '3',
-    //   unit: 'szt',
-    //   id: null,
-    // },
-    isShoppingListPromptVisible: false,
+    products: [],
+    categories: [],
   };
 
   componentDidMount() {
-    this.state.products.forEach(product => this.checkShoppingList(product));
-  }
+    console.log(' Zamontyowanie PantryProductsList DID MONUT');
 
-  componentDidUpdate() {
-    console.log('UPDATE');
-  }
+    this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
+      const downloadedProducts = [];
+      const categories = [];
 
-  checkShoppingList = product => {
-    if (product.min > product.quantity) {
-      const isProductInShoppintList = this.state.shoppingList.filter(
-        prevProduct => prevProduct.id === product.id,
-      );
+      querySnapshot.forEach(doc => {
+        const newProduct = { ...doc.data() };
+        downloadedProducts.push(newProduct);
 
-      if (!isProductInShoppintList.length) {
-        this.setState(prevState => ({
-          shoppingList: [...prevState.shoppingList, product],
-        }));
-      }
-    } else {
-      const newShoppingList = this.state.shoppingList.filter(
-        prevProduct => prevProduct.id !== product.id,
-      );
-      this.setState({ shoppingList: [...newShoppingList] });
-    }
-  };
-
-  addProductQuantity = id => {
-    const newProducts = this.state.products.map(product => {
-      if (product.id === id) {
-        product.quantity++;
-        this.checkShoppingList(product);
-      }
-      return product;
-    });
-    this.setState({ products: [...newProducts] });
-  };
-
-  subtractProductQuantity = id => {
-    const newProducts = this.state.products.map(product => {
-      if (product.id === id) {
-        if (product.quantity > 0) {
-          product.quantity--;
-          this.checkShoppingList(product);
+        const { category } = newProduct;
+        if (!categories.includes(category)) {
+          categories.push(category);
         }
-      }
-      return product;
+      });
+
+      this.setState({
+        products: [...downloadedProducts],
+        categories,
+      });
     });
-    this.setState({ products: [...newProducts] });
-  };
+  }
 
-  deleteProduct = id => {
-    const remainingProducts = this.state.products.filter(
-      product => product.id !== id,
-    );
-
-    const shoppingListWithoutDeleteProduct = this.state.shoppingList.filter(
-      prevProduct => prevProduct.id !== id,
-    );
-
-    this.setState({
-      products: [...remainingProducts],
-      shoppingList: [...shoppingListWithoutDeleteProduct],
-    });
-
-    console.log(remainingProducts);
-  };
-
-  addNewProduct = newProduct => {
-    console.log(newProduct);
-    // console.log(`ID : ${newProduct.id}`);
-
-    // if (newProduct.id) {
-    //   const newProducts = this.state.products.map(product => {
-    //     if (product.id === newProduct.id) {
-    //       product = { ...newProduct };
-    //       return product;
-    //     }
-    //     return product;
-    //   });
-
-    //   this.setState({ products: [...newProducts] });
-    // } else {
-    // this.setState(prevState => ({
-    //   products: [...prevState.products, newProduct],
-    // }));
-    // }
-
-    // this.setState({
-    //   defaultProduct: {
-    //     name: '',
-    //     quantity: '',
-    //     category: '',
-    //     min: '3',
-    //     unit: 'szt',
-    //     id: null,
-    //   },
-    // });
-  };
-
-  editProduct = id => {
-    // const editingProduct = this.state.products.filter(
-    //   product => product.id === id,
-    // )[0];
-    // this.setState({ defaultProduct: { ...editingProduct } });
-    // this.handleFormVisibility();
-    // console.log('product do edycji');
-    // console.log(editingProduct);
-  };
-
-  handleFormVisibility = () => {
-    this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
-  };
-
-  completeProductQuantityToMin = id => {
-    const newProducts = this.state.products.map(product => {
-      if (product.id === id) {
-        product.quantity = product.min;
-        this.checkShoppingList(product);
-      }
-      return product;
-    });
-    this.setState({ products: [...newProducts] });
-  };
-
-  toggleShoppingListPrompt = () => {
-    this.setState({
-      isShoppingListPromptVisible: !this.state.isShoppingListPromptVisible,
-    });
-  };
+  componentWillUnmount() {
+    console.log('PantryProductsList WILL UNMONUT odmontowanie');
+    this.unsubscribe();
+  }
 
   render() {
     const contextElements = {
       ...this.state,
-      handleFormVisibility: this.handleFormVisibility,
-      editProduct: this.editProduct,
-      addNewProduct: this.addNewProduct,
-      deleteProduct: this.deleteProduct,
-      subtractProductQuantity: this.subtractProductQuantity,
-      addProductQuantity: this.addProductQuantity,
-      completeProductQuantityToMin: this.completeProductQuantityToMin,
-      toggleShoppingListPrompt: this.toggleShoppingListPrompt,
     };
+
     return (
       <BrowserRouter>
         <GlobalStyle />
