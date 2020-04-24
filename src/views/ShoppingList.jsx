@@ -24,7 +24,7 @@ const ShoppingList = () => (
   <AppContext.Consumer>
     {context => (
       <div>
-        <Nav active="shoppingList" />
+        <Nav current="shoppingList" />
         <StyledMain>{/* <ShoppingProductsList /> */}</StyledMain>
       </div>
     )}

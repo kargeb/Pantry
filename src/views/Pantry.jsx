@@ -65,7 +65,7 @@ class Pantry extends React.Component {
       <AppContext.Consumer>
         {context => (
           <StyledContainer>
-            <Nav active="pantry" />
+            <Nav current="pantry" />
             <StyledMain>
               <PantryProductsList />
 

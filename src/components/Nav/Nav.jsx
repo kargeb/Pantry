@@ -61,7 +61,7 @@ const StyledShoppingListCounter = styled.div`
   font-weight: 900;
 `;
 
-const Nav = ({ active }) => (
+const Nav = ({ current }) => (
   <nav>
     <StyledHeader>
       <Link to="/settings">
@@ -70,18 +70,20 @@ const Nav = ({ active }) => (
         </StyledSettingsIconWrapper>
       </Link>
     </StyledHeader>
-    {active === 'pantry' && (
-      <StyledMenu>
-        <StyledMenuItem active>Products</StyledMenuItem>
-        <StyledMenuItem>
-          <Link to="/shoppinglist">Shopping List</Link>
-          <StyledShoppingListCounter>
-            {/* {this.numberOfProductsOnShoppingList()} */}
-          </StyledShoppingListCounter>
-        </StyledMenuItem>
-      </StyledMenu>
-    )}
-    {active === 'shoppingList' && (
+
+    <StyledMenu>
+      <StyledMenuItem active={current === 'pantry'}>
+        <Link to="/">Products</Link>
+      </StyledMenuItem>
+      <StyledMenuItem active={current === 'shoppingList'}>
+        <Link to="/shoppinglist">Shopping List</Link>
+        <StyledShoppingListCounter>
+          {/* {this.numberOfProductsOnShoppingList()} */}
+        </StyledShoppingListCounter>
+      </StyledMenuItem>
+    </StyledMenu>
+
+    {/* {active === 'shoppingList' && (
       <StyledMenu>
         <StyledMenuItem>
           <Link to="/">Products</Link>
@@ -89,11 +91,11 @@ const Nav = ({ active }) => (
         <StyledMenuItem active>
           <Link to="/shoppinglist">Shopping List</Link>
           <StyledShoppingListCounter>
-            {/* {this.numberOfProductsOnShoppingList()} */}
+         
           </StyledShoppingListCounter>
         </StyledMenuItem>
       </StyledMenu>
-    )}
+    )} */}
   </nav>
 );
 

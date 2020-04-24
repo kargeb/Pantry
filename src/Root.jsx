@@ -54,6 +54,7 @@ class Root extends React.Component {
         <AppContext.Provider value={contextElements}>
           <Switch>
             <Route exact path="/" component={Pantry} />
+            <Route path="/pantry" component={Pantry} />
             <Route path="/shoppinglist" component={ShoppingList} />
             <Route path="/settings" component={Settings} />
           </Switch>
