@@ -70,7 +70,14 @@ class PantryProductsList extends React.Component {
 
                 <ProductsList>
                   {productsInCurrentCategory.map(currentProduct => {
-                    const { name, quantity, unit, id, min } = currentProduct;
+                    const {
+                      name,
+                      quantity,
+                      unit,
+                      id,
+                      min,
+                      category,
+                    } = currentProduct;
                     return (
                       <li key={id}>
                         <Product
@@ -79,6 +86,7 @@ class PantryProductsList extends React.Component {
                           min={min}
                           quantity={quantity}
                           unit={unit}
+                          category={category}
                         />
                       </li>
                     );

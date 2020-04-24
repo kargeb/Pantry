@@ -10,7 +10,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import AppContext from '../../context';
-import db from '../../fbase';
+import EditProductForm from '../editProductForm/EditProductForm';
+import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 
 const StyledWrapper = styled.div`
 padding-left: 5%;
@@ -97,22 +98,31 @@ const StyledExclamationIcon = styled(FontAwesomeIcon)`
   color: red;
 `;
 
-const Prompt = ({ handleDelete, deleteProduct, id, name }) => (
-  <StyledPrompt>
-    <p>Usunąc ?</p>
-    <p>{name}</p>
-    <button onClick={() => deleteProduct(id)}>tak</button>
-    <button onClick={handleDelete}>nie</button>
-  </StyledPrompt>
-);
+// const Prompt = ({ handleDelete, deleteProduct, id, name }) => (
+//   <StyledPrompt>
+//     <p>Usunąc ?</p>
+//     <p>{name}</p>
+//     <button onClick={() => deleteProduct(id)}>tak</button>
+//     <button onClick={handleDelete}>nie</button>
+//   </StyledPrompt>
+// );
 
 class Product extends React.Component {
   state = {
-    isPromptVisibile: false,
+    isDeleteModalVisibile: false,
+    isEditModalVisible: false,
   };
 
-  handleDelete = () => {
-    this.setState({ isPromptVisibile: !this.state.isPromptVisibile });
+  toggleDeleteModal = () => {
+    this.setState(prevState => ({
+      isDeleteModalVisibile: !prevState.isDeleteModalVisibile,
+    }));
+  };
+
+  toggleEditProductForm = () => {
+    this.setState(prevState => ({
+      isEditModalVisible: !prevState.isEditModalVisible,
+    }));
   };
 
   render() {
@@ -126,6 +136,7 @@ class Product extends React.Component {
       editProduct,
       min,
       id,
+      category,
     } = this.props;
 
     const cartIconShow = quantity < min;
@@ -179,20 +190,31 @@ class Product extends React.Component {
             <StyledRightWrapper>
               <div>
                 {/* <StyledEditIconWrapper> */}
-                <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
+                <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
                 {/* </StyledEditIconWrapper> */}
               </div>
               <StyledDelteIconWrapper>
-                <StyledIcon icon={faTrash} onClick={this.handleDelete} />
+                <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} />
               </StyledDelteIconWrapper>
             </StyledRightWrapper>
 
-            {this.state.isPromptVisibile && (
-              <Prompt
-                handleDelete={this.handleDelete}
+            {this.state.isDeleteModalVisibile && (
+              <DeleteProductModal
                 id={id}
-                deleteProduct={deleteProduct}
                 name={name}
+                toggleDeleteModal={this.toggleDeleteModal}
+              />
+            )}
+
+            {this.state.isEditModalVisible && (
+              <EditProductForm
+                id={id}
+                name={name}
+                quantity={quantity}
+                unit={unit}
+                min={min}
+                category={category}
+                toggleEditProductForm={this.toggleEditProductForm}
               />
             )}
           </StyledWrapper>
@@ -201,31 +223,5 @@ class Product extends React.Component {
     );
   }
 }
-
-// = ({
-//   name,
-//   quantity,
-//   unit,
-//   addProductQuantity,
-//   subtractProductQuantity,
-//   deleteProduct,
-//   editProduct,
-//   min,
-//   id,
-// }) => {
-//   const cartIconShow = quantity < min;
-//   const exclamationIconShow = !quantity;
-
-//   let fontColor;
-
-//   if (exclamationIconShow) {
-//     fontColor = 'red';
-//   } else if (cartIconShow) {
-//     fontColor = 'orange';
-//   } else {
-//     fontColor = 'black';
-//   }
-
-// };
 
 export default Product;
