@@ -71,9 +71,10 @@ class EditProductForm extends React.Component {
     const { name, quantity, category, min, unit, id } = this.props;
 
     this.state = {
+      categories: [],
+      category,
       name,
       quantity,
-      category,
       min,
       unit,
       id,
@@ -81,6 +82,12 @@ class EditProductForm extends React.Component {
   }
 
   // state = {...this.props}
+  componentDidMount() {
+    db.collection('categories')
+      .doc('all')
+      .get()
+      .then(doc => this.setState({ categories: [...doc.data().categories] }));
+  }
 
   handleForm = e => {
     console.log(e.target.value);
@@ -92,8 +99,8 @@ class EditProductForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { name, quantity, category, min, unit } = this.state;
-    const { toggleFormVisibility } = this.props;
+    const { name, quantity, category, min, unit, id } = this.state;
+    const { toggleEditProductForm } = this.props;
 
     if (name && quantity && category && min && unit) {
       const newProduct = {
@@ -103,7 +110,7 @@ class EditProductForm extends React.Component {
         min,
         unit,
         onShoppingList: quantity < min,
-        id: uuidv4(),
+        id,
       };
 
       console.log('wypelnoine wszystkie, nowty produkt');
@@ -118,17 +125,22 @@ class EditProductForm extends React.Component {
         category: '',
         min: '1',
         unit: 'szt',
+        id: null,
       });
 
-      toggleFormVisibility();
+      toggleEditProductForm();
     } else {
       console.log('WYPEŁNIJ  SZYSTKIE POLA');
     }
   };
 
   render() {
-    const { categories, toggleEditProductForm } = this.props;
-    const { name, quantity, unit, min, category } = this.state;
+    const { toggleEditProductForm } = this.props;
+    const { name, quantity, unit, min, category, categories } = this.state;
+
+    {
+      console.log('Render z EditForm', this.state);
+    }
 
     return (
       <StyledWrapper>

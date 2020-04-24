@@ -190,7 +190,7 @@ class Product extends React.Component {
             <StyledRightWrapper>
               <div>
                 {/* <StyledEditIconWrapper> */}
-                <StyledIcon icon={faPen} onClick={() => editProduct(id)} />
+                <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
                 {/* </StyledEditIconWrapper> */}
               </div>
               <StyledDelteIconWrapper>
