@@ -50,44 +50,27 @@ class Pantry extends React.Component {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
   };
 
-  numberOfProductsOnShoppingList = () => {
-    // const { products } = this.state;
-    // const productsOnShoppingList = products.filter(
-    //   product => product.onShoppingList,
-    // );
-    // return productsOnShoppingList.length;
-  };
-
   render() {
     const { isFormVisible } = this.state;
 
     return (
-      <AppContext.Consumer>
-        {context => (
-          <StyledContainer>
-            <Nav current="pantry" />
-            <StyledMain>
-              <PantryProductsList />
-
-              <StyledAddButtonWrapper>
-                <StyledAddProductButton
-                  type="button"
-                  onClick={this.toggleFormVisibility}
-                >
-                  Dodaj
-                </StyledAddProductButton>
-              </StyledAddButtonWrapper>
-            </StyledMain>
-            {isFormVisible && (
-              <NewProductForm
-                toggleFormVisibility={this.toggleFormVisibility}
-                addNewProduct={context.addNewProduct}
-                categories={context.categories}
-              />
-            )}
-          </StyledContainer>
+      <StyledContainer>
+        <Nav current="pantry" />
+        <StyledMain>
+          <PantryProductsList />
+          <StyledAddButtonWrapper>
+            <StyledAddProductButton
+              type="button"
+              onClick={this.toggleFormVisibility}
+            >
+              Dodaj
+            </StyledAddProductButton>
+          </StyledAddButtonWrapper>
+        </StyledMain>
+        {isFormVisible && (
+          <NewProductForm toggleFormVisibility={this.toggleFormVisibility} />
         )}
-      </AppContext.Consumer>
+      </StyledContainer>
     );
   }
 }

@@ -14,8 +14,6 @@ class Root extends React.Component {
   };
 
   componentDidMount() {
-    console.log(' Zamontyowanie PantryProductsList DID MONUT');
-
     this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
       const downloadedProducts = [];
 
@@ -31,7 +29,6 @@ class Root extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('PantryProductsList WILL UNMONUT odmontowanie');
     this.unsubscribe();
   }
 
