@@ -20,32 +20,45 @@ const ProductsList = styled.ul``;
 
 const PantryProductsList = () => (
   <AppContext.Consumer>
-    {context => (
-      <>
-        {!context.products.length && <img src={loadingGif} alt="Loading gif" />}
+    {context => {
+      const activeCategories = [];
+      context.products.forEach(product => {
+        if (!activeCategories.includes(product.category)) {
+          activeCategories.push(product.category);
+        }
+      });
 
-        <CategoriesList>
-          {context.categories.map(currentCategory => {
-            const productsInCurrentCategory = context.products.filter(
-              product => product.category === currentCategory,
-            );
+      console.log('ACTIVE CATEGORIES: ', activeCategories);
 
-            return (
-              <li key={currentCategory}>
-                <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
-                <ProductsList>
-                  {productsInCurrentCategory.map(currentProduct => (
-                    <li key={currentProduct.id}>
-                      <Product product={currentProduct} />
-                    </li>
-                  ))}
-                </ProductsList>
-              </li>
-            );
-          })}
-        </CategoriesList>
-      </>
-    )}
+      return (
+        <>
+          {!context.products.length && (
+            <img src={loadingGif} alt="Loading gif" />
+          )}
+
+          <CategoriesList>
+            {context.categories.map(currentCategory => {
+              const productsInCurrentCategory = context.products.filter(
+                product => product.category === currentCategory,
+              );
+
+              return (
+                <li key={currentCategory}>
+                  <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
+                  <ProductsList>
+                    {productsInCurrentCategory.map(currentProduct => (
+                      <li key={currentProduct.id}>
+                        <Product product={currentProduct} />
+                      </li>
+                    ))}
+                  </ProductsList>
+                </li>
+              );
+            })}
+          </CategoriesList>
+        </>
+      );
+    }}
   </AppContext.Consumer>
 );
 

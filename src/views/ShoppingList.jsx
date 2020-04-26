@@ -20,15 +20,35 @@ const StyledMain = styled.main`
   background-color: white;
 `;
 
-const ShoppingList = () => (
-  <AppContext.Consumer>
-    {context => (
+class ShoppingList extends React.Component {
+  state = {
+    products: [],
+  };
+
+  numberOfProductsOnShoppingList = products => {
+    console.log('ODPALAM< SIE!!');
+
+    // if (products.length) {
+    //   const productsOnShoppingList = products.filter(
+    //     product => product.onShoppingList,
+    //   );
+
+    //   console.log(productsOnShoppingList);
+
+    //   this.setState({ products: productsOnShoppingList });
+    // }
+  };
+
+  render() {
+    return (
       <div>
         <Nav current="shoppingList" />
-        <StyledMain>{/* <ShoppingProductsList /> */}</StyledMain>
+        <StyledMain>
+          <ShoppingProductsList />
+        </StyledMain>
       </div>
-    )}
-  </AppContext.Consumer>
-);
+    );
+  }
+}
 
 export default ShoppingList;

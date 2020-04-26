@@ -49,26 +49,33 @@ const StyledNameWrapper = styled.div`
 
 const ShoppingProductsList = () => (
   <AppContext.Consumer>
-    {context => (
-      <StyledListWrapper>
-        {console.log('jestem w KOMPONENTCIE shopping list')}
-        {context.shoppingList.map(product => (
-          <li>
-            <StyledWrapper>
-              <div>
-                <StyledDotIcon icon={faCircle} />
-              </div>
-              <StyledNameWrapper>{product.name}</StyledNameWrapper>
-              <StyledButton
-                onClick={() => context.completeProductQuantityToMin(product.id)}
-              >
-                <StyledCartIcon icon={faCartArrowDown} />
-              </StyledButton>
-            </StyledWrapper>
-          </li>
-        ))}
-      </StyledListWrapper>
-    )}
+    {context => {
+      const productsOnShoppingList = context.products.filter(
+        product => product.onShoppingList,
+      );
+
+      return (
+        <StyledListWrapper>
+          {productsOnShoppingList.map(product => (
+            <li>
+              <StyledWrapper>
+                <div>
+                  <StyledDotIcon icon={faCircle} />
+                </div>
+                <StyledNameWrapper>{product.name}</StyledNameWrapper>
+                <StyledButton
+                  onClick={() =>
+                    context.completeProductQuantityToMin(product.id)
+                  }
+                >
+                  <StyledCartIcon icon={faCartArrowDown} />
+                </StyledButton>
+              </StyledWrapper>
+            </li>
+          ))}
+        </StyledListWrapper>
+      );
+    }}
   </AppContext.Consumer>
 );
 
