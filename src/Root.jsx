@@ -11,7 +11,6 @@ import Settings from './views/Settings';
 class Root extends React.Component {
   state = {
     products: [],
-    categories: [],
   };
 
   componentDidMount() {
@@ -19,21 +18,14 @@ class Root extends React.Component {
 
     this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
       const downloadedProducts = [];
-      const categories = [];
 
       querySnapshot.forEach(doc => {
         const newProduct = { ...doc.data() };
         downloadedProducts.push(newProduct);
-
-        const { category } = newProduct;
-        if (!categories.includes(category)) {
-          categories.push(category);
-        }
       });
 
       this.setState({
         products: [...downloadedProducts],
-        categories,
       });
     });
   }
