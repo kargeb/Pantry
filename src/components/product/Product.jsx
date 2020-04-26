@@ -67,20 +67,6 @@ const StyledUnitWrapper = styled.div`
   text-align: center;
 `;
 
-const StyledPrompt = styled.div`
-  position: absolute;
-  display: flex;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: 50%;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
-  padding: 10%;
-  background-color: white;
-`;
-
 const StyledDelteIconWrapper = styled.div`
   margin-right: 5%;
 `;
@@ -97,15 +83,6 @@ const StyledExclamationIcon = styled(FontAwesomeIcon)`
   margin: 0 10px;
   color: red;
 `;
-
-// const Prompt = ({ handleDelete, deleteProduct, id, name }) => (
-//   <StyledPrompt>
-//     <p>Usunąc ?</p>
-//     <p>{name}</p>
-//     <button onClick={() => deleteProduct(id)}>tak</button>
-//     <button onClick={handleDelete}>nie</button>
-//   </StyledPrompt>
-// );
 
 class Product extends React.Component {
   state = {
@@ -126,33 +103,12 @@ class Product extends React.Component {
   };
 
   render() {
-    const {
-      name,
-      quantity,
-      unit,
-      deleteProduct,
-      editProduct,
-      min,
-      id,
-      category,
-    } = this.props;
+    const { name, quantity, unit, min, id, category } = this.props;
 
     const cartIconShow = quantity < min;
     const exclamationIconShow = !quantity;
 
-    // let fontColor;
-
-    // if (exclamationIconShow) {
-    //   fontColor = 'red';
-    // } else if (cartIconShow) {
-    //   fontColor = 'orange';
-    // } else {
-    //   fontColor = 'black';
-    // }
-
     return (
-      // <StyledWrapper fontColor={fontColor}>
-
       <StyledWrapper>
         <StyledLeftWrapper>
           <StyledExclamationIconWrapper>
@@ -168,21 +124,19 @@ class Product extends React.Component {
           </div>
         </StyledLeftWrapper>
         <StyledCenterWrapper>
-          <div>
+          {/* <div>
             <StyledIcon icon={faMinusCircle} onClick={() => {}} />
-          </div>
+          </div> */}
 
           <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
           <StyledUnitWrapper>{unit}</StyledUnitWrapper>
-          <div>
+          {/* <div>
             <StyledIcon icon={faPlusCircle} onClick={() => {}} />
-          </div>
+          </div> */}
         </StyledCenterWrapper>
         <StyledRightWrapper>
           <div>
-            {/* <StyledEditIconWrapper> */}
             <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
-            {/* </StyledEditIconWrapper> */}
           </div>
           <StyledDelteIconWrapper>
             <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} />
