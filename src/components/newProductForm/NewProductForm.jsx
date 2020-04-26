@@ -66,12 +66,20 @@ const StyledButton = styled.button`
 
 class NewProductForm extends React.Component {
   state = {
+    categories: [],
     name: '',
     quantity: '',
     category: '',
     min: '3',
     unit: 'szt',
   };
+
+  componentDidMount() {
+    db.collection('categories')
+      .doc('all')
+      .get()
+      .then(doc => this.setState({ categories: [...doc.data().categories] }));
+  }
 
   handleForm = e => {
     console.log(e.target.value);
@@ -118,8 +126,8 @@ class NewProductForm extends React.Component {
   };
 
   render() {
-    const { categories, toggleFormVisibility } = this.props;
-    const { name, quantity, unit, min, category } = this.state;
+    const { toggleFormVisibility } = this.props;
+    const { name, quantity, unit, min, category, categories } = this.state;
 
     return (
       <StyledWrapper>

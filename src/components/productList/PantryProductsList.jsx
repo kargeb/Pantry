@@ -21,14 +21,14 @@ const ProductsList = styled.ul``;
 const PantryProductsList = () => (
   <AppContext.Consumer>
     {context => {
-      const activeCategories = [];
+      const categoriesWithProducts = [];
       context.products.forEach(product => {
-        if (!activeCategories.includes(product.category)) {
-          activeCategories.push(product.category);
+        if (!categoriesWithProducts.includes(product.category)) {
+          categoriesWithProducts.push(product.category);
         }
       });
 
-      console.log('ACTIVE CATEGORIES: ', activeCategories);
+      console.log('ACTIVE CATEGORIES: ', categoriesWithProducts);
 
       return (
         <>
@@ -37,7 +37,7 @@ const PantryProductsList = () => (
           )}
 
           <CategoriesList>
-            {context.categories.map(currentCategory => {
+            {categoriesWithProducts.map(currentCategory => {
               const productsInCurrentCategory = context.products.filter(
                 product => product.category === currentCategory,
               );
