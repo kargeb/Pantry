@@ -33,7 +33,6 @@ const PantryProductsList = () => (
             return (
               <li key={currentCategory}>
                 <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
-
                 <ProductsList>
                   {productsInCurrentCategory.map(currentProduct => (
                     <li key={currentProduct.id}>
