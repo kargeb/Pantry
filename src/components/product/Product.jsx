@@ -103,10 +103,11 @@ class Product extends React.Component {
   };
 
   render() {
-    const { name, quantity, unit, min, id, category } = this.props;
-
+    // const { name, quantity, unit, min, id, category, product } = this.props;
+    const { product } = this.props;
+    const { name, quantity, unit, min, id, category } = product;
     const cartIconShow = quantity < min;
-    const exclamationIconShow = !quantity;
+    const exclamationIconShow = !+quantity;
 
     return (
       <StyledWrapper>

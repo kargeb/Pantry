@@ -35,28 +35,11 @@ const PantryProductsList = () => (
                 <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
 
                 <ProductsList>
-                  {productsInCurrentCategory.map(currentProduct => {
-                    const {
-                      name,
-                      quantity,
-                      unit,
-                      id,
-                      min,
-                      category,
-                    } = currentProduct;
-                    return (
-                      <li key={id}>
-                        <Product
-                          id={id}
-                          name={name}
-                          min={min}
-                          quantity={quantity}
-                          unit={unit}
-                          category={category}
-                        />
-                      </li>
-                    );
-                  })}
+                  {productsInCurrentCategory.map(currentProduct => (
+                    <li key={currentProduct.id}>
+                      <Product product={currentProduct} />
+                    </li>
+                  ))}
                 </ProductsList>
               </li>
             );
