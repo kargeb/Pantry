@@ -80,6 +80,7 @@ class ShoppingProduct extends React.Component {
             id={id}
             name={name}
             currentQuantity={quantity}
+            min={min}
             lack={lack}
             toggleBuyProductModal={this.toggleBuyProductModal}
           />

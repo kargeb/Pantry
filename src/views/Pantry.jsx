@@ -43,12 +43,13 @@ class Pantry extends React.Component {
 
   render() {
     const { isFormVisible } = this.state;
+    console.log('useparams z pantry:', this.props.match.path);
 
     return (
       <AppContext.Consumer>
         {context => (
           <StyledContainer>
-            <Nav current="pantry" />
+            {/* <Nav current="pantry" {...this.props} /> */}
             <StyledMain>
               {context.products.length ? (
                 <PantryProductsList products={context.products} />

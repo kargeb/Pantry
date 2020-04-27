@@ -61,7 +61,7 @@ const StyledShoppingListCounter = styled.div`
   font-weight: 900;
 `;
 
-const Nav = ({ current }) => {
+const Nav = ({ current, match }) => {
   const numberOfProductsOnShoppingList = products => {
     const productsOnShoppingList = products.filter(
       product => product.onShoppingList,
@@ -73,17 +73,13 @@ const Nav = ({ current }) => {
     <AppContext.Consumer>
       {context => (
         <nav>
-          <StyledHeader>
-            <Link to="/settings">
-              <StyledSettingsIconWrapper>
-                <FontAwesomeIcon icon={faCogs} />
-              </StyledSettingsIconWrapper>
-            </Link>
-          </StyledHeader>
-
           <StyledMenu>
+            {console.log('natch z nav:', match)}
             <StyledMenuItem active={current === 'pantry'}>
               <Link to="/">Products</Link>
+            </StyledMenuItem>
+            <StyledMenuItem active={current === 'settings'}>
+              <Link to="/settings">Settings</Link>
             </StyledMenuItem>
             <StyledMenuItem active={current === 'shoppingList'}>
               <Link to="/shoppinglist">Shopping List</Link>

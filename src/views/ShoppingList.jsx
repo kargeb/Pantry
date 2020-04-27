@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+// import { matchPath  } from 'react-router-dom';
 import loadingGif from '../images/loading_dots.gif';
 import Nav from '../components/Nav/Nav';
 import AppContext from '../context';
@@ -19,7 +20,8 @@ const StyledMain = styled.main`
   background-color: white;
 `;
 
-const ShoppingList = () => {
+const ShoppingList = ({ match }) => {
+  console.log('useparams z shoppinglist:', match.path);
   return (
     <AppContext.Consumer>
       {context => {
@@ -29,7 +31,7 @@ const ShoppingList = () => {
 
         return (
           <StyledContainer>
-            <Nav current="shoppingList" />
+            {/* <Nav current="shoppingList" /> */}
             <StyledMain>
               {context.products.length ? (
                 <StyledListWrapper>
