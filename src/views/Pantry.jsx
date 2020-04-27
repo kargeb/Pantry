@@ -4,6 +4,7 @@ import PantryProductsList from '../components/productList/PantryProductsList';
 import NewProductForm from '../components/newProductForm/NewProductForm';
 import AppContext from '../context';
 import Nav from '../components/Nav/Nav';
+import loadingGif from '../images/loading_dots.gif';
 
 const StyledAddButtonWrapper = styled.div`
   background-color: #fff;
@@ -54,23 +55,34 @@ class Pantry extends React.Component {
     const { isFormVisible } = this.state;
 
     return (
-      <StyledContainer>
-        <Nav current="pantry" />
-        <StyledMain>
-          <PantryProductsList />
-          <StyledAddButtonWrapper>
-            <StyledAddProductButton
-              type="button"
-              onClick={this.toggleFormVisibility}
-            >
-              Dodaj
-            </StyledAddProductButton>
-          </StyledAddButtonWrapper>
-        </StyledMain>
-        {isFormVisible && (
-          <NewProductForm toggleFormVisibility={this.toggleFormVisibility} />
+      <AppContext.Consumer>
+        {context => (
+          <StyledContainer>
+            <Nav current="pantry" />
+            <StyledMain>
+              {context.products.length ? (
+                <PantryProductsList products={context.products} />
+              ) : (
+                <img src={loadingGif} alt="Loading gif" />
+              )}
+
+              <StyledAddButtonWrapper>
+                <StyledAddProductButton
+                  type="button"
+                  onClick={this.toggleFormVisibility}
+                >
+                  Dodaj
+                </StyledAddProductButton>
+              </StyledAddButtonWrapper>
+            </StyledMain>
+            {isFormVisible && (
+              <NewProductForm
+                toggleFormVisibility={this.toggleFormVisibility}
+              />
+            )}
+          </StyledContainer>
         )}
-      </StyledContainer>
+      </AppContext.Consumer>
     );
   }
 }
