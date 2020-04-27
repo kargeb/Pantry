@@ -40,7 +40,11 @@ const StyledButton = styled.button`
 `;
 
 const StyledNameWrapper = styled.div`
-  width: 50%;
+  width: 40%;
+`;
+
+const StyledLackWrapper = styled.div`
+  width: 20%;
 `;
 
 class ShoppingProduct extends React.Component {
@@ -55,7 +59,8 @@ class ShoppingProduct extends React.Component {
   };
 
   render() {
-    const { name, id } = this.props.product;
+    const { name, id, quantity, min } = this.props.product;
+    const lack = min - quantity;
 
     return (
       <StyledWrapper>
@@ -63,6 +68,7 @@ class ShoppingProduct extends React.Component {
           <StyledDotIcon icon={faCircle} />
         </div>
         <StyledNameWrapper>{name}</StyledNameWrapper>
+        <StyledLackWrapper>Brakuje: {lack}</StyledLackWrapper>
         <StyledButton
           //   onClick={() => context.completeProductQuantityToMin(id)}
           onClick={this.toggleBuyProductModal}
@@ -73,6 +79,8 @@ class ShoppingProduct extends React.Component {
           <BuyProductModal
             id={id}
             name={name}
+            currentQuantity={quantity}
+            lack={lack}
             toggleBuyProductModal={this.toggleBuyProductModal}
           />
         )}
