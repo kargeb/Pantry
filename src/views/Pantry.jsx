@@ -22,16 +22,6 @@ const StyledAddProductButton = styled.button`
   text-transform: uppercase;
 `;
 
-const StyledShoppingListCounter = styled.div`
-  background-color: #fff;
-  color: #6202ee;
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-  margin-left: 2px;
-  font-weight: 900;
-`;
-
 const StyledMain = styled.main`
   height: calc(100vh - 120px);
   /* height: 1000px; */
