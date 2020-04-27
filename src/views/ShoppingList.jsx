@@ -5,6 +5,10 @@ import Nav from '../components/Nav/Nav';
 import AppContext from '../context';
 import ShoppingProduct from '../components/product/ShoppingProduct';
 
+const StyledContainer = styled.div`
+  position: relative;
+`;
+
 const StyledListWrapper = styled.ul`
   background-color: #fff;
 `;
@@ -24,7 +28,7 @@ const ShoppingList = () => {
         );
 
         return (
-          <div>
+          <StyledContainer>
             <Nav current="shoppingList" />
             <StyledMain>
               {context.products.length ? (
@@ -39,7 +43,7 @@ const ShoppingList = () => {
                 <img src={loadingGif} alt="Loading gif" />
               )}
             </StyledMain>
-          </div>
+          </StyledContainer>
         );
       }}
     </AppContext.Consumer>
