@@ -1,17 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import AppContext from '../context';
-import ShoppingProductsList from '../components/productList/ShoppingProductsList';
+import loadingGif from '../images/loading_dots.gif';
 import Nav from '../components/Nav/Nav';
+import AppContext from '../context';
+import ShoppingProduct from '../components/product/ShoppingProduct';
 
-const StyledShoppingListCounter = styled.div`
-  background-color: #6202ee;
-  color: #fff;
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-  margin-left: 2px;
-  font-weight: 900;
+const StyledListWrapper = styled.ul`
+  background-color: #fff;
 `;
 
 const StyledMain = styled.main`
@@ -20,35 +15,35 @@ const StyledMain = styled.main`
   background-color: white;
 `;
 
-class ShoppingList extends React.Component {
-  state = {
-    products: [],
-  };
+const ShoppingList = () => {
+  return (
+    <AppContext.Consumer>
+      {context => {
+        const productsOnShoppingList = context.products.filter(
+          product => product.onShoppingList,
+        );
 
-  numberOfProductsOnShoppingList = products => {
-    console.log('ODPALAM< SIE!!');
-
-    // if (products.length) {
-    //   const productsOnShoppingList = products.filter(
-    //     product => product.onShoppingList,
-    //   );
-
-    //   console.log(productsOnShoppingList);
-
-    //   this.setState({ products: productsOnShoppingList });
-    // }
-  };
-
-  render() {
-    return (
-      <div>
-        <Nav current="shoppingList" />
-        <StyledMain>
-          <ShoppingProductsList />
-        </StyledMain>
-      </div>
-    );
-  }
-}
+        return (
+          <div>
+            <Nav current="shoppingList" />
+            <StyledMain>
+              {context.products.length ? (
+                <StyledListWrapper>
+                  {productsOnShoppingList.map(product => (
+                    <li key={product.id}>
+                      <ShoppingProduct product={product} />
+                    </li>
+                  ))}
+                </StyledListWrapper>
+              ) : (
+                <img src={loadingGif} alt="Loading gif" />
+              )}
+            </StyledMain>
+          </div>
+        );
+      }}
+    </AppContext.Consumer>
+  );
+};
 
 export default ShoppingList;
