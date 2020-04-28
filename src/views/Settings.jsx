@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { matchPath  } from 'react-router-dom';
 import loadingGif from '../images/loading_dots.gif';
-
-const StyledContainer = styled.div`
-  /* position: relative; */
-`;
 
 const StyledListWrapper = styled.ul`
   background-color: #fff;
@@ -18,11 +13,7 @@ const StyledMain = styled.main`
 `;
 
 const Settings = () => {
-  return (
-    <StyledContainer>
-      <StyledMain />
-    </StyledContainer>
-  );
+  return <StyledMain />;
 };
 
 export default Settings;
