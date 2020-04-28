@@ -75,7 +75,6 @@ const StyledCancelIcon = styled(FontAwesomeIcon)`
   color: rgba(0, 0, 0, 0.54);
 `;
 
-// = ({ id, name, lack, toggleBuyProductModal }) => {
 class BuyProductModal extends React.Component {
   constructor(props) {
     super(props);
@@ -88,8 +87,6 @@ class BuyProductModal extends React.Component {
       lack,
       id,
     };
-
-    console.log(this.state);
   }
 
   addQuantity = () => {
@@ -103,9 +100,7 @@ class BuyProductModal extends React.Component {
   updateProductQuantity = toggleBuyProductModal => {
     const { currentQuantity, id, lack, min } = this.state;
     const quantityAfterShopping = +currentQuantity + +lack;
-    console.log('quantity after shopping: ', quantityAfterShopping);
-    console.log('ID productu to update:', id);
-    console.log('current quantity:', currentQuantity);
+
     db.collection('products')
       .doc(id)
       .update({
@@ -115,18 +110,6 @@ class BuyProductModal extends React.Component {
     toggleBuyProductModal();
   };
 
-  //   const deleteProduct = () => {
-
-  //     db.collection('products')
-  //       .doc(id)
-  //       .delete()
-  //       .then(function () {
-  //         console.log('Document successfully deleted!');
-  //       })
-  //       .catch(function (error) {
-  //         console.error('Error removing document: ', error);
-  //       });
-  //   };
   render() {
     const { name, toggleBuyProductModal } = this.props;
     const { lack } = this.state;

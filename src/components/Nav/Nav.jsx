@@ -2,16 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import AppContext from '../../context';
-
-const StyledHeader = styled.header`
-  display: flex;
-  height: 50px;
-  background-color: #202020;
-  color: white;
-  /* font-size: 20px; */
-`;
 
 const StyledMenu = styled.nav`
   display: flex;
@@ -30,27 +22,6 @@ const StyledSettingsIconWrapper = styled.div`
   /* background-color: green; */
 `;
 
-const StyledMenuItem = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  width: 50%;
-  font-size: 20px;
-  line-height: 30px;
-  padding: 20px 0;
-  text-align: center;
-  background-color: #6202ee;
-
-  ${({ active }) =>
-    active &&
-    css`
-      color: #333;
-      background-color: #fff;
-      font-weight: 900 ${'' /* text-transform: uppercase; */};
-      letter-spacing: 0.15px;
-    `};
-`;
-
 const StyledShoppingListCounter = styled.div`
   background-color: #fff;
   color: #6202ee;
@@ -61,7 +32,26 @@ const StyledShoppingListCounter = styled.div`
   font-weight: 900;
 `;
 
-const Nav = ({ current }) => {
+const StyledNavLink = styled(NavLink)`
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  width: 50%;
+  font-size: 20px;
+  line-height: 30px;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #6202ee;
+
+  &.active {
+    color: #333;
+    background-color: #fff;
+    font-weight: 900 ${'' /* text-transform: uppercase; */};
+    letter-spacing: 0.15px;
+  }
+`;
+
+const Nav = () => {
   const numberOfProductsOnShoppingList = products => {
     const productsOnShoppingList = products.filter(
       product => product.onShoppingList,
@@ -73,24 +63,20 @@ const Nav = ({ current }) => {
     <AppContext.Consumer>
       {context => (
         <nav>
-          <StyledHeader>
-            <Link to="/settings">
-              <StyledSettingsIconWrapper>
-                <FontAwesomeIcon icon={faCogs} />
-              </StyledSettingsIconWrapper>
-            </Link>
-          </StyledHeader>
-
+          {/* prettier-ignore */}
           <StyledMenu>
-            <StyledMenuItem active={current === 'pantry'}>
-              <Link to="/">Products</Link>
-            </StyledMenuItem>
-            <StyledMenuItem active={current === 'shoppingList'}>
-              <Link to="/shoppinglist">Shopping List</Link>
+            <StyledNavLink to="/" exact>
+              Products
+            </StyledNavLink>
+            <StyledNavLink to="/settings">
+              Settings
+            </StyledNavLink>
+            <StyledNavLink to="/shoppinglist">
+              Shopping List
               <StyledShoppingListCounter>
                 {numberOfProductsOnShoppingList(context.products)}
               </StyledShoppingListCounter>
-            </StyledMenuItem>
+            </StyledNavLink>
           </StyledMenu>
         </nav>
       )}

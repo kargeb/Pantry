@@ -5,10 +5,6 @@ import Nav from '../components/Nav/Nav';
 import AppContext from '../context';
 import ShoppingProduct from '../components/product/ShoppingProduct';
 
-const StyledContainer = styled.div`
-  position: relative;
-`;
-
 const StyledListWrapper = styled.ul`
   background-color: #fff;
 `;
@@ -28,22 +24,19 @@ const ShoppingList = () => {
         );
 
         return (
-          <StyledContainer>
-            <Nav current="shoppingList" />
-            <StyledMain>
-              {context.products.length ? (
-                <StyledListWrapper>
-                  {productsOnShoppingList.map(product => (
-                    <li key={product.id}>
-                      <ShoppingProduct product={product} />
-                    </li>
-                  ))}
-                </StyledListWrapper>
-              ) : (
-                <img src={loadingGif} alt="Loading gif" />
-              )}
-            </StyledMain>
-          </StyledContainer>
+          <StyledMain>
+            {context.products.length ? (
+              <StyledListWrapper>
+                {productsOnShoppingList.map(product => (
+                  <li key={product.id}>
+                    <ShoppingProduct product={product} />
+                  </li>
+                ))}
+              </StyledListWrapper>
+            ) : (
+              <img src={loadingGif} alt="Loading gif" />
+            )}
+          </StyledMain>
         );
       }}
     </AppContext.Consumer>

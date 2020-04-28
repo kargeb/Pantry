@@ -28,10 +28,6 @@ const StyledMain = styled.main`
   /* background-color: white; */
 `;
 
-const StyledContainer = styled.div`
-  position: relative;
-`;
-
 class Pantry extends React.Component {
   state = {
     isFormVisible: false,
@@ -47,30 +43,27 @@ class Pantry extends React.Component {
     return (
       <AppContext.Consumer>
         {context => (
-          <StyledContainer>
-            <Nav current="pantry" />
-            <StyledMain>
-              {context.products.length ? (
-                <PantryProductsList products={context.products} />
-              ) : (
-                <img src={loadingGif} alt="Loading gif" />
-              )}
+          <StyledMain>
+            {context.products.length ? (
+              <PantryProductsList products={context.products} />
+            ) : (
+              <img src={loadingGif} alt="Loading gif" />
+            )}
 
-              <StyledAddButtonWrapper>
-                <StyledAddProductButton
-                  type="button"
-                  onClick={this.toggleFormVisibility}
-                >
-                  Dodaj
-                </StyledAddProductButton>
-              </StyledAddButtonWrapper>
-            </StyledMain>
+            <StyledAddButtonWrapper>
+              <StyledAddProductButton
+                type="button"
+                onClick={this.toggleFormVisibility}
+              >
+                Dodaj
+              </StyledAddProductButton>
+            </StyledAddButtonWrapper>
             {isFormVisible && (
               <NewProductForm
                 toggleFormVisibility={this.toggleFormVisibility}
               />
             )}
-          </StyledContainer>
+          </StyledMain>
         )}
       </AppContext.Consumer>
     );

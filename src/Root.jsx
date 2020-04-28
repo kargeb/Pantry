@@ -7,6 +7,7 @@ import data from './data/db.json';
 import db from './fbase';
 import GlobalStyle from './themes/GlobalStyle';
 import Settings from './views/Settings';
+import Nav from './components/Nav/Nav';
 
 class Root extends React.Component {
   state = {
@@ -41,6 +42,7 @@ class Root extends React.Component {
       <BrowserRouter>
         <GlobalStyle />
         <AppContext.Provider value={contextElements}>
+          <Nav />
           <Switch>
             <Route exact path="/" component={Pantry} />
             <Route path="/pantry" component={Pantry} />
