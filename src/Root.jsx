@@ -42,7 +42,7 @@ class Root extends React.Component {
       <BrowserRouter>
         <GlobalStyle />
         <AppContext.Provider value={contextElements}>
-          <Nav {...this.props} />
+          <Nav />
           <Switch>
             <Route exact path="/" component={Pantry} />
             <Route path="/pantry" component={Pantry} />

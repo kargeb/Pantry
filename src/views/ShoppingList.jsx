@@ -7,7 +7,7 @@ import AppContext from '../context';
 import ShoppingProduct from '../components/product/ShoppingProduct';
 
 const StyledContainer = styled.div`
-  position: relative;
+  /* position: relative; */
 `;
 
 const StyledListWrapper = styled.ul`

@@ -29,7 +29,7 @@ const StyledMain = styled.main`
 `;
 
 const StyledContainer = styled.div`
-  position: relative;
+  /* position: relative; */
 `;
 
 class Pantry extends React.Component {
