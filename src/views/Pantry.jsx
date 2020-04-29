@@ -24,6 +24,7 @@ const StyledAddProductButton = styled.button`
 
 const StyledMain = styled.main`
   height: calc(100vh - 120px);
+  /* overflow: hidden; */
   /* height: 1000px; */
   /* background-color: white; */
 `;
@@ -44,6 +45,7 @@ class Pantry extends React.Component {
       <AppContext.Consumer>
         {context => (
           <StyledMain>
+            {console.log('products: ', context.products)}
             {context.products.length ? (
               <PantryProductsList products={context.products} />
             ) : (

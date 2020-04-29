@@ -6,7 +6,8 @@
       "quantity": "2",
       "unit": "kg",
       "category": "Artykuły spożywcze",
-      "min": "2"
+      "min": "2",
+      "onShoppingList": false
     },
     {
       "id": "fb5d383f-3e95-477e-9bba-14098213bc4f",
@@ -14,7 +15,8 @@
       "quantity": "3",
       "unit": "l",
       "category": "Napoje / Alkohol",
-      "min": "2"
+      "min": "2",
+      "onShoppingList": false
     },
     {
       "id": "fb5d383f-3e95-477e-9bba-12298213bc4f",
@@ -22,7 +24,8 @@
       "quantity": "3",
       "unit": "l",
       "category": "Napoje / Alkohol",
-      "min": "4"
+      "min": "4",
+      "onShoppingList": true
     },
     {
       "id": "21fcbe45-048e-4905-a517-3a0919e599ac",
@@ -30,16 +33,8 @@
       "quantity": "1",
       "unit": "szt",
       "category": "Słodycze",
-      "min": "3"
+      "min": "3",
+      "onShoppingList": true
     }
-  ],
-  "categories": [
-    "Słodycze",
-    "Napoje / Alkohol",
-    "Owoce / Warzywa",
-    "Piewczywo",
-    "Artykuły spożywcze",
-    "Kosmetyki",
-    "Chemia"
   ]
 }
