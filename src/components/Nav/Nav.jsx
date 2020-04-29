@@ -10,7 +10,7 @@ const StyledMenu = styled.nav`
   justify-content: space-between;
   background-color: #6202ee;
 
-  height: 70px;
+  height: ${({ theme }) => theme.navheigth};
   color: white;
 `;
 

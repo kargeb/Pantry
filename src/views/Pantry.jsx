@@ -23,10 +23,17 @@ const StyledAddProductButton = styled.button`
 `;
 
 const StyledMain = styled.main`
-  height: calc(100vh - 120px);
-  /* overflow: hidden; */
+  height: calc(100vh - 70px);
+  /* height: 500px;
+  overflow: scroll; */
   /* height: 1000px; */
-  /* background-color: white; */
+  background-color: green;
+`;
+
+const ProductWrapper = styled.div`
+  height: calc(100vh - 140px);
+  overflow: auto;
+  /* background-color: yellow; */
 `;
 
 class Pantry extends React.Component {
@@ -45,12 +52,13 @@ class Pantry extends React.Component {
       <AppContext.Consumer>
         {context => (
           <StyledMain>
-            {console.log('products: ', context.products)}
-            {context.products.length ? (
-              <PantryProductsList products={context.products} />
-            ) : (
-              <img src={loadingGif} alt="Loading gif" />
-            )}
+            <ProductWrapper>
+              {context.products.length ? (
+                <PantryProductsList products={context.products} />
+              ) : (
+                <img src={loadingGif} alt="Loading gif" />
+              )}
+            </ProductWrapper>
 
             <StyledAddButtonWrapper>
               <StyledAddProductButton

@@ -32,7 +32,6 @@ const Settings = () => {
     <AppContext.Consumer>
       {context => (
         <StyledMain>
-          {console.log(sampleData)}
           <button onClick={context.changeTheme} type="button">
             zmień Them
           </button>

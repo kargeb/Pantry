@@ -21,7 +21,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         font-family: 'Roboto', sans-serif;
         max-width: 600px;
         margin: 0 auto;
-        height: 100vh;
+        ${'' /* height: 100vh; */}
         background-color: white;
         color: black
         

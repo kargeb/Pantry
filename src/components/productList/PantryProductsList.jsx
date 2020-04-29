@@ -23,8 +23,6 @@ const PantryProductsList = ({ products }) => {
     }
   });
 
-  // console.log('ACTIVE CATEGORIES: ', categoriesWithProducts);
-
   return (
     <CategoriesList>
       {categoriesWithProducts.map(currentCategory => {
