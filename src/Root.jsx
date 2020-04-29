@@ -13,6 +13,7 @@ import Nav from './components/Nav/Nav';
 class Root extends React.Component {
   state = {
     products: [],
+    currentTheme: defaultTheme,
   };
 
   componentDidMount() {
@@ -38,11 +39,11 @@ class Root extends React.Component {
     const contextElements = {
       ...this.state,
     };
-
+    const { currentTheme } = this.state;
     return (
       <BrowserRouter>
         <GlobalStyle />
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={currentTheme}>
           <AppContext.Provider value={contextElements}>
             <Nav />
             <Switch>
