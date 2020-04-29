@@ -27,7 +27,7 @@ const StyledMain = styled.main`
   /* height: 500px;
   overflow: scroll; */
   /* height: 1000px; */
-  background-color: green;
+  /* background-color: green; */
 `;
 
 const ProductWrapper = styled.div`
