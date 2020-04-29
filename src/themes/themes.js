@@ -3,4 +3,6 @@ export const defaultTheme = {
   background: '#fff',
 };
 
-export const darkTheme = {};
+export const darkTheme = {
+  primary: '#333',
+};

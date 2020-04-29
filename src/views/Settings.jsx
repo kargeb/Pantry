@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import loadingGif from '../images/loading_dots.gif';
+import AppContext from '../context';
 
 const StyledListWrapper = styled.ul`
   background-color: #fff;
@@ -13,7 +14,17 @@ const StyledMain = styled.main`
 `;
 
 const Settings = () => {
-  return <StyledMain />;
+  return (
+    <AppContext.Consumer>
+      {context => (
+        <StyledMain>
+          <button onClick={context.changeTheme} type="button">
+            zmień Them
+          </button>
+        </StyledMain>
+      )}
+    </AppContext.Consumer>
+  );
 };
 
 export default Settings;
