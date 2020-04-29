@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './themes/GlobalStyle';
+import { defaultTheme } from './themes/themes';
+import db from './fbase';
+import AppContext from './context';
 import Pantry from './views/Pantry';
 import ShoppingList from './views/ShoppingList';
-import AppContext from './context';
-import data from './data/db.json';
-import db from './fbase';
-import GlobalStyle from './themes/GlobalStyle';
 import Settings from './views/Settings';
 import Nav from './components/Nav/Nav';
 
@@ -41,15 +42,17 @@ class Root extends React.Component {
     return (
       <BrowserRouter>
         <GlobalStyle />
-        <AppContext.Provider value={contextElements}>
-          <Nav />
-          <Switch>
-            <Route exact path="/" component={Pantry} />
-            <Route path="/pantry" component={Pantry} />
-            <Route path="/shoppinglist" component={ShoppingList} />
-            <Route path="/settings" component={Settings} />
-          </Switch>
-        </AppContext.Provider>
+        <ThemeProvider theme={defaultTheme}>
+          <AppContext.Provider value={contextElements}>
+            <Nav />
+            <Switch>
+              <Route exact path="/" component={Pantry} />
+              <Route path="/pantry" component={Pantry} />
+              <Route path="/shoppinglist" component={ShoppingList} />
+              <Route path="/settings" component={Settings} />
+            </Switch>
+          </AppContext.Provider>
+        </ThemeProvider>
       </BrowserRouter>
     );
   }

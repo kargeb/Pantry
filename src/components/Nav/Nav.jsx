@@ -41,7 +41,8 @@ const StyledNavLink = styled(NavLink)`
   line-height: 30px;
   padding: 20px 0;
   text-align: center;
-  background-color: #6202ee;
+  /* background-color:  #6202ee; */
+  background-color: ${({ theme }) => theme.primary};
 
   &.active {
     color: #333;
