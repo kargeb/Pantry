@@ -24,7 +24,7 @@ const StyledAddProductButton = styled.button`
 `;
 
 const StyledMain = styled.main`
-  height: calc(100vh - 70px);
+  /* height: calc(100vh - 70px); */
   /* height: 500px;
   overflow: scroll; */
   /* height: 1000px; */
@@ -47,6 +47,7 @@ class Pantry extends React.Component {
         {context => (
           <StyledMain>
             {/* <ProductWrapper> */}
+            {/* <Scrollbars style={{ height: 'calc(100vh - 140px)' }}> */}
             <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
               {context.products.length ? (
                 <PantryProductsList products={context.products} />

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import device from './mediaBreakPoints';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -21,10 +22,17 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         font-family: 'Roboto', sans-serif;
         max-width: 600px;
         margin: 0 auto;
+        height: 100vh;
         ${'' /* height: 100vh; */}
         background-color: white;
-        color: black
-        
+    }
+
+    nav{
+        height: 70px;
+    }
+
+    main{
+        height: calc(100vh - 70px);
     }
 
     ul{
@@ -36,13 +44,22 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         color: inherit
     }
 
-    @media (min-width: 1024px) { 
+    ${
+      '' /* @media ${device.laptop} {
+   body{
 
-    ${'' /* body{
-         max-width: 1800px;
-    } */}
+    font-size: 150px;
+    color: blue;
+   }
+  } */
+    }
 
+    @media ${device.laptop} {
+   body{
 
+    ${'' /* font-size: 150px; */}
+    color: blue;
+   }
   }
     
 
