@@ -14,12 +14,13 @@ import EditProductForm from '../editProductForm/EditProductForm';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 
 const StyledWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+
 padding-left: 5%;
   min-height: 40px;
   line-height: 40px;
-  display: flex;
   /* color: ${props => props.fontColor}; */
-  justify-content: space-between;
 /* word-wrap: break-word; */
 `;
 

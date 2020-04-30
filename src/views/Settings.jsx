@@ -10,9 +10,8 @@ const StyledListWrapper = styled.ul`
 `;
 
 const StyledMain = styled.main`
-  height: calc(100vh - 120px);
   /* height: 1000px; */
-  background-color: white;
+  background-color: ;
 `;
 
 const Settings = () => {
@@ -32,7 +31,6 @@ const Settings = () => {
     <AppContext.Consumer>
       {context => (
         <StyledMain>
-          {console.log(sampleData)}
           <button onClick={context.changeTheme} type="button">
             zmień Them
           </button>

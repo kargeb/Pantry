@@ -8,9 +8,10 @@ import AppContext from '../../context';
 const StyledMenu = styled.nav`
   display: flex;
   justify-content: space-between;
-  background-color: #6202ee;
+  /* background-color: #6202ee; */
+  background-color: 'blue';
 
-  height: 70px;
+  /* height: ${({ theme }) => theme.navheigth}; */
   color: white;
 `;
 
@@ -49,6 +50,11 @@ const StyledNavLink = styled(NavLink)`
     background-color: #fff;
     font-weight: 900 ${'' /* text-transform: uppercase; */};
     letter-spacing: 0.15px;
+  }
+
+  @media (min-width: 1024px) {
+    background-color: red;
+    /* font-size: 50px; */
   }
 `;
 

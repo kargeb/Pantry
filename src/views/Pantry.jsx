@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
 import PantryProductsList from '../components/productList/PantryProductsList';
 import NewProductForm from '../components/newProductForm/NewProductForm';
 import AppContext from '../context';
@@ -23,10 +24,10 @@ const StyledAddProductButton = styled.button`
 `;
 
 const StyledMain = styled.main`
-  height: calc(100vh - 120px);
-  /* overflow: hidden; */
+  /* height: calc(100vh - 70px); */
+  /* height: 500px;
+  overflow: scroll; */
   /* height: 1000px; */
-  /* background-color: white; */
 `;
 
 class Pantry extends React.Component {
@@ -45,12 +46,16 @@ class Pantry extends React.Component {
       <AppContext.Consumer>
         {context => (
           <StyledMain>
-            {console.log('products: ', context.products)}
-            {context.products.length ? (
-              <PantryProductsList products={context.products} />
-            ) : (
-              <img src={loadingGif} alt="Loading gif" />
-            )}
+            {/* <ProductWrapper> */}
+            {/* <Scrollbars style={{ height: 'calc(100vh - 140px)' }}> */}
+            <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
+              {context.products.length ? (
+                <PantryProductsList products={context.products} />
+              ) : (
+                <img src={loadingGif} alt="Loading gif" />
+              )}
+            </Scrollbars>
+            {/* </ProductWrapper> */}
 
             <StyledAddButtonWrapper>
               <StyledAddProductButton
