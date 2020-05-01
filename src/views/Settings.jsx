@@ -28,8 +28,8 @@ const Wrapper = styled.div`
   background-color: #888;
 `;
 
-const Settings = () => {
-  const uploadSampleData = () => {
+class Settings extends React.Component {
+  uploadSampleData = () => {
     const dbRef = db.collection('products');
 
     sampleData.products.forEach(sampleProduct => {
@@ -41,25 +41,27 @@ const Settings = () => {
     });
   };
 
-  return (
-    <AppContext.Consumer>
-      {context => (
-        <StyledMain>
-          <Wrapper>
-            <button onClick={context.changeTheme} type="button">
-              zmień Them
-            </button>
-            <button onClick={uploadSampleData} type="button">
-              wczytaj przykłądowe dane
-            </button>
-            <button onClick={() => {}} type="button">
-              Dodaj/usuń kategorię
-            </button>
-          </Wrapper>
-        </StyledMain>
-      )}
-    </AppContext.Consumer>
-  );
-};
+  render() {
+    return (
+      <AppContext.Consumer>
+        {context => (
+          <StyledMain>
+            <Wrapper>
+              <button onClick={context.changeTheme} type="button">
+                zmień Them
+              </button>
+              <button onClick={this.uploadSampleData} type="button">
+                wczytaj przykłądowe dane
+              </button>
+              <button onClick={() => {}} type="button">
+                Dodaj/usuń kategorię
+              </button>
+            </Wrapper>
+          </StyledMain>
+        )}
+      </AppContext.Consumer>
+    );
+  }
+}
 
 export default Settings;
