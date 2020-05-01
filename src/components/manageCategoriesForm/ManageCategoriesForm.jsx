@@ -87,14 +87,18 @@ class ManageCategoriesForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { newCategory } = this.state;
+    let { categories, newCategory } = this.state;
     const { toggleCategoryModal } = this.props;
 
     if (newCategory) {
-      console.log('Nowa kategoria:');
-      console.log(newCategory);
+      newCategory = newCategory[0].toUpperCase() + newCategory.slice(1);
 
-      //   db.collection('products').doc(newProduct.id).set(newProduct);
+      const newCategories = {
+        categories: [...this.state.categories, newCategory],
+      };
+
+      console.log('categorises:', newCategories);
+      db.collection('categories').doc('all').set(newCategories);
 
       this.setState({
         newCategory: '',
