@@ -28,7 +28,6 @@ const StyledWrapper = styled.div`
   left: 5%;
   background-color: white;
   box-shadow: 1px 0px 18px 4px rgba(0, 0, 0, 0.66);
-  z-index: 10;
 `;
 
 const StyledNameInput = styled.input`
@@ -65,24 +64,12 @@ const StyledButton = styled.button`
   background-color: white;
 `;
 
-class EditProductForm extends React.Component {
-  constructor(props) {
-    super(props);
+class ManageCategoriesForm extends React.Component {
+  state = {
+    categories: [],
+    newCategory: '',
+  };
 
-    const { name, quantity, category, min, unit, id } = this.props;
-
-    this.state = {
-      categories: [],
-      category,
-      name,
-      quantity,
-      min,
-      unit,
-      id,
-    };
-  }
-
-  // state = {...this.props}
   componentDidMount() {
     db.collection('categories')
       .doc('all')
@@ -94,97 +81,50 @@ class EditProductForm extends React.Component {
     console.log(e.target.value);
     console.log(e.target.id);
 
-    this.setState({ [e.target.id]: e.target.value });
+    this.setState({ newCategory: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    const { name, quantity, category, min, unit, id } = this.state;
-    const { toggleEditProductForm } = this.props;
+    const { newCategory } = this.state;
+    const { toggleCategoryModal } = this.props;
 
-    if (name && quantity && category && min && unit) {
-      const newProduct = {
-        name,
-        quantity,
-        category,
-        min,
-        unit,
-        onShoppingList: quantity < min,
-        id,
-      };
+    if (newCategory) {
+      console.log('Nowa kategoria:');
+      console.log(newCategory);
 
-      console.log('wypelnoine wszystkie, nowty produkt');
-      console.log(newProduct);
-
-      // this.props.addNewProduct(newProduct);
-      db.collection('products').doc(newProduct.id).set(newProduct);
+      //   db.collection('products').doc(newProduct.id).set(newProduct);
 
       this.setState({
-        name: '',
-        quantity: '',
-        category: '',
-        min: '1',
-        unit: 'szt',
-        id: null,
+        newCategory: '',
       });
 
-      toggleEditProductForm();
+      toggleCategoryModal();
     } else {
-      console.log('WYPEŁNIJ  SZYSTKIE POLA');
+      console.log('NIC NIE WPISAŁEŚ!');
     }
   };
 
   render() {
-    const { toggleEditProductForm } = this.props;
-    const { name, quantity, unit, min, category, categories } = this.state;
-
-    {
-      console.log('Render z EditForm', this.state);
-    }
+    const { toggleCategoryModal } = this.props;
+    const { newCategory, categories } = this.state;
 
     return (
       <StyledWrapper>
         <StyledForm>
           <StyledLabel htmlFor="name">
-            Nazwa:
+            Nowa kategoria:
             <StyledNameInput
               id="name"
               placeholder="nazwa"
               type="text"
               onChange={this.handleForm}
-              value={name}
+              value={newCategory}
             />
           </StyledLabel>
-          <StyledLabel htmlFor="quantity">
-            Ilość:
-            <StyledNumberInput
-              id="quantity"
-              placeholder="ilość"
-              type="number"
-              onChange={this.handleForm}
-              value={quantity}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="unit">
-            Jednostka:
-            <select id="unit" onChange={this.handleForm} value={unit}>
-              <option value="szt">szt</option>
-              <option value="l">l</option>
-              <option value="kg">kg</option>
-            </select>
-          </StyledLabel>
-          <StyledLabel htmlFor="min">
-            Minimalna ilość:
-            <StyledNumberInput
-              id="min"
-              type="number"
-              placeholder="minimalna ilość"
-              onChange={this.handleForm}
-              value={min}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="category">
+
+          {/* <StyledLabel htmlFor="category">
             Kategoria:
             <select id="category" onChange={this.handleForm} value={category}>
               <option value="" disabled hidden />
@@ -194,13 +134,13 @@ class EditProductForm extends React.Component {
                 </option>
               ))}
             </select>
-          </StyledLabel>
+          </StyledLabel> */}
           <StyledButtonsWrapper>
             <StyledButton type="submit" onClick={this.handleSubmit}>
               <StyledConfirmIcon icon={faCheckSquare} />
             </StyledButton>
 
-            <StyledButton type="button" onClick={toggleEditProductForm}>
+            <StyledButton type="button" onClick={toggleCategoryModal}>
               <StyledCancelIcon icon={faTimesCircle} />
             </StyledButton>
           </StyledButtonsWrapper>
@@ -210,4 +150,4 @@ class EditProductForm extends React.Component {
   }
 }
 
-export default EditProductForm;
+export default ManageCategoriesForm;

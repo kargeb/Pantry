@@ -4,6 +4,7 @@ import loadingGif from '../images/loading_dots.gif';
 import sampleData from '../data/db.json';
 import AppContext from '../context';
 import db from '../fbase';
+import ManageCategoriesForm from '../components/manageCategoriesForm/ManageCategoriesForm';
 
 const StyledListWrapper = styled.ul`
   background-color: #fff;
@@ -29,6 +30,16 @@ const Wrapper = styled.div`
 `;
 
 class Settings extends React.Component {
+  state = {
+    isCategoryModalVisible: false,
+  };
+
+  toggleCategoryModal = () => {
+    this.setState(prevState => ({
+      isCategoryModalVisible: !prevState.isCategoryModalVisible,
+    }));
+  };
+
   uploadSampleData = () => {
     const dbRef = db.collection('products');
 
@@ -42,6 +53,7 @@ class Settings extends React.Component {
   };
 
   render() {
+    const { isCategoryModalVisible } = this.state;
     return (
       <AppContext.Consumer>
         {context => (
@@ -53,10 +65,15 @@ class Settings extends React.Component {
               <button onClick={this.uploadSampleData} type="button">
                 wczytaj przykłądowe dane
               </button>
-              <button onClick={() => {}} type="button">
+              <button onClick={this.toggleCategoryModal} type="button">
                 Dodaj/usuń kategorię
               </button>
             </Wrapper>
+            {isCategoryModalVisible && (
+              <ManageCategoriesForm
+                toggleCategoryModal={this.toggleCategoryModal}
+              />
+            )}
           </StyledMain>
         )}
       </AppContext.Consumer>
