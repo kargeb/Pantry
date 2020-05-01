@@ -10,7 +10,22 @@ const StyledListWrapper = styled.ul`
 `;
 
 const StyledMain = styled.main`
-  background-color: ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 5%; */
+  /* padding-bottom: 100px; */
+  background-color: #444;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  height: 50%;
+  max-height: 200px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #888;
 `;
 
 const Settings = () => {
@@ -30,12 +45,17 @@ const Settings = () => {
     <AppContext.Consumer>
       {context => (
         <StyledMain>
-          <button onClick={context.changeTheme} type="button">
-            zmień Them
-          </button>
-          <button onClick={uploadSampleData} type="button">
-            wczytaj przykłądowe dane
-          </button>
+          <Wrapper>
+            <button onClick={context.changeTheme} type="button">
+              zmień Them
+            </button>
+            <button onClick={uploadSampleData} type="button">
+              wczytaj przykłądowe dane
+            </button>
+            <button onClick={() => {}} type="button">
+              Dodaj/usuń kategorię
+            </button>
+          </Wrapper>
         </StyledMain>
       )}
     </AppContext.Consumer>
