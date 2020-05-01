@@ -10,7 +10,6 @@ const StyledListWrapper = styled.ul`
 `;
 
 const StyledMain = styled.main`
-  /* height: 1000px; */
   background-color: ;
 `;
 

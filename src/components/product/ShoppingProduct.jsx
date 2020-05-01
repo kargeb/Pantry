@@ -68,6 +68,7 @@ class ShoppingProduct extends React.Component {
           <StyledDotIcon icon={faCircle} />
         </div>
         <StyledNameWrapper>{name}</StyledNameWrapper>
+        <StyledLackWrapper>{quantity}</StyledLackWrapper>
         <StyledLackWrapper>Brakuje: {lack}</StyledLackWrapper>
         <StyledButton
           //   onClick={() => context.completeProductQuantityToMin(id)}

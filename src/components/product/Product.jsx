@@ -133,6 +133,7 @@ class Product extends React.Component {
 
           <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
           <StyledUnitWrapper>{unit}</StyledUnitWrapper>
+          <StyledUnitWrapper>({min})</StyledUnitWrapper>
           {/* <div>
             <StyledIcon icon={faPlusCircle} onClick={() => {}} />
           </div> */}

@@ -26,6 +26,7 @@ const StyledSettingsIconWrapper = styled.div`
 const StyledShoppingListCounter = styled.div`
   background-color: #fff;
   color: #6202ee;
+  background-color: 
   width: 30px;
   height: 30px;
   border-radius: 50px;
@@ -53,7 +54,7 @@ const StyledNavLink = styled(NavLink)`
   }
 
   @media (min-width: 1024px) {
-    background-color: red;
+    /* background-color: red; */
     /* font-size: 50px; */
   }
 `;

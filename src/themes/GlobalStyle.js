@@ -44,21 +44,10 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         color: inherit
     }
 
-    ${
-      '' /* @media ${device.laptop} {
-   body{
-
-    font-size: 150px;
-    color: blue;
-   }
-  } */
-    }
 
     @media ${device.laptop} {
    body{
-
-    ${'' /* font-size: 150px; */}
-    color: blue;
+    ${'' /* color: blue; */}
    }
   }
     
