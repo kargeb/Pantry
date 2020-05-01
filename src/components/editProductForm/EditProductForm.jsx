@@ -28,6 +28,7 @@ const StyledWrapper = styled.div`
   left: 5%;
   background-color: white;
   box-shadow: 1px 0px 18px 4px rgba(0, 0, 0, 0.66);
+  z-index: 10;
 `;
 
 const StyledNameInput = styled.input`

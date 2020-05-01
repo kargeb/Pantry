@@ -36,5 +36,16 @@
       "min": "3",
       "onShoppingList": true
     }
-  ]
+  ],
+  "categories": {
+    "default": [
+      "Słodycze",
+      "Napoje / Alkohol",
+      "Owoce / Warzywa",
+      "Pieczywo",
+      "Artykuły spożywcze",
+      "Kosmetyki",
+      "Chemia"
+    ]
+  }
 }
