@@ -68,6 +68,7 @@ class ManageCategoriesForm extends React.Component {
   state = {
     categories: [],
     newCategory: '',
+    toDelete: '',
   };
 
   componentDidMount() {
@@ -81,56 +82,78 @@ class ManageCategoriesForm extends React.Component {
     console.log(e.target.value);
     console.log(e.target.id);
 
-    this.setState({ newCategory: e.target.value });
+    this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
+  handleAddCategory = () => {
     let { categories, newCategory } = this.state;
-    const { toggleCategoryModal } = this.props;
 
     if (newCategory) {
       newCategory = newCategory[0].toUpperCase() + newCategory.slice(1);
 
       const newCategories = {
-        categories: [...this.state.categories, newCategory],
+        categories: [...categories, newCategory],
       };
 
-      console.log('categorises:', newCategories);
       db.collection('categories').doc('all').set(newCategories);
 
-      this.setState({
-        newCategory: '',
-      });
-
-      toggleCategoryModal();
+      this.closeModal();
     } else {
       console.log('NIC NIE WPISAŁEŚ!');
     }
   };
 
+  handleDeleteCategory = () => {
+    const { categories, toDelete } = this.state;
+
+    if (toDelete) {
+      const categoriesWithoutDeletedOne = categories.filter(
+        category => category !== toDelete,
+      );
+
+      const newCategories = {
+        categories: [...categoriesWithoutDeletedOne],
+      };
+
+      db.collection('categories').doc('all').set(newCategories);
+
+      this.closeModal();
+    } else {
+      console.log('NIC NIE WYBRAŁES!');
+    }
+  };
+
+  closeModal = () => {
+    const { toggleCategoryModal } = this.props;
+    toggleCategoryModal();
+  };
+
   render() {
     const { toggleCategoryModal } = this.props;
-    const { newCategory, categories } = this.state;
+    const { newCategory, categories, toDelete } = this.state;
 
     return (
       <StyledWrapper>
         <StyledForm>
           <StyledLabel htmlFor="name">
-            Nowa kategoria:
+            Dodaj kategorię:
             <StyledNameInput
-              id="name"
+              id="newCategory"
               placeholder="nazwa"
               type="text"
               onChange={this.handleForm}
               value={newCategory}
             />
           </StyledLabel>
+          <button type="button" onClick={this.handleAddCategory}>
+            Dodaj
+          </button>
 
-          {/* <StyledLabel htmlFor="category">
-            Kategoria:
-            <select id="category" onChange={this.handleForm} value={category}>
+          <hr style={{ marginTop: 10, marginBottom: 10, width: '100%' }} />
+
+          <StyledLabel htmlFor="category">
+            Usuń kategorię:
+            <select id="toDelete" onChange={this.handleForm} value={toDelete}>
               <option value="" disabled hidden />
               {categories.map(category => (
                 <option key={category} value={category}>
@@ -138,16 +161,15 @@ class ManageCategoriesForm extends React.Component {
                 </option>
               ))}
             </select>
-          </StyledLabel> */}
-          <StyledButtonsWrapper>
-            <StyledButton type="submit" onClick={this.handleSubmit}>
-              <StyledConfirmIcon icon={faCheckSquare} />
-            </StyledButton>
-
-            <StyledButton type="button" onClick={toggleCategoryModal}>
-              <StyledCancelIcon icon={faTimesCircle} />
-            </StyledButton>
-          </StyledButtonsWrapper>
+          </StyledLabel>
+          <button type="button" onClick={this.handleDeleteCategory}>
+            Usuń
+          </button>
+          <br />
+          <br />
+          <StyledButton type="button" onClick={toggleCategoryModal}>
+            <StyledCancelIcon icon={faTimesCircle} />
+          </StyledButton>
         </StyledForm>
       </StyledWrapper>
     );
@@ -155,3 +177,14 @@ class ManageCategoriesForm extends React.Component {
 }
 
 export default ManageCategoriesForm;
+/* 
+<StyledButtonsWrapper>
+<StyledButton type="button" onClick={this.handleAddCategory}>
+<StyledConfirmIcon icon={faCheckSquare} />
+</StyledButton>
+
+<StyledButton type="button" onClick={toggleCategoryModal}>
+              <StyledCancelIcon icon={faTimesCircle} />
+              </StyledButton>
+              </StyledButtonsWrapper>
+*/
