@@ -20,7 +20,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     body{
         position: relative;
         font-family: 'Roboto', sans-serif;
-        max-width: 600px;
+        ${'' /* max-width: 600px; */}
         margin: 0 auto;
         height: 100vh;
         ${'' /* height: 100vh; */}
