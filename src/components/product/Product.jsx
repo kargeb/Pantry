@@ -5,7 +5,6 @@ import {
   faPen,
   faPlusCircle,
   faMinusCircle,
-  faExclamation,
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -36,6 +35,8 @@ const StyledNameWrapper = styled.div`
 
 const StyledCenterWrapper = styled.div`
   display: flex;
+  /* flex-direction: column;
+  height: 20px; */
   width: 30%;
 `;
 
@@ -72,19 +73,6 @@ const StyledDelteIconWrapper = styled.div`
   margin-right: 5%;
 `;
 
-const StyledExclamationIconWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: -10%;
-`;
-
-const StyledExclamationIcon = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  line-height: 40px;
-  margin: 0 10px;
-  color: red;
-`;
-
 class Product extends React.Component {
   state = {
     isDeleteModalVisibile: false,
@@ -106,19 +94,14 @@ class Product extends React.Component {
   render() {
     // const { name, quantity, unit, min, id, category, product } = this.props;
     // const { name, quantity, unit, min, id, category } = this.props.product;
+    const { isDeleteModalVisibile, isEditModalVisible } = this.state;
     const { product } = this.props;
     const { name, quantity, unit, min, id, category } = product;
     const cartIconShow = quantity < min;
-    const exclamationIconShow = !+quantity;
 
     return (
       <StyledWrapper>
         <StyledLeftWrapper>
-          <StyledExclamationIconWrapper>
-            {exclamationIconShow && (
-              <StyledExclamationIcon icon={faExclamation} />
-            )}
-          </StyledExclamationIconWrapper>
           <StyledCartIconWrapper>
             {cartIconShow && <StyledIcon icon={faShoppingCart} />}
           </StyledCartIconWrapper>
@@ -127,17 +110,11 @@ class Product extends React.Component {
           </div>
         </StyledLeftWrapper>
         <StyledCenterWrapper>
-          {/* <div>
-            <StyledIcon icon={faMinusCircle} onClick={() => {}} />
-          </div> */}
-
           <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
           <StyledUnitWrapper>{unit}</StyledUnitWrapper>
-          <StyledUnitWrapper>({min})</StyledUnitWrapper>
-          {/* <div>
-            <StyledIcon icon={faPlusCircle} onClick={() => {}} />
-          </div> */}
         </StyledCenterWrapper>
+        <StyledUnitWrapper>({min})</StyledUnitWrapper>
+
         <StyledRightWrapper>
           <div>
             <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
@@ -147,7 +124,7 @@ class Product extends React.Component {
           </StyledDelteIconWrapper>
         </StyledRightWrapper>
 
-        {this.state.isDeleteModalVisibile && (
+        {isDeleteModalVisibile && (
           <DeleteProductModal
             id={id}
             name={name}
@@ -155,7 +132,7 @@ class Product extends React.Component {
           />
         )}
 
-        {this.state.isEditModalVisible && (
+        {isEditModalVisible && (
           <EditProductForm
             id={id}
             name={name}
