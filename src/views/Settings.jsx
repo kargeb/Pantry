@@ -4,7 +4,7 @@ import loadingGif from '../images/loading_dots.gif';
 import sampleData from '../data/db.json';
 import AppContext from '../context';
 import db from '../fbase';
-import ManageCategoriesForm from '../components/manageCategoriesForm/ManageCategoriesForm';
+import EditCategoriesForm from '../components/editCategoriesForm/EditCategoriesForm';
 
 const StyledListWrapper = styled.ul`
   background-color: #fff;
@@ -70,7 +70,7 @@ class Settings extends React.Component {
               </button>
             </Wrapper>
             {isCategoryModalVisible && (
-              <ManageCategoriesForm
+              <EditCategoriesForm
                 toggleCategoryModal={this.toggleCategoryModal}
               />
             )}

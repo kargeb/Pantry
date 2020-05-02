@@ -64,7 +64,7 @@ const StyledButton = styled.button`
   background-color: white;
 `;
 
-class ManageCategoriesForm extends React.Component {
+class EditCategoriesForm extends React.Component {
   state = {
     categories: [],
     newCategory: '',
@@ -176,7 +176,7 @@ class ManageCategoriesForm extends React.Component {
   }
 }
 
-export default ManageCategoriesForm;
+export default EditCategoriesForm;
 /* 
 <StyledButtonsWrapper>
 <StyledButton type="button" onClick={this.handleAddCategory}>
