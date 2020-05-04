@@ -5,14 +5,10 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import AppContext from '../../context';
 
-const StyledMenu = styled.nav`
+const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  /* background-color: #6202ee; */
-  background-color: 'blue';
-
-  /* height: ${({ theme }) => theme.navheigth}; */
-  color: white;
+  color: ${({ theme }) => theme.fontPrimary};
 `;
 
 const StyledSettingsIconWrapper = styled.div`
@@ -59,7 +55,7 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Nav = () => {
+const Navigation = () => {
   const numberOfProductsOnShoppingList = products => {
     const productsOnShoppingList = products.filter(
       product => product.onShoppingList,
@@ -70,26 +66,21 @@ const Nav = () => {
   return (
     <AppContext.Consumer>
       {context => (
-        <nav>
-          {/* prettier-ignore */}
-          <StyledMenu>
-            <StyledNavLink to="/" exact>
-              Products
-            </StyledNavLink>
-            <StyledNavLink to="/settings">
-              Settings
-            </StyledNavLink>
-            <StyledNavLink to="/shoppinglist">
-              Shopping List
-              <StyledShoppingListCounter>
-                {numberOfProductsOnShoppingList(context.products)}
-              </StyledShoppingListCounter>
-            </StyledNavLink>
-          </StyledMenu>
-        </nav>
+        <Nav>
+          <StyledNavLink to="/settings">Settings</StyledNavLink>
+          <StyledNavLink to="/" exact>
+            Products
+          </StyledNavLink>
+          <StyledNavLink to="/shoppinglist">
+            Shopping List
+            <StyledShoppingListCounter>
+              {numberOfProductsOnShoppingList(context.products)}
+            </StyledShoppingListCounter>
+          </StyledNavLink>
+        </Nav>
       )}
     </AppContext.Consumer>
   );
 };
 
-export default Nav;
+export default Navigation;

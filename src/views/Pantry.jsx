@@ -4,7 +4,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import PantryProductsList from '../components/productList/PantryProductsList';
 import NewProductForm from '../components/newProductForm/NewProductForm';
 import AppContext from '../context';
-import Nav from '../components/Nav/Nav';
 import loadingGif from '../images/loading_dots.gif';
 
 const StyledAddButtonWrapper = styled.div`

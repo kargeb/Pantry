@@ -2,18 +2,18 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './themes/GlobalStyle';
-import { defaultTheme, darkTheme } from './themes/themes';
+import { defaultTheme, darkTheme, lightTheme } from './themes/themes';
 import db from './fbase';
 import AppContext from './context';
 import Pantry from './views/Pantry';
 import ShoppingList from './views/ShoppingList';
 import Settings from './views/Settings';
-import Nav from './components/Nav/Nav';
+import Navigation from './components/navigation/Navigation';
 
 class Root extends React.Component {
   state = {
     products: [],
-    currentTheme: defaultTheme,
+    currentTheme: lightTheme,
   };
 
   componentDidMount() {
@@ -38,7 +38,7 @@ class Root extends React.Component {
   changeTheme = () => {
     const { currentTheme } = this.state;
     this.setState({
-      currentTheme: currentTheme === defaultTheme ? darkTheme : defaultTheme,
+      currentTheme: currentTheme === lightTheme ? darkTheme : lightTheme,
     });
   };
 
@@ -49,12 +49,14 @@ class Root extends React.Component {
       changeTheme: this.changeTheme,
     };
 
+    const mergedTheme = Object.assign(defaultTheme, currentTheme);
     return (
       <BrowserRouter>
-        <GlobalStyle />
-        <ThemeProvider theme={currentTheme}>
+        {/* <ThemeProvider theme={currentTheme}> */}
+        <ThemeProvider theme={mergedTheme}>
+          <GlobalStyle />
           <AppContext.Provider value={contextElements}>
-            <Nav />
+            <Navigation />
             <Switch>
               <Route exact path="/" component={Pantry} />
               <Route path="/pantry" component={Pantry} />

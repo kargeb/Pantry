@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import loadingGif from '../images/loading_dots.gif';
-import Nav from '../components/Nav/Nav';
 import AppContext from '../context';
 import ShoppingProduct from '../components/product/ShoppingProduct';
 
