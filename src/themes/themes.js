@@ -8,7 +8,7 @@ export const defaultTheme = {
 
 export const lightTheme = {
   primary: '#FB8E01',
-  inactiveNavColor: 'rgba(255, 255, 255, 0.7)',
+  inactiveNavColor: 'rgba(255, 255, 255, 0.5)',
 };
 
 export const darkTheme = {

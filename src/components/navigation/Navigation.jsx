@@ -1,54 +1,77 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCogs,
+  faList,
+  faShoppingCart,
+} from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import AppContext from '../../context';
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   color: ${({ theme }) => theme.fontPrimary};
 `;
 
+const IconWithCounter = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const StyledShoppingListCounter = styled.div`
-  background-color: #fff;
-  color: #6202ee;
-  background-color: 
+  /* background-color: ${({ theme }) => theme.inactiveNavColor}; */
+  /* color: ${({ theme }) => theme.primary}; */
   width: 30px;
   height: 30px;
   border-radius: 50px;
-  margin-left: 2px;
+  margin-left: 10px;
   font-weight: 900;
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+
+  &.active {
+    color: #fff;
+    letter-spacing: 0.15px;
+  }
+
 `;
 
 const Icon = styled(FontAwesomeIcon)`
   cursor: pointer;
   user-select: none;
-  /* line-height: 40px; */
   font-size: 30px;
   margin-bottom: 5px;
-  /* margin: 0 10px; */
-  color: ${({ theme }) => theme.inactiveNavColor};
 `;
 
 const StyledNavLink = styled(NavLink)`
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 50%;
+  justify-content: flex-start;
+  flex: 1;
   font-size: 14px;
-  /* line-height: 30px; */
+  font-weight: 500;
   color: ${({ theme }) => theme.inactiveNavColor};
-  text-align: center;
   background-color: ${({ theme }) => theme.primary};
 
   &.active {
-    color: #333;
-    background-color: #fff;
-    font-weight: 900 ${'' /* text-transform: uppercase; */};
+    color: #fff;
     letter-spacing: 0.15px;
+
+    /* &::after {
+      content: '';
+      width: 80%;
+      height: 3px;
+      margin-top: 3px;
+      text-align: center;
+      border-radius: 50px;
+      background-color: #fff;
+    } */
   }
 
   @media (min-width: 1024px) {
@@ -71,16 +94,20 @@ const Navigation = () => {
         <Nav>
           <StyledNavLink to="/settings">
             <Icon icon={faCogs} />
-            <p> Settings</p>
+            <p>Settings</p>
           </StyledNavLink>
           <StyledNavLink to="/" exact>
-            Products
+            <Icon icon={faList} />
+            <p>Pantry</p>
           </StyledNavLink>
           <StyledNavLink to="/shoppinglist">
-            Shopping List
-            <StyledShoppingListCounter>
-              {numberOfProductsOnShoppingList(context.products)}
-            </StyledShoppingListCounter>
+            <IconWithCounter>
+              <Icon icon={faShoppingCart} />
+              <StyledShoppingListCounter>
+                <span> {numberOfProductsOnShoppingList(context.products)}</span>
+              </StyledShoppingListCounter>
+            </IconWithCounter>
+            <p>Shopping</p>
           </StyledNavLink>
         </Nav>
       )}
