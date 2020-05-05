@@ -11,14 +11,6 @@ const Nav = styled.nav`
   color: ${({ theme }) => theme.fontPrimary};
 `;
 
-const StyledSettingsIconWrapper = styled.div`
-  height: 100%;
-  padding: 5px;
-  font-size: 30px;
-  line-height: 40px;
-  /* background-color: green; */
-`;
-
 const StyledShoppingListCounter = styled.div`
   background-color: #fff;
   color: #6202ee;
@@ -30,16 +22,26 @@ const StyledShoppingListCounter = styled.div`
   font-weight: 900;
 `;
 
+const Icon = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  user-select: none;
+  /* line-height: 40px; */
+  font-size: 30px;
+  margin-bottom: 5px;
+  /* margin: 0 10px; */
+  color: ${({ theme }) => theme.inactiveNavColor};
+`;
+
 const StyledNavLink = styled(NavLink)`
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 50%;
-  font-size: 20px;
-  line-height: 30px;
-  padding: 20px 0;
+  font-size: 14px;
+  /* line-height: 30px; */
+  color: ${({ theme }) => theme.inactiveNavColor};
   text-align: center;
-  /* background-color:  #6202ee; */
   background-color: ${({ theme }) => theme.primary};
 
   &.active {
@@ -67,7 +69,10 @@ const Navigation = () => {
     <AppContext.Consumer>
       {context => (
         <Nav>
-          <StyledNavLink to="/settings">Settings</StyledNavLink>
+          <StyledNavLink to="/settings">
+            <Icon icon={faCogs} />
+            <p> Settings</p>
+          </StyledNavLink>
           <StyledNavLink to="/" exact>
             Products
           </StyledNavLink>
