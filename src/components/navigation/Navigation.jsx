@@ -11,33 +11,29 @@ import AppContext from '../../context';
 
 const Nav = styled.nav`
   display: flex;
-  /* justify-content: space-between; */
   color: ${({ theme }) => theme.fontPrimary};
 `;
 
-const IconWithCounter = styled.div`
+const IconWithCounterWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 
 const StyledShoppingListCounter = styled.div`
-  /* background-color: ${({ theme }) => theme.inactiveNavColor}; */
-  /* color: ${({ theme }) => theme.primary}; */
   width: 30px;
   height: 30px;
-  border-radius: 50px;
-  margin-left: 10px;
-  font-weight: 900;
-  text-align: center;
   font-size: 20px;
   line-height: 30px;
+  text-align: center;
+  font-weight: 900;
+  border-radius: 50px;
+  margin-left: 10px;
 
   &.active {
     color: #fff;
     letter-spacing: 0.15px;
   }
-
 `;
 
 const Icon = styled(FontAwesomeIcon)`
@@ -52,16 +48,18 @@ const StyledNavLink = styled(NavLink)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   flex: 1;
   font-size: 14px;
   font-weight: 500;
   color: ${({ theme }) => theme.inactiveNavColor};
   background-color: ${({ theme }) => theme.primary};
+  transition: font-size 0.2s;
 
   &.active {
     color: #fff;
     letter-spacing: 0.15px;
+    font-size: 18px;
 
     /* &::after {
       content: '';
@@ -101,12 +99,12 @@ const Navigation = () => {
             <p>Pantry</p>
           </StyledNavLink>
           <StyledNavLink to="/shoppinglist">
-            <IconWithCounter>
+            <IconWithCounterWrapper>
               <Icon icon={faShoppingCart} />
               <StyledShoppingListCounter>
                 <span> {numberOfProductsOnShoppingList(context.products)}</span>
               </StyledShoppingListCounter>
-            </IconWithCounter>
+            </IconWithCounterWrapper>
             <p>Shopping</p>
           </StyledNavLink>
         </Nav>
