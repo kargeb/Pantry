@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimesCircle,
@@ -7,27 +7,37 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
+import Modal from '../templates/Modal';
 
-const StyledForm = styled.form`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10%;
-  background-color: white;
+const Header = styled.h2`
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 10px;
 `;
 
-const StyledWrapper = styled.div`
-  position: absolute;
+const Label = styled.label`
+  font-size: 13px;
+  color: black;
+`;
+
+const Input = styled.input`
+  width: 155px;
+  height: 27px;
+  border: solid 1px #ada17e;
+  border-radius: 8px;
+  margin-top: 3px;
+  outline: none;
+
+  :focus {
+    border: solid 1.5px rgba(251, 142, 1, 0.7);
+    box-shadow: 0px 0px 2px #ffc52f;
+  }
+`;
+
+const InputWrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
-  background-color: white;
-  box-shadow: 1px 0px 18px 4px rgba(0, 0, 0, 0.66);
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const StyledNameInput = styled.input`
@@ -130,68 +140,71 @@ class NewProductForm extends React.Component {
     const { name, quantity, unit, min, category, categories } = this.state;
 
     return (
-      <StyledWrapper>
-        <StyledForm>
-          <StyledLabel htmlFor="name">
-            Nazwa:
-            <StyledNameInput
-              id="name"
-              placeholder="nazwa"
-              type="text"
-              onChange={this.handleForm}
-              value={name}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="quantity">
-            Ilość:
-            <StyledNumberInput
-              id="quantity"
-              placeholder="ilość"
-              type="number"
-              onChange={this.handleForm}
-              value={quantity}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="unit">
-            Jednostka:
-            <select id="unit" onChange={this.handleForm} value={unit}>
-              <option value="szt">szt</option>
-              <option value="l">l</option>
-              <option value="kg">kg</option>
-            </select>
-          </StyledLabel>
-          <StyledLabel htmlFor="min">
-            Minimalna ilość:
-            <StyledNumberInput
-              id="min"
-              type="number"
-              placeholder="minimalna ilość"
-              onChange={this.handleForm}
-              value={min}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="category">
-            Kategoria:
-            <select id="category" onChange={this.handleForm} value={category}>
-              <option value="" disabled hidden />
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </StyledLabel>
-          <StyledButtonsWrapper>
-            <StyledButton type="submit" onClick={this.handleSubmit}>
-              <StyledConfirmIcon icon={faCheckSquare} />
-            </StyledButton>
+      <Modal>
+        {/* <StyledWrapper>
+        <StyledForm> */}
+        <Header>Nowy produkt</Header>
+        <InputWrapper>
+          <Label htmlFor="name">Nazwa</Label>
+          <Input
+            id="name"
+            // placeholder="nazwa"
+            type="text"
+            onChange={this.handleForm}
+            value={name}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <Label htmlFor="quantity">Ilość:</Label>
+          <Input
+            id="quantity"
+            // placeholder="ilość"
+            type="number"
+            onChange={this.handleForm}
+            value={quantity}
+          />
+        </InputWrapper>
+        <StyledLabel htmlFor="unit">
+          Jednostka:
+          <select id="unit" onChange={this.handleForm} value={unit}>
+            <option value="szt">szt</option>
+            <option value="l">l</option>
+            <option value="kg">kg</option>
+          </select>
+        </StyledLabel>
+        <StyledLabel htmlFor="min">
+          Minimalna ilość:
+          <StyledNumberInput
+            id="min"
+            type="number"
+            placeholder="minimalna ilość"
+            onChange={this.handleForm}
+            value={min}
+          />
+        </StyledLabel>
+        <StyledLabel htmlFor="category">
+          Kategoria:
+          <select id="category" onChange={this.handleForm} value={category}>
+            <option value="" disabled hidden />
+            {categories.map(category => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </StyledLabel>
+        <StyledButtonsWrapper>
+          <StyledButton type="submit" onClick={this.handleSubmit}>
+            <StyledConfirmIcon icon={faCheckSquare} />
+          </StyledButton>
 
-            <StyledButton type="button" onClick={toggleFormVisibility}>
-              <StyledCancelIcon icon={faTimesCircle} />
-            </StyledButton>
-          </StyledButtonsWrapper>
-        </StyledForm>
-      </StyledWrapper>
+          <StyledButton type="button" onClick={toggleFormVisibility}>
+            <StyledCancelIcon icon={faTimesCircle} />
+          </StyledButton>
+        </StyledButtonsWrapper>
+        {/* </StyledForm>
+      </StyledWrapper> */}
+      </Modal>
     );
   }
 }

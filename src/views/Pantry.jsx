@@ -14,24 +14,25 @@ const StyledAddButtonWrapper = styled.div`
 
 const StyledAddProductButton = styled.button`
   border: none;
-  width: 100px;
-  height: 40px;
-  background: #6202ee;
-  border-radius: 200px;
+  width: 55px;
+  height: 55px;
+  background: ${({ theme }) => theme.primary};
+  border-radius: 50%;
   color: #fff;
+  font-size: 40px;
   text-transform: uppercase;
 `;
 
-const StyledMain = styled.main`
-  /* height: calc(100vh - 70px); */
-  /* height: 500px;
-  overflow: scroll; */
-  /* height: 1000px; */
-`;
+// const StyledMain = styled.main`
+//   /* height: calc(100vh - 70px); */
+//   /* height: 500px;
+//   overflow: scroll; */
+//   /* height: 1000px; */
+// `;
 
 class Pantry extends React.Component {
   state = {
-    isFormVisible: false,
+    isFormVisible: true,
   };
 
   toggleFormVisibility = () => {
@@ -44,7 +45,7 @@ class Pantry extends React.Component {
     return (
       <AppContext.Consumer>
         {context => (
-          <StyledMain>
+          <main>
             {/* <ProductWrapper> */}
             {/* <Scrollbars style={{ height: 'calc(100vh - 140px)' }}> */}
             <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
@@ -61,7 +62,7 @@ class Pantry extends React.Component {
                 type="button"
                 onClick={this.toggleFormVisibility}
               >
-                Dodaj
+                +
               </StyledAddProductButton>
             </StyledAddButtonWrapper>
             {isFormVisible && (
@@ -69,7 +70,7 @@ class Pantry extends React.Component {
                 toggleFormVisibility={this.toggleFormVisibility}
               />
             )}
-          </StyledMain>
+          </main>
         )}
       </AppContext.Consumer>
     );
