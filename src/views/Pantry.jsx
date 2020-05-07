@@ -6,27 +6,28 @@ import NewProductForm from '../components/newProductForm/NewProductForm';
 import AppContext from '../context';
 import loadingGif from '../images/loading_dots.gif';
 
-const StyledAddButtonWrapper = styled.div`
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const ButtonAddWrapper = styled.div`
+  box-sizing: border-box;
   background-color: #fff;
   text-align: center;
   padding: 15px 0;
 `;
 
-const StyledAddProductButton = styled.button`
+const ButtonAdd = styled.button`
   border: none;
-  width: 100px;
-  height: 40px;
-  background: #6202ee;
-  border-radius: 200px;
+  width: 55px;
+  height: 55px;
+  background: ${({ theme }) => theme.primary};
+  border-radius: 50%;
   color: #fff;
+  font-size: 40px;
   text-transform: uppercase;
-`;
-
-const StyledMain = styled.main`
-  /* height: calc(100vh - 70px); */
-  /* height: 500px;
-  overflow: scroll; */
-  /* height: 1000px; */
 `;
 
 class Pantry extends React.Component {
@@ -44,9 +45,7 @@ class Pantry extends React.Component {
     return (
       <AppContext.Consumer>
         {context => (
-          <StyledMain>
-            {/* <ProductWrapper> */}
-            {/* <Scrollbars style={{ height: 'calc(100vh - 140px)' }}> */}
+          <Main>
             <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
               {context.products.length ? (
                 <PantryProductsList products={context.products} />
@@ -54,22 +53,17 @@ class Pantry extends React.Component {
                 <img src={loadingGif} alt="Loading gif" />
               )}
             </Scrollbars>
-            {/* </ProductWrapper> */}
-
-            <StyledAddButtonWrapper>
-              <StyledAddProductButton
-                type="button"
-                onClick={this.toggleFormVisibility}
-              >
-                Dodaj
-              </StyledAddProductButton>
-            </StyledAddButtonWrapper>
+            <ButtonAddWrapper>
+              <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
+                +
+              </ButtonAdd>
+            </ButtonAddWrapper>
             {isFormVisible && (
               <NewProductForm
                 toggleFormVisibility={this.toggleFormVisibility}
               />
             )}
-          </StyledMain>
+          </Main>
         )}
       </AppContext.Consumer>
     );

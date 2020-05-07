@@ -20,11 +20,11 @@ const IconWithCounterWrapper = styled.div`
   justify-content: center;
 `;
 
-const StyledShoppingListCounter = styled.div`
+const ShoppingListCounter = styled.div`
   width: 30px;
-  height: 30px;
-  font-size: 20px;
-  line-height: 30px;
+  height: 34px;
+  font-size: 24px;
+  line-height: 34px;
   text-align: center;
   font-weight: 900;
   border-radius: 50px;
@@ -43,7 +43,7 @@ const Icon = styled(FontAwesomeIcon)`
   margin-bottom: 5px;
 `;
 
-const StyledNavLink = styled(NavLink)`
+const NavLinkWrapper = styled(NavLink)`
   padding-top: 5px;
   display: flex;
   flex-direction: column;
@@ -90,23 +90,23 @@ const Navigation = () => {
     <AppContext.Consumer>
       {context => (
         <Nav>
-          <StyledNavLink to="/settings">
+          <NavLinkWrapper to="/settings">
             <Icon icon={faCogs} />
             <p>Settings</p>
-          </StyledNavLink>
-          <StyledNavLink to="/" exact>
+          </NavLinkWrapper>
+          <NavLinkWrapper to="/" exact>
             <Icon icon={faList} />
             <p>Pantry</p>
-          </StyledNavLink>
-          <StyledNavLink to="/shoppinglist">
+          </NavLinkWrapper>
+          <NavLinkWrapper to="/shoppinglist">
             <IconWithCounterWrapper>
               <Icon icon={faShoppingCart} />
-              <StyledShoppingListCounter>
+              <ShoppingListCounter>
                 <span> {numberOfProductsOnShoppingList(context.products)}</span>
-              </StyledShoppingListCounter>
+              </ShoppingListCounter>
             </IconWithCounterWrapper>
             <p>Shopping</p>
-          </StyledNavLink>
+          </NavLinkWrapper>
         </Nav>
       )}
     </AppContext.Consumer>

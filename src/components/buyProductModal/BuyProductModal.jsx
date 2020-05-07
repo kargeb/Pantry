@@ -8,6 +8,7 @@ import {
   faMinusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import db from '../../fbase';
+import Modal from '../templates/Modal';
 
 const Background = styled.div`
   position: absolute;
@@ -115,38 +116,37 @@ class BuyProductModal extends React.Component {
     const { lack } = this.state;
 
     return (
-      <Background>
-        <Wrapper>
-          <p>Ile kcesz kupicz ?</p>
-          <p>
-            <strong>{name} </strong> ?
-          </p>
-          <QuantityWrapper>
-            <div>
-              <StyledIcon
-                icon={faMinusCircle}
-                onClick={this.subtractQuantity}
-              />
-            </div>
-            <StyledQuantityWrapper>{lack}</StyledQuantityWrapper>
-            <div>
-              <StyledIcon icon={faPlusCircle} onClick={this.addQuantity} />
-            </div>
-          </QuantityWrapper>
-          <StyledButtonsWrapper>
-            <StyledButton
-              type="submit"
-              onClick={() => this.updateProductQuantity(toggleBuyProductModal)}
-            >
-              <StyledConfirmIcon icon={faCheckSquare} />
-            </StyledButton>
+      <Modal>
+        {/* <Background>
+        <Wrapper> */}
+        <p>Ile kcesz kupicz ?</p>
+        <p>
+          <strong>{name} </strong> ?
+        </p>
+        <QuantityWrapper>
+          <div>
+            <StyledIcon icon={faMinusCircle} onClick={this.subtractQuantity} />
+          </div>
+          <StyledQuantityWrapper>{lack}</StyledQuantityWrapper>
+          <div>
+            <StyledIcon icon={faPlusCircle} onClick={this.addQuantity} />
+          </div>
+        </QuantityWrapper>
+        <StyledButtonsWrapper>
+          <StyledButton
+            type="submit"
+            onClick={() => this.updateProductQuantity(toggleBuyProductModal)}
+          >
+            <StyledConfirmIcon icon={faCheckSquare} />
+          </StyledButton>
 
-            <StyledButton type="button" onClick={toggleBuyProductModal}>
-              <StyledCancelIcon icon={faTimesCircle} />
-            </StyledButton>
-          </StyledButtonsWrapper>
-        </Wrapper>
-      </Background>
+          <StyledButton type="button" onClick={toggleBuyProductModal}>
+            <StyledCancelIcon icon={faTimesCircle} />
+          </StyledButton>
+        </StyledButtonsWrapper>
+        {/* </Wrapper>
+      </Background> */}
+      </Modal>
     );
   }
 }

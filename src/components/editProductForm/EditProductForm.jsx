@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
+import Modal from '../templates/Modal';
 
 const StyledForm = styled.form`
   position: absolute;
@@ -144,68 +145,70 @@ class EditProductForm extends React.Component {
     }
 
     return (
-      <StyledWrapper>
-        <StyledForm>
-          <StyledLabel htmlFor="name">
-            Nazwa:
-            <StyledNameInput
-              id="name"
-              placeholder="nazwa"
-              type="text"
-              onChange={this.handleForm}
-              value={name}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="quantity">
-            Ilość:
-            <StyledNumberInput
-              id="quantity"
-              placeholder="ilość"
-              type="number"
-              onChange={this.handleForm}
-              value={quantity}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="unit">
-            Jednostka:
-            <select id="unit" onChange={this.handleForm} value={unit}>
-              <option value="szt">szt</option>
-              <option value="l">l</option>
-              <option value="kg">kg</option>
-            </select>
-          </StyledLabel>
-          <StyledLabel htmlFor="min">
-            Minimalna ilość:
-            <StyledNumberInput
-              id="min"
-              type="number"
-              placeholder="minimalna ilość"
-              onChange={this.handleForm}
-              value={min}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="category">
-            Kategoria:
-            <select id="category" onChange={this.handleForm} value={category}>
-              <option value="" disabled hidden />
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </StyledLabel>
-          <StyledButtonsWrapper>
-            <StyledButton type="submit" onClick={this.handleSubmit}>
-              <StyledConfirmIcon icon={faCheckSquare} />
-            </StyledButton>
+      <Modal>
+        {/* <StyledWrapper>
+        <StyledForm> */}
+        <StyledLabel htmlFor="name">
+          Nazwa:
+          <StyledNameInput
+            id="name"
+            placeholder="nazwa"
+            type="text"
+            onChange={this.handleForm}
+            value={name}
+          />
+        </StyledLabel>
+        <StyledLabel htmlFor="quantity">
+          Ilość:
+          <StyledNumberInput
+            id="quantity"
+            placeholder="ilość"
+            type="number"
+            onChange={this.handleForm}
+            value={quantity}
+          />
+        </StyledLabel>
+        <StyledLabel htmlFor="unit">
+          Jednostka:
+          <select id="unit" onChange={this.handleForm} value={unit}>
+            <option value="szt">szt</option>
+            <option value="l">l</option>
+            <option value="kg">kg</option>
+          </select>
+        </StyledLabel>
+        <StyledLabel htmlFor="min">
+          Minimalna ilość:
+          <StyledNumberInput
+            id="min"
+            type="number"
+            placeholder="minimalna ilość"
+            onChange={this.handleForm}
+            value={min}
+          />
+        </StyledLabel>
+        <StyledLabel htmlFor="category">
+          Kategoria:
+          <select id="category" onChange={this.handleForm} value={category}>
+            <option value="" disabled hidden />
+            {categories.map(category => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </StyledLabel>
+        <StyledButtonsWrapper>
+          <StyledButton type="submit" onClick={this.handleSubmit}>
+            <StyledConfirmIcon icon={faCheckSquare} />
+          </StyledButton>
 
-            <StyledButton type="button" onClick={toggleEditProductForm}>
-              <StyledCancelIcon icon={faTimesCircle} />
-            </StyledButton>
-          </StyledButtonsWrapper>
-        </StyledForm>
-      </StyledWrapper>
+          <StyledButton type="button" onClick={toggleEditProductForm}>
+            <StyledCancelIcon icon={faTimesCircle} />
+          </StyledButton>
+        </StyledButtonsWrapper>
+        {/* </StyledForm>
+      </StyledWrapper> */}
+      </Modal>
     );
   }
 }

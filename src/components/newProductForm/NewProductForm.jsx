@@ -1,41 +1,76 @@
 import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTimesCircle,
-  faCheckSquare,
-} from '@fortawesome/free-solid-svg-icons';
+import styled, { css } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
+import Modal from '../templates/Modal';
+import ButtonConfirm from '../buttons/ButtonConfirm';
+import ButtonCancel from '../buttons/ButtonCancel';
 
-const StyledForm = styled.form`
-  position: absolute;
+const Header = styled.h2`
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 30px;
+`;
+
+const Label = styled.label`
+  font-size: 13px;
+  color: black;
+`;
+
+const InputLong = styled.input`
+  width: 155px;
+  height: 27px;
+  padding-left: 5px;
+  margin-bottom: 15px;
+  border: solid 1px #ada17e;
+  border-radius: 8px;
+  outline: none;
+
+  :focus {
+    border: solid 1.5px rgba(251, 142, 1, 0.7);
+    box-shadow: 0px 0px 2px #ffc52f;
+  }
+`;
+
+const InputShort = styled(InputLong)`
+  margin-left: 10px;
+  width: 45px;
+  text-align: center;
+`;
+
+const SelectLong = styled.select`
+  width: 155px;
+  height: 27px;
+  margin-bottom: 20px;
+  border: solid 1px #ada17e;
+  border-radius: 8px;
+  outline: none;
+
+  :focus {
+    border: solid 1.5px rgba(251, 142, 1, 0.7);
+    box-shadow: 0px 0px 2px #ffc52f;
+  }
+`;
+
+const SelectShort = styled(SelectLong)`
+  margin-left: 10px;
+  width: 45px;
+`;
+
+const InputVerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 10%;
-  background-color: white;
+  align-items: flex-start;
 `;
 
-const StyledWrapper = styled.div`
-  position: absolute;
+const InputHorizontalWrapper = styled.div`
   display: flex;
+  min-width: 90px;
+  flex: 1;
+
   align-items: center;
-  justify-content: center;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
-  background-color: white;
-  box-shadow: 1px 0px 18px 4px rgba(0, 0, 0, 0.66);
-`;
-
-const StyledNameInput = styled.input`
-  width: 150px;
-`;
-
-const StyledNumberInput = styled.input`
-  width: 50px;
+  justify-content: space-between;
+  align-items: baseline;
 `;
 
 const StyledButtonsWrapper = styled.div`
@@ -43,25 +78,6 @@ const StyledButtonsWrapper = styled.div`
   width: 130px;
   justify-content: space-between;
   margin-top: 20px;
-`;
-
-const StyledConfirmIcon = styled(FontAwesomeIcon)`
-  font-size: 40px;
-  color: #01a39d;
-`;
-
-const StyledCancelIcon = styled(FontAwesomeIcon)`
-  font-size: 40px;
-  color: rgba(0, 0, 0, 0.54);
-`;
-
-const StyledLabel = styled.label`
-  margin-bottom: 10px;
-`;
-
-const StyledButton = styled.button`
-  border: none;
-  background-color: white;
 `;
 
 class NewProductForm extends React.Component {
@@ -82,15 +98,10 @@ class NewProductForm extends React.Component {
   }
 
   handleForm = e => {
-    console.log(e.target.value);
-    console.log(e.target.id);
-
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
+  handleSubmit = () => {
     const { name, quantity, category, min, unit } = this.state;
     const { toggleFormVisibility } = this.props;
 
@@ -105,10 +116,6 @@ class NewProductForm extends React.Component {
         id: uuidv4(),
       };
 
-      console.log('wypelnoine wszystkie, nowty produkt');
-      console.log(newProduct);
-
-      // this.props.addNewProduct(newProduct);
       db.collection('products').doc(newProduct.id).set(newProduct);
 
       this.setState({
@@ -130,68 +137,61 @@ class NewProductForm extends React.Component {
     const { name, quantity, unit, min, category, categories } = this.state;
 
     return (
-      <StyledWrapper>
-        <StyledForm>
-          <StyledLabel htmlFor="name">
-            Nazwa:
-            <StyledNameInput
-              id="name"
-              placeholder="nazwa"
-              type="text"
-              onChange={this.handleForm}
-              value={name}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="quantity">
-            Ilość:
-            <StyledNumberInput
-              id="quantity"
-              placeholder="ilość"
-              type="number"
-              onChange={this.handleForm}
-              value={quantity}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="unit">
-            Jednostka:
-            <select id="unit" onChange={this.handleForm} value={unit}>
-              <option value="szt">szt</option>
-              <option value="l">l</option>
-              <option value="kg">kg</option>
-            </select>
-          </StyledLabel>
-          <StyledLabel htmlFor="min">
-            Minimalna ilość:
-            <StyledNumberInput
-              id="min"
-              type="number"
-              placeholder="minimalna ilość"
-              onChange={this.handleForm}
-              value={min}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="category">
-            Kategoria:
-            <select id="category" onChange={this.handleForm} value={category}>
-              <option value="" disabled hidden />
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </StyledLabel>
-          <StyledButtonsWrapper>
-            <StyledButton type="submit" onClick={this.handleSubmit}>
-              <StyledConfirmIcon icon={faCheckSquare} />
-            </StyledButton>
-
-            <StyledButton type="button" onClick={toggleFormVisibility}>
-              <StyledCancelIcon icon={faTimesCircle} />
-            </StyledButton>
-          </StyledButtonsWrapper>
-        </StyledForm>
-      </StyledWrapper>
+      <Modal>
+        <Header>Nowy produkt</Header>
+        <InputVerticalWrapper>
+          <Label htmlFor="name">Nazwa</Label>
+          <InputLong
+            id="name"
+            type="text"
+            onChange={this.handleForm}
+            value={name}
+          />
+        </InputVerticalWrapper>
+        <InputVerticalWrapper>
+          <Label htmlFor="category"> Kategoria:</Label>
+          <SelectLong id="category" onChange={this.handleForm} value={category}>
+            <option value="" disabled hidden />
+            {categories.map(category => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </SelectLong>
+        </InputVerticalWrapper>
+        <InputHorizontalWrapper>
+          <Label htmlFor="unit"> Typ</Label>
+          <SelectShort id="unit" onChange={this.handleForm} value={unit}>
+            <option value="szt">szt</option>
+            <option value="l">l</option>
+            <option value="kg">kg</option>
+          </SelectShort>
+        </InputHorizontalWrapper>
+        <InputHorizontalWrapper>
+          <Label htmlFor="min"> Min</Label>
+          <InputShort
+            short
+            id="min"
+            type="number"
+            placeholder="minimalna ilość"
+            onChange={this.handleForm}
+            value={min}
+          />
+        </InputHorizontalWrapper>
+        <InputHorizontalWrapper>
+          <Label htmlFor="quantity">Ilość</Label>
+          <InputShort
+            id="quantity"
+            type="number"
+            onChange={this.handleForm}
+            value={quantity}
+          />
+        </InputHorizontalWrapper>
+        <StyledButtonsWrapper>
+          <ButtonCancel type="button" onClick={toggleFormVisibility} />
+          <ButtonConfirm type="button" onClick={this.handleSubmit} />
+        </StyledButtonsWrapper>
+      </Modal>
     );
   }
 }
