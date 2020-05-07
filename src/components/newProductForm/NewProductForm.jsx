@@ -1,18 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTimesCircle,
-  faCheckSquare,
-} from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
 import Modal from '../templates/Modal';
+import ButtonConfirm from '../buttons/ButtonConfirm';
+import ButtonCancel from '../buttons/ButtonCancel';
 
 const Header = styled.h2`
   font-size: 22px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `;
 
 const Label = styled.label`
@@ -23,7 +20,8 @@ const Label = styled.label`
 const InputLong = styled.input`
   width: 155px;
   height: 27px;
-  margin-top: 3px;
+  padding-left: 5px;
+  margin-bottom: 15px;
   border: solid 1px #ada17e;
   border-radius: 8px;
   outline: none;
@@ -37,12 +35,13 @@ const InputLong = styled.input`
 const InputShort = styled(InputLong)`
   margin-left: 10px;
   width: 45px;
+  text-align: center;
 `;
 
 const SelectLong = styled.select`
   width: 155px;
   height: 27px;
-  margin-top: 3px;
+  margin-bottom: 20px;
   border: solid 1px #ada17e;
   border-radius: 8px;
   outline: none;
@@ -71,14 +70,7 @@ const InputHorizontalWrapper = styled.div`
 
   align-items: center;
   justify-content: space-between;
-`;
-
-const StyledNameInput = styled.input`
-  width: 150px;
-`;
-
-const StyledNumberInput = styled.input`
-  width: 50px;
+  align-items: baseline;
 `;
 
 const StyledButtonsWrapper = styled.div`
@@ -86,25 +78,6 @@ const StyledButtonsWrapper = styled.div`
   width: 130px;
   justify-content: space-between;
   margin-top: 20px;
-`;
-
-const StyledConfirmIcon = styled(FontAwesomeIcon)`
-  font-size: 40px;
-  color: #01a39d;
-`;
-
-const StyledCancelIcon = styled(FontAwesomeIcon)`
-  font-size: 40px;
-  color: rgba(0, 0, 0, 0.54);
-`;
-
-const StyledLabel = styled.label`
-  margin-bottom: 10px;
-`;
-
-const StyledButton = styled.button`
-  border: none;
-  background-color: white;
 `;
 
 class NewProductForm extends React.Component {
@@ -125,15 +98,10 @@ class NewProductForm extends React.Component {
   }
 
   handleForm = e => {
-    console.log(e.target.value);
-    console.log(e.target.id);
-
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
+  handleSubmit = () => {
     const { name, quantity, category, min, unit } = this.state;
     const { toggleFormVisibility } = this.props;
 
@@ -148,10 +116,6 @@ class NewProductForm extends React.Component {
         id: uuidv4(),
       };
 
-      console.log('wypelnoine wszystkie, nowty produkt');
-      console.log(newProduct);
-
-      // this.props.addNewProduct(newProduct);
       db.collection('products').doc(newProduct.id).set(newProduct);
 
       this.setState({
@@ -174,14 +138,11 @@ class NewProductForm extends React.Component {
 
     return (
       <Modal>
-        {/* <StyledWrapper>
-        <StyledForm> */}
         <Header>Nowy produkt</Header>
         <InputVerticalWrapper>
           <Label htmlFor="name">Nazwa</Label>
           <InputLong
             id="name"
-            // placeholder="nazwa"
             type="text"
             onChange={this.handleForm}
             value={name}
@@ -198,10 +159,8 @@ class NewProductForm extends React.Component {
             ))}
           </SelectLong>
         </InputVerticalWrapper>
-
         <InputHorizontalWrapper>
           <Label htmlFor="unit"> Typ</Label>
-
           <SelectShort id="unit" onChange={this.handleForm} value={unit}>
             <option value="szt">szt</option>
             <option value="l">l</option>
@@ -210,7 +169,6 @@ class NewProductForm extends React.Component {
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
           <Label htmlFor="min"> Min</Label>
-
           <InputShort
             short
             id="min"
@@ -230,16 +188,9 @@ class NewProductForm extends React.Component {
           />
         </InputHorizontalWrapper>
         <StyledButtonsWrapper>
-          <StyledButton type="submit" onClick={this.handleSubmit}>
-            <StyledConfirmIcon icon={faCheckSquare} />
-          </StyledButton>
-
-          <StyledButton type="button" onClick={toggleFormVisibility}>
-            <StyledCancelIcon icon={faTimesCircle} />
-          </StyledButton>
+          <ButtonCancel type="button" onClick={toggleFormVisibility} />
+          <ButtonConfirm type="button" onClick={this.handleSubmit} />
         </StyledButtonsWrapper>
-        {/* </StyledForm>
-      </StyledWrapper> */}
       </Modal>
     );
   }

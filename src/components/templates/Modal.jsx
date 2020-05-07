@@ -21,11 +21,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 300px; */
 
   padding: 2% 4%;
   background-color: white;
-  z-index: 10;
+  border: solid 3px #999;
 `;
 
 const Modal = ({ children }) => (

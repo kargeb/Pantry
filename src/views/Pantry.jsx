@@ -12,14 +12,14 @@ const Main = styled.main`
   justify-content: space-between;
 `;
 
-const StyledAddButtonWrapper = styled.div`
+const ButtonAddWrapper = styled.div`
   box-sizing: border-box;
   background-color: #fff;
   text-align: center;
   padding: 15px 0;
 `;
 
-const StyledAddProductButton = styled.button`
+const ButtonAdd = styled.button`
   border: none;
   width: 55px;
   height: 55px;
@@ -46,8 +46,6 @@ class Pantry extends React.Component {
       <AppContext.Consumer>
         {context => (
           <Main>
-            {/* <ProductWrapper> */}
-            {/* <Scrollbars style={{ height: 'calc(100vh - 140px)' }}> */}
             <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
               {context.products.length ? (
                 <PantryProductsList products={context.products} />
@@ -55,16 +53,11 @@ class Pantry extends React.Component {
                 <img src={loadingGif} alt="Loading gif" />
               )}
             </Scrollbars>
-            {/* </ProductWrapper> */}
-
-            <StyledAddButtonWrapper>
-              <StyledAddProductButton
-                type="button"
-                onClick={this.toggleFormVisibility}
-              >
+            <ButtonAddWrapper>
+              <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
                 +
-              </StyledAddProductButton>
-            </StyledAddButtonWrapper>
+              </ButtonAdd>
+            </ButtonAddWrapper>
             {isFormVisible && (
               <NewProductForm
                 toggleFormVisibility={this.toggleFormVisibility}
