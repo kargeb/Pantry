@@ -20,12 +20,12 @@ const Label = styled.label`
   color: black;
 `;
 
-const Input = styled.input`
+const InputLong = styled.input`
   width: 155px;
   height: 27px;
+  margin-top: 3px;
   border: solid 1px #ada17e;
   border-radius: 8px;
-  margin-top: 3px;
   outline: none;
 
   :focus {
@@ -34,10 +34,43 @@ const Input = styled.input`
   }
 `;
 
-const InputWrapper = styled.div`
+const InputShort = styled(InputLong)`
+  margin-left: 10px;
+  width: 45px;
+`;
+
+const SelectLong = styled.select`
+  width: 155px;
+  height: 27px;
+  margin-top: 3px;
+  border: solid 1px #ada17e;
+  border-radius: 8px;
+  outline: none;
+
+  :focus {
+    border: solid 1.5px rgba(251, 142, 1, 0.7);
+    box-shadow: 0px 0px 2px #ffc52f;
+  }
+`;
+
+const SelectShort = styled(SelectLong)`
+  margin-left: 10px;
+  width: 45px;
+`;
+
+const InputVerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+`;
+
+const InputHorizontalWrapper = styled.div`
+  display: flex;
+  min-width: 90px;
+  flex: 1;
+
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const StyledNameInput = styled.input`
@@ -144,55 +177,58 @@ class NewProductForm extends React.Component {
         {/* <StyledWrapper>
         <StyledForm> */}
         <Header>Nowy produkt</Header>
-        <InputWrapper>
+        <InputVerticalWrapper>
           <Label htmlFor="name">Nazwa</Label>
-          <Input
+          <InputLong
             id="name"
             // placeholder="nazwa"
             type="text"
             onChange={this.handleForm}
             value={name}
           />
-        </InputWrapper>
-        <InputWrapper>
-          <Label htmlFor="quantity">Ilość:</Label>
-          <Input
-            id="quantity"
-            // placeholder="ilość"
-            type="number"
-            onChange={this.handleForm}
-            value={quantity}
-          />
-        </InputWrapper>
-        <StyledLabel htmlFor="unit">
-          Jednostka:
-          <select id="unit" onChange={this.handleForm} value={unit}>
-            <option value="szt">szt</option>
-            <option value="l">l</option>
-            <option value="kg">kg</option>
-          </select>
-        </StyledLabel>
-        <StyledLabel htmlFor="min">
-          Minimalna ilość:
-          <StyledNumberInput
-            id="min"
-            type="number"
-            placeholder="minimalna ilość"
-            onChange={this.handleForm}
-            value={min}
-          />
-        </StyledLabel>
-        <StyledLabel htmlFor="category">
-          Kategoria:
-          <select id="category" onChange={this.handleForm} value={category}>
+        </InputVerticalWrapper>
+        <InputVerticalWrapper>
+          <Label htmlFor="category"> Kategoria:</Label>
+          <SelectLong id="category" onChange={this.handleForm} value={category}>
             <option value="" disabled hidden />
             {categories.map(category => (
               <option key={category} value={category}>
                 {category}
               </option>
             ))}
-          </select>
-        </StyledLabel>
+          </SelectLong>
+        </InputVerticalWrapper>
+
+        <InputHorizontalWrapper>
+          <Label htmlFor="unit"> Typ</Label>
+
+          <SelectShort id="unit" onChange={this.handleForm} value={unit}>
+            <option value="szt">szt</option>
+            <option value="l">l</option>
+            <option value="kg">kg</option>
+          </SelectShort>
+        </InputHorizontalWrapper>
+        <InputHorizontalWrapper>
+          <Label htmlFor="min"> Min</Label>
+
+          <InputShort
+            short
+            id="min"
+            type="number"
+            placeholder="minimalna ilość"
+            onChange={this.handleForm}
+            value={min}
+          />
+        </InputHorizontalWrapper>
+        <InputHorizontalWrapper>
+          <Label htmlFor="quantity">Ilość</Label>
+          <InputShort
+            id="quantity"
+            type="number"
+            onChange={this.handleForm}
+            value={quantity}
+          />
+        </InputHorizontalWrapper>
         <StyledButtonsWrapper>
           <StyledButton type="submit" onClick={this.handleSubmit}>
             <StyledConfirmIcon icon={faCheckSquare} />

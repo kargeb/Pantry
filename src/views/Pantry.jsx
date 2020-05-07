@@ -6,7 +6,14 @@ import NewProductForm from '../components/newProductForm/NewProductForm';
 import AppContext from '../context';
 import loadingGif from '../images/loading_dots.gif';
 
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const StyledAddButtonWrapper = styled.div`
+  box-sizing: border-box;
   background-color: #fff;
   text-align: center;
   padding: 15px 0;
@@ -25,7 +32,7 @@ const StyledAddProductButton = styled.button`
 
 class Pantry extends React.Component {
   state = {
-    isFormVisible: true,
+    isFormVisible: false,
   };
 
   toggleFormVisibility = () => {
@@ -38,7 +45,7 @@ class Pantry extends React.Component {
     return (
       <AppContext.Consumer>
         {context => (
-          <main>
+          <Main>
             {/* <ProductWrapper> */}
             {/* <Scrollbars style={{ height: 'calc(100vh - 140px)' }}> */}
             <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
@@ -63,7 +70,7 @@ class Pantry extends React.Component {
                 toggleFormVisibility={this.toggleFormVisibility}
               />
             )}
-          </main>
+          </Main>
         )}
       </AppContext.Consumer>
     );
