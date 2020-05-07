@@ -23,13 +23,6 @@ const StyledAddProductButton = styled.button`
   text-transform: uppercase;
 `;
 
-// const StyledMain = styled.main`
-//   /* height: calc(100vh - 70px); */
-//   /* height: 500px;
-//   overflow: scroll; */
-//   /* height: 1000px; */
-// `;
-
 class Pantry extends React.Component {
   state = {
     isFormVisible: true,
