@@ -2,60 +2,13 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
-import Modal from '../templates/Modal';
+import Modal from '../templates/ModalTemplate';
 import ButtonConfirm from '../buttons/ButtonConfirm';
 import ButtonCancel from '../buttons/ButtonCancel';
-
-const Header = styled.h2`
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 30px;
-`;
-
-const Label = styled.label`
-  font-size: 13px;
-  color: black;
-`;
-
-const InputLong = styled.input`
-  width: 155px;
-  height: 27px;
-  padding-left: 5px;
-  margin-bottom: 15px;
-  border: solid 1px #ada17e;
-  border-radius: 8px;
-  outline: none;
-
-  :focus {
-    border: solid 1.5px rgba(251, 142, 1, 0.7);
-    box-shadow: 0px 0px 2px #ffc52f;
-  }
-`;
-
-const InputShort = styled(InputLong)`
-  margin-left: 10px;
-  width: 45px;
-  text-align: center;
-`;
-
-const SelectLong = styled.select`
-  width: 155px;
-  height: 27px;
-  margin-bottom: 20px;
-  border: solid 1px #ada17e;
-  border-radius: 8px;
-  outline: none;
-
-  :focus {
-    border: solid 1.5px rgba(251, 142, 1, 0.7);
-    box-shadow: 0px 0px 2px #ffc52f;
-  }
-`;
-
-const SelectShort = styled(SelectLong)`
-  margin-left: 10px;
-  width: 45px;
-`;
+import TextHeader from '../texts/TextHeader';
+import TextLabel from '../texts/TextLabel';
+import Input from '../formElements/Input';
+import Select from '../formElements/Select';
 
 const InputVerticalWrapper = styled.div`
   display: flex;
@@ -138,10 +91,10 @@ class NewProductForm extends React.Component {
 
     return (
       <Modal>
-        <Header>Nowy produkt</Header>
+        <TextHeader>Nowy produkt</TextHeader>
         <InputVerticalWrapper>
-          <Label htmlFor="name">Nazwa</Label>
-          <InputLong
+          <TextLabel htmlFor="name">Nazwa</TextLabel>
+          <Input
             id="name"
             type="text"
             onChange={this.handleForm}
@@ -149,27 +102,27 @@ class NewProductForm extends React.Component {
           />
         </InputVerticalWrapper>
         <InputVerticalWrapper>
-          <Label htmlFor="category"> Kategoria:</Label>
-          <SelectLong id="category" onChange={this.handleForm} value={category}>
-            <option value="" disabled hidden />
+          <TextLabel htmlFor="category">Kategoria</TextLabel>
+          <Select id="category" onChange={this.handleForm} value={category}>
+            <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (
               <option key={category} value={category}>
                 {category}
               </option>
             ))}
-          </SelectLong>
+          </Select>
         </InputVerticalWrapper>
         <InputHorizontalWrapper>
-          <Label htmlFor="unit"> Typ</Label>
-          <SelectShort id="unit" onChange={this.handleForm} value={unit}>
+          <TextLabel htmlFor="unit">Typ</TextLabel>
+          <Select short id="unit" onChange={this.handleForm} value={unit}>
             <option value="szt">szt</option>
             <option value="l">l</option>
             <option value="kg">kg</option>
-          </SelectShort>
+          </Select>
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
-          <Label htmlFor="min"> Min</Label>
-          <InputShort
+          <TextLabel htmlFor="min">Min</TextLabel>
+          <Input
             short
             id="min"
             type="number"
@@ -179,8 +132,9 @@ class NewProductForm extends React.Component {
           />
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
-          <Label htmlFor="quantity">Ilość</Label>
-          <InputShort
+          <TextLabel htmlFor="quantity">Ilość</TextLabel>
+          <Input
+            short
             id="quantity"
             type="number"
             onChange={this.handleForm}

@@ -5,32 +5,8 @@ import {
   faTimesCircle,
   faCheckSquare,
 } from '@fortawesome/free-solid-svg-icons';
-import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
-import Modal from '../templates/Modal';
-
-const StyledForm = styled.form`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10%;
-  background-color: white;
-`;
-
-const StyledWrapper = styled.div`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
-  background-color: white;
-  box-shadow: 1px 0px 18px 4px rgba(0, 0, 0, 0.66);
-  z-index: 10;
-`;
+import Modal from '../templates/ModalTemplate';
 
 const StyledNameInput = styled.input`
   width: 150px;
@@ -115,10 +91,6 @@ class EditProductForm extends React.Component {
         id,
       };
 
-      console.log('wypelnoine wszystkie, nowty produkt');
-      console.log(newProduct);
-
-      // this.props.addNewProduct(newProduct);
       db.collection('products').doc(newProduct.id).set(newProduct);
 
       this.setState({
@@ -140,14 +112,8 @@ class EditProductForm extends React.Component {
     const { toggleEditProductForm } = this.props;
     const { name, quantity, unit, min, category, categories } = this.state;
 
-    {
-      console.log('Render z EditForm', this.state);
-    }
-
     return (
       <Modal>
-        {/* <StyledWrapper>
-        <StyledForm> */}
         <StyledLabel htmlFor="name">
           Nazwa:
           <StyledNameInput
@@ -206,8 +172,6 @@ class EditProductForm extends React.Component {
             <StyledCancelIcon icon={faTimesCircle} />
           </StyledButton>
         </StyledButtonsWrapper>
-        {/* </StyledForm>
-      </StyledWrapper> */}
       </Modal>
     );
   }

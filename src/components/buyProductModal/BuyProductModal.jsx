@@ -8,7 +8,7 @@ import {
   faMinusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import db from '../../fbase';
-import Modal from '../templates/Modal';
+import Modal from '../templates/ModalTemplate';
 
 const Background = styled.div`
   position: absolute;
