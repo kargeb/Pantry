@@ -46,7 +46,14 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: inherit
     }
-
+    ${
+      '' /* disable arrow buttons added by browser inside Input in changeQuantityForm */
+    }
+    input[type=number].withoutSpinButtons::-webkit-inner-spin-button,
+    input[type=number].withoutSpinButtons::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
     @media ${device.laptop} {
    body{

@@ -9,6 +9,12 @@ const Input = styled.input`
   border-radius: 8px;
   outline: none;
 
+  [type='number']:-webkit-inner-spin-button,
+  :-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   ${({ short }) =>
     short &&
     css`
