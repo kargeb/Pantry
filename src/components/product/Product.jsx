@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import AppContext from '../../context';
 import EditProductForm from '../editProductForm/EditProductForm';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
+import ChangeQuantityForm from '../organisms/ChangeQuantityForm';
 
 const StyledWrapper = styled.div`
 display: flex;
@@ -77,6 +78,13 @@ class Product extends React.Component {
   state = {
     isDeleteModalVisibile: false,
     isEditModalVisible: false,
+    isChangeQuantityFormVisible: false,
+  };
+
+  toggleChangeQuantityModal = () => {
+    this.setState(prevState => ({
+      isChangeQuantityFormVisible: !prevState.isChangeQuantityFormVisible,
+    }));
   };
 
   toggleDeleteModal = () => {
@@ -94,7 +102,11 @@ class Product extends React.Component {
   render() {
     // const { name, quantity, unit, min, id, category, product } = this.props;
     // const { name, quantity, unit, min, id, category } = this.props.product;
-    const { isDeleteModalVisibile, isEditModalVisible } = this.state;
+    const {
+      isDeleteModalVisibile,
+      isEditModalVisible,
+      isChangeQuantityFormVisible,
+    } = this.state;
     const { product } = this.props;
     const { name, quantity, unit, min, id, category } = product;
     const cartIconShow = quantity < min;
@@ -120,7 +132,11 @@ class Product extends React.Component {
             <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
           </div>
           <StyledDelteIconWrapper>
-            <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} />
+            {/* <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} /> */}
+            <StyledIcon
+              icon={faTrash}
+              onClick={this.toggleChangeQuantityModal}
+            />
           </StyledDelteIconWrapper>
         </StyledRightWrapper>
 
@@ -129,6 +145,16 @@ class Product extends React.Component {
             id={id}
             name={name}
             toggleDeleteModal={this.toggleDeleteModal}
+          />
+        )}
+
+        {isChangeQuantityFormVisible && (
+          <ChangeQuantityForm
+            id={id}
+            name={name}
+            quantity={quantity}
+            toggleChangeQuantityModal={this.toggleChangeQuantityModal}
+            toggleEditProductForm={this.toggleEditProductForm}
           />
         )}
 
