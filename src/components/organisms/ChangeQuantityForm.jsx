@@ -8,6 +8,8 @@ import ButtonCancel from '../buttons/ButtonCancel';
 import ButtonConfirm from '../buttons/ButtonConfirm';
 import Button from '../buttons/Button';
 import db from '../../fbase';
+import EditProductForm from '../editProductForm/EditProductForm';
+import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 // import ButtonQuantity from '../buttons/ButtonQuantity';
 
 const Header = styled(TextHeader)`
@@ -64,12 +66,14 @@ const WrapperEditDeleteButtons = styled.div`
 class ChangeQuantityForm extends React.Component {
   constructor(props) {
     super(props);
-    const { name, quantity, id, min } = this.props;
+    const { quantity, name, id, min } = this.props.product;
     this.state = {
+      quantity: Number(quantity),
       name,
-      quantity,
       id,
       min,
+      isEditModalVisible: false,
+      isDeleteModalVisibile: false,
     };
   }
 
@@ -100,9 +104,29 @@ class ChangeQuantityForm extends React.Component {
     this.props.toggleChangeQuantityModal();
   };
 
+  toggleEditProductForm = () => {
+    this.setState(prevState => ({
+      isEditModalVisible: !prevState.isEditModalVisible,
+    }));
+  };
+
+  toggleDeleteModal = () => {
+    this.setState(prevState => ({
+      isDeleteModalVisibile: !prevState.isDeleteModalVisibile,
+    }));
+  };
+
   render() {
-    const { quantity } = this.state;
-    const { toggleChangeQuantityModal, toggleEditProductForm } = this.props;
+    const {
+      quantity,
+      id,
+      name,
+      category,
+      min,
+      unit,
+      isDeleteModalVisibile,
+    } = this.state;
+    const { toggleChangeQuantityModal, product } = this.props;
 
     return (
       <Modal>
@@ -130,20 +154,30 @@ class ChangeQuantityForm extends React.Component {
           <Button
             type="button"
             onClick={() => {
-              toggleEditProductForm();
-              this.updateProductQuantity();
+              this.toggleEditProductForm();
             }}
           >
             Edytuj
           </Button>
-          {/* <button type="button" onClick={toggleEditProductForm}>
-          Edytuj
-        </button> */}
-          <Button type="button" onClick={() => {}}>
+          <Button type="button" onClick={this.toggleDeleteModal}>
             Usuń
           </Button>
         </WrapperEditDeleteButtons>
-        {/* <button type="button">Usuń</button> */}
+
+        {isDeleteModalVisibile && (
+          <DeleteProductModal
+            id={id}
+            name={name}
+            toggleDeleteModal={this.toggleDeleteModal}
+          />
+        )}
+
+        {this.state.isEditModalVisible && (
+          <EditProductForm
+            product={product}
+            toggleEditProductForm={this.toggleEditProductForm}
+          />
+        )}
       </Modal>
     );
   }
