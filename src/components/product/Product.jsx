@@ -152,6 +152,7 @@ class Product extends React.Component {
           <ChangeQuantityForm
             id={id}
             name={name}
+            min={min}
             quantity={quantity}
             toggleChangeQuantityModal={this.toggleChangeQuantityModal}
             toggleEditProductForm={this.toggleEditProductForm}

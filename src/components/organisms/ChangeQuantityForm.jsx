@@ -7,6 +7,7 @@ import Input from '../formElements/Input';
 import ButtonCancel from '../buttons/ButtonCancel';
 import ButtonConfirm from '../buttons/ButtonConfirm';
 import Button from '../buttons/Button';
+import db from '../../fbase';
 // import ButtonQuantity from '../buttons/ButtonQuantity';
 
 const Header = styled(TextHeader)`
@@ -33,7 +34,6 @@ const InputNumber = styled(Input)`
   height: 44px;
   padding: 0;
   margin: 0;
-  border: 1px solid rgba(0, 0, 0, 0.8);
   color: black;
   font-size: 28px;
   line-height: 44px;
@@ -53,7 +53,7 @@ const WrapperConfirmCancelButtons = styled.div`
   margin-top: 20px;
 `;
 
-const WrapperEditDeleteBauttons = styled.div`
+const WrapperEditDeleteButtons = styled.div`
   margin-top: 30px;
   height: 80px;
   display: flex;
@@ -62,17 +62,42 @@ const WrapperEditDeleteBauttons = styled.div`
 `;
 
 class ChangeQuantityForm extends React.Component {
-  state = {
-    name: this.props.name,
-    quantity: this.props.quantity,
-    id: this.props.id,
-  };
+  constructor(props) {
+    super(props);
+    const { name, quantity, id, min } = this.props;
+    this.state = {
+      name,
+      quantity,
+      id,
+      min,
+    };
+  }
 
-  handleForm = e => {
+  handleInput = e => {
     console.log(e.target.value);
     console.log(e.target.id);
 
     this.setState({ quantity: e.target.value });
+  };
+
+  addQuantity = () => {
+    this.setState({ quantity: this.state.quantity + 1 });
+  };
+
+  subtractQuantity = () => {
+    this.setState({ quantity: this.state.quantity - 1 });
+  };
+
+  updateProductQuantity = () => {
+    const { quantity, id, min } = this.state;
+
+    db.collection('products')
+      .doc(id)
+      .update({
+        quantity,
+        onShoppingList: quantity < min,
+      });
+    this.props.toggleChangeQuantityModal();
   };
 
   render() {
@@ -85,7 +110,7 @@ class ChangeQuantityForm extends React.Component {
 
         <TextLabel htmlFor="currentQuantity">Zmień ilość</TextLabel>
         <WrapperChangeQuantity>
-          <ButtonQuantity>-</ButtonQuantity>
+          <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
 
           <InputNumber
             short
@@ -93,16 +118,22 @@ class ChangeQuantityForm extends React.Component {
             type="number"
             id="currentQuantity"
             value={quantity}
-            onChange={this.handleForm}
+            onChange={this.handleInput}
           />
-          <ButtonQuantity>+</ButtonQuantity>
+          <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
         </WrapperChangeQuantity>
         <WrapperConfirmCancelButtons>
           <ButtonCancel type="button" onClick={toggleChangeQuantityModal} />
-          <ButtonConfirm />
+          <ButtonConfirm type="button" onClick={this.updateProductQuantity} />
         </WrapperConfirmCancelButtons>
-        <WrapperEditDeleteBauttons>
-          <Button type="button" onClick={toggleEditProductForm}>
+        <WrapperEditDeleteButtons>
+          <Button
+            type="button"
+            onClick={() => {
+              toggleEditProductForm();
+              this.updateProductQuantity();
+            }}
+          >
             Edytuj
           </Button>
           {/* <button type="button" onClick={toggleEditProductForm}>
@@ -111,7 +142,7 @@ class ChangeQuantityForm extends React.Component {
           <Button type="button" onClick={() => {}}>
             Usuń
           </Button>
-        </WrapperEditDeleteBauttons>
+        </WrapperEditDeleteButtons>
         {/* <button type="button">Usuń</button> */}
       </Modal>
     );
