@@ -77,7 +77,7 @@ const StyledDelteIconWrapper = styled.div`
 class Product extends React.Component {
   state = {
     isDeleteModalVisibile: false,
-    isEditModalVisible: false,
+    // isEditModalVisible: false,
     isChangeQuantityFormVisible: false,
   };
 
@@ -93,11 +93,11 @@ class Product extends React.Component {
     }));
   };
 
-  toggleEditProductForm = () => {
-    this.setState(prevState => ({
-      isEditModalVisible: !prevState.isEditModalVisible,
-    }));
-  };
+  // toggleEditProductForm = () => {
+  //   this.setState(prevState => ({
+  //     isEditModalVisible: !prevState.isEditModalVisible,
+  //   }));
+  // };
 
   render() {
     // const { name, quantity, unit, min, id, category, product } = this.props;
@@ -150,9 +150,11 @@ class Product extends React.Component {
 
         {isChangeQuantityFormVisible && (
           <ChangeQuantityForm
-            id={id}
-            name={name}
-            quantity={quantity}
+            product={product}
+            // id={id}
+            // name={name}
+            // min={min}
+            // quantity={quantity}
             toggleChangeQuantityModal={this.toggleChangeQuantityModal}
             toggleEditProductForm={this.toggleEditProductForm}
           />

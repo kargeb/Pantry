@@ -46,7 +46,7 @@ class EditProductForm extends React.Component {
   constructor(props) {
     super(props);
 
-    const { name, quantity, category, min, unit, id } = this.props;
+    const { name, id, category, quantity, min, unit } = this.props.product;
 
     this.state = {
       categories: [],
@@ -59,7 +59,6 @@ class EditProductForm extends React.Component {
     };
   }
 
-  // state = {...this.props}
   componentDidMount() {
     db.collection('categories')
       .doc('all')
