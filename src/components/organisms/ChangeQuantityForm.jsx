@@ -8,8 +8,8 @@ import ButtonCancel from '../buttons/ButtonCancel';
 import ButtonConfirm from '../buttons/ButtonConfirm';
 import Button from '../buttons/Button';
 import db from '../../fbase';
-import EditProductForm from '../editProductForm/EditProductForm';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
+import NewProductForm from '../newProductForm/NewProductForm';
 // import ButtonQuantity from '../buttons/ButtonQuantity';
 
 const Header = styled(TextHeader)`
@@ -66,12 +66,13 @@ const WrapperEditDeleteButtons = styled.div`
 class ChangeQuantityForm extends React.Component {
   constructor(props) {
     super(props);
-    const { quantity, name, id, min } = this.props.product;
+    const { quantity, name, id, min, category } = this.props.product;
     this.state = {
       quantity: Number(quantity),
       name,
       id,
       min,
+      category,
       isEditModalVisible: false,
       isDeleteModalVisibile: false,
     };
@@ -173,9 +174,14 @@ class ChangeQuantityForm extends React.Component {
         )}
 
         {this.state.isEditModalVisible && (
-          <EditProductForm
-            product={product}
-            toggleEditProductForm={this.toggleEditProductForm}
+          <NewProductForm
+            id={id}
+            name={name}
+            quantity={quantity}
+            unit={unit}
+            min={min}
+            category={category}
+            toggleFormVisibility={this.toggleEditProductForm}
           />
         )}
       </Modal>

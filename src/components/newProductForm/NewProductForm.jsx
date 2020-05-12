@@ -34,14 +34,21 @@ const StyledButtonsWrapper = styled.div`
 `;
 
 class NewProductForm extends React.Component {
-  state = {
-    categories: [],
-    name: '',
-    quantity: '',
-    category: '',
-    min: '3',
-    unit: 'szt',
-  };
+  constructor(props) {
+    super(props);
+
+    const { category, name, quantity, min, unit, id } = this.props;
+
+    this.state = {
+      categories: [],
+      name,
+      quantity,
+      category,
+      min,
+      unit,
+      id,
+    };
+  }
 
   componentDidMount() {
     db.collection('categories')
@@ -55,7 +62,7 @@ class NewProductForm extends React.Component {
   };
 
   handleSubmit = () => {
-    const { name, quantity, category, min, unit } = this.state;
+    const { name, quantity, category, min, unit, id } = this.state;
     const { toggleFormVisibility } = this.props;
 
     if (name && quantity && category && min && unit) {
@@ -66,7 +73,7 @@ class NewProductForm extends React.Component {
         min,
         unit,
         onShoppingList: quantity < min,
-        id: uuidv4(),
+        id,
       };
 
       db.collection('products').doc(newProduct.id).set(newProduct);
@@ -77,6 +84,7 @@ class NewProductForm extends React.Component {
         category: '',
         min: '1',
         unit: 'szt',
+        id: null,
       });
 
       toggleFormVisibility();
@@ -149,5 +157,15 @@ class NewProductForm extends React.Component {
     );
   }
 }
+
+NewProductForm.defaultProps = {
+  categories: [],
+  name: '',
+  quantity: '',
+  category: '',
+  min: '5',
+  unit: 'szt',
+  id: uuidv4(),
+};
 
 export default NewProductForm;

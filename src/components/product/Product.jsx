@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import AppContext from '../../context';
-import EditProductForm from '../editProductForm/EditProductForm';
+import NewProductForm from '../newProductForm/NewProductForm';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 import ChangeQuantityForm from '../organisms/ChangeQuantityForm';
 
@@ -77,7 +77,6 @@ const StyledDelteIconWrapper = styled.div`
 class Product extends React.Component {
   state = {
     isDeleteModalVisibile: false,
-    // isEditModalVisible: false,
     isChangeQuantityFormVisible: false,
   };
 
@@ -93,85 +92,57 @@ class Product extends React.Component {
     }));
   };
 
-  // toggleEditProductForm = () => {
-  //   this.setState(prevState => ({
-  //     isEditModalVisible: !prevState.isEditModalVisible,
-  //   }));
-  // };
-
   render() {
-    // const { name, quantity, unit, min, id, category, product } = this.props;
-    // const { name, quantity, unit, min, id, category } = this.props.product;
-    const {
-      isDeleteModalVisibile,
-      isEditModalVisible,
-      isChangeQuantityFormVisible,
-    } = this.state;
+    const { isDeleteModalVisibile, isChangeQuantityFormVisible } = this.state;
     const { product } = this.props;
     const { name, quantity, unit, min, id, category } = product;
     const cartIconShow = quantity < min;
 
     return (
-      <StyledWrapper>
-        <StyledLeftWrapper>
-          <StyledCartIconWrapper>
-            {cartIconShow && <StyledIcon icon={faShoppingCart} />}
-          </StyledCartIconWrapper>
-          <div>
-            <StyledNameWrapper>{name}</StyledNameWrapper>
-          </div>
-        </StyledLeftWrapper>
-        <StyledCenterWrapper>
-          <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
-          <StyledUnitWrapper>{unit}</StyledUnitWrapper>
-        </StyledCenterWrapper>
-        <StyledUnitWrapper>({min})</StyledUnitWrapper>
+      <>
+        <StyledWrapper>
+          <StyledLeftWrapper>
+            <StyledCartIconWrapper>
+              {cartIconShow && <StyledIcon icon={faShoppingCart} />}
+            </StyledCartIconWrapper>
+            <div>
+              <StyledNameWrapper>{name}</StyledNameWrapper>
+            </div>
+          </StyledLeftWrapper>
+          <StyledCenterWrapper>
+            <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
+            <StyledUnitWrapper>{unit}</StyledUnitWrapper>
+          </StyledCenterWrapper>
+          <StyledUnitWrapper>({min})</StyledUnitWrapper>
 
-        <StyledRightWrapper>
-          <div>
-            <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
-          </div>
-          <StyledDelteIconWrapper>
-            {/* <StyledIcon icon={faTrash} onClick={this.toggleDeleteModal} /> */}
-            <StyledIcon
-              icon={faTrash}
-              onClick={this.toggleChangeQuantityModal}
+          <StyledRightWrapper>
+            <div>
+              <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
+            </div>
+            <StyledDelteIconWrapper>
+              <StyledIcon
+                icon={faTrash}
+                onClick={this.toggleChangeQuantityModal}
+              />
+            </StyledDelteIconWrapper>
+          </StyledRightWrapper>
+
+          {isDeleteModalVisibile && (
+            <DeleteProductModal
+              id={id}
+              name={name}
+              toggleDeleteModal={this.toggleDeleteModal}
             />
-          </StyledDelteIconWrapper>
-        </StyledRightWrapper>
-
-        {isDeleteModalVisibile && (
-          <DeleteProductModal
-            id={id}
-            name={name}
-            toggleDeleteModal={this.toggleDeleteModal}
-          />
-        )}
-
+          )}
+        </StyledWrapper>
         {isChangeQuantityFormVisible && (
           <ChangeQuantityForm
             product={product}
-            // id={id}
-            // name={name}
-            // min={min}
-            // quantity={quantity}
             toggleChangeQuantityModal={this.toggleChangeQuantityModal}
             toggleEditProductForm={this.toggleEditProductForm}
           />
         )}
-
-        {isEditModalVisible && (
-          <EditProductForm
-            id={id}
-            name={name}
-            quantity={quantity}
-            unit={unit}
-            min={min}
-            category={category}
-            toggleEditProductForm={this.toggleEditProductForm}
-          />
-        )}
-      </StyledWrapper>
+      </>
     );
   }
 }
