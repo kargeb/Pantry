@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'react-custom-scrollbars';
 import PantryProductsList from '../components/productList/PantryProductsList';
-import NewProductForm from '../components/newProductForm/NewProductForm';
+import ProductPropertiesForm from '../components/organisms/ProductPropertiesForm';
 import AppContext from '../context';
 import loadingGif from '../images/loading_dots.gif';
 
@@ -59,7 +59,7 @@ class Pantry extends React.Component {
               </ButtonAdd>
             </ButtonAddWrapper>
             {isFormVisible && (
-              <NewProductForm
+              <ProductPropertiesForm
                 toggleFormVisibility={this.toggleFormVisibility}
               />
             )}

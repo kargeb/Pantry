@@ -1,14 +1,13 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
 import Modal from '../templates/ModalTemplate';
-import ButtonConfirm from '../buttons/ButtonConfirm';
-import ButtonCancel from '../buttons/ButtonCancel';
-import TextHeader from '../texts/TextHeader';
-import TextLabel from '../texts/TextLabel';
-import Input from '../formElements/Input';
-import Select from '../formElements/Select';
+import TextHeader from '../atoms/texts/TextHeader';
+import TextLabel from '../atoms/texts/TextLabel';
+import Input from '../atoms/formElements/Input';
+import Select from '../atoms/formElements/Select';
+import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
 
 const InputVerticalWrapper = styled.div`
   display: flex;
@@ -26,14 +25,7 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
-const StyledButtonsWrapper = styled.div`
-  display: flex;
-  width: 130px;
-  justify-content: space-between;
-  margin-top: 20px;
-`;
-
-class NewProductForm extends React.Component {
+class ProductPropertiesForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -149,16 +141,16 @@ class NewProductForm extends React.Component {
             value={quantity}
           />
         </InputHorizontalWrapper>
-        <StyledButtonsWrapper>
-          <ButtonCancel type="button" onClick={toggleFormVisibility} />
-          <ButtonConfirm type="button" onClick={this.handleSubmit} />
-        </StyledButtonsWrapper>
+        <ConfirmAndCancelButtonsWrapper
+          cancelOnClick={toggleFormVisibility}
+          confirmOnClick={this.handleSubmit}
+        />
       </Modal>
     );
   }
 }
 
-NewProductForm.defaultProps = {
+ProductPropertiesForm.defaultProps = {
   categories: [],
   name: '',
   quantity: '',
@@ -168,4 +160,4 @@ NewProductForm.defaultProps = {
   id: uuidv4(),
 };
 
-export default NewProductForm;
+export default ProductPropertiesForm;
