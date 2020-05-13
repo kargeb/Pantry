@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import Modal from '../templates/ModalTemplate';
 import TextHeader from '../texts/TextHeader';
 import TextLabel from '../texts/TextLabel';
-import Input from '../formElements/Input';
-import ButtonCancel from '../buttons/ButtonCancel';
-import ButtonConfirm from '../buttons/ButtonConfirm';
-import Button from '../buttons/Button';
+import Input from '../atoms/formElements/Input';
+import Button from '../atoms/buttons/Button';
 import db from '../../fbase';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
-import NewProductForm from '../newProductForm/NewProductForm';
+import ProductPropertiesForm from './ProductPropertiesForm';
+import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
 // import ButtonQuantity from '../buttons/ButtonQuantity';
 
 const Header = styled(TextHeader)`
@@ -46,13 +45,6 @@ const WrapperChangeQuantity = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: baseline;
-`;
-
-const WrapperConfirmCancelButtons = styled.div`
-  display: flex;
-  width: 130px;
-  justify-content: space-between;
-  margin-top: 20px;
 `;
 
 const WrapperEditDeleteButtons = styled.div`
@@ -147,10 +139,10 @@ class ChangeQuantityForm extends React.Component {
           />
           <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
         </WrapperChangeQuantity>
-        <WrapperConfirmCancelButtons>
-          <ButtonCancel type="button" onClick={toggleChangeQuantityModal} />
-          <ButtonConfirm type="button" onClick={this.updateProductQuantity} />
-        </WrapperConfirmCancelButtons>
+        <ConfirmAndCancelButtonsWrapper
+          cancelOnClick={toggleChangeQuantityModal}
+          confirmOnClick={this.updateProductQuantity}
+        />
         <WrapperEditDeleteButtons>
           <Button
             type="button"
@@ -174,7 +166,7 @@ class ChangeQuantityForm extends React.Component {
         )}
 
         {this.state.isEditModalVisible && (
-          <NewProductForm
+          <ProductPropertiesForm
             id={id}
             name={name}
             quantity={quantity}

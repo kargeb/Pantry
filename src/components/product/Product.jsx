@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import AppContext from '../../context';
-import NewProductForm from '../newProductForm/NewProductForm';
+import ProductPropertiesForm from '../organisms/ProductPropertiesForm';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 import ChangeQuantityForm from '../organisms/ChangeQuantityForm';
 
