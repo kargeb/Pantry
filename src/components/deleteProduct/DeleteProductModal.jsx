@@ -2,8 +2,8 @@ import React from 'react';
 
 import db from '../../fbase';
 import Modal from '../templates/ModalTemplate';
-import TextHeader from '../texts/TextHeader';
-import TextLabel from '../texts/TextLabel';
+import TextHeader from '../atoms/texts/TextHeader';
+import TextLabel from '../atoms/texts/TextLabel';
 import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
 
 const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
