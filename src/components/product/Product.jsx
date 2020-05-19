@@ -68,6 +68,7 @@ const StyledUnitWrapper = styled.div`
   margin-left: 5px;
   text-transform: capitalize;
   text-align: center;
+  font-size: 14px;
 `;
 
 const StyledDelteIconWrapper = styled.div`

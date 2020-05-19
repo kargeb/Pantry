@@ -3,48 +3,37 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import BuyProductModal from '../buyProductModal/BuyProductModal';
+import ButtonBuy from '../atoms/buttons/ButtonBuy';
+import ShoppingList from '../../views/ShoppingList';
 
 const StyledWrapper = styled.div`
-padding-left: 5%;
+  /* margin: 5px 0; */
+  padding: 0 5%;
   min-height: 50px;
   line-height: 50px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  /* background-color: grey; */
   /* color: ${props => props.fontColor}; */
   justify-content: center;
 /* word-wrap: break-word; */
 `;
 
-const StyledDotIcon = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  line-height: 40px;
-  margin: 0 10px;
-  color: rgba(0, 0, 0, 0.54);
-`;
-
-const StyledCartIcon = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  line-height: 40px;
-  margin: 0 10px;
-  color: #fff;
-`;
-
-const StyledButton = styled.button`
-  border: none;
-  width: 50px;
-  height: 30px;
-  background: #6202ee;
-  border-radius: 200px;
-  color: #fff;
-  text-transform: uppercase;
-`;
-
 const StyledNameWrapper = styled.div`
-  width: 40%;
+  width: 34%;
 `;
 
-const StyledLackWrapper = styled.div`
-  width: 20%;
+const CurrentQuantity = styled.div`
+  text-align: center;
+  width: 23%;
+`;
+
+const Lack = styled.div`
+  /* background-color: blue; */
+  text-align: center;
+  width: 23%;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
 class ShoppingProduct extends React.Component {
@@ -59,23 +48,24 @@ class ShoppingProduct extends React.Component {
   };
 
   render() {
-    const { name, id, quantity, min } = this.props.product;
+    const { name, id, quantity, min } = this.props;
     const lack = min - quantity;
 
     return (
       <StyledWrapper>
-        <div>
+        {/* <div>
           <StyledDotIcon icon={faCircle} />
-        </div>
+        </div> */}
         <StyledNameWrapper>{name}</StyledNameWrapper>
-        <StyledLackWrapper>Jest: {quantity}</StyledLackWrapper>
-        <StyledLackWrapper>Brakuje: {lack}</StyledLackWrapper>
-        <StyledButton
+        <CurrentQuantity>{quantity}</CurrentQuantity>
+        <Lack>{lack}</Lack>
+        <ButtonBuy onClick={this.toggleBuyProductModal} />
+        {/* <StyledButton
           //   onClick={() => context.completeProductQuantityToMin(id)}
           onClick={this.toggleBuyProductModal}
         >
           <StyledCartIcon icon={faCartArrowDown} />
-        </StyledButton>
+        </StyledButton> */}
         {this.state.isBuyProductModalVisible && (
           <BuyProductModal
             id={id}

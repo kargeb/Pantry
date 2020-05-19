@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import loadingGif from '../images/loading_dots.gif';
 import AppContext from '../context';
 import ShoppingProduct from '../components/product/ShoppingProduct';
+import ShoppingListHeader from '../components/molecules/shoppingListHeader/ShoppingListHeader';
 
 const StyledListWrapper = styled.ul`
+  margin-top: 10px;
   background-color: #fff;
 `;
 
@@ -26,9 +28,15 @@ const ShoppingList = () => {
           <StyledMain>
             {context.products.length ? (
               <StyledListWrapper>
+                <ShoppingListHeader />
                 {productsOnShoppingList.map(product => (
                   <li key={product.id}>
-                    <ShoppingProduct product={product} />
+                    <ShoppingProduct
+                      name={product.name}
+                      id={product.id}
+                      quantity={product.quantity}
+                      min={product.min}
+                    />
                   </li>
                 ))}
               </StyledListWrapper>

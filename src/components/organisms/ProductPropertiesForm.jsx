@@ -55,7 +55,7 @@ class ProductPropertiesForm extends React.Component {
 
   handleSubmit = () => {
     const { name, quantity, category, min, unit, id } = this.state;
-    const { toggleFormVisibility } = this.props;
+    const { toggleFormVisibility, toggleChangeQuantityModal } = this.props;
 
     if (name && quantity && category && min && unit) {
       const newProduct = {
@@ -79,6 +79,7 @@ class ProductPropertiesForm extends React.Component {
         id: null,
       });
 
+      toggleChangeQuantityModal();
       toggleFormVisibility();
     } else {
       console.log('WYPEŁNIJ  SZYSTKIE POLA');
@@ -151,6 +152,7 @@ class ProductPropertiesForm extends React.Component {
 }
 
 ProductPropertiesForm.defaultProps = {
+  toggleChangeQuantityModal: () => {},
   categories: [],
   name: '',
   quantity: '',

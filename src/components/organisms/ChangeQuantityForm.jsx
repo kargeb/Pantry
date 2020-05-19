@@ -58,12 +58,13 @@ const WrapperEditDeleteButtons = styled.div`
 class ChangeQuantityForm extends React.Component {
   constructor(props) {
     super(props);
-    const { quantity, name, id, min, category } = this.props.product;
+    const { quantity, name, id, min, category, unit } = this.props.product;
     this.state = {
       quantity: Number(quantity),
       name,
       id,
       min,
+      unit,
       category,
       isEditModalVisible: false,
       isDeleteModalVisibile: false,
@@ -174,6 +175,7 @@ class ChangeQuantityForm extends React.Component {
             min={min}
             category={category}
             toggleFormVisibility={this.toggleEditProductForm}
+            toggleChangeQuantityModal={toggleChangeQuantityModal}
           />
         )}
       </Modal>
