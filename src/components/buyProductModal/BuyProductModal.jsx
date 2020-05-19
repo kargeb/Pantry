@@ -9,50 +9,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import db from '../../fbase';
 import Modal from '../templates/ModalTemplate';
-
-const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(1px);
-  z-index: 5;
-`;
-
-const Wrapper = styled.div`
-  position: absolute;
-  display: flex;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: 50%;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
-  padding: 10%;
-  background-color: white;
-  z-index: 10;
-`;
-
-const QuantityWrapper = styled.div`
-  border: 1px solid #6202ee;
-  border-radius: 10%;
-  display: flex;
-`;
-const StyledIcon = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  user-select: none;
-  line-height: 40px;
-  margin: 0 10px;
-  color: rgba(0, 0, 0, 0.54);
-`;
-
-const StyledQuantityWrapper = styled.div`
-  font-weight: 900;
-  text-align: center;
-`;
+import TextHeader from '../atoms/texts/TextHeader';
+import TextLabel from '../atoms/texts/TextLabel';
+import Input from '../atoms/formElements/Input';
+import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
 
 const StyledButtonsWrapper = styled.div`
   display: flex;
@@ -74,6 +34,42 @@ const StyledConfirmIcon = styled(FontAwesomeIcon)`
 const StyledCancelIcon = styled(FontAwesomeIcon)`
   font-size: 40px;
   color: rgba(0, 0, 0, 0.54);
+`;
+
+const Header = styled(TextHeader)`
+  margin-bottom: 5px;
+`;
+
+const WrapperChangeQuantity = styled.div`
+  width: 160px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+`;
+
+const ButtonQuantity = styled.button`
+  font-family: inherit;
+  width: 40px;
+  height: 28px;
+  line-height: 28px;
+  background-color: ${({ theme }) => theme.background};
+  border: 1px solid #8e5f23;
+  border-radius: 4px;
+  color: #8e5f23;
+  font-size: 28px;
+  font-weight: 500;
+  /* letter-spacing: 1px; */
+`;
+
+const InputNumber = styled(Input)`
+  text-align: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  color: black;
+  font-size: 28px;
+  line-height: 44px;
 `;
 
 class BuyProductModal extends React.Component {
@@ -117,13 +113,29 @@ class BuyProductModal extends React.Component {
 
     return (
       <Modal>
+        <Header>Ile kcesz kupicz ?</Header>
+        <TextLabel>{name}</TextLabel>
         {/* <Background>
         <Wrapper> */}
-        <p>Ile kcesz kupicz ?</p>
+        {/* <p>Ile kcesz kupicz ?</p>
         <p>
           <strong>{name} </strong> ?
-        </p>
-        <QuantityWrapper>
+        </p> */}
+        <WrapperChangeQuantity>
+          <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
+
+          <InputNumber
+            short
+            className="withoutSpinButtons"
+            type="number"
+            id="currentQuantity"
+            value={lack}
+            // onChange={this.handleInput}
+          />
+          <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
+        </WrapperChangeQuantity>
+
+        {/* <QuantityWrapper>
           <div>
             <StyledIcon icon={faMinusCircle} onClick={this.subtractQuantity} />
           </div>
@@ -131,8 +143,16 @@ class BuyProductModal extends React.Component {
           <div>
             <StyledIcon icon={faPlusCircle} onClick={this.addQuantity} />
           </div>
-        </QuantityWrapper>
-        <StyledButtonsWrapper>
+        </QuantityWrapper> */}
+
+        <ConfirmAndCancelButtonsWrapper
+          cancelOnClick={toggleBuyProductModal}
+          confirmOnClick={() =>
+            this.updateProductQuantity(toggleBuyProductModal)
+          }
+        />
+
+        {/* <StyledButtonsWrapper>
           <StyledButton
             type="submit"
             onClick={() => this.updateProductQuantity(toggleBuyProductModal)}
@@ -143,7 +163,7 @@ class BuyProductModal extends React.Component {
           <StyledButton type="button" onClick={toggleBuyProductModal}>
             <StyledCancelIcon icon={faTimesCircle} />
           </StyledButton>
-        </StyledButtonsWrapper>
+        </StyledButtonsWrapper> */}
         {/* </Wrapper>
       </Background> */}
       </Modal>
