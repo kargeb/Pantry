@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCogs,
@@ -12,6 +12,7 @@ import AppContext from '../../context';
 const Nav = styled.nav`
   display: flex;
   color: ${({ theme }) => theme.fontPrimary};
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 const IconWithCounterWrapper = styled.div`
@@ -53,7 +54,7 @@ const NavLinkWrapper = styled(NavLink)`
   font-size: 14px;
   font-weight: 500;
   color: ${({ theme }) => theme.inactiveNavColor};
-  background-color: ${({ theme }) => theme.primary};
+  /* background-color: ${({ theme }) => theme.primary}; */
   transition: font-size 0.2s;
 
   &.active {
@@ -61,15 +62,6 @@ const NavLinkWrapper = styled(NavLink)`
     letter-spacing: 0.15px;
     font-size: 18px;
 
-    /* &::after {
-      content: '';
-      width: 80%;
-      height: 3px;
-      margin-top: 3px;
-      text-align: center;
-      border-radius: 50px;
-      background-color: #fff;
-    } */
   }
 
   @media (min-width: 1024px) {

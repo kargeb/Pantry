@@ -9,7 +9,6 @@ import db from '../../fbase';
 import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 import ProductPropertiesForm from './ProductPropertiesForm';
 import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
-// import ButtonQuantity from '../buttons/ButtonQuantity';
 
 const Header = styled(TextHeader)`
   margin-bottom: 15px;

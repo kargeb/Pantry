@@ -14,28 +14,6 @@ import TextLabel from '../atoms/texts/TextLabel';
 import Input from '../atoms/formElements/Input';
 import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
 
-const StyledButtonsWrapper = styled.div`
-  display: flex;
-  width: 130px;
-  justify-content: space-between;
-  margin-top: 20px;
-`;
-
-const StyledButton = styled.button`
-  border: none;
-  background-color: white;
-`;
-
-const StyledConfirmIcon = styled(FontAwesomeIcon)`
-  font-size: 40px;
-  color: #01a39d;
-`;
-
-const StyledCancelIcon = styled(FontAwesomeIcon)`
-  font-size: 40px;
-  color: rgba(0, 0, 0, 0.54);
-`;
-
 const Header = styled(TextHeader)`
   margin-bottom: 5px;
 `;
@@ -115,12 +93,6 @@ class BuyProductModal extends React.Component {
       <Modal>
         <Header>Ile kcesz kupicz ?</Header>
         <TextLabel>{name}</TextLabel>
-        {/* <Background>
-        <Wrapper> */}
-        {/* <p>Ile kcesz kupicz ?</p>
-        <p>
-          <strong>{name} </strong> ?
-        </p> */}
         <WrapperChangeQuantity>
           <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
 
@@ -130,42 +102,15 @@ class BuyProductModal extends React.Component {
             type="number"
             id="currentQuantity"
             value={lack}
-            // onChange={this.handleInput}
           />
           <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
         </WrapperChangeQuantity>
-
-        {/* <QuantityWrapper>
-          <div>
-            <StyledIcon icon={faMinusCircle} onClick={this.subtractQuantity} />
-          </div>
-          <StyledQuantityWrapper>{lack}</StyledQuantityWrapper>
-          <div>
-            <StyledIcon icon={faPlusCircle} onClick={this.addQuantity} />
-          </div>
-        </QuantityWrapper> */}
-
         <ConfirmAndCancelButtonsWrapper
           cancelOnClick={toggleBuyProductModal}
           confirmOnClick={() =>
             this.updateProductQuantity(toggleBuyProductModal)
           }
         />
-
-        {/* <StyledButtonsWrapper>
-          <StyledButton
-            type="submit"
-            onClick={() => this.updateProductQuantity(toggleBuyProductModal)}
-          >
-            <StyledConfirmIcon icon={faCheckSquare} />
-          </StyledButton>
-
-          <StyledButton type="button" onClick={toggleBuyProductModal}>
-            <StyledCancelIcon icon={faTimesCircle} />
-          </StyledButton>
-        </StyledButtonsWrapper> */}
-        {/* </Wrapper>
-      </Background> */}
       </Modal>
     );
   }

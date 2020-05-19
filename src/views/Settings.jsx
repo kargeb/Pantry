@@ -1,32 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
-import loadingGif from '../images/loading_dots.gif';
 import sampleData from '../data/db.json';
 import AppContext from '../context';
 import db from '../fbase';
 import EditCategoriesForm from '../components/editCategoriesForm/EditCategoriesForm';
-
-const StyledListWrapper = styled.ul`
-  background-color: #fff;
-`;
-
-const StyledMain = styled.main`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* margin: 5%; */
-  /* padding-bottom: 100px; */
-  background-color: #444;
-`;
+import H2 from '../components/atoms/texts/H2';
+import TextLabel from '../components/atoms/texts/TextLabel';
+import ButtonSwitch from '../components/atoms/buttons/ButtonSwitch';
+import Button from '../components/atoms/buttons/Button';
+import Divider from '../components/atoms/divider/Divider';
 
 const Wrapper = styled.div`
   display: flex;
-  height: 50%;
-  max-height: 200px;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #888;
+  padding-top: 15px;
+  /* background-color: #888; */
+`;
+
+const WrapperDarkModeToggle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+  /* background-color: blue; */
+`;
+
+const WrapperVertical = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const WrapperCategoriesButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  /* background-color: blue; */
+`;
+
+const ButtonWidthGap = styled(Button)`
+  margin: 8px 0;
 `;
 
 class Settings extends React.Component {
@@ -57,24 +74,48 @@ class Settings extends React.Component {
     return (
       <AppContext.Consumer>
         {context => (
-          <StyledMain>
+          <main>
             <Wrapper>
-              <button onClick={context.changeTheme} type="button">
-                zmień Them
-              </button>
-              <button onClick={this.uploadSampleData} type="button">
-                wczytaj przykłądowe dane
-              </button>
-              <button onClick={this.toggleCategoryModal} type="button">
-                Dodaj/usuń kategorię
-              </button>
+              <div>
+                <H2>Dark Mode</H2>
+                <WrapperDarkModeToggle>
+                  <TextLabel>On</TextLabel>
+                  <ButtonSwitch onClick={context.changeTheme} />
+                  <TextLabel>Off</TextLabel>
+                </WrapperDarkModeToggle>
+              </div>
+              <Divider />
+              <WrapperVertical>
+                <H2>Przykładowe dane</H2>
+                <ButtonWidthGap type="button" onClick={this.uploadSampleData}>
+                  Pobierz
+                </ButtonWidthGap>
+              </WrapperVertical>
+              <Divider />
+              <div>
+                <H2>Kategorie</H2>
+                <WrapperCategoriesButtons>
+                  <ButtonWidthGap
+                    type="button"
+                    onClick={this.toggleCategoryModal}
+                  >
+                    Usuń
+                  </ButtonWidthGap>
+                  <ButtonWidthGap
+                    type="button"
+                    onClick={this.toggleCategoryModal}
+                  >
+                    Dodaj
+                  </ButtonWidthGap>
+                </WrapperCategoriesButtons>
+              </div>
             </Wrapper>
             {isCategoryModalVisible && (
               <EditCategoriesForm
                 toggleCategoryModal={this.toggleCategoryModal}
               />
             )}
-          </StyledMain>
+          </main>
         )}
       </AppContext.Consumer>
     );
