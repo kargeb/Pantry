@@ -9,6 +9,7 @@ import TextLabel from '../components/atoms/texts/TextLabel';
 import ButtonSwitch from '../components/atoms/buttons/ButtonSwitch';
 import Button from '../components/atoms/buttons/Button';
 import Divider from '../components/atoms/divider/Divider';
+import InsertSampleData from '../components/organisms/sampleData/SampleData';
 
 const Wrapper = styled.div`
   display: flex;
@@ -84,20 +85,17 @@ class Settings extends React.Component {
                     onClick={context.changeTheme}
                     themeName={context.currentTheme.name}
                   />
-                  {console.log(
-                    'current theme from settings: ',
-                    context.currentTheme.name,
-                  )}
                   <TextLabel>On</TextLabel>
                 </WrapperDarkModeToggle>
               </div>
               <Divider />
-              <WrapperVertical>
+              {/* <WrapperVertical>
                 <H2>Przykładowe dane</H2>
                 <ButtonWidthGap type="button" onClick={this.uploadSampleData}>
                   Pobierz
                 </ButtonWidthGap>
-              </WrapperVertical>
+              </WrapperVertical> */}
+              <InsertSampleData />
               <Divider />
               <div>
                 <H2>Kategorie</H2>
