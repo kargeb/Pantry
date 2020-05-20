@@ -79,9 +79,16 @@ class Settings extends React.Component {
               <div>
                 <H2>Dark Mode</H2>
                 <WrapperDarkModeToggle>
-                  <TextLabel>On</TextLabel>
-                  <ButtonSwitch onClick={context.changeTheme} />
                   <TextLabel>Off</TextLabel>
+                  <ButtonSwitch
+                    onClick={context.changeTheme}
+                    themeName={context.currentTheme.name}
+                  />
+                  {console.log(
+                    'current theme from settings: ',
+                    context.currentTheme.name,
+                  )}
+                  <TextLabel>On</TextLabel>
                 </WrapperDarkModeToggle>
               </div>
               <Divider />

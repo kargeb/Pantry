@@ -6,11 +6,13 @@ export const defaultTheme = {
 };
 
 export const lightTheme = {
+  name: 'lightTheme',
   background: '#fff',
   primary: '#FB8E01',
   inactiveNavColor: 'rgba(255, 255, 255, 0.5)',
 };
 
 export const darkTheme = {
+  name: 'darkTheme',
   primary: '#333',
 };

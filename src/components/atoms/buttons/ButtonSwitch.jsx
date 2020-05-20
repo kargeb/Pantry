@@ -10,12 +10,16 @@ const Button = styled.button`
 
 const Icon = styled(FontAwesomeIcon)`
   font-size: 35px;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.8);
 `;
 
-const ButtonSwitch = ({ onClick }) => (
+const ButtonSwitch = ({ onClick, themeName }) => (
   <Button onClick={onClick}>
-    <Icon icon={faToggleOff} />
+    {themeName == 'lightTheme' ? (
+      <Icon icon={faToggleOff} />
+    ) : (
+      <Icon icon={faToggleOn} />
+    )}
   </Button>
 );
 
