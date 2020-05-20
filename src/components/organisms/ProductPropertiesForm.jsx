@@ -92,7 +92,7 @@ class ProductPropertiesForm extends React.Component {
 
     return (
       <Modal>
-        <TextHeader>Nowy produkt</TextHeader>
+        <TextHeader marginBottom>Nowy produkt</TextHeader>
         <InputVerticalWrapper>
           <TextLabel htmlFor="name">Nazwa</TextLabel>
           <Input

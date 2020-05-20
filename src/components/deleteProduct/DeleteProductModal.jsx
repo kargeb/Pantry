@@ -21,7 +21,7 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
 
   return (
     <Modal>
-      <TextHeader>Potwierdź usunięcie:</TextHeader>
+      <TextHeader marginBottom>Potwierdź usunięcie:</TextHeader>
       <TextLabel>{name}</TextLabel>
       <ConfirmAndCancelButtonsWrapper
         cancelOnClick={toggleDeleteModal}

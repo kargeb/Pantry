@@ -1,9 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const TextHeader = styled.h1`
   font-size: 22px;
   font-weight: 500;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+
+  ${({ marginBottom }) =>
+    marginBottom &&
+    css`
+      margin-bottom: 30px;
+    `}
+
+  ${({ marginTop }) =>
+    marginTop &&
+    css`
+      margin-top: 30px;
+    `}
 `;
 
 export default TextHeader;

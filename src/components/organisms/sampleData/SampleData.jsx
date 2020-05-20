@@ -36,7 +36,9 @@ class SampleData extends React.Component {
         <ButtonWidthGap type="button" onClick={this.toggleInsertModal}>
           Pobierz
         </ButtonWidthGap>
-        {isInsertModalVisible && <InsertSampleDataModal />}
+        {isInsertModalVisible && (
+          <InsertSampleDataModal toggleInsertModal={this.toggleInsertModal} />
+        )}
       </WrapperVertical>
     );
   }
