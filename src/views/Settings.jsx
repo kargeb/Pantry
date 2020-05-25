@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import sampleData from '../data/db.json';
 import AppContext from '../context';
 import db from '../fbase';
-import EditCategoriesForm from '../components/editCategoriesForm/EditCategoriesForm';
+import AddCategoryModal from '../components/addCategoryModal/AddCategoryModal';
 import H2 from '../components/atoms/texts/H2';
 import TextLabel from '../components/atoms/texts/TextLabel';
 import ButtonSwitch from '../components/atoms/buttons/ButtonSwitch';
 import Button from '../components/atoms/buttons/Button';
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/organisms/sampleData/SampleData';
+import DeleteCategoryModal from '../components/organisms/deleteCategory/DeleteCategoryModal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,12 +50,19 @@ const ButtonWidthGap = styled(Button)`
 
 class Settings extends React.Component {
   state = {
-    isCategoryModalVisible: false,
+    isAddCategoryModalVisible: false,
+    isDeleteCategoryModalVisible: false,
   };
 
-  toggleCategoryModal = () => {
+  toggleAddCategoryModal = () => {
     this.setState(prevState => ({
-      isCategoryModalVisible: !prevState.isCategoryModalVisible,
+      isAddCategoryModalVisible: !prevState.isAddCategoryModalVisible,
+    }));
+  };
+
+  toggleDeleteCategoryModal = () => {
+    this.setState(prevState => ({
+      isDeleteCategoryModalVisible: !prevState.isDeleteCategoryModalVisible,
     }));
   };
 
@@ -71,7 +79,10 @@ class Settings extends React.Component {
   };
 
   render() {
-    const { isCategoryModalVisible } = this.state;
+    const {
+      isAddCategoryModalVisible,
+      isDeleteCategoryModalVisible,
+    } = this.state;
     return (
       <AppContext.Consumer>
         {context => (
@@ -102,22 +113,27 @@ class Settings extends React.Component {
                 <WrapperCategoriesButtons>
                   <ButtonWidthGap
                     type="button"
-                    onClick={this.toggleCategoryModal}
+                    onClick={this.toggleDeleteCategoryModal}
                   >
                     Usuń
                   </ButtonWidthGap>
                   <ButtonWidthGap
                     type="button"
-                    onClick={this.toggleCategoryModal}
+                    onClick={this.toggleAddCategoryModal}
                   >
                     Dodaj
                   </ButtonWidthGap>
                 </WrapperCategoriesButtons>
               </div>
             </Wrapper>
-            {isCategoryModalVisible && (
-              <EditCategoriesForm
-                toggleCategoryModal={this.toggleCategoryModal}
+            {isDeleteCategoryModalVisible && (
+              <DeleteCategoryModal
+                toggleDeleteCategoryModal={this.toggleDeleteCategoryModal}
+              />
+            )}
+            {isAddCategoryModalVisible && (
+              <AddCategoryModal
+                toggleAddCategoryModal={this.toggleAddCategoryModal}
               />
             )}
           </main>
