@@ -55,8 +55,8 @@ class AddCategoryModal extends React.Component {
   };
 
   closeModal = () => {
-    const { toggleCategoryModal } = this.props;
-    toggleCategoryModal();
+    const { toggleAddCategoryModal } = this.props;
+    toggleAddCategoryModal();
   };
 
   render() {

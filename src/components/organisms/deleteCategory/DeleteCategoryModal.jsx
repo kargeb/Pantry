@@ -57,8 +57,8 @@ class DeleteCategoryModal extends React.Component {
   };
 
   closeModal = () => {
-    const { toggleCategoryModal } = this.props;
-    toggleCategoryModal();
+    const { toggleDeleteCategoryModal } = this.props;
+    toggleDeleteCategoryModal();
   };
 
   render() {
@@ -88,6 +88,7 @@ class DeleteCategoryModal extends React.Component {
         >
           Usuń
         </Button>
+        <br />
         <ButtonCancel onClick={toggleDeleteCategoryModal} />
       </Modal>
     );
