@@ -8,7 +8,7 @@ import AppContext from '../context';
 import Pantry from './Pantry';
 import ShoppingList from './ShoppingList';
 import Settings from './Settings';
-import Navigation from '../components/organisms/navigation/Navigation';
+import Navigation from '../components/navigation/Navigation';
 
 class Root extends React.Component {
   state = {
