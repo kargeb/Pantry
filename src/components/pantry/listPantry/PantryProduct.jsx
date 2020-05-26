@@ -1,32 +1,22 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTrash,
-  faPen,
-  faPlusCircle,
-  faMinusCircle,
-  faShoppingCart,
-} from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import AppContext from '../../context';
-import ProductPropertiesForm from '../organisms/ProductPropertiesForm';
-import DeleteProductModal from '../deleteProduct/DeleteProductModal';
-import ChangeQuantityForm from '../organisms/ChangeQuantityForm';
+import DeleteProductModal from '../DeleteProductModal';
+import ChangeQuantityForm from '../ChangeQuantityForm';
+import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
 const StyledWrapper = styled.div`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-padding-left: 5%;
+  padding-left: 5%;
   min-height: 40px;
   line-height: 40px;
-  /* color: ${props => props.fontColor}; */
-/* word-wrap: break-word; */
 `;
 
 const StyledCartIconWrapper = styled.div`
   width: 40px;
-  /* cursor: auto !important; */
 `;
 
 const StyledNameWrapper = styled.div`
@@ -36,8 +26,6 @@ const StyledNameWrapper = styled.div`
 
 const StyledCenterWrapper = styled.div`
   display: flex;
-  /* flex-direction: column;
-  height: 20px; */
   width: 30%;
 `;
 
@@ -71,11 +59,7 @@ const StyledUnitWrapper = styled.div`
   font-size: 14px;
 `;
 
-const StyledDelteIconWrapper = styled.div`
-  margin-right: 5%;
-`;
-
-class Product extends React.Component {
+class PantryProduct extends React.Component {
   state = {
     isDeleteModalVisibile: false,
     isChangeQuantityFormVisible: false,
@@ -96,7 +80,7 @@ class Product extends React.Component {
   render() {
     const { isDeleteModalVisibile, isChangeQuantityFormVisible } = this.state;
     const { product } = this.props;
-    const { name, quantity, unit, min, id, category } = product;
+    const { name, quantity, unit, min, id } = product;
     const cartIconShow = quantity < min;
 
     return (
@@ -117,15 +101,7 @@ class Product extends React.Component {
           <StyledUnitWrapper>({min})</StyledUnitWrapper>
 
           <StyledRightWrapper>
-            <div>
-              <StyledIcon icon={faPen} onClick={this.toggleEditProductForm} />
-            </div>
-            <StyledDelteIconWrapper>
-              <StyledIcon
-                icon={faTrash}
-                onClick={this.toggleChangeQuantityModal}
-              />
-            </StyledDelteIconWrapper>
+            <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
           </StyledRightWrapper>
 
           {isDeleteModalVisibile && (
@@ -148,4 +124,4 @@ class Product extends React.Component {
   }
 }
 
-export default Product;
+export default PantryProduct;

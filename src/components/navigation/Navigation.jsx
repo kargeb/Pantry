@@ -7,7 +7,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import AppContext from '../../../context';
+import AppContext from '../../context';
 
 const Nav = styled.nav`
   display: flex;
@@ -90,7 +90,7 @@ const Navigation = () => {
             <Icon icon={faList} />
             <p>Pantry</p>
           </NavLinkWrapper>
-          <NavLinkWrapper to="/shoppinglist">
+          <NavLinkWrapper to="/shopping">
             <IconWithCounterWrapper>
               <Icon icon={faShoppingCart} />
               <ShoppingListCounter>

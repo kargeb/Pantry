@@ -13,10 +13,10 @@ const Icon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.primary};
 `;
 
-const ButtonConfirm = ({ onClick }) => (
+const ButtonIconConfirm = ({ onClick }) => (
   <Button onClick={onClick}>
     <Icon icon={faCheckCircle} />
   </Button>
 );
 
-export default ButtonConfirm;
+export default ButtonIconConfirm;

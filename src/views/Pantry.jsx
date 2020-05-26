@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'react-custom-scrollbars';
-import PantryProductsList from '../components/productList/PantryProductsList';
-import ProductPropertiesForm from '../components/organisms/ProductPropertiesForm';
+import ListPantryProducts from '../components/pantry/listPantry/ListPantryProducts';
+import ProductPropertiesForm from '../components/pantry/ProductPropertiesForm';
 import AppContext from '../context';
 import loadingGif from '../images/loading_dots.gif';
 
@@ -48,7 +48,7 @@ class Pantry extends React.Component {
           <Main>
             <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
               {context.products.length ? (
-                <PantryProductsList products={context.products} />
+                <ListPantryProducts products={context.products} />
               ) : (
                 <img src={loadingGif} alt="Loading gif" />
               )}

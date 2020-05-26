@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
-import Modal from '../templates/ModalTemplate';
+import Modal from '../templates/TemplateModal';
 import TextHeader from '../atoms/texts/TextHeader';
-import TextLabel from '../atoms/texts/TextLabel';
+import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import Select from '../atoms/formElements/Select';
-import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
+import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
 
 const InputVerticalWrapper = styled.div`
   display: flex;
@@ -29,8 +29,11 @@ class ProductPropertiesForm extends React.Component {
   constructor(props) {
     super(props);
 
-    const { category, name, quantity, min, unit, id } = this.props;
-
+    const { category, name, quantity, min, unit } = this.props;
+    let { id } = this.props;
+    if (!id) {
+      id = uuidv4();
+    }
     this.state = {
       categories: [],
       name,
@@ -43,6 +46,8 @@ class ProductPropertiesForm extends React.Component {
   }
 
   componentDidMount() {
+    console.log('ID obecne: ', this.state.id);
+
     db.collection('categories')
       .doc('all')
       .get()
@@ -94,7 +99,7 @@ class ProductPropertiesForm extends React.Component {
       <Modal>
         <TextHeader marginBottom>Nowy produkt</TextHeader>
         <InputVerticalWrapper>
-          <TextLabel htmlFor="name">Nazwa</TextLabel>
+          <Label htmlFor="name">Nazwa</Label>
           <Input
             id="name"
             type="text"
@@ -103,7 +108,7 @@ class ProductPropertiesForm extends React.Component {
           />
         </InputVerticalWrapper>
         <InputVerticalWrapper>
-          <TextLabel htmlFor="category">Kategoria</TextLabel>
+          <Label htmlFor="category">Kategoria</Label>
           <Select id="category" onChange={this.handleForm} value={category}>
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (
@@ -114,7 +119,7 @@ class ProductPropertiesForm extends React.Component {
           </Select>
         </InputVerticalWrapper>
         <InputHorizontalWrapper>
-          <TextLabel htmlFor="unit">Typ</TextLabel>
+          <Label htmlFor="unit">Typ</Label>
           <Select short id="unit" onChange={this.handleForm} value={unit}>
             <option value="szt">szt</option>
             <option value="l">l</option>
@@ -122,7 +127,7 @@ class ProductPropertiesForm extends React.Component {
           </Select>
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
-          <TextLabel htmlFor="min">Min</TextLabel>
+          <Label htmlFor="min">Min</Label>
           <Input
             short
             id="min"
@@ -133,7 +138,7 @@ class ProductPropertiesForm extends React.Component {
           />
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
-          <TextLabel htmlFor="quantity">Ilość</TextLabel>
+          <Label htmlFor="quantity">Ilość</Label>
           <Input
             short
             id="quantity"
@@ -142,7 +147,7 @@ class ProductPropertiesForm extends React.Component {
             value={quantity}
           />
         </InputHorizontalWrapper>
-        <ConfirmAndCancelButtonsWrapper
+        <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
@@ -159,7 +164,7 @@ ProductPropertiesForm.defaultProps = {
   category: '',
   min: '5',
   unit: 'szt',
-  id: uuidv4(),
+  id: null,
 };
 
 export default ProductPropertiesForm;

@@ -2,11 +2,11 @@ import React from 'react';
 
 import styled from 'styled-components';
 import db from '../../../fbase';
-import Modal from '../../templates/ModalTemplate';
+import Modal from '../../templates/TemplateModal';
 import TextHeader from '../../atoms/texts/TextHeader';
-import TextLabel from '../../atoms/texts/TextLabel';
+import Label from '../../atoms/formElements/Label';
 import Button from '../../atoms/buttons/Button';
-import ButtonCancel from '../../atoms/buttons/ButtonCancel';
+import ButtonIconCancel from '../../atoms/buttons/ButtonIconCancel';
 import Select from '../../atoms/formElements/Select';
 
 const InputVerticalWrapper = styled.div`
@@ -70,7 +70,7 @@ class DeleteCategoryModal extends React.Component {
         <InputVerticalWrapper>
           <TextHeader>Usuń Kategorię</TextHeader>
           <br />
-          <TextLabel htmlFor="toDelete">Wybierz kategorię:</TextLabel>
+          <Label htmlFor="toDelete">Wybierz kategorię:</Label>
           <Select id="toDelete" onChange={this.handleForm} value={toDelete}>
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (
@@ -89,7 +89,7 @@ class DeleteCategoryModal extends React.Component {
           Usuń
         </Button>
         <br />
-        <ButtonCancel onClick={toggleDeleteCategoryModal} />
+        <ButtonIconCancel onClick={toggleDeleteCategoryModal} />
       </Modal>
     );
   }

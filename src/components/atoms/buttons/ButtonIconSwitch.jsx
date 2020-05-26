@@ -13,7 +13,7 @@ const Icon = styled(FontAwesomeIcon)`
   color: rgba(0, 0, 0, 0.8);
 `;
 
-const ButtonSwitch = ({ onClick, themeName }) => (
+const ButtonIconSwitch = ({ onClick, themeName }) => (
   <Button onClick={onClick}>
     {themeName == 'lightTheme' ? (
       <Icon icon={faToggleOff} />
@@ -23,4 +23,4 @@ const ButtonSwitch = ({ onClick, themeName }) => (
   </Button>
 );
 
-export default ButtonSwitch;
+export default ButtonIconSwitch;

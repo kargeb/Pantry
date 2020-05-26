@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import BuyProductModal from '../buyProductModal/BuyProductModal';
-import ButtonBuy from '../atoms/buttons/ButtonBuy';
-import ShoppingList from '../../views/ShoppingList';
+import ButtonIconBuy from '../../atoms/buttons/ButtonIconBuy';
 
 const StyledWrapper = styled.div`
   /* margin: 5px 0; */
@@ -59,7 +56,7 @@ class ShoppingProduct extends React.Component {
         <StyledNameWrapper>{name}</StyledNameWrapper>
         <CurrentQuantity>{quantity}</CurrentQuantity>
         <Lack>{lack}</Lack>
-        <ButtonBuy onClick={this.toggleBuyProductModal} />
+        <ButtonIconBuy onClick={this.toggleBuyProductModal} />
         {/* <StyledButton
           //   onClick={() => context.completeProductQuantityToMin(id)}
           onClick={this.toggleBuyProductModal}

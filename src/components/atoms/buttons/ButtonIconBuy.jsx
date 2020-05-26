@@ -18,10 +18,10 @@ const Icon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.primary};
 `;
 
-const ButtonBuy = ({ onClick }) => (
+const ButtonIconBuy = ({ onClick }) => (
   <Button onClick={onClick}>
     <Icon icon={faCartArrowDown} />
   </Button>
 );
 
-export default ButtonBuy;
+export default ButtonIconBuy;
