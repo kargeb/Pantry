@@ -97,6 +97,7 @@ class BuyProductModal extends React.Component {
           <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
 
           <InputNumber
+            readOnly
             short
             className="withoutSpinButtons"
             type="number"

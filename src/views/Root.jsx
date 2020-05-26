@@ -6,7 +6,7 @@ import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
 import db from '../fbase';
 import AppContext from '../context';
 import Pantry from './Pantry';
-import ShoppingList from './ShoppingList';
+import Shopping from './Shopping';
 import Settings from './Settings';
 import Navigation from '../components/navigation/Navigation';
 
@@ -60,7 +60,7 @@ class Root extends React.Component {
             <Switch>
               <Route exact path="/" component={Pantry} />
               <Route path="/pantry" component={Pantry} />
-              <Route path="/shoppinglist" component={ShoppingList} />
+              <Route path="/shopping" component={Shopping} />
               <Route path="/settings" component={Settings} />
             </Switch>
           </AppContext.Provider>

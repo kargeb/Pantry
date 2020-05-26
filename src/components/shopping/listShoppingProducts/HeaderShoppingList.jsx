@@ -37,7 +37,7 @@ const IconWrapper = styled.div`
   width: 55px;
 `;
 
-const ShoppingListHeader = () => {
+const HeaderShoppingList = () => {
   return (
     <StyledWrapper>
       <StyledNameWrapper> </StyledNameWrapper>
@@ -48,4 +48,4 @@ const ShoppingListHeader = () => {
   );
 };
 
-export default ShoppingListHeader;
+export default HeaderShoppingList;

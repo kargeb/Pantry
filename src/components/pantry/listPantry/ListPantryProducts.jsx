@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Product from './Product';
+import PantryProduct from './PantryProduct';
 
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
@@ -15,7 +15,7 @@ const CategoriesList = styled.ul``;
 
 const ProductsList = styled.ul``;
 
-const PantryProductsList = ({ products }) => {
+const ListPantryProducts = ({ products }) => {
   const categoriesWithProducts = [];
   products.forEach(product => {
     if (!categoriesWithProducts.includes(product.category)) {
@@ -35,7 +35,7 @@ const PantryProductsList = ({ products }) => {
             <ProductsList>
               {productsInCurrentCategory.map(currentProduct => (
                 <li key={currentProduct.id}>
-                  <Product product={currentProduct} />
+                  <PantryProduct product={currentProduct} />
                 </li>
               ))}
             </ProductsList>
@@ -46,4 +46,4 @@ const PantryProductsList = ({ products }) => {
   );
 };
 
-export default PantryProductsList;
+export default ListPantryProducts;

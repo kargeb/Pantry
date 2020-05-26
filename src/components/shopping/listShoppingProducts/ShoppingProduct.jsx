@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import BuyProductModal from '../buyProductModal/BuyProductModal';
 import ButtonIconBuy from '../../atoms/buttons/ButtonIconBuy';
-import ShoppingList from '../../../views/ShoppingList';
 
 const StyledWrapper = styled.div`
   /* margin: 5px 0; */

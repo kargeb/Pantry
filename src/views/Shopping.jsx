@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import loadingGif from '../images/loading_dots.gif';
 import AppContext from '../context';
-import ShoppingProduct from '../components/shopping/list/ShoppingProduct';
-import ShoppingListHeader from '../components/shopping/list/ShoppingListHeader';
+import ShoppingProduct from '../components/shopping/listShoppingProducts/ShoppingProduct';
+import HeaderShoppingList from '../components/shopping/listShoppingProducts/HeaderShoppingList';
 
 const StyledListWrapper = styled.ul`
   margin-top: 10px;
@@ -16,7 +16,7 @@ const StyledMain = styled.main`
   background-color: white;
 `;
 
-const ShoppingList = () => {
+const Shopping = () => {
   return (
     <AppContext.Consumer>
       {context => {
@@ -28,7 +28,7 @@ const ShoppingList = () => {
           <StyledMain>
             {context.products.length ? (
               <StyledListWrapper>
-                <ShoppingListHeader />
+                <HeaderShoppingList />
                 {productsOnShoppingList.map(product => (
                   <li key={product.id}>
                     <ShoppingProduct
@@ -50,4 +50,4 @@ const ShoppingList = () => {
   );
 };
 
-export default ShoppingList;
+export default Shopping;

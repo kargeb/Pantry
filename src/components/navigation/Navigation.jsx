@@ -90,7 +90,7 @@ const Navigation = () => {
             <Icon icon={faList} />
             <p>Pantry</p>
           </NavLinkWrapper>
-          <NavLinkWrapper to="/shoppinglist">
+          <NavLinkWrapper to="/shopping">
             <IconWithCounterWrapper>
               <Icon icon={faShoppingCart} />
               <ShoppingListCounter>
