@@ -1,10 +1,10 @@
 import React from 'react';
 
 import db from '../../fbase';
-import Modal from '../templates/ModalTemplate';
+import Modal from '../templates/TemplateModal';
 import TextHeader from '../atoms/texts/TextHeader';
 import Label from '../atoms/formElements/Label';
-import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
+import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
 
 const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   const deleteProduct = () => {
@@ -23,7 +23,7 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
     <Modal>
       <TextHeader marginBottom>Potwierdź usunięcie:</TextHeader>
       <Label>{name}</Label>
-      <ConfirmAndCancelButtonsWrapper
+      <WrapperButtonsConfirmAndCancel
         cancelOnClick={toggleDeleteModal}
         confirmOnClick={deleteProduct}
       />

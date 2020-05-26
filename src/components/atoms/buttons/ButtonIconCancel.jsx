@@ -13,10 +13,10 @@ const Icon = styled(FontAwesomeIcon)`
   color: rgba(0, 0, 0, 0.4);
 `;
 
-const ButtonCancel = ({ onClick }) => (
+const ButtonIconCancel = ({ onClick }) => (
   <Button onClick={onClick}>
     <Icon icon={faTimesCircle} />
   </Button>
 );
 
-export default ButtonCancel;
+export default ButtonIconCancel;

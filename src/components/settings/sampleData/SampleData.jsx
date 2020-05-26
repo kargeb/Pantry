@@ -4,7 +4,7 @@ import sampleData from '../../../data/db.json';
 import db from '../../../fbase';
 import H2 from '../../atoms/texts/TextOption';
 import Button from '../../atoms/buttons/Button';
-import InsertSampleDataModal from '../insertSampleDataModal/InsertSampleDataModal';
+import InsertSampleDataModal from './InsertSampleDataModal';
 
 const WrapperVertical = styled.div`
   display: flex;

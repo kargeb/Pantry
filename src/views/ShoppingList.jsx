@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import loadingGif from '../images/loading_dots.gif';
 import AppContext from '../context';
-import ShoppingProduct from '../components/product/ShoppingProduct';
-import ShoppingListHeader from '../components/molecules/shoppingListHeader/ShoppingListHeader';
+import ShoppingProduct from '../components/shopping/list/ShoppingProduct';
+import ShoppingListHeader from '../components/shopping/list/ShoppingListHeader';
 
 const StyledListWrapper = styled.ul`
   margin-top: 10px;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import GlobalStyle from './themes/GlobalStyle';
-import { defaultTheme, darkTheme, lightTheme } from './themes/themes';
-import db from './fbase';
-import AppContext from './context';
-import Pantry from './views/Pantry';
-import ShoppingList from './views/ShoppingList';
-import Settings from './views/Settings';
-import Navigation from './components/organisms/navigation/Navigation';
+import GlobalStyle from '../themes/GlobalStyle';
+import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
+import db from '../fbase';
+import AppContext from '../context';
+import Pantry from './Pantry';
+import ShoppingList from './ShoppingList';
+import Settings from './Settings';
+import Navigation from '../components/organisms/navigation/Navigation';
 
 class Root extends React.Component {
   state = {

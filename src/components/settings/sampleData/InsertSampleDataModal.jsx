@@ -1,10 +1,10 @@
 import React from 'react';
 import db from '../../../fbase';
-import Modal from '../../templates/ModalTemplate';
+import Modal from '../../templates/TemplateModal';
 import sampleData from '../../../data/db.json';
 
 import Label from '../../atoms/formElements/Label';
-import ConfirmAndCancelButtonsWrapper from '../../molecules/ConfirmAndCancelButtonsWrapper';
+import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import TextHeader from '../../atoms/texts/TextHeader';
 
 const InsertSampleDataModal = ({ toggleInsertModal }) => {
@@ -33,7 +33,7 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
       <Label>Tyskie</Label>
       <Label>Biszkopty</Label>
       <TextHeader marginTop>Kontynuować ?</TextHeader>
-      <ConfirmAndCancelButtonsWrapper
+      <WrapperButtonsConfirmAndCancel
         cancelOnClick={toggleInsertModal}
         confirmOnClick={insertDataAndCloseModal}
       />

@@ -7,12 +7,12 @@ import {
   faPlusCircle,
   faMinusCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import db from '../../fbase';
-import Modal from '../templates/ModalTemplate';
-import TextHeader from '../atoms/texts/TextHeader';
-import Label from '../atoms/formElements/Label';
-import Input from '../atoms/formElements/Input';
-import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
+import db from '../../../fbase';
+import Modal from '../../templates/TemplateModal';
+import TextHeader from '../../atoms/texts/TextHeader';
+import Label from '../../atoms/formElements/Label';
+import Input from '../../atoms/formElements/Input';
+import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 
 const Header = styled(TextHeader)`
   margin-bottom: 5px;
@@ -105,7 +105,7 @@ class BuyProductModal extends React.Component {
           />
           <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
         </WrapperChangeQuantity>
-        <ConfirmAndCancelButtonsWrapper
+        <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleBuyProductModal}
           confirmOnClick={() =>
             this.updateProductQuantity(toggleBuyProductModal)

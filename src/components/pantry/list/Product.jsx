@@ -8,10 +8,10 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import AppContext from '../../context';
-import ProductPropertiesForm from '../organisms/ProductPropertiesForm';
-import DeleteProductModal from '../deleteProduct/DeleteProductModal';
-import ChangeQuantityForm from '../organisms/ChangeQuantityForm';
+import AppContext from '../../../context';
+import ProductPropertiesForm from '../ProductPropertiesForm';
+import DeleteProductModal from '../DeleteProductModal';
+import ChangeQuantityForm from '../ChangeQuantityForm';
 
 const StyledWrapper = styled.div`
 display: flex;

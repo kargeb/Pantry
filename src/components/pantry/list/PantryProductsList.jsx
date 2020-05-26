@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Product from '../product/Product';
+import Product from './Product';
 
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;

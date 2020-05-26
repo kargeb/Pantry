@@ -1,13 +1,13 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import db from '../../../../fbase';
-import Modal from '../../../templates/ModalTemplate';
-import TextHeader from '../../../atoms/texts/TextHeader';
-import Label from '../../../atoms/formElements/Label';
-import Button from '../../../atoms/buttons/Button';
-import ButtonCancel from '../../../atoms/buttons/ButtonCancel';
-import Select from '../../../atoms/formElements/Select';
+import db from '../../../fbase';
+import Modal from '../../templates/TemplateModal';
+import TextHeader from '../../atoms/texts/TextHeader';
+import Label from '../../atoms/formElements/Label';
+import Button from '../../atoms/buttons/Button';
+import ButtonIconCancel from '../../atoms/buttons/ButtonIconCancel';
+import Select from '../../atoms/formElements/Select';
 
 const InputVerticalWrapper = styled.div`
   margin-top: 5px;
@@ -89,7 +89,7 @@ class DeleteCategoryModal extends React.Component {
           Usuń
         </Button>
         <br />
-        <ButtonCancel onClick={toggleDeleteCategoryModal} />
+        <ButtonIconCancel onClick={toggleDeleteCategoryModal} />
       </Modal>
     );
   }

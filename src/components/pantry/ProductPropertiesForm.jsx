@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
-import Modal from '../templates/ModalTemplate';
+import Modal from '../templates/TemplateModal';
 import TextHeader from '../atoms/texts/TextHeader';
 import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import Select from '../atoms/formElements/Select';
-import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
+import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
 
 const InputVerticalWrapper = styled.div`
   display: flex;
@@ -142,7 +142,7 @@ class ProductPropertiesForm extends React.Component {
             value={quantity}
           />
         </InputHorizontalWrapper>
-        <ConfirmAndCancelButtonsWrapper
+        <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
