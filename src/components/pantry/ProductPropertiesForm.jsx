@@ -29,8 +29,11 @@ class ProductPropertiesForm extends React.Component {
   constructor(props) {
     super(props);
 
-    const { category, name, quantity, min, unit, id } = this.props;
-
+    const { category, name, quantity, min, unit } = this.props;
+    let { id } = this.props;
+    if (!id) {
+      id = uuidv4();
+    }
     this.state = {
       categories: [],
       name,
@@ -161,7 +164,7 @@ ProductPropertiesForm.defaultProps = {
   category: '',
   min: '5',
   unit: 'szt',
-  id: uuidv4(),
+  id: null,
 };
 
 export default ProductPropertiesForm;
