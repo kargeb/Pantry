@@ -1,13 +1,13 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import db from '../../../fbase';
-import Modal from '../../templates/ModalTemplate';
-import TextHeader from '../../atoms/texts/TextHeader';
-import TextLabel from '../../atoms/texts/TextLabel';
-import Button from '../../atoms/buttons/Button';
-import ButtonCancel from '../../atoms/buttons/ButtonCancel';
-import Select from '../../atoms/formElements/Select';
+import db from '../../../../fbase';
+import Modal from '../../../templates/ModalTemplate';
+import TextHeader from '../../../atoms/texts/TextHeader';
+import Label from '../../../atoms/formElements/Label';
+import Button from '../../../atoms/buttons/Button';
+import ButtonCancel from '../../../atoms/buttons/ButtonCancel';
+import Select from '../../../atoms/formElements/Select';
 
 const InputVerticalWrapper = styled.div`
   margin-top: 5px;
@@ -70,7 +70,7 @@ class DeleteCategoryModal extends React.Component {
         <InputVerticalWrapper>
           <TextHeader>Usuń Kategorię</TextHeader>
           <br />
-          <TextLabel htmlFor="toDelete">Wybierz kategorię:</TextLabel>
+          <Label htmlFor="toDelete">Wybierz kategorię:</Label>
           <Select id="toDelete" onChange={this.handleForm} value={toDelete}>
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (

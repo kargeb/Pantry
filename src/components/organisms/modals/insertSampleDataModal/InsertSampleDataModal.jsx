@@ -3,7 +3,7 @@ import db from '../../../fbase';
 import Modal from '../../templates/ModalTemplate';
 import sampleData from '../../../data/db.json';
 
-import TextLabel from '../../atoms/texts/TextLabel';
+import Label from '../../atoms/formElements/Label';
 import ConfirmAndCancelButtonsWrapper from '../../molecules/ConfirmAndCancelButtonsWrapper';
 import TextHeader from '../../atoms/texts/TextHeader';
 
@@ -28,10 +28,10 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
   return (
     <Modal>
       <TextHeader marginBottom>Wstawione zostaną:</TextHeader>
-      <TextLabel>Mąka</TextLabel>
-      <TextLabel>Coca-cola</TextLabel>
-      <TextLabel>Tyskie</TextLabel>
-      <TextLabel>Biszkopty</TextLabel>
+      <Label>Mąka</Label>
+      <Label>Coca-cola</Label>
+      <Label>Tyskie</Label>
+      <Label>Biszkopty</Label>
       <TextHeader marginTop>Kontynuować ?</TextHeader>
       <ConfirmAndCancelButtonsWrapper
         cancelOnClick={toggleInsertModal}

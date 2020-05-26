@@ -10,7 +10,7 @@ import {
 import db from '../../fbase';
 import Modal from '../templates/ModalTemplate';
 import TextHeader from '../atoms/texts/TextHeader';
-import TextLabel from '../atoms/texts/TextLabel';
+import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
 
@@ -92,7 +92,7 @@ class BuyProductModal extends React.Component {
     return (
       <Modal>
         <Header>Ile kcesz kupicz ?</Header>
-        <TextLabel>{name}</TextLabel>
+        <Label>{name}</Label>
         <WrapperChangeQuantity>
           <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
 

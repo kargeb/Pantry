@@ -5,7 +5,7 @@ import db from '../../fbase';
 import Modal from '../templates/ModalTemplate';
 import TextHeader from '../atoms/texts/TextHeader';
 import Input from '../atoms/formElements/Input';
-import TextLabel from '../atoms/texts/TextLabel';
+import Label from '../atoms/formElements/Label';
 import Button from '../atoms/buttons/Button';
 import ButtonCancel from '../atoms/buttons/ButtonCancel';
 
@@ -68,7 +68,7 @@ class AddCategoryModal extends React.Component {
         <TextHeader>Dodaj Kategorię</TextHeader>
         <br />
         <InputVerticalWrapper>
-          <TextLabel htmlFor="newCategory">Nazwa:</TextLabel>
+          <Label htmlFor="newCategory">Nazwa:</Label>
           <Input
             id="newCategory"
             type="text"

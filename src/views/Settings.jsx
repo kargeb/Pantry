@@ -4,13 +4,13 @@ import sampleData from '../data/db.json';
 import AppContext from '../context';
 import db from '../fbase';
 import AddCategoryModal from '../components/addCategoryModal/AddCategoryModal';
-import H2 from '../components/atoms/texts/H2';
-import TextLabel from '../components/atoms/texts/TextLabel';
+import H2 from '../components/atoms/texts/TextOption';
+import Label from '../components/atoms/formElements/Label';
 import ButtonSwitch from '../components/atoms/buttons/ButtonSwitch';
 import Button from '../components/atoms/buttons/Button';
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/organisms/sampleData/SampleData';
-import DeleteCategoryModal from '../components/organisms/deleteCategory/DeleteCategoryModal';
+import DeleteCategoryModal from '../components/organisms/modals/deleteCategory/DeleteCategoryModal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -91,12 +91,12 @@ class Settings extends React.Component {
               <div>
                 <H2>Dark Mode</H2>
                 <WrapperDarkModeToggle>
-                  <TextLabel>Off</TextLabel>
+                  <Label>Off</Label>
                   <ButtonSwitch
                     onClick={context.changeTheme}
                     themeName={context.currentTheme.name}
                   />
-                  <TextLabel>On</TextLabel>
+                  <Label>On</Label>
                 </WrapperDarkModeToggle>
               </div>
               <Divider />

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
 import Modal from '../templates/ModalTemplate';
 import TextHeader from '../atoms/texts/TextHeader';
-import TextLabel from '../atoms/texts/TextLabel';
+import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import Select from '../atoms/formElements/Select';
 import ConfirmAndCancelButtonsWrapper from '../molecules/ConfirmAndCancelButtonsWrapper';
@@ -94,7 +94,7 @@ class ProductPropertiesForm extends React.Component {
       <Modal>
         <TextHeader marginBottom>Nowy produkt</TextHeader>
         <InputVerticalWrapper>
-          <TextLabel htmlFor="name">Nazwa</TextLabel>
+          <Label htmlFor="name">Nazwa</Label>
           <Input
             id="name"
             type="text"
@@ -103,7 +103,7 @@ class ProductPropertiesForm extends React.Component {
           />
         </InputVerticalWrapper>
         <InputVerticalWrapper>
-          <TextLabel htmlFor="category">Kategoria</TextLabel>
+          <Label htmlFor="category">Kategoria</Label>
           <Select id="category" onChange={this.handleForm} value={category}>
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (
@@ -114,7 +114,7 @@ class ProductPropertiesForm extends React.Component {
           </Select>
         </InputVerticalWrapper>
         <InputHorizontalWrapper>
-          <TextLabel htmlFor="unit">Typ</TextLabel>
+          <Label htmlFor="unit">Typ</Label>
           <Select short id="unit" onChange={this.handleForm} value={unit}>
             <option value="szt">szt</option>
             <option value="l">l</option>
@@ -122,7 +122,7 @@ class ProductPropertiesForm extends React.Component {
           </Select>
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
-          <TextLabel htmlFor="min">Min</TextLabel>
+          <Label htmlFor="min">Min</Label>
           <Input
             short
             id="min"
@@ -133,7 +133,7 @@ class ProductPropertiesForm extends React.Component {
           />
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
-          <TextLabel htmlFor="quantity">Ilość</TextLabel>
+          <Label htmlFor="quantity">Ilość</Label>
           <Input
             short
             id="quantity"

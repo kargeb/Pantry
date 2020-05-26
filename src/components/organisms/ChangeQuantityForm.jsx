@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Modal from '../templates/ModalTemplate';
 import TextHeader from '../atoms/texts/TextHeader';
-import TextLabel from '../atoms/texts/TextLabel';
+import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import Button from '../atoms/buttons/Button';
 import db from '../../fbase';
@@ -125,7 +125,7 @@ class ChangeQuantityForm extends React.Component {
       <Modal>
         <Header>{this.state.name}</Header>
 
-        <TextLabel htmlFor="currentQuantity">Zmień ilość</TextLabel>
+        <Label htmlFor="currentQuantity">Zmień ilość</Label>
         <WrapperChangeQuantity>
           <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
 
