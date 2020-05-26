@@ -43,6 +43,8 @@ class ProductPropertiesForm extends React.Component {
   }
 
   componentDidMount() {
+    console.log('ID obecne: ', this.state.id);
+
     db.collection('categories')
       .doc('all')
       .get()
