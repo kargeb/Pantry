@@ -25,6 +25,19 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
+const AlertEmptyFields = styled.div`
+  position: absolute;
+  bottom: -25px;
+  left: calc(50% - 75px);
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  background-color: #814d0b;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+`;
+
 class ProductPropertiesForm extends React.Component {
   constructor(props) {
     super(props);
@@ -35,6 +48,7 @@ class ProductPropertiesForm extends React.Component {
       id = uuidv4();
     }
     this.state = {
+      isEmptyFieldsAlertVisible: false,
       categories: [],
       name,
       quantity,
@@ -87,13 +101,22 @@ class ProductPropertiesForm extends React.Component {
       toggleChangeQuantityModal();
       toggleFormVisibility();
     } else {
+      this.setState({ isEmptyFieldsAlertVisible: true });
       console.log('WYPEŁNIJ  SZYSTKIE POLA');
     }
   };
 
   render() {
     const { toggleFormVisibility } = this.props;
-    const { name, quantity, unit, min, category, categories } = this.state;
+    const {
+      name,
+      quantity,
+      unit,
+      min,
+      category,
+      categories,
+      isEmptyFieldsAlertVisible,
+    } = this.state;
 
     return (
       <Modal>
@@ -151,6 +174,9 @@ class ProductPropertiesForm extends React.Component {
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
+        {isEmptyFieldsAlertVisible && (
+          <AlertEmptyFields>Są puste pola!</AlertEmptyFields>
+        )}
       </Modal>
     );
   }
