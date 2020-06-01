@@ -65,16 +65,17 @@ class ChangeQuantityForm extends React.Component {
       min,
       unit,
       category,
-      isEditModalVisible: false,
+      isProductPropertiesForm: false,
       isDeleteModalVisibile: false,
     };
   }
 
   handleInput = e => {
-    console.log(e.target.value);
-    console.log(e.target.id);
-
-    this.setState({ quantity: e.target.value });
+    let { value } = e.target;
+    if (value < 0) {
+      value = 0;
+    }
+    this.setState({ quantity: value });
   };
 
   addQuantity = () => {
@@ -82,7 +83,11 @@ class ChangeQuantityForm extends React.Component {
   };
 
   subtractQuantity = () => {
-    this.setState({ quantity: this.state.quantity - 1 });
+    const { quantity } = this.state;
+    if (quantity == 0) {
+      return;
+    }
+    this.setState({ quantity: quantity - 1 });
   };
 
   updateProductQuantity = () => {
@@ -99,7 +104,7 @@ class ChangeQuantityForm extends React.Component {
 
   toggleEditProductForm = () => {
     this.setState(prevState => ({
-      isEditModalVisible: !prevState.isEditModalVisible,
+      isProductPropertiesForm: !prevState.isProductPropertiesForm,
     }));
   };
 
@@ -118,12 +123,13 @@ class ChangeQuantityForm extends React.Component {
       min,
       unit,
       isDeleteModalVisibile,
+      isProductPropertiesForm,
     } = this.state;
     const { toggleChangeQuantityModal, product } = this.props;
 
     return (
       <Modal>
-        <Header>{this.state.name}</Header>
+        <Header>{name}</Header>
 
         <Label htmlFor="currentQuantity">Zmień ilość</Label>
         <WrapperChangeQuantity>
@@ -165,7 +171,7 @@ class ChangeQuantityForm extends React.Component {
           />
         )}
 
-        {this.state.isEditModalVisible && (
+        {isProductPropertiesForm && (
           <ProductPropertiesForm
             id={id}
             name={name}
