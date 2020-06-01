@@ -11,12 +11,14 @@ const Background = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
+
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(1px);
   z-index: 9999999;
 `;
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

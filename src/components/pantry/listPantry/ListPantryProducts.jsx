@@ -23,6 +23,8 @@ const ListPantryProducts = ({ products }) => {
     }
   });
 
+  categoriesWithProducts.sort();
+
   return (
     <CategoriesList>
       {categoriesWithProducts.map(currentCategory => {

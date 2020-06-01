@@ -1,12 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTimesCircle,
-  faCheckSquare,
-  faPlusCircle,
-  faMinusCircle,
-} from '@fortawesome/free-solid-svg-icons';
 import db from '../../../fbase';
 import Modal from '../../templates/TemplateModal';
 import TextHeader from '../../atoms/texts/TextHeader';
@@ -69,7 +62,19 @@ class BuyProductModal extends React.Component {
   };
 
   subtractQuantity = () => {
-    this.setState({ lack: this.state.lack - 1 });
+    const { lack } = this.state;
+    if (lack == 0) {
+      return;
+    }
+    this.setState({ lack: lack - 1 });
+  };
+
+  handleInput = e => {
+    let { value } = e.target;
+    if (value < 0) {
+      value = 0;
+    }
+    this.setState({ lack: value });
   };
 
   updateProductQuantity = toggleBuyProductModal => {
@@ -91,18 +96,18 @@ class BuyProductModal extends React.Component {
 
     return (
       <Modal>
-        <Header>Ile kcesz kupicz ?</Header>
+        <Header>Ile chcesz kupić ?</Header>
         <Label>{name}</Label>
         <WrapperChangeQuantity>
           <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
 
           <InputNumber
-            readOnly
             short
             className="withoutSpinButtons"
             type="number"
             id="currentQuantity"
             value={lack}
+            onChange={this.handleInput}
           />
           <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
         </WrapperChangeQuantity>
