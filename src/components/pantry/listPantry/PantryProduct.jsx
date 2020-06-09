@@ -9,7 +9,7 @@ import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
   padding-left: 5%;
   min-height: 40px;
   line-height: 40px;
@@ -31,6 +31,7 @@ const StyledCenterWrapper = styled.div`
 
 const StyledRightWrapper = styled.div`
   display: flex;
+  justify-content: center;
   width: 25%;
 `;
 
