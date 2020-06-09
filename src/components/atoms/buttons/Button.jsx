@@ -12,6 +12,11 @@ const Button = styled.button`
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 1px;
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export default Button;

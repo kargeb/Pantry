@@ -5,16 +5,25 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const Button = styled.button`
   width: 55px;
-  height: 40px;
+  height: 35px;
   border: none;
   background-color: #fff;
   border-radius: 10px;
+  border: 1px solid #fff;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.54);
+  transition: all 0.3s;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    border-radius: 10px;
+    border: 1px solid ${({ theme }) => theme.primary};
+    cursor: pointer;
+  }
 `;
 
 const Icon = styled(FontAwesomeIcon)`
-  font-size: 24px;
   /* color: ${({ theme }) => theme.primary}; */
-  color: rgba(0, 0, 0, 0.54);
 `;
 
 const ButtonIconEditProduct = ({ onClick }) => (

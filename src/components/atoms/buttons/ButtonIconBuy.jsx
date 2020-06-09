@@ -7,15 +7,23 @@ const Button = styled.button`
   width: 55px;
   height: 40px;
   border: none;
-  /* background-color: ${({ theme }) => theme.primary}; */
+
   background-color: #fff;
-  /* border: 1px solid ${({ theme }) => theme.primary}; */
   border-radius: 10px;
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.54);
+  border: 1px solid #fff;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    border-radius: 10px;
+    border: 1px solid ${({ theme }) => theme.primary};
+    cursor: pointer;
+  }
 `;
 
 const Icon = styled(FontAwesomeIcon)`
-  font-size: 28px;
-  color: ${({ theme }) => theme.primary};
+  /* color: ${({ theme }) => theme.primary}; */
 `;
 
 const ButtonIconBuy = ({ onClick }) => (

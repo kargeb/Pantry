@@ -23,11 +23,21 @@ const ButtonAdd = styled.button`
   border: none;
   width: 55px;
   height: 55px;
+  line-height: 55px;
   background: ${({ theme }) => theme.primary};
   border-radius: 50%;
   color: #fff;
   font-size: 40px;
   text-transform: uppercase;
+  transition: all 0.1s;
+  outline: none;
+
+  &:hover {
+    font-size: 55px;
+    transform: scale(1.1);
+    cursor: pointer;
+    font-weight: bold;
+  }
 `;
 
 class Pantry extends React.Component {

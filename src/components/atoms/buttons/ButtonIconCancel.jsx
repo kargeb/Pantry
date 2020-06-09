@@ -6,6 +6,11 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 const Button = styled.button`
   border: none;
   background-color: white;
+  transition: all 0.1s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 const Icon = styled(FontAwesomeIcon)`
