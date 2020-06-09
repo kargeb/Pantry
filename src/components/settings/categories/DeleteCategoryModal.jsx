@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import db from '../../../fbase';
-import Modal from '../../templates/TemplateModal';
+import Modal from '../../templates/Modal';
 import TextHeader from '../../atoms/texts/TextHeader';
 import Label from '../../atoms/formElements/Label';
 import Button from '../../atoms/buttons/Button';

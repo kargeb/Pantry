@@ -5,15 +5,15 @@ import AppContext from '../context';
 import ShoppingProduct from '../components/shopping/listShoppingProducts/ShoppingProduct';
 import HeaderShoppingList from '../components/shopping/listShoppingProducts/HeaderShoppingList';
 
-const StyledListWrapper = styled.ul`
-  margin-top: 10px;
-  background-color: #fff;
-`;
-
 const StyledMain = styled.main`
   height: calc(100vh - 120px);
-  /* height: 1000px; */
-  background-color: white;
+  color: ${props => props.theme.textPrimary};
+  background-color: ${props => props.theme.background};
+`;
+
+const StyledListWrapper = styled.ul`
+  /* margin-top: 10px; */
+  /* background-color: #fff; */
 `;
 
 const Shopping = () => {

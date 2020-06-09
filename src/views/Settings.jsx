@@ -12,13 +12,17 @@ import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/settings/sampleData/SampleData';
 import DeleteCategoryModal from '../components/settings/categories/DeleteCategoryModal';
 
+const Main = styled.main`
+  color: ${props => props.theme.textPrimary};
+  background-color: ${props => props.theme.background};
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   padding-top: 15px;
-  /* background-color: #888; */
 `;
 
 const WrapperDarkModeToggle = styled.div`
@@ -26,13 +30,6 @@ const WrapperDarkModeToggle = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 120px;
-  /* background-color: blue; */
-`;
-
-const WrapperVertical = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const WrapperCategoriesButtons = styled.div`
@@ -40,8 +37,6 @@ const WrapperCategoriesButtons = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
-  /* background-color: blue; */
 `;
 
 const ButtonWidthGap = styled(Button)`
@@ -86,7 +81,7 @@ class Settings extends React.Component {
     return (
       <AppContext.Consumer>
         {context => (
-          <main>
+          <Main>
             <Wrapper>
               <div>
                 <H2>Dark Mode</H2>
@@ -100,12 +95,6 @@ class Settings extends React.Component {
                 </WrapperDarkModeToggle>
               </div>
               <Divider />
-              {/* <WrapperVertical>
-                <H2>Przykładowe dane</H2>
-                <ButtonWidthGap type="button" onClick={this.uploadSampleData}>
-                  Pobierz
-                </ButtonWidthGap>
-              </WrapperVertical> */}
               <InsertSampleData />
               <Divider />
               <div>
@@ -136,7 +125,7 @@ class Settings extends React.Component {
                 toggleAddCategoryModal={this.toggleAddCategoryModal}
               />
             )}
-          </main>
+          </Main>
         )}
       </AppContext.Consumer>
     );

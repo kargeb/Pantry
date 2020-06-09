@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Modal from '../templates/TemplateModal';
+import Modal from '../templates/Modal';
 import TextHeader from '../atoms/texts/TextHeader';
 import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
@@ -9,32 +9,35 @@ import db from '../../fbase';
 import DeleteProductModal from './DeleteProductModal';
 import ProductPropertiesForm from './ProductPropertiesForm';
 import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
+import ButtonQuantity from '../atoms/buttons/ButtonQuantity';
 
 const Header = styled(TextHeader)`
   margin-bottom: 15px;
 `;
 
-const ButtonQuantity = styled.button`
-  font-family: inherit;
-  width: 40px;
-  height: 28px;
-  line-height: 28px;
-  background-color: ${({ theme }) => theme.background};
-  border: 1px solid #8e5f23;
-  border-radius: 4px;
-  color: #8e5f23;
-  font-size: 28px;
-  font-weight: 500;
-`;
+// const ButtonQuantity = styled.button`
+//   font-family: inherit;
+//   width: 40px;
+//   height: 28px;
+//   line-height: 28px;
+//   background-color: ${({ theme }) => theme.background};
+//   border: 1px solid #8e5f23;
+//   border-radius: 4px;
+//   color: #8e5f23;
+//   font-size: 28px;
+//   font-weight: 500;
+// `;
 
 const InputNumber = styled(Input)`
+  border: none;
+  color: ${props => props.theme.textPrimary};
   text-align: center;
   width: 44px;
   height: 44px;
   padding: 0;
   margin: 0;
-  color: black;
-  font-size: 28px;
+  font-weight: 500;
+  font-size: 34px;
   line-height: 44px;
 `;
 
@@ -144,10 +147,6 @@ class ChangeQuantityForm extends React.Component {
           />
           <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
         </WrapperChangeQuantity>
-        <WrapperButtonsConfirmAndCancel
-          cancelOnClick={toggleChangeQuantityModal}
-          confirmOnClick={this.updateProductQuantity}
-        />
         <WrapperEditDeleteButtons>
           <Button
             type="button"
@@ -161,6 +160,10 @@ class ChangeQuantityForm extends React.Component {
             Usuń
           </Button>
         </WrapperEditDeleteButtons>
+        <WrapperButtonsConfirmAndCancel
+          cancelOnClick={toggleChangeQuantityModal}
+          confirmOnClick={this.updateProductQuantity}
+        />
 
         {isDeleteModalVisibile && (
           <DeleteProductModal

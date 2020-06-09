@@ -5,7 +5,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Button = styled.button`
   border: none;
-  background-color: white;
+  background-color: ${props => props.theme.background};
   transition: all 0.1s;
 
   &:hover {

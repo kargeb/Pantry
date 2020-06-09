@@ -8,13 +8,15 @@ import loadingGif from '../images/loading_dots.gif';
 
 const Main = styled.main`
   display: flex;
+  padding-top: 10px;
   flex-direction: column;
   justify-content: space-between;
+  color: ${props => props.theme.textPrimary};
+  background-color: ${props => props.theme.background};
 `;
 
 const ButtonAddWrapper = styled.div`
   box-sizing: border-box;
-  background-color: #fff;
   text-align: center;
   padding: 15px 0;
 `;
@@ -26,7 +28,7 @@ const ButtonAdd = styled.button`
   line-height: 55px;
   background: ${({ theme }) => theme.primary};
   border-radius: 50%;
-  color: #fff;
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 40px;
   text-transform: uppercase;
   transition: all 0.1s;

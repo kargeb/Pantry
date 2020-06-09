@@ -11,7 +11,7 @@ import AppContext from '../../context';
 
 const Nav = styled.nav`
   display: flex;
-  color: ${({ theme }) => theme.fontPrimary};
+
   background-color: ${({ theme }) => theme.primary};
 `;
 
@@ -59,7 +59,7 @@ const NavLinkWrapper = styled(NavLink)`
   transition: font-size 0.2s;
 
   &.active {
-    color: #fff;
+    color: ${({ theme }) => theme.activeTextColorNav};
     letter-spacing: 0.15px;
     font-size: 18px;
 

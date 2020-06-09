@@ -6,19 +6,16 @@ import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 const Button = styled.button`
   border: none;
   background-color: inherit;
-`;
-
-const Icon = styled(FontAwesomeIcon)`
   font-size: 35px;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${props => props.theme.textPrimary};
 `;
 
 const ButtonIconSwitch = ({ onClick, themeName }) => (
   <Button onClick={onClick}>
     {themeName == 'lightTheme' ? (
-      <Icon icon={faToggleOff} />
+      <FontAwesomeIcon icon={faToggleOff} />
     ) : (
-      <Icon icon={faToggleOn} />
+      <FontAwesomeIcon icon={faToggleOn} />
     )}
   </Button>
 );

@@ -8,7 +8,7 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.primary};
   border: 1px solid #ada17e;
   border-radius: 8px;
-  color: ${({ theme }) => theme.fontPrimary};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 1px;

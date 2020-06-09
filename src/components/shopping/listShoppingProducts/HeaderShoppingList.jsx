@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
-  margin: 5px 0;
-  padding: 0 5%;
+  /* margin: 5px 0; */
+  padding: 5px 5% 0 5%;
   min-height: 50px;
   line-height: 50px;
   display: flex;

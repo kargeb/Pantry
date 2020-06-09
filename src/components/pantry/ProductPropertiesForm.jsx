@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
-import Modal from '../templates/TemplateModal';
+import Modal from '../templates/Modal';
 import TextHeader from '../atoms/texts/TextHeader';
 import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
