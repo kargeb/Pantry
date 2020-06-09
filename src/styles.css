@@ -5,3 +5,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+select {
+  cursor: pointer;
+}
