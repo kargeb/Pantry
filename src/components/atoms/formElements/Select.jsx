@@ -7,6 +7,8 @@ const Select = styled.select`
   border: solid 1px #ada17e;
   border-radius: 8px;
   outline: none;
+  color: ${props => props.theme.textPrimary};
+  background-color: ${props => props.theme.background};
 
   ${({ short }) =>
     short &&

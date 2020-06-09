@@ -46,7 +46,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   user-select: none;
   line-height: 40px;
   margin: 0 10px;
-  color: rgba(0, 0, 0, 0.54);
+  color: ${props => props.theme.textPrimary};
 `;
 
 const StyledQuantityWrapper = styled.div`

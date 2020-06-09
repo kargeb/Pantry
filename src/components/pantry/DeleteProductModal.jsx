@@ -1,7 +1,7 @@
 import React from 'react';
 
 import db from '../../fbase';
-import Modal from '../templates/TemplateModal';
+import Modal from '../templates/Modal';
 import TextHeader from '../atoms/texts/TextHeader';
 import Label from '../atoms/formElements/Label';
 import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';

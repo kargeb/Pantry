@@ -1,6 +1,6 @@
 import React from 'react';
 import db from '../../../fbase';
-import Modal from '../../templates/TemplateModal';
+import Modal from '../../templates/Modal';
 import sampleData from '../../../data/db.json';
 
 import Label from '../../atoms/formElements/Label';

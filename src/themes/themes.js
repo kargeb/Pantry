@@ -8,7 +8,7 @@ export const defaultTheme = {
 export const lightTheme = {
   name: 'lightTheme',
   primary: '#FB8E01',
-  textPrimary: '#fff',
+  textPrimary: '#333',
   textSecondary: '#fff',
   background: '#fff',
   activeTextColorNav: '#fff',

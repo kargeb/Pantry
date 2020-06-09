@@ -7,11 +7,12 @@ const Button = styled.button`
   width: 55px;
   height: 35px;
   border: none;
-  background-color: #fff;
+  color: ${props => props.theme.textPrimary};
+  background-color: ${props => props.theme.background};
   border-radius: 10px;
-  border: 1px solid #fff;
+  border: 1px solid ${props => props.theme.background};
   font-size: 24px;
-  color: rgba(0, 0, 0, 0.54);
+  /* color: rgba(0, 0, 0, 0.54); */
   transition: all 0.3s;
 
   &:hover {

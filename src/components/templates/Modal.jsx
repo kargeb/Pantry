@@ -25,7 +25,8 @@ const Wrapper = styled.div`
   align-items: center;
 
   padding: 2% 4%;
-  background-color: white;
+  color: ${props => props.theme.textPrimary};
+  background-color: ${props => props.theme.background};
   border: solid 3px #999;
 `;
 
