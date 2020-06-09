@@ -69,7 +69,12 @@ class ProductPropertiesForm extends React.Component {
   }
 
   handleForm = e => {
-    this.setState({ [e.target.id]: e.target.value });
+    let { value } = e.target;
+    if (value < 0) {
+      value = 0;
+    }
+
+    this.setState({ [e.target.id]: value });
   };
 
   handleSubmit = () => {
