@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   padding-top: 15px;
+  background-color: ${props => props.theme.background};
   /* background-color: #888; */
 `;
 

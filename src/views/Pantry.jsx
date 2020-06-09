@@ -10,6 +10,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: ${props => props.theme.background};
 `;
 
 const ButtonAddWrapper = styled.div`
@@ -26,7 +27,7 @@ const ButtonAdd = styled.button`
   line-height: 55px;
   background: ${({ theme }) => theme.primary};
   border-radius: 50%;
-  color: #fff;
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 40px;
   text-transform: uppercase;
   transition: all 0.1s;

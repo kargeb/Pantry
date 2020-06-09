@@ -25,17 +25,14 @@ const GlobalStyle = createGlobalStyle`
         max-width: 400px;
         margin: 0 auto;
         height: 100vh;
-        background-color: white;
     }
 
     nav{
         height: 70px;
-        ${'' /* height:  ${props => props.theme.navHeigth}; */}
     }
 
     main{
         height: calc(100vh - 70px);
-        ${'' /* height:  ${props => props.theme.mainHeigh}; */}
     }
 
     ul{

@@ -13,7 +13,7 @@ const StyledListWrapper = styled.ul`
 const StyledMain = styled.main`
   height: calc(100vh - 120px);
   /* height: 1000px; */
-  background-color: white;
+  background-color: ${props => props.theme.background};
 `;
 
 const Shopping = () => {
