@@ -29,7 +29,6 @@ const ButtonQuantity = styled.button`
   color: #8e5f23;
   font-size: 28px;
   font-weight: 500;
-  /* letter-spacing: 1px; */
 `;
 
 const InputNumber = styled(Input)`
