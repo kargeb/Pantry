@@ -22,9 +22,10 @@ const Nav = styled.nav`
 `;
 
 const IconWithCounterWrapper = styled.div`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: center;
+  overflow: hidden;
 `;
 
 const ShoppingListCounter = styled.div`
@@ -36,6 +37,7 @@ const ShoppingListCounter = styled.div`
   font-weight: 900;
   border-radius: 50px;
   margin-left: 10px;
+  overflow: hidden;
 
   &.active {
     color: #fff;
@@ -63,6 +65,7 @@ const NavLinkWrapper = styled(NavLink)`
   color: ${({ theme }) => theme.inactiveNavColor};
   /* background-color: ${({ theme }) => theme.primary}; */
   transition: font-size 0.2s;
+  overflow: hidden;
 
   &.active {
     color: ${({ theme }) => theme.activeTextColorNav};
@@ -110,12 +113,11 @@ const Navigation = () => {
                 <Icon icon={faShoppingCart} />
                 <ShoppingListCounter>
                   <span>
-                    {' '}
                     {numberOfProductsOnShoppingList(context.products)}
                   </span>
                 </ShoppingListCounter>
               </IconWithCounterWrapper>
-              <p>Shopping</p>
+              <p>Shop</p>
             </NavLinkWrapper>
           </Nav>
         </Header>

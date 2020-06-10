@@ -23,21 +23,65 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   padding-top: 15px;
+
+  @media (min-width: 1024px) {
+    height: 250px;
+    padding-top: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+`;
+
+const SectionDarkMode = styled.section`
+  @media (min-width: 1024px) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    /* justify-content: space-around; */
+  }
+`;
+
+const SectionCategories = styled.section`
+  @media (min-width: 1024px) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    /* justify-content: space-around; */
+  }
 `;
 
 const WrapperDarkModeToggle = styled.div`
   display: flex;
   justify-content: space-between;
+
   align-items: center;
   width: 120px;
+  @media (min-width: 1024px) {
+    height: 90px;
+    /* padding-top: 60px; */
+  }
+`;
+
+const HeaderSection = styled.div`
+  @media (min-width: 1024px) {
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const WrapperCategoriesButtons = styled.div`
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 `;
+
+const WrapperInsertData = styled.div``;
 
 const ButtonWidthGap = styled(Button)`
   margin: 8px 0;
@@ -83,8 +127,10 @@ class Settings extends React.Component {
         {context => (
           <Main>
             <Wrapper>
-              <div>
-                <H2>Dark Mode</H2>
+              <SectionDarkMode>
+                <HeaderSection>
+                  <H2>Dark Mode</H2>
+                </HeaderSection>
                 <WrapperDarkModeToggle>
                   <Label>Off</Label>
                   <ButtonIconSwitch
@@ -93,12 +139,16 @@ class Settings extends React.Component {
                   />
                   <Label>On</Label>
                 </WrapperDarkModeToggle>
-              </div>
+              </SectionDarkMode>
               <Divider />
+
               <InsertSampleData />
+
               <Divider />
-              <div>
-                <H2>Kategorie</H2>
+              <SectionCategories>
+                <HeaderSection>
+                  <H2>Kategorie</H2>
+                </HeaderSection>
                 <WrapperCategoriesButtons>
                   <ButtonWidthGap
                     type="button"
@@ -113,7 +163,7 @@ class Settings extends React.Component {
                     Dodaj
                   </ButtonWidthGap>
                 </WrapperCategoriesButtons>
-              </div>
+              </SectionCategories>
             </Wrapper>
             {isDeleteCategoryModalVisible && (
               <DeleteCategoryModal
