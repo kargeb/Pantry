@@ -9,10 +9,16 @@ import {
 import { NavLink } from 'react-router-dom';
 import AppContext from '../../context';
 
+const Header = styled.header`
+  background-color: ${({ theme }) => theme.primary};
+`;
+
 const Nav = styled.nav`
   display: flex;
-
-  background-color: ${({ theme }) => theme.primary};
+  margin: 0 auto;
+  max-width: 600px;
+  /* background-color: yellow; */
+  height: 100%;
 `;
 
 const IconWithCounterWrapper = styled.div`
@@ -89,25 +95,30 @@ const Navigation = () => {
   return (
     <AppContext.Consumer>
       {context => (
-        <Nav>
-          <NavLinkWrapper to="/settings">
-            <Icon icon={faCogs} />
-            <p>Settings</p>
-          </NavLinkWrapper>
-          <NavLinkWrapper to="/" exact>
-            <Icon icon={faList} />
-            <p>Pantry</p>
-          </NavLinkWrapper>
-          <NavLinkWrapper to="/shopping">
-            <IconWithCounterWrapper>
-              <Icon icon={faShoppingCart} />
-              <ShoppingListCounter>
-                <span> {numberOfProductsOnShoppingList(context.products)}</span>
-              </ShoppingListCounter>
-            </IconWithCounterWrapper>
-            <p>Shopping</p>
-          </NavLinkWrapper>
-        </Nav>
+        <Header>
+          <Nav>
+            <NavLinkWrapper to="/settings">
+              <Icon icon={faCogs} />
+              <p>Settings</p>
+            </NavLinkWrapper>
+            <NavLinkWrapper to="/" exact>
+              <Icon icon={faList} />
+              <p>Pantry</p>
+            </NavLinkWrapper>
+            <NavLinkWrapper to="/shopping">
+              <IconWithCounterWrapper>
+                <Icon icon={faShoppingCart} />
+                <ShoppingListCounter>
+                  <span>
+                    {' '}
+                    {numberOfProductsOnShoppingList(context.products)}
+                  </span>
+                </ShoppingListCounter>
+              </IconWithCounterWrapper>
+              <p>Shopping</p>
+            </NavLinkWrapper>
+          </Nav>
+        </Header>
       )}
     </AppContext.Consumer>
   );

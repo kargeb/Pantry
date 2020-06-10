@@ -22,12 +22,12 @@ const GlobalStyle = createGlobalStyle`
     body{
         position: relative;
         font-family: 'Roboto', sans-serif;
-        max-width: 400px;
+        ${'' /* max-width: 400px; */}
         margin: 0 auto;
         height: 100vh;
     }
 
-    nav{
+    header{
         height: 70px;
     }
 
