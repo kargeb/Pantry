@@ -73,12 +73,15 @@ const NavLinkWrapper = styled(NavLink)`
     font-size: 18px;
 
     &:hover {
-      transform: scale(1)
+      color: ${({ theme }) => theme.activeTextColorNav};
+    letter-spacing: 0.15px;
+    font-size: 18px;
     }
   }
 
   &:hover {
-    transform: scale(1.1)
+    font-size: 18px;
+    color: #FDE3C2
   }
 
   @media (min-width: 1024px) {
