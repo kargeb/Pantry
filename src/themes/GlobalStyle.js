@@ -22,12 +22,12 @@ const GlobalStyle = createGlobalStyle`
     body{
         position: relative;
         font-family: 'Roboto', sans-serif;
-        max-width: 400px;
+        ${'' /* max-width: 400px; */}
         margin: 0 auto;
         height: 100vh;
     }
 
-    nav{
+    header{
         height: 70px;
     }
 
@@ -43,14 +43,25 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: inherit
     }
+
     ${
-      '' /* disable arrow buttons added by browser inside Input in changeQuantityForm */
+      '' /* disable arrow buttons added by browser inside Input in changeQuantityForm  */
     }
     input[type=number].withoutSpinButtons::-webkit-inner-spin-button,
     input[type=number].withoutSpinButtons::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
+
+    button {
+        outline: none;
+        cursor: pointer;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
 
     @media ${device.laptop} {
    body{

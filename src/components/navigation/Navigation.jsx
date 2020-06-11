@@ -9,16 +9,23 @@ import {
 import { NavLink } from 'react-router-dom';
 import AppContext from '../../context';
 
-const Nav = styled.nav`
-  display: flex;
-
+const Header = styled.header`
   background-color: ${({ theme }) => theme.primary};
 `;
 
+const Nav = styled.nav`
+  display: flex;
+  margin: 0 auto;
+  max-width: 600px;
+  /* background-color: yellow; */
+  height: 100%;
+`;
+
 const IconWithCounterWrapper = styled.div`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: center;
+  overflow: hidden;
 `;
 
 const ShoppingListCounter = styled.div`
@@ -30,6 +37,7 @@ const ShoppingListCounter = styled.div`
   font-weight: 900;
   border-radius: 50px;
   margin-left: 10px;
+  overflow: hidden;
 
   &.active {
     color: #fff;
@@ -57,6 +65,7 @@ const NavLinkWrapper = styled(NavLink)`
   color: ${({ theme }) => theme.inactiveNavColor};
   /* background-color: ${({ theme }) => theme.primary}; */
   transition: font-size 0.2s;
+  overflow: hidden;
 
   &.active {
     color: ${({ theme }) => theme.activeTextColorNav};
@@ -64,12 +73,15 @@ const NavLinkWrapper = styled(NavLink)`
     font-size: 18px;
 
     &:hover {
-      transform: scale(1)
+      color: ${({ theme }) => theme.activeTextColorNav};
+    letter-spacing: 0.15px;
+    font-size: 18px;
     }
   }
 
   &:hover {
-    transform: scale(1.1)
+    font-size: 18px;
+    color: #FDE3C2
   }
 
   @media (min-width: 1024px) {
@@ -89,25 +101,29 @@ const Navigation = () => {
   return (
     <AppContext.Consumer>
       {context => (
-        <Nav>
-          <NavLinkWrapper to="/settings">
-            <Icon icon={faCogs} />
-            <p>Settings</p>
-          </NavLinkWrapper>
-          <NavLinkWrapper to="/" exact>
-            <Icon icon={faList} />
-            <p>Pantry</p>
-          </NavLinkWrapper>
-          <NavLinkWrapper to="/shopping">
-            <IconWithCounterWrapper>
-              <Icon icon={faShoppingCart} />
-              <ShoppingListCounter>
-                <span> {numberOfProductsOnShoppingList(context.products)}</span>
-              </ShoppingListCounter>
-            </IconWithCounterWrapper>
-            <p>Shopping</p>
-          </NavLinkWrapper>
-        </Nav>
+        <Header>
+          <Nav>
+            <NavLinkWrapper to="/settings">
+              <Icon icon={faCogs} />
+              <p>Settings</p>
+            </NavLinkWrapper>
+            <NavLinkWrapper to="/" exact>
+              <Icon icon={faList} />
+              <p>Pantry</p>
+            </NavLinkWrapper>
+            <NavLinkWrapper to="/shopping">
+              <IconWithCounterWrapper>
+                <Icon icon={faShoppingCart} />
+                <ShoppingListCounter>
+                  <span>
+                    {numberOfProductsOnShoppingList(context.products)}
+                  </span>
+                </ShoppingListCounter>
+              </IconWithCounterWrapper>
+              <p>Shop</p>
+            </NavLinkWrapper>
+          </Nav>
+        </Header>
       )}
     </AppContext.Consumer>
   );

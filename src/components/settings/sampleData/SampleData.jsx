@@ -10,6 +10,30 @@ const WrapperVertical = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (min-width: 1024px) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    /* justify-content: space-around; */
+  }
+`;
+
+const HeaderSection = styled.div`
+  @media (min-width: 1024px) {
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
+`;
+const WrapperButton = styled.div`
+  @media (min-width: 1024px) {
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const ButtonWidthGap = styled(Button)`
@@ -32,10 +56,14 @@ class SampleData extends React.Component {
 
     return (
       <WrapperVertical>
-        <H2>Przykładowe dane</H2>
-        <ButtonWidthGap type="button" onClick={this.toggleInsertModal}>
-          Pobierz
-        </ButtonWidthGap>
+        <HeaderSection>
+          <H2>Przykładowe dane</H2>
+        </HeaderSection>
+        <WrapperButton>
+          <ButtonWidthGap type="button" onClick={this.toggleInsertModal}>
+            Pobierz
+          </ButtonWidthGap>
+        </WrapperButton>
         {isInsertModalVisible && (
           <InsertSampleDataModal toggleInsertModal={this.toggleInsertModal} />
         )}
