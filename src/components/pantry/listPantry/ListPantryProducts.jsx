@@ -8,9 +8,31 @@ const StyledCategoryLabel = styled.div`
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
+  color: ${({ theme }) => theme.primary};
+
+  @media (min-width: 1024px) {
+    /* background-color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.background}}; */
+    /* transform: rotate(90deg) */
+    text-align: center
+  }
 `;
 
-const CategoriesList = styled.ul``;
+const CategoriesList = styled.ul`
+  @media (min-width: 1024px) {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+`;
+
+const CategoriesItem = styled.li`
+  @media (min-width: 1024px) {
+    margin-bottom: 10px;
+    border: 1px solid ${({ theme }) => theme.primary};
+    border-radius: 20px;
+  }
+`;
 
 const ProductsList = styled.ul``;
 
@@ -31,7 +53,7 @@ const ListPantryProducts = ({ products }) => {
           product => product.category === currentCategory,
         );
         return (
-          <li key={currentCategory}>
+          <CategoriesItem key={currentCategory}>
             <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
             <ProductsList>
               {productsInCurrentCategory.map(currentProduct => (
@@ -40,7 +62,7 @@ const ListPantryProducts = ({ products }) => {
                 </li>
               ))}
             </ProductsList>
-          </li>
+          </CategoriesItem>
         );
       })}
     </CategoriesList>

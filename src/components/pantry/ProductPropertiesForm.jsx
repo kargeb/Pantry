@@ -125,7 +125,9 @@ class ProductPropertiesForm extends React.Component {
 
     return (
       <Modal>
-        <TextHeader marginBottom>Nowy produkt</TextHeader>
+        <TextHeader marginBottom>
+          {this.props.id ? 'Edytuj produkt' : 'Nowy produkt'}
+        </TextHeader>
         <InputVerticalWrapper>
           <Label htmlFor="name">Nazwa</Label>
           <Input
