@@ -1,6 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import PantryProduct from './PantryProduct';
+import styled from 'styled-components';
+import ShoppingProduct from './ShoppingProduct';
 
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
@@ -19,19 +19,19 @@ const StyledCategoryLabel = styled.div`
 `;
 
 const CategoriesList = styled.ul`
-  @media (min-width: 1024px) {
+  /* @media (min-width: 1024px) {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-  }
+  } */
 `;
 
 const CategoriesItem = styled.li`
-  @media (min-width: 1024px) {
+  /* @media (min-width: 1024px) {
     margin-bottom: 10px;
     border: 1px solid ${({ theme }) => theme.primary};
     border-radius: 20px;
-  }
+  } */
 `;
 
 const ProductsList = styled.ul``;
@@ -47,7 +47,7 @@ const getCategoriesWithProducts = products => {
   return categoriesWithProducts;
 };
 
-const ListPantryProducts = ({ products }) => {
+const ListShoppingProducts = ({ products }) => {
   const categoriesWithProducts = getCategoriesWithProducts(products);
   categoriesWithProducts.sort();
 
@@ -63,7 +63,12 @@ const ListPantryProducts = ({ products }) => {
             <ProductsList>
               {productsInCurrentCategory.map(currentProduct => (
                 <li key={currentProduct.id}>
-                  <PantryProduct product={currentProduct} />
+                  <ShoppingProduct
+                    name={currentProduct.name}
+                    id={currentProduct.id}
+                    quantity={currentProduct.quantity}
+                    min={currentProduct.min}
+                  />
                 </li>
               ))}
             </ProductsList>
@@ -74,4 +79,4 @@ const ListPantryProducts = ({ products }) => {
   );
 };
 
-export default ListPantryProducts;
+export default ListShoppingProducts;
