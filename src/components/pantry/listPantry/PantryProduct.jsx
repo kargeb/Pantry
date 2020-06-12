@@ -13,6 +13,10 @@ const StyledWrapper = styled.div`
   padding-left: 5%;
   min-height: 40px;
   line-height: 40px;
+
+  @media (min-width: 1024px) {
+    width: 300px;
+  }
 `;
 
 const StyledCartIconWrapper = styled.div`
