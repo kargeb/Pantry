@@ -19,15 +19,19 @@ const StyledCategoryLabel = styled.div`
 `;
 
 const CategoriesList = styled.ul`
-  @media (min-width: 1024px) {
+  @media (min-width: ${({ theme }) => theme.small}) {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
   }
+
+  /* @media (min-width: ${({ theme }) => theme.laptop}) {
+    margin: 0 10%;
+  } */
 `;
 
 const CategoriesItem = styled.li`
-  @media (min-width: 1024px) {
+  @media (min-width: ${({ theme }) => theme.small}) {
     margin-bottom: 10px;
     border: 1px solid ${({ theme }) => theme.primary};
     border-radius: 20px;

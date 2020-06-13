@@ -1,5 +1,14 @@
+const size = {
+  sm: '600px',
+  md: '960px',
+  lg: '1280px',
+};
+
 export const defaultTheme = {
   inactiveNavColor: 'rgba(255, 255, 255, 0.5)',
+  small: `${size.sm}`,
+  medium: `${size.md}`,
+  large: `${size.lg}`,
 };
 
 export const lightTheme = {

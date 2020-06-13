@@ -14,7 +14,7 @@ const StyledWrapper = styled.div`
   min-height: 40px;
   line-height: 40px;
 
-  @media (min-width: 1024px) {
+  @media (min-width: ${({ theme }) => theme.small}) {
     width: 300px;
   }
 `;

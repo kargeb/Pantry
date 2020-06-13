@@ -84,6 +84,7 @@ class AddCategoryModal extends React.Component {
         >
           Dodaj
         </Button>
+        <br />
         <ButtonIconCancel onClick={toggleAddCategoryModal} />
       </Modal>
     );

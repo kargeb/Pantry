@@ -2,6 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import ShoppingProduct from './ShoppingProduct';
 
+const CategoriesList = styled.ul`
+  padding-top: 10px;
+  @media (min-width: ${({ theme }) => theme.small}) {
+    width: 600px;
+    margin: 0 auto;
+    /* text-align: center; */
+  }
+`;
+
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
   font-style: normal;
@@ -11,19 +20,9 @@ const StyledCategoryLabel = styled.div`
   color: ${({ theme }) => theme.primary};
 
   @media (min-width: 1024px) {
-    /* background-color: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.background}}; */
-    /* transform: rotate(90deg) */
-    text-align: center
+    /* width: 600px; */
+    /* text-align: center */
   }
-`;
-
-const CategoriesList = styled.ul`
-  /* @media (min-width: 1024px) {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  } */
 `;
 
 const CategoriesItem = styled.li`
