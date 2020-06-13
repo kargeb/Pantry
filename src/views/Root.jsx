@@ -52,7 +52,6 @@ class Root extends React.Component {
     const mergedTheme = Object.assign(defaultTheme, currentTheme);
     return (
       <BrowserRouter>
-        {/* <ThemeProvider theme={currentTheme}> */}
         <ThemeProvider theme={mergedTheme}>
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>

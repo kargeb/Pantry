@@ -1,6 +1,15 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import PantryProduct from './PantryProduct';
+import styled from 'styled-components';
+import ShoppingProduct from './ShoppingProduct';
+
+const CategoriesList = styled.ul`
+  padding-top: 10px;
+  @media (min-width: ${({ theme }) => theme.small}) {
+    width: 600px;
+    margin: 0 auto;
+    /* text-align: center; */
+  }
+`;
 
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
@@ -11,31 +20,17 @@ const StyledCategoryLabel = styled.div`
   color: ${({ theme }) => theme.primary};
 
   @media (min-width: 1024px) {
-    /* background-color: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.background}}; */
-    /* transform: rotate(90deg) */
-    text-align: center
+    /* width: 600px; */
+    /* text-align: center */
   }
-`;
-
-const CategoriesList = styled.ul`
-  @media (min-width: ${({ theme }) => theme.small}) {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-
-  /* @media (min-width: ${({ theme }) => theme.laptop}) {
-    margin: 0 10%;
-  } */
 `;
 
 const CategoriesItem = styled.li`
-  @media (min-width: ${({ theme }) => theme.small}) {
+  /* @media (min-width: 1024px) {
     margin-bottom: 10px;
     border: 1px solid ${({ theme }) => theme.primary};
     border-radius: 20px;
-  }
+  } */
 `;
 
 const ProductsList = styled.ul``;
@@ -51,7 +46,7 @@ const getCategoriesWithProducts = products => {
   return categoriesWithProducts;
 };
 
-const ListPantryProducts = ({ products }) => {
+const ListShoppingProducts = ({ products }) => {
   const categoriesWithProducts = getCategoriesWithProducts(products);
   categoriesWithProducts.sort();
 
@@ -67,7 +62,12 @@ const ListPantryProducts = ({ products }) => {
             <ProductsList>
               {productsInCurrentCategory.map(currentProduct => (
                 <li key={currentProduct.id}>
-                  <PantryProduct product={currentProduct} />
+                  <ShoppingProduct
+                    name={currentProduct.name}
+                    id={currentProduct.id}
+                    quantity={currentProduct.quantity}
+                    min={currentProduct.min}
+                  />
                 </li>
               ))}
             </ProductsList>
@@ -78,4 +78,4 @@ const ListPantryProducts = ({ products }) => {
   );
 };
 
-export default ListPantryProducts;
+export default ListShoppingProducts;
