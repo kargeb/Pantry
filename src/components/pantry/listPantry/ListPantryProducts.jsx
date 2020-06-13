@@ -10,19 +10,20 @@ const StyledCategoryLabel = styled.div`
   line-height: 23px;
   color: ${({ theme }) => theme.primary};
 
-  @media (min-width: 1024px) {
+  @media (min-width:${({ theme }) => theme.small}) {
     /* background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.background}}; */
     /* transform: rotate(90deg) */
-    text-align: center
+text-align: center
   }
 `;
 
 const CategoriesList = styled.ul`
   @media (min-width: ${({ theme }) => theme.small}) {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
+    margin: 0 3%;
   }
 
   /* @media (min-width: ${({ theme }) => theme.laptop}) {
@@ -33,6 +34,7 @@ const CategoriesList = styled.ul`
 const CategoriesItem = styled.li`
   @media (min-width: ${({ theme }) => theme.small}) {
     margin-bottom: 10px;
+    margin: 0 5px 10px 5px;
     border: 1px solid ${({ theme }) => theme.primary};
     border-radius: 20px;
   }

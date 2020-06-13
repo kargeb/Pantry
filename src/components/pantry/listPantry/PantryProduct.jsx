@@ -20,12 +20,19 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledCartIconWrapper = styled.div`
+  /* height: 100%; */
   width: 40px;
+  display: flex;
+  align-items: center;
+  /* line-height: 100%; */
 `;
 
 const StyledNameWrapper = styled.div`
+  /* width: 100px; */
   text-transform: capitalize;
-  word-break: break-all;
+  overflow-wrap: break-word;
+  /* overflow-x: hidden; */
+  /* word-break: break-all; */
 `;
 
 const StyledCenterWrapper = styled.div`
