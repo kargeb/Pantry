@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { Scrollbars } from 'react-custom-scrollbars';
 import ListPantryProducts from '../components/pantry/listPantry/ListPantryProducts';
 import ProductPropertiesForm from '../components/pantry/ProductPropertiesForm';
-import AppContext from '../context';
-import loadingGif from '../images/loading_dots.gif';
 
 const Main = styled.main`
   display: flex;
@@ -55,29 +53,21 @@ class Pantry extends React.Component {
     const { isFormVisible } = this.state;
 
     return (
-      <AppContext.Consumer>
-        {context => (
-          <Main>
-            <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
-              {context.products.length ? (
-                <ListPantryProducts products={context.products} />
-              ) : (
-                <img src={loadingGif} alt="Loading gif" />
-              )}
-            </Scrollbars>
-            <ButtonAddWrapper>
-              <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
-                +
-              </ButtonAdd>
-            </ButtonAddWrapper>
-            {isFormVisible && (
-              <ProductPropertiesForm
-                toggleFormVisibility={this.toggleFormVisibility}
-              />
-            )}
-          </Main>
+      <Main>
+        <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
+          <ListPantryProducts />
+        </Scrollbars>
+        <ButtonAddWrapper>
+          <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
+            +
+          </ButtonAdd>
+        </ButtonAddWrapper>
+        {isFormVisible && (
+          <ProductPropertiesForm
+            toggleFormVisibility={this.toggleFormVisibility}
+          />
         )}
-      </AppContext.Consumer>
+      </Main>
     );
   }
 }
