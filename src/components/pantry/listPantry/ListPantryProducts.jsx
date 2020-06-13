@@ -1,6 +1,8 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PantryProduct from './PantryProduct';
+import loadingGif from '../../../images/loading_dots.gif';
+import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
@@ -10,11 +12,8 @@ const StyledCategoryLabel = styled.div`
   line-height: 23px;
   color: ${({ theme }) => theme.primary};
 
-  @media (min-width:${({ theme }) => theme.small}) {
-    /* background-color: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.background}}; */
-    /* transform: rotate(90deg) */
-text-align: center
+  @media (min-width: ${({ theme }) => theme.small}) {
+    text-align: center;
   }
 `;
 
@@ -25,10 +24,6 @@ const CategoriesList = styled.ul`
     flex-wrap: wrap;
     margin: 0 3%;
   }
-
-  /* @media (min-width: ${({ theme }) => theme.laptop}) {
-    margin: 0 10%;
-  } */
 `;
 
 const CategoriesItem = styled.li`
@@ -42,42 +37,36 @@ const CategoriesItem = styled.li`
 
 const ProductsList = styled.ul``;
 
-const getCategoriesWithProducts = products => {
-  const categoriesWithProducts = [];
-  products.forEach(product => {
-    if (!categoriesWithProducts.includes(product.category)) {
-      categoriesWithProducts.push(product.category);
-    }
-  });
-
-  return categoriesWithProducts;
-};
-
-const ListPantryProducts = ({ products }) => {
-  const categoriesWithProducts = getCategoriesWithProducts(products);
-  categoriesWithProducts.sort();
+const ListPantryProducts = ({ products, pantryCategories }) => {
+  pantryCategories.sort();
 
   return (
-    <CategoriesList>
-      {categoriesWithProducts.map(currentCategory => {
-        const productsInCurrentCategory = products.filter(
-          product => product.category === currentCategory,
-        );
-        return (
-          <CategoriesItem key={currentCategory}>
-            <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
-            <ProductsList>
-              {productsInCurrentCategory.map(currentProduct => (
-                <li key={currentProduct.id}>
-                  <PantryProduct product={currentProduct} />
-                </li>
-              ))}
-            </ProductsList>
-          </CategoriesItem>
-        );
-      })}
-    </CategoriesList>
+    <div>
+      {products.length ? (
+        <CategoriesList>
+          {pantryCategories.map(currentCategory => {
+            const productsInCurrentCategory = products.filter(
+              product => product.category === currentCategory,
+            );
+            return (
+              <CategoriesItem key={currentCategory}>
+                <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
+                <ProductsList>
+                  {productsInCurrentCategory.map(currentProduct => (
+                    <li key={currentProduct.id}>
+                      <PantryProduct product={currentProduct} />
+                    </li>
+                  ))}
+                </ProductsList>
+              </CategoriesItem>
+            );
+          })}
+        </CategoriesList>
+      ) : (
+        <img src={loadingGif} alt="Loading gif" />
+      )}
+    </div>
   );
 };
 
-export default ListPantryProducts;
+export default withProductsAndCategories(ListPantryProducts);
