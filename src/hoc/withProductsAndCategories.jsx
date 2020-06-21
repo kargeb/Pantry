@@ -6,9 +6,7 @@ const withProductsAndCategories = WrappedComponent => {
     <AppContext.Consumer>
       {context => {
         const allProducts = context.products;
-        const productsOnShoppingList = allProducts.filter(
-          product => product.onShoppingList,
-        );
+        const productsOnShoppingList = allProducts.filter(product => product.onShoppingList);
 
         const selectCategoriesContainProducts = products => {
           const categoriesWithProducts = [];
@@ -22,9 +20,7 @@ const withProductsAndCategories = WrappedComponent => {
         };
 
         const pantryCategories = selectCategoriesContainProducts(allProducts);
-        const shoppingCategories = selectCategoriesContainProducts(
-          productsOnShoppingList,
-        );
+        const shoppingCategories = selectCategoriesContainProducts(productsOnShoppingList);
 
         return (
           <WrappedComponent

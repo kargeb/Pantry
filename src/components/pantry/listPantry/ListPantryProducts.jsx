@@ -31,7 +31,7 @@ const CategoriesItem = styled.li`
     margin-bottom: 10px;
     margin: 0 5px 10px 5px;
     border: 1px solid ${({ theme }) => theme.primary};
-    border-radius: 20px;
+    /* border-radius: 20px; */
   }
 `;
 
