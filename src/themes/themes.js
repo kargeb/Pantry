@@ -9,6 +9,9 @@ export const defaultTheme = {
   small: `${size.sm}`,
   medium: `${size.md}`,
   large: `${size.lg}`,
+  grey60: '#808080',
+  grey20: 'rgba(0,0,0,0.2)',
+  primary20: '#FEE8CC',
 };
 
 export const lightTheme = {

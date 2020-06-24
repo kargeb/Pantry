@@ -30,8 +30,14 @@ const CategoriesItem = styled.li`
   @media (min-width: ${({ theme }) => theme.small}) {
     margin-bottom: 10px;
     margin: 0 5px 10px 5px;
-    border: 1px solid ${({ theme }) => theme.primary};
+    border: 1px solid ${({ theme }) => theme.grey20};
     /* border-radius: 20px; */
+  }
+`;
+
+const ProductItem = styled.li`
+  &:nth-child(even) {
+    background-color: ${({ theme }) => theme.primary20};
   }
 `;
 
@@ -53,9 +59,9 @@ const ListPantryProducts = ({ products, pantryCategories }) => {
                 <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
                 <ProductsList>
                   {productsInCurrentCategory.map(currentProduct => (
-                    <li key={currentProduct.id}>
+                    <ProductItem key={currentProduct.id}>
                       <PantryProduct product={currentProduct} />
-                    </li>
+                    </ProductItem>
                   ))}
                 </ProductsList>
               </CategoriesItem>

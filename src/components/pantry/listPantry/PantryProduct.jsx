@@ -6,50 +6,53 @@ import DeleteProductModal from '../DeleteProductModal';
 import ChangeQuantityForm from '../ChangeQuantityForm';
 import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
-const StyledWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  padding-left: 5%;
+  /* padding-left: 5%; */
   min-height: 40px;
-  line-height: 40px;
+  line-height: 20px;
+  /* border-top: 1px solid grey; */
 
   @media (min-width: ${({ theme }) => theme.small}) {
-    width: 300px;
+    width: 400px;
   }
 `;
 
 const StyledCartIconWrapper = styled.div`
-  /* height: 100%; */
   width: 40px;
   display: flex;
+  /* background-color: red; */
   align-items: center;
-  /* line-height: 100%; */
 `;
 
 const StyledNameWrapper = styled.div`
-  /* width: 100px; */
-  text-transform: capitalize;
-  overflow-wrap: break-word;
-  /* overflow-x: hidden; */
-  /* word-break: break-all; */
+  width: calc(100% - 40px);
+  overflow-wrap: anywhere;
+  padding: 0 10px;
+  /* background-color: blue; */
+
+  &:first-letter {
+    text-transform: capitalize;
+  }
 `;
 
 const StyledCenterWrapper = styled.div`
   display: flex;
-  width: 30%;
+  width: 20%;
 `;
 
 const StyledRightWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 25%;
+  width: 20%;
 `;
 
 const StyledLeftWrapper = styled.div`
   display: flex;
   position: relative;
-  width: 55%;
+  width: 50%;
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -57,7 +60,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   user-select: none;
   line-height: 40px;
   margin: 0 10px;
-  color: ${props => props.theme.textPrimary};
+  color: ${props => props.theme.grey60};
 `;
 
 const StyledQuantityWrapper = styled.div`
@@ -69,6 +72,7 @@ const StyledUnitWrapper = styled.div`
   text-transform: capitalize;
   text-align: center;
   font-size: 14px;
+  width: 10%;
 `;
 
 class PantryProduct extends React.Component {
@@ -97,14 +101,13 @@ class PantryProduct extends React.Component {
 
     return (
       <>
-        <StyledWrapper>
+        <Wrapper>
           <StyledLeftWrapper>
             <StyledCartIconWrapper>
               {cartIconShow && <StyledIcon icon={faShoppingCart} />}
             </StyledCartIconWrapper>
-            <div>
-              <StyledNameWrapper>{name}</StyledNameWrapper>
-            </div>
+
+            <StyledNameWrapper>{name}</StyledNameWrapper>
           </StyledLeftWrapper>
           <StyledCenterWrapper>
             <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
@@ -117,13 +120,9 @@ class PantryProduct extends React.Component {
           </StyledRightWrapper>
 
           {isDeleteModalVisibile && (
-            <DeleteProductModal
-              id={id}
-              name={name}
-              toggleDeleteModal={this.toggleDeleteModal}
-            />
+            <DeleteProductModal id={id} name={name} toggleDeleteModal={this.toggleDeleteModal} />
           )}
-        </StyledWrapper>
+        </Wrapper>
         {isChangeQuantityFormVisible && (
           <ChangeQuantityForm
             product={product}
