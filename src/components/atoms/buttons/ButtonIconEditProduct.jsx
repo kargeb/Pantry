@@ -11,16 +11,12 @@ const Button = styled.button`
   color: ${props => props.theme.background};
   background-color: ${props => props.theme.grey60};
   border-radius: 25px;
-  /* border: 1px solid ${props => props.theme.grey60}; */
   font-size: 15px;
-  /* color: rgba(0, 0, 0, 0.54); */
   transition: all 0.1s;
 
   &:hover {
     color: ${({ theme }) => theme.background};
     background-color: ${props => props.theme.primary};
-    /* border-radius: 10px; */
-    /* border: 1px solid ${({ theme }) => theme.primary}; */
     cursor: pointer;
   }
 `;

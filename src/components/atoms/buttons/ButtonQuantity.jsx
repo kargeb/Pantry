@@ -9,7 +9,6 @@ const ButtonQuantity = styled.button`
   background-color: ${props => props.theme.background};
   border: 1px solid ${props => props.theme.textPrimary};
   border-radius: 4px;
-  /* color: #8e5f23; */
   font-size: 28px;
   font-weight: 500;
 `;
