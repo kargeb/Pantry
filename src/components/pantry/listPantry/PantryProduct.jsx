@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -77,7 +78,7 @@ const StyledUnitWrapper = styled.div`
 
 class PantryProduct extends React.Component {
   state = {
-    isDeleteModalVisibile: false,
+    isDeleteModalVisible: false,
     isChangeQuantityFormVisible: false,
   };
 
@@ -89,12 +90,12 @@ class PantryProduct extends React.Component {
 
   toggleDeleteModal = () => {
     this.setState(prevState => ({
-      isDeleteModalVisibile: !prevState.isDeleteModalVisibile,
+      isDeleteModalVisible: !prevState.isDeleteModalVisible,
     }));
   };
 
   render() {
-    const { isDeleteModalVisibile, isChangeQuantityFormVisible } = this.state;
+    const { isDeleteModalVisible, isChangeQuantityFormVisible } = this.state;
     const { product } = this.props;
     const { name, quantity, unit, min, id } = product;
     const cartIconShow = quantity < min;
@@ -119,7 +120,7 @@ class PantryProduct extends React.Component {
             <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
           </StyledRightWrapper>
 
-          {isDeleteModalVisibile && (
+          {isDeleteModalVisible && (
             <DeleteProductModal id={id} name={name} toggleDeleteModal={this.toggleDeleteModal} />
           )}
         </Wrapper>
@@ -134,5 +135,15 @@ class PantryProduct extends React.Component {
     );
   }
 }
+
+PantryProduct.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    min: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    unit: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default PantryProduct;
