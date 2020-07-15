@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import db from '../../../fbase';
@@ -37,7 +38,8 @@ class AddCategoryModal extends React.Component {
   };
 
   handleAddCategory = () => {
-    let { categories, newCategory } = this.state;
+    const { categories } = this.state;
+    let { newCategory } = this.state;
 
     if (newCategory) {
       newCategory = newCategory[0].toUpperCase() + newCategory.slice(1);
@@ -69,12 +71,7 @@ class AddCategoryModal extends React.Component {
         <br />
         <InputVerticalWrapper>
           <Label htmlFor="newCategory">Nazwa:</Label>
-          <Input
-            id="newCategory"
-            type="text"
-            onChange={this.handleForm}
-            value={newCategory}
-          />
+          <Input id="newCategory" type="text" onChange={this.handleForm} value={newCategory} />
         </InputVerticalWrapper>
         <Button
           type="button"
@@ -90,5 +87,9 @@ class AddCategoryModal extends React.Component {
     );
   }
 }
+
+AddCategoryModal.propTypes = {
+  toggleAddCategoryModal: PropTypes.func.isRequired,
+};
 
 export default AddCategoryModal;

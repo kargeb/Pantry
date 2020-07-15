@@ -24,6 +24,7 @@ const withProductsAndCategories = WrappedComponent => {
 
         return (
           <WrappedComponent
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...props}
             products={allProducts}
             shoppingProducts={productsOnShoppingList}

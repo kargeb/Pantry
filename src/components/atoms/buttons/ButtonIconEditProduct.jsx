@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
@@ -30,5 +31,9 @@ const ButtonIconEditProduct = ({ onClick }) => (
     <Icon icon={faPen} />
   </Button>
 );
+
+ButtonIconEditProduct.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default ButtonIconEditProduct;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
@@ -60,8 +61,6 @@ class ProductPropertiesForm extends React.Component {
   }
 
   componentDidMount() {
-    console.log('ID obecne: ', this.state.id);
-
     db.collection('categories')
       .doc('all')
       .get()
@@ -84,7 +83,7 @@ class ProductPropertiesForm extends React.Component {
     if (name && quantity && category && min && unit) {
       const newProduct = {
         name,
-        quantity,
+        quantity: Number(quantity),
         category,
         min,
         unit,
@@ -107,12 +106,11 @@ class ProductPropertiesForm extends React.Component {
       toggleFormVisibility();
     } else {
       this.setState({ isEmptyFieldsAlertVisible: true });
-      console.log('WYPEŁNIJ  SZYSTKIE POLA');
     }
   };
 
   render() {
-    const { toggleFormVisibility } = this.props;
+    const { toggleFormVisibility, id } = this.props;
     const {
       name,
       quantity,
@@ -125,25 +123,18 @@ class ProductPropertiesForm extends React.Component {
 
     return (
       <Modal>
-        <TextHeader marginBottom>
-          {this.props.id ? 'Edytuj produkt' : 'Nowy produkt'}
-        </TextHeader>
+        <TextHeader marginBottom>{id ? 'Edytuj produkt' : 'Nowy produkt'}</TextHeader>
         <InputVerticalWrapper>
           <Label htmlFor="name">Nazwa</Label>
-          <Input
-            id="name"
-            type="text"
-            onChange={this.handleForm}
-            value={name}
-          />
+          <Input id="name" type="text" onChange={this.handleForm} value={name} />
         </InputVerticalWrapper>
         <InputVerticalWrapper>
           <Label htmlFor="category">Kategoria</Label>
           <Select id="category" onChange={this.handleForm} value={category}>
             <option aria-label="disable option" value="" disabled hidden />
-            {categories.map(category => (
-              <option key={category} value={category}>
-                {category}
+            {categories.map(categoryItem => (
+              <option key={categoryItem} value={categoryItem}>
+                {categoryItem}
               </option>
             ))}
           </Select>
@@ -169,21 +160,13 @@ class ProductPropertiesForm extends React.Component {
         </InputHorizontalWrapper>
         <InputHorizontalWrapper>
           <Label htmlFor="quantity">Ilość</Label>
-          <Input
-            short
-            id="quantity"
-            type="number"
-            onChange={this.handleForm}
-            value={quantity}
-          />
+          <Input short id="quantity" type="number" onChange={this.handleForm} value={quantity} />
         </InputHorizontalWrapper>
         <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
-        {isEmptyFieldsAlertVisible && (
-          <AlertEmptyFields>Są puste pola!</AlertEmptyFields>
-        )}
+        {isEmptyFieldsAlertVisible && <AlertEmptyFields>Są puste pola!</AlertEmptyFields>}
       </Modal>
     );
   }
@@ -191,13 +174,24 @@ class ProductPropertiesForm extends React.Component {
 
 ProductPropertiesForm.defaultProps = {
   toggleChangeQuantityModal: () => {},
-  categories: [],
+  // categories: [],
   name: '',
   quantity: '',
   category: '',
   min: '5',
   unit: 'szt',
   id: null,
+};
+
+ProductPropertiesForm.propTypes = {
+  toggleFormVisibility: PropTypes.func.isRequired,
+  toggleChangeQuantityModal: PropTypes.func,
+  name: PropTypes.string,
+  quantity: PropTypes.number,
+  category: PropTypes.string,
+  min: PropTypes.string,
+  unit: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default ProductPropertiesForm;

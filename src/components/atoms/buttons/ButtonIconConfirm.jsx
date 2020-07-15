@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
@@ -23,5 +24,9 @@ const ButtonIconConfirm = ({ onClick }) => (
     <Icon icon={faCheckCircle} />
   </Button>
 );
+
+ButtonIconConfirm.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default ButtonIconConfirm;

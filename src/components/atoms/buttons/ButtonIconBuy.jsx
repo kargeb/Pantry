@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
@@ -31,5 +32,9 @@ const ButtonIconBuy = ({ onClick }) => (
     <Icon icon={faCartArrowDown} />
   </Button>
 );
+
+ButtonIconBuy.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default ButtonIconBuy;

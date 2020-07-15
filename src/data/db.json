@@ -3,7 +3,7 @@
     {
       "id": "9bb85eda-23d2-488f-bb04-f71dc231e57c",
       "name": "Mąka",
-      "quantity": "2",
+      "quantity": 2,
       "unit": "kg",
       "category": "Artykuły spożywcze",
       "min": "2",
@@ -12,7 +12,7 @@
     {
       "id": "fb5d383f-3e95-477e-9bba-14098213bc4f",
       "name": "Coca-cola",
-      "quantity": "3",
+      "quantity": 3,
       "unit": "l",
       "category": "Napoje / Alkohol",
       "min": "2",
@@ -21,7 +21,7 @@
     {
       "id": "fb5d383f-3e95-477e-9bba-12298213bc4f",
       "name": "Tyskie",
-      "quantity": "3",
+      "quantity": 3,
       "unit": "l",
       "category": "Napoje / Alkohol",
       "min": "4",
@@ -30,7 +30,7 @@
     {
       "id": "21fcbe45-048e-4905-a517-3a0919e599ac",
       "name": "Biszkopty",
-      "quantity": "1",
+      "quantity": 1,
       "unit": "szt",
       "category": "Słodycze",
       "min": "3",

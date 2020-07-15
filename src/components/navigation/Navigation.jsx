@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCogs,
-  faList,
-  faShoppingCart,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faList, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import AppContext from '../../context';
 
@@ -17,12 +13,10 @@ const Nav = styled.nav`
   display: flex;
   margin: 0 auto;
   max-width: 600px;
-  /* background-color: yellow; */
   height: 100%;
 `;
 
 const IconWithCounterWrapper = styled.div`
-  /* width: 100%; */
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -63,7 +57,6 @@ const NavLinkWrapper = styled(NavLink)`
   font-size: 14px;
   font-weight: 500;
   color: ${({ theme }) => theme.inactiveNavColor};
-  /* background-color: ${({ theme }) => theme.primary}; */
   transition: font-size 0.2s;
   overflow: hidden;
 
@@ -74,27 +67,20 @@ const NavLinkWrapper = styled(NavLink)`
 
     &:hover {
       color: ${({ theme }) => theme.activeTextColorNav};
-    letter-spacing: 0.15px;
-    font-size: 18px;
+      letter-spacing: 0.15px;
+      font-size: 18px;
     }
   }
 
   &:hover {
     font-size: 18px;
-    color: #FDE3C2
-  }
-
-  @media (min-width: 1024px) {
-    /* background-color: red; */
-    /* font-size: 50px; */
+    color: #fde3c2;
   }
 `;
 
 const Navigation = () => {
   const numberOfProductsOnShoppingList = products => {
-    const productsOnShoppingList = products.filter(
-      product => product.onShoppingList,
-    );
+    const productsOnShoppingList = products.filter(product => product.onShoppingList);
     return productsOnShoppingList.length;
   };
 
@@ -115,9 +101,7 @@ const Navigation = () => {
               <IconWithCounterWrapper>
                 <Icon icon={faShoppingCart} />
                 <ShoppingListCounter>
-                  <span>
-                    {numberOfProductsOnShoppingList(context.products)}
-                  </span>
+                  <span>{numberOfProductsOnShoppingList(context.products)}</span>
                 </ShoppingListCounter>
               </IconWithCounterWrapper>
               <p>Shop</p>

@@ -1,19 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import BuyProductModal from '../buyProductModal/BuyProductModal';
 import ButtonIconBuy from '../../atoms/buttons/ButtonIconBuy';
 
 const StyledWrapper = styled.div`
-  /* margin: 5px 0; */
   padding: 0 5%;
   min-height: 50px;
-  line-height: 50px;
+  line-height: 20px;
   display: flex;
   align-items: center;
-  /* background-color: grey; */
-  /* color: ${props => props.fontColor}; */
   justify-content: center;
-/* word-wrap: break-word; */
 `;
 
 const StyledNameWrapper = styled.div`
@@ -26,7 +23,6 @@ const CurrentQuantity = styled.div`
 `;
 
 const Lack = styled.div`
-  /* background-color: blue; */
   text-align: center;
   width: 23%;
   font-weight: bold;
@@ -46,24 +42,16 @@ class ShoppingProduct extends React.Component {
 
   render() {
     const { name, id, quantity, min } = this.props;
+    const { isBuyProductModalVisible } = this.state;
     const lack = min - quantity;
 
     return (
       <StyledWrapper>
-        {/* <div>
-          <StyledDotIcon icon={faCircle} />
-        </div> */}
         <StyledNameWrapper>{name}</StyledNameWrapper>
         <CurrentQuantity>{quantity}</CurrentQuantity>
         <Lack>{lack}</Lack>
         <ButtonIconBuy onClick={this.toggleBuyProductModal} />
-        {/* <StyledButton
-          //   onClick={() => context.completeProductQuantityToMin(id)}
-          onClick={this.toggleBuyProductModal}
-        >
-          <StyledCartIcon icon={faCartArrowDown} />
-        </StyledButton> */}
-        {this.state.isBuyProductModalVisible && (
+        {isBuyProductModalVisible && (
           <BuyProductModal
             id={id}
             name={name}
@@ -77,5 +65,12 @@ class ShoppingProduct extends React.Component {
     );
   }
 }
+
+ShoppingProduct.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
+  min: PropTypes.string.isRequired,
+};
 
 export default ShoppingProduct;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -8,12 +9,9 @@ import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
-  /* padding-left: 5%; */
   min-height: 40px;
   line-height: 20px;
-  /* border-top: 1px solid grey; */
 
   @media (min-width: ${({ theme }) => theme.small}) {
     width: 400px;
@@ -23,7 +21,6 @@ const Wrapper = styled.div`
 const StyledCartIconWrapper = styled.div`
   width: 40px;
   display: flex;
-  /* background-color: red; */
   align-items: center;
 `;
 
@@ -31,7 +28,6 @@ const StyledNameWrapper = styled.div`
   width: calc(100% - 40px);
   overflow-wrap: anywhere;
   padding: 0 10px;
-  /* background-color: blue; */
 
   &:first-letter {
     text-transform: capitalize;
@@ -77,7 +73,7 @@ const StyledUnitWrapper = styled.div`
 
 class PantryProduct extends React.Component {
   state = {
-    isDeleteModalVisibile: false,
+    isDeleteModalVisible: false,
     isChangeQuantityFormVisible: false,
   };
 
@@ -89,12 +85,12 @@ class PantryProduct extends React.Component {
 
   toggleDeleteModal = () => {
     this.setState(prevState => ({
-      isDeleteModalVisibile: !prevState.isDeleteModalVisibile,
+      isDeleteModalVisible: !prevState.isDeleteModalVisible,
     }));
   };
 
   render() {
-    const { isDeleteModalVisibile, isChangeQuantityFormVisible } = this.state;
+    const { isDeleteModalVisible, isChangeQuantityFormVisible } = this.state;
     const { product } = this.props;
     const { name, quantity, unit, min, id } = product;
     const cartIconShow = quantity < min;
@@ -119,7 +115,7 @@ class PantryProduct extends React.Component {
             <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
           </StyledRightWrapper>
 
-          {isDeleteModalVisibile && (
+          {isDeleteModalVisible && (
             <DeleteProductModal id={id} name={name} toggleDeleteModal={this.toggleDeleteModal} />
           )}
         </Wrapper>
@@ -134,5 +130,15 @@ class PantryProduct extends React.Component {
     );
   }
 }
+
+PantryProduct.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    min: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    unit: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default PantryProduct;
