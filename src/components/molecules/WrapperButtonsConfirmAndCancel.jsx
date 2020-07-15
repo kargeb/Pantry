@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import ButtonIconConfirm from '../atoms/buttons/ButtonIconConfirm';
@@ -18,6 +19,11 @@ const WrapperButtonsConfirmAndCancel = ({ cancelOnClick, confirmOnClick }) => {
       <ButtonIconConfirm type="button" onClick={confirmOnClick} />
     </StyledButtonsWrapper>
   );
+};
+
+WrapperButtonsConfirmAndCancel.propTypes = {
+  cancelOnClick: PropTypes.func.isRequired,
+  confirmOnClick: PropTypes.func.isRequired,
 };
 
 export default WrapperButtonsConfirmAndCancel;

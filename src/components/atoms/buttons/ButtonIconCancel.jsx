@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -23,5 +24,9 @@ const ButtonIconCancel = ({ onClick }) => (
     <Icon icon={faTimesCircle} />
   </Button>
 );
+
+ButtonIconCancel.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default ButtonIconCancel;
