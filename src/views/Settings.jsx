@@ -39,7 +39,6 @@ const SectionDarkMode = styled.section`
     display: flex;
     flex-direction: column;
     margin: 0 20px;
-    /* justify-content: space-around; */
   }
 `;
 
@@ -49,7 +48,6 @@ const SectionCategories = styled.section`
     display: flex;
     flex-direction: column;
     margin: 0 20px;
-    /* justify-content: space-around; */
   }
 `;
 
@@ -61,7 +59,6 @@ const WrapperDarkModeToggle = styled.div`
   width: 120px;
   @media (min-width: 1024px) {
     height: 90px;
-    /* padding-top: 60px; */
   }
 `;
 
@@ -80,8 +77,6 @@ const WrapperCategoriesButtons = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
-const WrapperInsertData = styled.div``;
 
 const ButtonWidthGap = styled(Button)`
   margin: 8px 0;
@@ -118,10 +113,7 @@ class Settings extends React.Component {
   };
 
   render() {
-    const {
-      isAddCategoryModalVisible,
-      isDeleteCategoryModalVisible,
-    } = this.state;
+    const { isAddCategoryModalVisible, isDeleteCategoryModalVisible } = this.state;
     return (
       <AppContext.Consumer>
         {context => (
@@ -150,30 +142,20 @@ class Settings extends React.Component {
                   <H2>Kategorie</H2>
                 </HeaderSection>
                 <WrapperCategoriesButtons>
-                  <ButtonWidthGap
-                    type="button"
-                    onClick={this.toggleDeleteCategoryModal}
-                  >
+                  <ButtonWidthGap type="button" onClick={this.toggleDeleteCategoryModal}>
                     Usuń
                   </ButtonWidthGap>
-                  <ButtonWidthGap
-                    type="button"
-                    onClick={this.toggleAddCategoryModal}
-                  >
+                  <ButtonWidthGap type="button" onClick={this.toggleAddCategoryModal}>
                     Dodaj
                   </ButtonWidthGap>
                 </WrapperCategoriesButtons>
               </SectionCategories>
             </Wrapper>
             {isDeleteCategoryModalVisible && (
-              <DeleteCategoryModal
-                toggleDeleteCategoryModal={this.toggleDeleteCategoryModal}
-              />
+              <DeleteCategoryModal toggleDeleteCategoryModal={this.toggleDeleteCategoryModal} />
             )}
             {isAddCategoryModalVisible && (
-              <AddCategoryModal
-                toggleAddCategoryModal={this.toggleAddCategoryModal}
-              />
+              <AddCategoryModal toggleAddCategoryModal={this.toggleAddCategoryModal} />
             )}
           </Main>
         )}

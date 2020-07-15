@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PantryProduct from './PantryProduct';
 import loadingGif from '../../../images/loading_dots.gif';
@@ -31,7 +32,6 @@ const CategoriesItem = styled.li`
     margin-bottom: 10px;
     margin: 0 5px 10px 5px;
     border: 1px solid ${({ theme }) => theme.grey20};
-    /* border-radius: 20px; */
   }
 `;
 
@@ -73,6 +73,24 @@ const ListPantryProducts = ({ products, pantryCategories }) => {
       )}
     </div>
   );
+};
+
+ListPantryProducts.defaultProps = {
+  products: [],
+  pantryCategories: [],
+};
+
+ListPantryProducts.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      quantity: PropTypes.number.isRequired,
+      min: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      unit: PropTypes.string.isRequired,
+    }),
+  ),
+  pantryCategories: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default withProductsAndCategories(ListPantryProducts);

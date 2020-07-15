@@ -9,12 +9,9 @@ import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
-  /* padding-left: 5%; */
   min-height: 40px;
   line-height: 20px;
-  /* border-top: 1px solid grey; */
 
   @media (min-width: ${({ theme }) => theme.small}) {
     width: 400px;
@@ -24,7 +21,6 @@ const Wrapper = styled.div`
 const StyledCartIconWrapper = styled.div`
   width: 40px;
   display: flex;
-  /* background-color: red; */
   align-items: center;
 `;
 
@@ -32,7 +28,6 @@ const StyledNameWrapper = styled.div`
   width: calc(100% - 40px);
   overflow-wrap: anywhere;
   padding: 0 10px;
-  /* background-color: blue; */
 
   &:first-letter {
     text-transform: capitalize;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import db from '../../fbase';
 import Modal from '../templates/Modal';
@@ -29,6 +30,12 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
       />
     </Modal>
   );
+};
+
+DeleteProductModal.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  toggleDeleteModal: PropTypes.func.isRequired,
 };
 
 export default DeleteProductModal;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import db from '../../../fbase';
 import Modal from '../../templates/Modal';
 import sampleData from '../../../data/db.json';
@@ -39,6 +40,10 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
       />
     </Modal>
   );
+};
+
+InsertSampleDataModal.propTypes = {
+  toggleInsertModal: PropTypes.func.isRequired,
 };
 
 export default InsertSampleDataModal;

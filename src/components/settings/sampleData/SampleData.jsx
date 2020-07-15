@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import sampleData from '../../../data/db.json';
-import db from '../../../fbase';
 import H2 from '../../atoms/texts/TextOption';
 import Button from '../../atoms/buttons/Button';
 import InsertSampleDataModal from './InsertSampleDataModal';
@@ -15,7 +13,6 @@ const WrapperVertical = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 20px;
-    /* justify-content: space-around; */
   }
 `;
 

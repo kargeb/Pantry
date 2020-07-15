@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 import db from '../../../fbase';
@@ -40,9 +41,7 @@ class DeleteCategoryModal extends React.Component {
     const { categories, toDelete } = this.state;
 
     if (toDelete) {
-      const categoriesWithoutDeletedOne = categories.filter(
-        category => category !== toDelete,
-      );
+      const categoriesWithoutDeletedOne = categories.filter(category => category !== toDelete);
 
       const newCategories = {
         categories: [...categoriesWithoutDeletedOne],
@@ -94,5 +93,9 @@ class DeleteCategoryModal extends React.Component {
     );
   }
 }
+
+DeleteCategoryModal.propTypes = {
+  toggleDeleteCategoryModal: PropTypes.func.isRequired,
+};
 
 export default DeleteCategoryModal;

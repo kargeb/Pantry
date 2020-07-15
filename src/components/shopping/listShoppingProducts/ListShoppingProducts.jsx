@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ShoppingProduct from './ShoppingProduct';
 import loadingGif from '../../../images/loading_dots.gif';
@@ -63,6 +64,24 @@ const ListShoppingProducts = ({ shoppingProducts, shoppingCategories }) => {
       )}
     </div>
   );
+};
+
+ListShoppingProducts.defaultProps = {
+  shoppingProducts: [],
+  shoppingCategories: [],
+};
+
+ListShoppingProducts.propTypes = {
+  shoppingProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      quantity: PropTypes.number.isRequired,
+      min: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      unit: PropTypes.string.isRequired,
+    }),
+  ),
+  shoppingCategories: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default withProductsAndCategories(ListShoppingProducts);

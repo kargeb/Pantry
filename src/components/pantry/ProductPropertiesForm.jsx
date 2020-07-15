@@ -132,9 +132,9 @@ class ProductPropertiesForm extends React.Component {
           <Label htmlFor="category">Kategoria</Label>
           <Select id="category" onChange={this.handleForm} value={category}>
             <option aria-label="disable option" value="" disabled hidden />
-            {categories.map(category => (
-              <option key={category} value={category}>
-                {category}
+            {categories.map(categoryItem => (
+              <option key={categoryItem} value={categoryItem}>
+                {categoryItem}
               </option>
             ))}
           </Select>
@@ -174,7 +174,7 @@ class ProductPropertiesForm extends React.Component {
 
 ProductPropertiesForm.defaultProps = {
   toggleChangeQuantityModal: () => {},
-  categories: [],
+  // categories: [],
   name: '',
   quantity: '',
   category: '',
@@ -186,7 +186,6 @@ ProductPropertiesForm.defaultProps = {
 ProductPropertiesForm.propTypes = {
   toggleFormVisibility: PropTypes.func.isRequired,
   toggleChangeQuantityModal: PropTypes.func,
-  categories: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string,
   quantity: PropTypes.number,
   category: PropTypes.string,

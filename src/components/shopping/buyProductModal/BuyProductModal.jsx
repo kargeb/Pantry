@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styled from 'styled-components';
 import db from '../../../fbase';
 import Modal from '../../templates/Modal';
@@ -57,12 +59,13 @@ class BuyProductModal extends React.Component {
   }
 
   addQuantity = () => {
-    this.setState({ lack: this.state.lack + 1 });
+    const { lack } = this.state;
+    this.setState({ lack: lack + 1 });
   };
 
   subtractQuantity = () => {
     const { lack } = this.state;
-    if (lack == 0) {
+    if (lack === 0) {
       return;
     }
     this.setState({ lack: lack - 1 });
@@ -112,13 +115,20 @@ class BuyProductModal extends React.Component {
         </WrapperChangeQuantity>
         <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleBuyProductModal}
-          confirmOnClick={() =>
-            this.updateProductQuantity(toggleBuyProductModal)
-          }
+          confirmOnClick={() => this.updateProductQuantity(toggleBuyProductModal)}
         />
       </Modal>
     );
   }
 }
+
+BuyProductModal.propTypes = {
+  name: PropTypes.string.isRequired,
+  toggleBuyProductModal: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  lack: PropTypes.number.isRequired,
+  min: PropTypes.string.isRequired,
+  currentQuantity: PropTypes.number.isRequired,
+};
 
 export default BuyProductModal;
