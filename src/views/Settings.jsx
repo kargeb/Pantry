@@ -11,6 +11,7 @@ import Button from '../components/atoms/buttons/Button';
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/settings/sampleData/SampleData';
 import DeleteCategoryModal from '../components/settings/categories/DeleteCategoryModal';
+import CategoriesModal from '../components/settings/categories/CategoriesModal';
 
 const Main = styled.main`
   color: ${props => props.theme.textPrimary};
@@ -71,14 +72,16 @@ const HeaderSection = styled.div`
 `;
 
 const WrapperCategoriesButtons = styled.div`
-  height: 90px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  @media (min-width: 1024px) {
+    height: 90px;
+  }
 `;
 
-const ButtonWidthGap = styled(Button)`
+const ButtonWithGap = styled(Button)`
   margin: 8px 0;
 `;
 
@@ -86,6 +89,7 @@ class Settings extends React.Component {
   state = {
     isAddCategoryModalVisible: false,
     isDeleteCategoryModalVisible: false,
+    isCategoryModalVisible: false,
   };
 
   toggleAddCategoryModal = () => {
@@ -100,20 +104,18 @@ class Settings extends React.Component {
     }));
   };
 
-  uploadSampleData = () => {
-    const dbRef = db.collection('products');
-
-    sampleData.products.forEach(sampleProduct => {
-      dbRef
-        .doc(sampleProduct.id)
-        .set({ ...sampleProduct })
-        .then(() => console.log('SUCCESSS'))
-        .catch(() => console.log('ERROR!!!'));
-    });
+  toggleCategoriesModal = () => {
+    this.setState(prevState => ({
+      isCategoryModalVisible: !prevState.isCategoryModalVisible,
+    }));
   };
 
   render() {
-    const { isAddCategoryModalVisible, isDeleteCategoryModalVisible } = this.state;
+    const {
+      isAddCategoryModalVisible,
+      isDeleteCategoryModalVisible,
+      isCategoryModalVisible,
+    } = this.state;
     return (
       <AppContext.Consumer>
         {context => (
@@ -133,24 +135,23 @@ class Settings extends React.Component {
                 </WrapperDarkModeToggle>
               </SectionDarkMode>
               <Divider />
-
               <InsertSampleData />
-
               <Divider />
               <SectionCategories>
                 <HeaderSection>
                   <H2>Kategorie</H2>
                 </HeaderSection>
                 <WrapperCategoriesButtons>
-                  <ButtonWidthGap type="button" onClick={this.toggleDeleteCategoryModal}>
-                    Usuń
-                  </ButtonWidthGap>
-                  <ButtonWidthGap type="button" onClick={this.toggleAddCategoryModal}>
-                    Dodaj
-                  </ButtonWidthGap>
+                  <ButtonWithGap type="button" onClick={this.toggleCategoriesModal}>
+                    Dodaj / usuń
+                  </ButtonWithGap>
                 </WrapperCategoriesButtons>
               </SectionCategories>
             </Wrapper>
+
+            {isCategoryModalVisible && (
+              <CategoriesModal toggleCategoriesModal={this.toggleCategoriesModal} />
+            )}
             {isDeleteCategoryModalVisible && (
               <DeleteCategoryModal toggleDeleteCategoryModal={this.toggleDeleteCategoryModal} />
             )}

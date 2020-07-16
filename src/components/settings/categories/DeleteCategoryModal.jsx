@@ -17,6 +17,10 @@ const InputVerticalWrapper = styled.div`
   align-items: flex-start;
 `;
 
+const CustomSelect = styled(Select)`
+  height: 100px;
+`;
+
 class DeleteCategoryModal extends React.Component {
   state = {
     categories: [],
@@ -70,14 +74,14 @@ class DeleteCategoryModal extends React.Component {
           <TextHeader>Usuń Kategorię</TextHeader>
           <br />
           <Label htmlFor="toDelete">Wybierz kategorię:</Label>
-          <Select id="toDelete" onChange={this.handleForm} value={toDelete}>
+          <CustomSelect id="toDelete" onChange={this.handleForm} value={toDelete}>
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (
               <option key={category} value={category}>
                 {category}
               </option>
             ))}
-          </Select>
+          </CustomSelect>
         </InputVerticalWrapper>
         <Button
           type="button"
