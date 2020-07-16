@@ -72,11 +72,13 @@ const HeaderSection = styled.div`
 `;
 
 const WrapperCategoriesButtons = styled.div`
-  height: 90px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  @media (min-width: 1024px) {
+    height: 90px;
+  }
 `;
 
 const ButtonWithGap = styled(Button)`
@@ -142,9 +144,6 @@ class Settings extends React.Component {
                 <WrapperCategoriesButtons>
                   <ButtonWithGap type="button" onClick={this.toggleCategoriesModal}>
                     Dodaj / usuń
-                  </ButtonWithGap>
-                  <ButtonWithGap type="button" onClick={this.toggleAddCategoryModal}>
-                    Dodaj
                   </ButtonWithGap>
                 </WrapperCategoriesButtons>
               </SectionCategories>

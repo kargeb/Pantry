@@ -20,7 +20,13 @@ const InputVerticalWrapper = styled.div`
 `;
 
 const CustomSelect = styled(Select)`
+  font-size: 15px;
   height: 100px;
+  padding: 2px;
+`;
+
+const CustomTextHeader = styled(TextHeader)`
+  margin-bottom: 15px;
 `;
 
 class CategoriesModal extends React.Component {
@@ -31,13 +37,10 @@ class CategoriesModal extends React.Component {
   };
 
   componentDidMount() {
-    // this.downloadCategories();
     this.unsubscribe = db
       .collection('categories')
       .doc('all')
       .onSnapshot(querySnapshot => {
-        // const downloadedCategories = [];
-        console.log('query snapshot', querySnapshot.data().categories);
         this.setState({ categories: querySnapshot.data().categories });
       });
   }
@@ -47,9 +50,6 @@ class CategoriesModal extends React.Component {
   }
 
   handleForm = e => {
-    console.log(e.target.value);
-    console.log(e.target.id);
-
     this.setState({ [e.target.id]: e.target.value });
   };
 
@@ -59,7 +59,6 @@ class CategoriesModal extends React.Component {
 
     if (newCategory) {
       newCategory = newCategory[0].toUpperCase() + newCategory.slice(1);
-
       const newCategories = {
         categories: [...categories, newCategory],
       };
@@ -77,7 +76,6 @@ class CategoriesModal extends React.Component {
 
     if (toDelete) {
       const categoriesWithoutDeletedOne = categories.filter(category => category !== toDelete);
-
       const newCategories = {
         categories: [...categoriesWithoutDeletedOne],
       };
@@ -90,23 +88,21 @@ class CategoriesModal extends React.Component {
     }
   };
 
-  downloadCategories() {
-    db.collection('categories')
-      .doc('all')
-      .get()
-      .then(doc => this.setState({ categories: [...doc.data().categories] }));
-  }
-
   render() {
     const { toggleCategoriesModal } = this.props;
     const { categories, toDelete, newCategory } = this.state;
     return (
       <Modal>
-        <TextHeader>Dodaj Kategorię</TextHeader>
-        <br />
+        <CustomTextHeader>Dodaj Kategorię</CustomTextHeader>
         <InputVerticalWrapper>
-          <Label htmlFor="newCategory">Nazwa:</Label>
-          <Input id="newCategory" type="text" onChange={this.handleForm} value={newCategory} />
+          {/* <Label htmlFor="newCategory">Nazwa:</Label> */}
+          <Input
+            id="newCategory"
+            type="text"
+            onChange={this.handleForm}
+            value={newCategory}
+            placeholder="Nazwa"
+          />
         </InputVerticalWrapper>
         <Button
           type="button"
@@ -117,11 +113,10 @@ class CategoriesModal extends React.Component {
           Dodaj
         </Button>
         <br />
-        <Divider />
-        <TextHeader>Usuń Kategorię</TextHeader>
+        <Divider categories />
+        <CustomTextHeader>Usuń Kategorię</CustomTextHeader>
         <InputVerticalWrapper>
-          <br />
-          <Label htmlFor="toDelete">Wybierz kategorię:</Label>
+          {/* <Label htmlFor="toDelete">Wybierz kategorię:</Label> */}
           <CustomSelect id="toDelete" onChange={this.handleForm} value={toDelete} size="5">
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (
