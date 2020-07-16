@@ -31,7 +31,19 @@ class CategoriesModal extends React.Component {
   };
 
   componentDidMount() {
-    this.downloadCategories();
+    // this.downloadCategories();
+    this.unsubscribe = db
+      .collection('categories')
+      .doc('all')
+      .onSnapshot(querySnapshot => {
+        // const downloadedCategories = [];
+        console.log('query snapshot', querySnapshot.data().categories);
+        this.setState({ categories: querySnapshot.data().categories });
+      });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   handleForm = e => {
