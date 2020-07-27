@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PantryProduct from './PantryProduct';
 import loadingGif from '../../../images/loading_dots.gif';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
+import PantryCategory from './PantryCategory';
 
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
@@ -55,16 +56,10 @@ const ListPantryProducts = ({ products, pantryCategories }) => {
               product => product.category === currentCategory,
             );
             return (
-              <CategoriesItem key={currentCategory}>
-                <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
-                <ProductsList>
-                  {productsInCurrentCategory.map(currentProduct => (
-                    <ProductItem key={currentProduct.id}>
-                      <PantryProduct product={currentProduct} />
-                    </ProductItem>
-                  ))}
-                </ProductsList>
-              </CategoriesItem>
+              <PantryCategory
+                currentCategory={currentCategory}
+                productsInCurrentCategory={productsInCurrentCategory}
+              />
             );
           })}
         </CategoriesList>
