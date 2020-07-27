@@ -12,7 +12,7 @@ const CategoriesItem = styled.li`
   }
 `;
 
-const StyledCategoryLabel = styled.div`
+const CategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
   font-style: normal;
   font-weight: ${({ theme }) => theme.medium};
@@ -31,25 +31,18 @@ const ProductItem = styled.li`
   }
 `;
 
-const ProductsList = styled.ul``;
-
 const PantryCategory = ({ currentCategory, productsInCurrentCategory }) => (
   <CategoriesItem key={currentCategory}>
-    <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
-    <ProductsList>
+    <CategoryLabel>{currentCategory}</CategoryLabel>
+    <ul>
       {productsInCurrentCategory.map(currentProduct => (
         <ProductItem key={currentProduct.id}>
           <PantryProduct product={currentProduct} />
         </ProductItem>
       ))}
-    </ProductsList>
+    </ul>
   </CategoriesItem>
 );
-
-// PantryCategory.defaultProps = {
-//     currentCategory: "",
-//     productsInCurrentCategory: [],
-//   };
 
 PantryCategory.propTypes = {
   currentCategory: PropTypes.string.isRequired,

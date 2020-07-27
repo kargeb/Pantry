@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ShoppingProduct from './ShoppingProduct';
 import loadingGif from '../../../images/loading_dots.gif';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
+import ShoppingCategory from './ShoppingCategory';
 
 const CategoriesList = styled.ul`
   padding-top: 10px;
@@ -13,23 +13,7 @@ const CategoriesList = styled.ul`
   }
 `;
 
-const StyledCategoryLabel = styled.div`
-  padding: 5px 0 5px 20px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-  color: ${({ theme }) => theme.primary};
-
-  @media (min-width: 1024px) {
-  }
-`;
-
-const CategoriesItem = styled.li``;
-
-const ProductsList = styled.ul``;
-
-const ListShoppingProducts = ({ shoppingProducts, shoppingCategories }) => {
+const ShoppingList = ({ shoppingProducts, shoppingCategories }) => {
   shoppingCategories.sort();
 
   return (
@@ -41,21 +25,12 @@ const ListShoppingProducts = ({ shoppingProducts, shoppingCategories }) => {
               product => product.category === currentCategory,
             );
             return (
-              <CategoriesItem key={currentCategory}>
-                <StyledCategoryLabel>{currentCategory}</StyledCategoryLabel>
-                <ProductsList>
-                  {productsInCurrentCategory.map(currentProduct => (
-                    <li key={currentProduct.id}>
-                      <ShoppingProduct
-                        name={currentProduct.name}
-                        id={currentProduct.id}
-                        quantity={currentProduct.quantity}
-                        min={currentProduct.min}
-                      />
-                    </li>
-                  ))}
-                </ProductsList>
-              </CategoriesItem>
+              <li key={currentCategory}>
+                <ShoppingCategory
+                  currentCategory={currentCategory}
+                  productsInCurrentCategory={productsInCurrentCategory}
+                />
+              </li>
             );
           })}
         </CategoriesList>
@@ -66,12 +41,12 @@ const ListShoppingProducts = ({ shoppingProducts, shoppingCategories }) => {
   );
 };
 
-ListShoppingProducts.defaultProps = {
+ShoppingList.defaultProps = {
   shoppingProducts: [],
   shoppingCategories: [],
 };
 
-ListShoppingProducts.propTypes = {
+ShoppingList.propTypes = {
   shoppingProducts: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -84,4 +59,4 @@ ListShoppingProducts.propTypes = {
   shoppingCategories: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default withProductsAndCategories(ListShoppingProducts);
+export default withProductsAndCategories(ShoppingList);

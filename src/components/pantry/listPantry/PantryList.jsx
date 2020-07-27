@@ -1,23 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import PantryProduct from './PantryProduct';
 import loadingGif from '../../../images/loading_dots.gif';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 import PantryCategory from './PantryCategory';
-
-const StyledCategoryLabel = styled.div`
-  padding: 5px 0 5px 20px;
-  font-style: normal;
-  font-weight: ${({ theme }) => theme.medium};
-  font-size: ${({ theme }) => theme.heading2};
-  line-height: 23px;
-  color: ${({ theme }) => theme.primary};
-
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
-    text-align: center;
-  }
-`;
 
 const CategoriesList = styled.ul`
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
@@ -28,23 +14,7 @@ const CategoriesList = styled.ul`
   }
 `;
 
-const CategoriesItem = styled.li`
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
-    margin-bottom: 10px;
-    margin: 0 5px 10px 5px;
-    border: 1px solid ${({ theme }) => theme.grey20};
-  }
-`;
-
-const ProductItem = styled.li`
-  &:nth-child(odd) {
-    background-color: ${({ theme }) => theme.primary20};
-  }
-`;
-
-const ProductsList = styled.ul``;
-
-const ListPantryProducts = ({ products, pantryCategories }) => {
+const PantryList = ({ products, pantryCategories }) => {
   pantryCategories.sort();
 
   return (
@@ -70,12 +40,12 @@ const ListPantryProducts = ({ products, pantryCategories }) => {
   );
 };
 
-ListPantryProducts.defaultProps = {
+PantryList.defaultProps = {
   products: [],
   pantryCategories: [],
 };
 
-ListPantryProducts.propTypes = {
+PantryList.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -88,4 +58,4 @@ ListPantryProducts.propTypes = {
   pantryCategories: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default withProductsAndCategories(ListPantryProducts);
+export default withProductsAndCategories(PantryList);
