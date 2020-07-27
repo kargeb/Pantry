@@ -38,6 +38,20 @@ const ButtonAdd = styled.button`
     cursor: pointer;
     font-weight: bold;
   }
+
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 65px;
+
+    &:hover {
+      font-size: 80px;
+      transform: scale(1.1);
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
 `;
 
 class Pantry extends React.Component {
