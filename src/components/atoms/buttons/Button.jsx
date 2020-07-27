@@ -4,13 +4,13 @@ const Button = styled.button`
   font-family: inherit;
   width: 130px;
   height: 27px;
-  line-height: 27px;
   background-color: ${({ theme }) => theme.primary};
-  border: 1px solid #ada17e;
-  border-radius: 8px;
+  font-size: ${({ theme }) => theme.button};
+  font-weight: ${({ theme }) => theme.medium};
   color: ${({ theme }) => theme.textSecondary};
-  font-size: 12px;
-  font-weight: 500;
+  border: 1px solid #ada17e;
+  line-height: 27px;
+  border-radius: 8px;
   letter-spacing: 1px;
   transition: transform 0.1s;
 

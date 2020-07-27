@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Modal from '../templates/Modal';
-import TextHeader from '../atoms/texts/TextHeader';
+import H1 from '../atoms/texts/H1';
 import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import Button from '../atoms/buttons/Button';
@@ -11,10 +11,6 @@ import DeleteProductModal from './DeleteProductModal';
 import ProductPropertiesForm from './ProductPropertiesForm';
 import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
 import ButtonQuantity from '../atoms/buttons/ButtonQuantity';
-
-const Header = styled(TextHeader)`
-  margin-bottom: 15px;
-`;
 
 const InputNumber = styled(Input)`
   border: none;
@@ -122,7 +118,7 @@ class ChangeQuantityForm extends React.Component {
 
     return (
       <Modal>
-        <Header>{name}</Header>
+        <H1 marginBottom>{name}</H1>
 
         <Label htmlFor="currentQuantity">Zmień ilość</Label>
         <WrapperChangeQuantity>

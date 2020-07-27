@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   min-height: 40px;
   line-height: 20px;
 
-  @media (min-width: ${({ theme }) => theme.small}) {
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 400px;
   }
 `;

@@ -6,7 +6,7 @@ import sampleData from '../../../data/db.json';
 
 import Label from '../../atoms/formElements/Label';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
-import TextHeader from '../../atoms/texts/TextHeader';
+import H1 from '../../atoms/texts/H1';
 
 const InsertSampleDataModal = ({ toggleInsertModal }) => {
   const uploadSampleData = () => {
@@ -28,12 +28,12 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
 
   return (
     <Modal>
-      <TextHeader marginBottom>Wstawione zostaną:</TextHeader>
+      <H1 marginBottomDouble>Wstawione zostaną:</H1>
       <Label>Mąka</Label>
       <Label>Coca-cola</Label>
       <Label>Tyskie</Label>
       <Label>Biszkopty</Label>
-      <TextHeader marginTop>Kontynuować ?</TextHeader>
+      <H1 marginTop>Kontynuować ?</H1>
       <WrapperButtonsConfirmAndCancel
         cancelOnClick={toggleInsertModal}
         confirmOnClick={insertDataAndCloseModal}

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../fbase';
 import Modal from '../templates/Modal';
-import TextHeader from '../atoms/texts/TextHeader';
+import H1 from '../atoms/texts/H1';
 import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import Select from '../atoms/formElements/Select';
@@ -123,7 +123,7 @@ class ProductPropertiesForm extends React.Component {
 
     return (
       <Modal>
-        <TextHeader marginBottom>{id ? 'Edytuj produkt' : 'Nowy produkt'}</TextHeader>
+        <H1 marginBottomDouble>{id ? 'Edytuj produkt' : 'Nowy produkt'}</H1>
         <InputVerticalWrapper>
           <Label htmlFor="name">Nazwa</Label>
           <Input id="name" type="text" onChange={this.handleForm} value={name} />
@@ -176,7 +176,7 @@ ProductPropertiesForm.defaultProps = {
   toggleChangeQuantityModal: () => {},
   // categories: [],
   name: '',
-  quantity: '',
+  quantity: 0,
   category: '',
   min: '5',
   unit: 'szt',

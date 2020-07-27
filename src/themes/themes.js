@@ -6,12 +6,18 @@ const size = {
 
 export const defaultTheme = {
   inactiveNavColor: 'rgba(255, 255, 255, 0.5)',
-  small: `${size.sm}`,
-  medium: `${size.md}`,
-  large: `${size.lg}`,
+  smallScreen: `${size.sm}`,
+  mediumScreen: `${size.md}`,
+  largeScreen: `${size.lg}`,
   grey60: '#808080',
   grey20: 'rgba(0,0,0,0.2)',
   primary20: '#FEE8CC',
+  medium: 500,
+  bold: 900,
+  heading1: '26px',
+  heading2: '20px',
+  body: '16px',
+  button: '12px',
 };
 
 export const lightTheme = {

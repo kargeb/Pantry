@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 import db from '../../../fbase';
 import Modal from '../../templates/Modal';
-import TextHeader from '../../atoms/texts/TextHeader';
-import Label from '../../atoms/formElements/Label';
+import H1 from '../../atoms/texts/H1';
 import Select from '../../atoms/formElements/Select';
 import Button from '../../atoms/buttons/Button';
 import ButtonIconCancel from '../../atoms/buttons/ButtonIconCancel';
@@ -23,10 +22,6 @@ const CustomSelect = styled(Select)`
   font-size: 15px;
   height: 100px;
   padding: 2px;
-`;
-
-const CustomTextHeader = styled(TextHeader)`
-  margin-bottom: 15px;
 `;
 
 class CategoriesModal extends React.Component {
@@ -93,9 +88,10 @@ class CategoriesModal extends React.Component {
     const { categories, toDelete, newCategory } = this.state;
     return (
       <Modal>
-        <CustomTextHeader>Dodaj Kategorię</CustomTextHeader>
+        <H1 marginBottom as="h2">
+          Dodaj Kategorię
+        </H1>
         <InputVerticalWrapper>
-          {/* <Label htmlFor="newCategory">Nazwa:</Label> */}
           <Input
             id="newCategory"
             type="text"
@@ -114,9 +110,10 @@ class CategoriesModal extends React.Component {
         </Button>
         <br />
         <Divider categories />
-        <CustomTextHeader>Usuń Kategorię</CustomTextHeader>
+        <H1 marginBottom as="h2">
+          Usuń Kategorię
+        </H1>
         <InputVerticalWrapper>
-          {/* <Label htmlFor="toDelete">Wybierz kategorię:</Label> */}
           <CustomSelect id="toDelete" onChange={this.handleForm} value={toDelete} size="5">
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (

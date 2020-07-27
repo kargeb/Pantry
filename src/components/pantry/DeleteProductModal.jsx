@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import db from '../../fbase';
 import Modal from '../templates/Modal';
-import TextHeader from '../atoms/texts/TextHeader';
+import H1 from '../atoms/texts/H1';
 import Label from '../atoms/formElements/Label';
 import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
 
@@ -22,7 +22,7 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
 
   return (
     <Modal>
-      <TextHeader marginBottom>Potwierdź usunięcie:</TextHeader>
+      <H1 marginBottomDouble>Potwierdź usunięcie:</H1>
       <Label>{name}</Label>
       <WrapperButtonsConfirmAndCancel
         cancelOnClick={toggleDeleteModal}

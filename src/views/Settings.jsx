@@ -1,16 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import sampleData from '../data/db.json';
 import AppContext from '../context';
-import db from '../fbase';
-import AddCategoryModal from '../components/settings/categories/AddCategoryModal';
-import H2 from '../components/atoms/texts/TextOption';
+import H2 from '../components/atoms/texts/H2';
 import Label from '../components/atoms/formElements/Label';
 import ButtonIconSwitch from '../components/atoms/buttons/ButtonIconSwitch';
 import Button from '../components/atoms/buttons/Button';
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/settings/sampleData/SampleData';
-import DeleteCategoryModal from '../components/settings/categories/DeleteCategoryModal';
 import CategoriesModal from '../components/settings/categories/CategoriesModal';
 
 const Main = styled.main`
@@ -87,21 +83,7 @@ const ButtonWithGap = styled(Button)`
 
 class Settings extends React.Component {
   state = {
-    isAddCategoryModalVisible: false,
-    isDeleteCategoryModalVisible: false,
     isCategoryModalVisible: false,
-  };
-
-  toggleAddCategoryModal = () => {
-    this.setState(prevState => ({
-      isAddCategoryModalVisible: !prevState.isAddCategoryModalVisible,
-    }));
-  };
-
-  toggleDeleteCategoryModal = () => {
-    this.setState(prevState => ({
-      isDeleteCategoryModalVisible: !prevState.isDeleteCategoryModalVisible,
-    }));
   };
 
   toggleCategoriesModal = () => {
@@ -111,11 +93,7 @@ class Settings extends React.Component {
   };
 
   render() {
-    const {
-      isAddCategoryModalVisible,
-      isDeleteCategoryModalVisible,
-      isCategoryModalVisible,
-    } = this.state;
+    const { isCategoryModalVisible } = this.state;
     return (
       <AppContext.Consumer>
         {context => (
@@ -151,12 +129,6 @@ class Settings extends React.Component {
 
             {isCategoryModalVisible && (
               <CategoriesModal toggleCategoriesModal={this.toggleCategoriesModal} />
-            )}
-            {isDeleteCategoryModalVisible && (
-              <DeleteCategoryModal toggleDeleteCategoryModal={this.toggleDeleteCategoryModal} />
-            )}
-            {isAddCategoryModalVisible && (
-              <AddCategoryModal toggleAddCategoryModal={this.toggleAddCategoryModal} />
             )}
           </Main>
         )}

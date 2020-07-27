@@ -8,18 +8,18 @@ import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 const StyledCategoryLabel = styled.div`
   padding: 5px 0 5px 20px;
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: ${({ theme }) => theme.medium};
+  font-size: ${({ theme }) => theme.heading2};
   line-height: 23px;
   color: ${({ theme }) => theme.primary};
 
-  @media (min-width: ${({ theme }) => theme.small}) {
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
     text-align: center;
   }
 `;
 
 const CategoriesList = styled.ul`
-  @media (min-width: ${({ theme }) => theme.small}) {
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -28,7 +28,7 @@ const CategoriesList = styled.ul`
 `;
 
 const CategoriesItem = styled.li`
-  @media (min-width: ${({ theme }) => theme.small}) {
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
     margin-bottom: 10px;
     margin: 0 5px 10px 5px;
     border: 1px solid ${({ theme }) => theme.grey20};
@@ -36,7 +36,7 @@ const CategoriesItem = styled.li`
 `;
 
 const ProductItem = styled.li`
-  &:nth-child(even) {
+  &:nth-child(odd) {
     background-color: ${({ theme }) => theme.primary20};
   }
 `;

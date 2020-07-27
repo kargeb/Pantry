@@ -4,14 +4,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import db from '../../../fbase';
 import Modal from '../../templates/Modal';
-import TextHeader from '../../atoms/texts/TextHeader';
+import H1 from '../../atoms/texts/H1';
 import Label from '../../atoms/formElements/Label';
 import Input from '../../atoms/formElements/Input';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
-
-const Header = styled(TextHeader)`
-  margin-bottom: 5px;
-`;
 
 const WrapperChangeQuantity = styled.div`
   width: 160px;
@@ -98,7 +94,7 @@ class BuyProductModal extends React.Component {
 
     return (
       <Modal>
-        <Header>Ile chcesz kupić ?</Header>
+        <H1 marginBottomDouble>Ile chcesz kupić?</H1>
         <Label>{name}</Label>
         <WrapperChangeQuantity>
           <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>

@@ -7,7 +7,7 @@ import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 
 const CategoriesList = styled.ul`
   padding-top: 10px;
-  @media (min-width: ${({ theme }) => theme.small}) {
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 600px;
     margin: 0 auto;
   }

@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-// import device from './mediaBreakPoints';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -38,7 +37,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     ${
-      '' /* disable arrow buttons added by browser inside Input in changeQuantityForm  */
+      '' /* disable arrow buttons added by browser inside
+            Input type="number" in changeQuantityForm  */
     }
     input[type=number].withoutSpinButtons::-webkit-inner-spin-button,
     input[type=number].withoutSpinButtons::-webkit-outer-spin-button {
@@ -54,16 +54,6 @@ const GlobalStyle = createGlobalStyle`
     select {
         cursor: pointer;
     }
-
-
-    ${'' /* @media ${device.laptop} {
-   body{
-
-   }
-
-  } */}
-    
-
 `;
 
 export default GlobalStyle;
