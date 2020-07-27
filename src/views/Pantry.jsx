@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'react-custom-scrollbars';
-import ListPantryProducts from '../components/pantry/listPantry/ListPantryProducts';
+import PantryList from '../components/pantry/listPantry/PantryList';
 import ProductPropertiesForm from '../components/pantry/ProductPropertiesForm';
 
 const Main = styled.main`
@@ -38,6 +38,20 @@ const ButtonAdd = styled.button`
     cursor: pointer;
     font-weight: bold;
   }
+
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 65px;
+
+    &:hover {
+      font-size: 80px;
+      transform: scale(1.1);
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
 `;
 
 class Pantry extends React.Component {
@@ -55,7 +69,7 @@ class Pantry extends React.Component {
     return (
       <Main>
         <Scrollbars style={{ height: 'calc(100vh - 140px)' }}>
-          <ListPantryProducts />
+          <PantryList />
         </Scrollbars>
         <ButtonAddWrapper>
           <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
@@ -63,9 +77,7 @@ class Pantry extends React.Component {
           </ButtonAdd>
         </ButtonAddWrapper>
         {isFormVisible && (
-          <ProductPropertiesForm
-            toggleFormVisibility={this.toggleFormVisibility}
-          />
+          <ProductPropertiesForm toggleFormVisibility={this.toggleFormVisibility} />
         )}
       </Main>
     );
