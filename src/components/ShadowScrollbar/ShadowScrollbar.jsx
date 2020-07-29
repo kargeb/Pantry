@@ -5,7 +5,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 class ShadowScrollbars extends Component {
   handleUpdate = values => {
-    console.log('values z scrol', values);
     const { shadowTop, shadowBottom } = this.refs;
     const { scrollTop, scrollHeight, clientHeight } = values;
     const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
