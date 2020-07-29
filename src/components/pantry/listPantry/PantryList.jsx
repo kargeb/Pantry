@@ -27,6 +27,7 @@ const PantryList = ({ products, pantryCategories }) => {
             );
             return (
               <PantryCategory
+                key={currentCategory}
                 currentCategory={currentCategory}
                 productsInCurrentCategory={productsInCurrentCategory}
               />
