@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Scrollbars } from 'react-custom-scrollbars';
 import ShadowScrollbar from '../components/ShadowScrollbar/ShadowScrollbar';
 import PantryList from '../components/pantry/listPantry/PantryList';
 import ProductPropertiesForm from '../components/pantry/ProductPropertiesForm';
+import ButtonAddProduct from '../components/atoms/buttons/ButtonAddProduct';
 
 const Main = styled.main`
   display: flex;
@@ -20,26 +20,7 @@ const ButtonAddWrapper = styled.div`
   padding: 15px 0;
 `;
 
-const ButtonAdd = styled.button`
-  border: none;
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
-  background: ${({ theme }) => theme.primary};
-  border-radius: 50%;
-  color: ${({ theme }) => theme.textSecondary};
-  font-size: 40px;
-  text-transform: uppercase;
-  transition: all 0.1s;
-  outline: none;
-
-  &:hover {
-    font-size: 55px;
-    transform: scale(1.1);
-    cursor: pointer;
-    font-weight: bold;
-  }
-
+const ButtonAdd = styled(ButtonAddProduct)`
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 80px;
     height: 80px;
@@ -67,13 +48,9 @@ class Pantry extends React.Component {
   render() {
     const { isFormVisible } = this.state;
 
-    // const style = { height: 'calc(100vh - 140px)' };
-
     return (
       <Main>
-        {/* <ShadowScrollbar style={{ height: 'calc(100vh - 140px)' }}> */}
         <ShadowScrollbar style={{ height: '100%' }}>
-          {/* <ShadowScrollbar style={style}> */}
           <PantryList />
         </ShadowScrollbar>
         <ButtonAddWrapper>
