@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import PantryProduct from './PantryProduct';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
+import ProductPropertiesForm from '../ProductPropertiesForm';
 
 const CategoriesItem = styled.li`
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
@@ -31,17 +32,16 @@ const TableHeader = styled.div`
 `;
 
 const ButtonAdd = styled(ButtonAddProduct)`
-position: absolute;
-top: 0;
-right: 0;
-margin: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px;
   width: 23px;
   height: 23px;
   line-height: 23px;
   font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-  /* color: ${({ theme }) => theme.textSecondary}; */
+  font-weight: bold;
+  text-align: center;
 
   &:hover {
     font-size: 20px;
@@ -57,21 +57,44 @@ const ProductItem = styled.li`
   }
 `;
 
-const PantryCategory = ({ currentCategory, productsInCurrentCategory }) => (
-  <CategoriesItem key={currentCategory}>
-    <TableHeader>
-      <CategoryLabel>{currentCategory}</CategoryLabel>
-      <ButtonAdd>+</ButtonAdd>
-    </TableHeader>
-    <ul>
-      {productsInCurrentCategory.map(currentProduct => (
-        <ProductItem key={currentProduct.id}>
-          <PantryProduct product={currentProduct} />
-        </ProductItem>
-      ))}
-    </ul>
-  </CategoriesItem>
-);
+class PantryCategory extends React.Component {
+  state = {
+    isProductPropertiesForm: false,
+  };
+
+  handleClick = () => {
+    const { isProductPropertiesForm } = this.state;
+    this.setState({ isProductPropertiesForm: !isProductPropertiesForm });
+  };
+
+  render() {
+    const { currentCategory, productsInCurrentCategory } = this.props;
+    const { isProductPropertiesForm } = this.state;
+
+    return (
+      <CategoriesItem key={currentCategory}>
+        <TableHeader>
+          <CategoryLabel>{currentCategory}</CategoryLabel>
+          <ButtonAdd onClick={this.handleClick}>+</ButtonAdd>
+        </TableHeader>
+        <ul>
+          {productsInCurrentCategory.map(currentProduct => (
+            <ProductItem key={currentProduct.id}>
+              <PantryProduct product={currentProduct} />
+            </ProductItem>
+          ))}
+        </ul>
+
+        {isProductPropertiesForm && (
+          <ProductPropertiesForm
+            category={currentCategory}
+            toggleFormVisibility={this.handleClick}
+          />
+        )}
+      </CategoriesItem>
+    );
+  }
+}
 
 PantryCategory.propTypes = {
   currentCategory: PropTypes.string.isRequired,
