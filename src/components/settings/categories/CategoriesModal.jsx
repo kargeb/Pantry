@@ -9,12 +9,13 @@ import Select from '../../atoms/formElements/Select';
 import Button from '../../atoms/buttons/Button';
 import ButtonIconCancel from '../../atoms/buttons/ButtonIconCancel';
 import Divider from '../../atoms/divider/Divider';
-import Input from '../../atoms/formElements/Input';
 import Alert from '../../molecules/Alert';
 
 import ConfirmDeleteModal from '../../molecules/ConfirmDeleteModal';
 
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
+
+import AddCategory from './AddCategory';
 
 const InputVerticalWrapper = styled.div`
   margin-top: 5px;
@@ -48,7 +49,6 @@ class CategoriesModal extends React.Component {
   state = {
     categories: [],
     toDelete: '',
-    newCategory: '',
     alertMessage: '',
     isDeleteModalVisible: false,
   };
@@ -68,24 +68,6 @@ class CategoriesModal extends React.Component {
 
   handleForm = e => {
     this.setState({ [e.target.id]: e.target.value });
-  };
-
-  handleAddCategory = () => {
-    const { categories } = this.state;
-    let { newCategory } = this.state;
-
-    if (newCategory) {
-      newCategory = newCategory[0].toUpperCase() + newCategory.slice(1);
-      const newCategories = {
-        categories: [...categories, newCategory],
-      };
-
-      db.collection('categories').doc('all').set(newCategories);
-
-      this.setState({ newCategory: '', alertMessage: '' });
-    } else {
-      this.setState({ alertMessage: 'Wpisz nazwę!' });
-    }
   };
 
   handleDeleteCategory = () => {
@@ -111,26 +93,16 @@ class CategoriesModal extends React.Component {
     }));
   };
 
+  setAlertMessage = message => {
+    this.setState({ alertMessage: message });
+  };
+
   render() {
     const { toggleCategoriesModal, pantryCategories } = this.props; // pantryCategories is from HOC
-    const { categories, toDelete, newCategory, alertMessage, isDeleteModalVisible } = this.state;
+    const { categories, toDelete, alertMessage, isDeleteModalVisible } = this.state;
     return (
       <Modal>
-        <H1 marginBottom as="h2">
-          Dodaj Kategorię
-        </H1>
-        <InputVerticalWrapper>
-          <Input
-            id="newCategory"
-            type="text"
-            onChange={this.handleForm}
-            value={newCategory}
-            placeholder="Nazwa"
-          />
-        </InputVerticalWrapper>
-        <Button type="button" onClick={this.handleAddCategory}>
-          Dodaj
-        </Button>
+        <AddCategory categories={categories} />
         <br />
         <Divider categories />
         <H1 marginBottom as="h2">
@@ -153,9 +125,7 @@ class CategoriesModal extends React.Component {
         <Button
           type="button"
           onClick={() =>
-            toDelete
-              ? this.toggleDeleteModal()
-              : this.setState({ alertMessage: 'Wybierz kategorię!' })
+            toDelete ? this.toggleDeleteModal() : this.setAlertMessage('Wybierz kategorię!')
           }
         >
           Usuń
