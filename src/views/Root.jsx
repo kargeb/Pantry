@@ -49,7 +49,7 @@ class Root extends React.Component {
       changeTheme: this.changeTheme,
     };
 
-    const mergedTheme = Object.assign(defaultTheme, currentTheme);
+    const mergedTheme = { ...defaultTheme, ...currentTheme };
     return (
       <BrowserRouter>
         <ThemeProvider theme={mergedTheme}>

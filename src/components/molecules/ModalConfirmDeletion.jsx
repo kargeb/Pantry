@@ -6,7 +6,7 @@ import H1 from '../atoms/texts/H1';
 import H2 from '../atoms/texts/H2';
 import WrapperButtonsConfirmAndCancel from './WrapperButtonsConfirmAndCancel';
 
-const DeleteCategoryModal = ({ name, toggleDeleteModal, handleDeleteCategory, heading }) => {
+const ModalConfirmDeletion = ({ name, toggleDeleteModal, handleDeleteCategory, heading }) => {
   const handleConfirmDelete = () => {
     toggleDeleteModal();
     handleDeleteCategory();
@@ -26,11 +26,11 @@ const DeleteCategoryModal = ({ name, toggleDeleteModal, handleDeleteCategory, he
   );
 };
 
-DeleteCategoryModal.propTypes = {
+ModalConfirmDeletion.propTypes = {
   heading: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   handleDeleteCategory: PropTypes.func.isRequired,
 };
 
-export default DeleteCategoryModal;
+export default ModalConfirmDeletion;

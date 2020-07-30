@@ -1,24 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import db from '../../../fbase';
 import H1 from '../../atoms/texts/H1';
 import Alert from '../../molecules/Alert';
 import Button from '../../atoms/buttons/Button';
 
-import ConfirmDeleteModal from '../../molecules/ConfirmDeleteModal';
+import ModalConfirmDeletion from '../../molecules/ModalConfirmDeletion';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 import SelectCategory from './SelectCategory';
 
-const InputVerticalWrapper = styled.div`
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
 class DeleteCategory extends React.Component {
   state = {
-    toDelete: '',
+    categoryToDelete: '',
     alertMessage: '',
     isDeleteModalVisible: false,
   };
@@ -29,17 +21,19 @@ class DeleteCategory extends React.Component {
 
   handleDeleteCategory = () => {
     const { categories } = this.props;
-    const { toDelete } = this.state;
+    const { categoryToDelete } = this.state;
 
-    if (toDelete) {
-      const categoriesWithoutDeletedOne = categories.filter(category => category !== toDelete);
+    if (categoryToDelete) {
+      const categoriesWithoutDeletedOne = categories.filter(
+        category => category !== categoryToDelete,
+      );
       const newCategories = {
         categories: [...categoriesWithoutDeletedOne],
       };
 
       db.collection('categories').doc('all').set(newCategories);
 
-      this.setState({ toDelete: '', alertMessage: '' });
+      this.setState({ categoryToDelete: '', alertMessage: '' });
     } else {
       this.setState({ alertMessage: 'Wybierz kategorię!' });
     }
@@ -57,38 +51,36 @@ class DeleteCategory extends React.Component {
 
   render() {
     const { categories } = this.props;
-    const { toDelete, alertMessage, isDeleteModalVisible } = this.state;
+    const { categoryToDelete, alertMessage, isDeleteModalVisible } = this.state;
 
     return (
-      <div>
+      <>
         <H1 marginBottom as="h2">
           Usuń Kategorię
         </H1>
-        <InputVerticalWrapper>
-          <SelectCategory
-            handleForm={this.handleForm}
-            toDelete={toDelete}
-            categories={categories}
-          />
-        </InputVerticalWrapper>
+        <SelectCategory
+          handleForm={this.handleForm}
+          categoryToDelete={categoryToDelete}
+          categories={categories}
+        />
         <Button
           type="button"
           onClick={() =>
-            toDelete ? this.toggleDeleteModal() : this.setAlertMessage('Wybierz kategorię!')
+            categoryToDelete ? this.toggleDeleteModal() : this.setAlertMessage('Wybierz kategorię!')
           }
         >
           Usuń
         </Button>
         {alertMessage && <Alert>{alertMessage}</Alert>}
         {isDeleteModalVisible && (
-          <ConfirmDeleteModal
+          <ModalConfirmDeletion
             heading="Potwierdź usunięcie kategorii:"
-            name={toDelete}
+            name={categoryToDelete}
             toggleDeleteModal={this.toggleDeleteModal}
             handleDeleteCategory={this.handleDeleteCategory}
           />
         )}
-      </div>
+      </>
     );
   }
 }

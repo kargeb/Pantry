@@ -6,13 +6,6 @@ import Input from '../../atoms/formElements/Input';
 import Alert from '../../molecules/Alert';
 import Button from '../../atoms/buttons/Button';
 
-const InputVerticalWrapper = styled.div`
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
 class AddCategory extends React.Component {
   state = {
     newCategory: '',
@@ -44,24 +37,23 @@ class AddCategory extends React.Component {
     const { newCategory, alertMessage } = this.state;
 
     return (
-      <div>
+      <>
         <H1 marginBottom as="h2">
           Dodaj Kategorię
         </H1>
-        <InputVerticalWrapper>
-          <Input
-            id="newCategory"
-            type="text"
-            onChange={this.handleForm}
-            value={newCategory}
-            placeholder="Nazwa"
-          />
-        </InputVerticalWrapper>
+        <Input
+          id="newCategory"
+          type="text"
+          onChange={this.handleForm}
+          value={newCategory}
+          placeholder="Nazwa"
+        />
         <Button type="button" onClick={this.handleAddCategory}>
           Dodaj
         </Button>
+
         {alertMessage && <Alert>{alertMessage}</Alert>}
-      </div>
+      </>
     );
   }
 }
