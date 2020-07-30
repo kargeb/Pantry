@@ -12,6 +12,8 @@ import Divider from '../../atoms/divider/Divider';
 import Input from '../../atoms/formElements/Input';
 import Alert from '../../molecules/Alert';
 
+import DeleteCategoryModal from './DeleteCategoryModal';
+
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 
 const InputVerticalWrapper = styled.div`
@@ -48,6 +50,7 @@ class CategoriesModal extends React.Component {
     toDelete: '',
     newCategory: '',
     alertMessage: '',
+    isDeleteModalVisible: false,
   };
 
   componentDidMount() {
@@ -102,9 +105,15 @@ class CategoriesModal extends React.Component {
     }
   };
 
+  toggleDeleteModal = () => {
+    this.setState(prevState => ({
+      isDeleteModalVisible: !prevState.isDeleteModalVisible,
+    }));
+  };
+
   render() {
     const { toggleCategoriesModal, pantryCategories } = this.props; // pantryCategories is from HOC
-    const { categories, toDelete, newCategory, alertMessage } = this.state;
+    const { categories, toDelete, newCategory, alertMessage, isDeleteModalVisible } = this.state;
     return (
       <Modal>
         <H1 marginBottom as="h2">
@@ -149,13 +158,21 @@ class CategoriesModal extends React.Component {
         <Button
           type="button"
           onClick={() => {
-            this.handleDeleteCategory();
+            // this.handleDeleteCategory();
+            this.toggleDeleteModal();
           }}
         >
           Usuń
         </Button>
         <br />
         <ButtonIconCancel onClick={toggleCategoriesModal} />
+        {isDeleteModalVisible && (
+          <DeleteCategoryModal
+            name={toDelete}
+            toggleDeleteModal={this.toggleDeleteModal}
+            handleDeleteCategory={this.handleDeleteCategory}
+          />
+        )}
         {alertMessage && <Alert>{alertMessage}</Alert>}
       </Modal>
     );
