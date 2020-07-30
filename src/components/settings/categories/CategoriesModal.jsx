@@ -10,6 +10,9 @@ import Button from '../../atoms/buttons/Button';
 import ButtonIconCancel from '../../atoms/buttons/ButtonIconCancel';
 import Divider from '../../atoms/divider/Divider';
 import Input from '../../atoms/formElements/Input';
+import Alert from '../../molecules/Alert';
+
+import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 
 const InputVerticalWrapper = styled.div`
   margin-top: 5px;
@@ -24,11 +27,27 @@ const CustomSelect = styled(Select)`
   padding: 2px;
 `;
 
+const Option = styled.option`
+  &:hover {
+    font-weight: 600;
+  }
+
+  &:disabled {
+    background-color: #f1f1f1;
+    cursor: not-allowed;
+
+    &:hover {
+      font-weight: 500;
+    }
+  }
+`;
+
 class CategoriesModal extends React.Component {
   state = {
     categories: [],
     toDelete: '',
     newCategory: '',
+    alertMessage: '',
   };
 
   componentDidMount() {
@@ -60,9 +79,9 @@ class CategoriesModal extends React.Component {
 
       db.collection('categories').doc('all').set(newCategories);
 
-      this.setState({ newCategory: '' });
+      this.setState({ newCategory: '', alertMessage: '' });
     } else {
-      console.log('NIC NIE WPISAŁEŚ!');
+      this.setState({ alertMessage: 'Wpisz nazwę!' });
     }
   };
 
@@ -77,15 +96,15 @@ class CategoriesModal extends React.Component {
 
       db.collection('categories').doc('all').set(newCategories);
 
-      this.setState({ toDelete: '' });
+      this.setState({ toDelete: '', alertMessage: '' });
     } else {
-      console.log('NIC NIE WYBRAŁES!');
+      this.setState({ alertMessage: 'Wybierz kategorię!' });
     }
   };
 
   render() {
-    const { toggleCategoriesModal } = this.props;
-    const { categories, toDelete, newCategory } = this.state;
+    const { toggleCategoriesModal, pantryCategories } = this.props; // pantryCategories is from HOC
+    const { categories, toDelete, newCategory, alertMessage } = this.state;
     return (
       <Modal>
         <H1 marginBottom as="h2">
@@ -117,9 +136,13 @@ class CategoriesModal extends React.Component {
           <CustomSelect id="toDelete" onChange={this.handleForm} value={toDelete} size="5">
             <option aria-label="disable option" value="" disabled hidden />
             {categories.map(category => (
-              <option key={category} value={category}>
+              <Option
+                disabled={pantryCategories.includes(category)} // does the category contain products
+                key={category}
+                value={category}
+              >
                 {category}
-              </option>
+              </Option>
             ))}
           </CustomSelect>
         </InputVerticalWrapper>
@@ -133,6 +156,7 @@ class CategoriesModal extends React.Component {
         </Button>
         <br />
         <ButtonIconCancel onClick={toggleCategoriesModal} />
+        {alertMessage && <Alert>{alertMessage}</Alert>}
       </Modal>
     );
   }
@@ -140,6 +164,7 @@ class CategoriesModal extends React.Component {
 
 CategoriesModal.propTypes = {
   toggleCategoriesModal: PropTypes.func.isRequired,
+  pantryCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default CategoriesModal;
+export default withProductsAndCategories(CategoriesModal);

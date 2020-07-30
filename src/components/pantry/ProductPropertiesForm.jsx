@@ -8,6 +8,7 @@ import H1 from '../atoms/texts/H1';
 import Label from '../atoms/formElements/Label';
 import Input from '../atoms/formElements/Input';
 import Select from '../atoms/formElements/Select';
+import Alert from '../molecules/Alert';
 import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
 
 const InputVerticalWrapper = styled.div`
@@ -26,19 +27,6 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
-const AlertEmptyFields = styled.div`
-  position: absolute;
-  bottom: -25px;
-  left: calc(50% - 75px);
-  width: 150px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  color: #fff;
-  background-color: #814d0b;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
-`;
-
 class ProductPropertiesForm extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +37,7 @@ class ProductPropertiesForm extends React.Component {
       id = uuidv4();
     }
     this.state = {
-      isEmptyFieldsAlertVisible: false,
+      isAlertVisible: false,
       categories: [],
       name,
       quantity,
@@ -105,21 +93,13 @@ class ProductPropertiesForm extends React.Component {
       toggleChangeQuantityModal();
       toggleFormVisibility();
     } else {
-      this.setState({ isEmptyFieldsAlertVisible: true });
+      this.setState({ isAlertVisible: true });
     }
   };
 
   render() {
     const { toggleFormVisibility, id } = this.props;
-    const {
-      name,
-      quantity,
-      unit,
-      min,
-      category,
-      categories,
-      isEmptyFieldsAlertVisible,
-    } = this.state;
+    const { name, quantity, unit, min, category, categories, isAlertVisible } = this.state;
 
     return (
       <Modal>
@@ -166,7 +146,7 @@ class ProductPropertiesForm extends React.Component {
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
-        {isEmptyFieldsAlertVisible && <AlertEmptyFields>Są puste pola!</AlertEmptyFields>}
+        {isAlertVisible && <Alert>Są puste pola!</Alert>}
       </Modal>
     );
   }
