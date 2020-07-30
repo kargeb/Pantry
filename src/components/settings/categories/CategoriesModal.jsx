@@ -12,7 +12,7 @@ import Divider from '../../atoms/divider/Divider';
 import Input from '../../atoms/formElements/Input';
 import Alert from '../../molecules/Alert';
 
-import DeleteCategoryModal from './DeleteCategoryModal';
+import ConfirmDeleteModal from '../../molecules/ConfirmDeleteModal';
 
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 
@@ -128,12 +128,7 @@ class CategoriesModal extends React.Component {
             placeholder="Nazwa"
           />
         </InputVerticalWrapper>
-        <Button
-          type="button"
-          onClick={() => {
-            this.handleAddCategory();
-          }}
-        >
+        <Button type="button" onClick={this.handleAddCategory}>
           Dodaj
         </Button>
         <br />
@@ -157,22 +152,26 @@ class CategoriesModal extends React.Component {
         </InputVerticalWrapper>
         <Button
           type="button"
-          onClick={() => {
-            // this.handleDeleteCategory();
-            this.toggleDeleteModal();
-          }}
+          onClick={() =>
+            toDelete
+              ? this.toggleDeleteModal()
+              : this.setState({ alertMessage: 'Wybierz kategorię!' })
+          }
         >
           Usuń
         </Button>
         <br />
         <ButtonIconCancel onClick={toggleCategoriesModal} />
+
         {isDeleteModalVisible && (
-          <DeleteCategoryModal
+          <ConfirmDeleteModal
+            heading="Potwierdź usunięcie kategorii:"
             name={toDelete}
             toggleDeleteModal={this.toggleDeleteModal}
             handleDeleteCategory={this.handleDeleteCategory}
           />
         )}
+
         {alertMessage && <Alert>{alertMessage}</Alert>}
       </Modal>
     );
