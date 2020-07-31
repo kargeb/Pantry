@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCogs, faList, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import AppContext from '../../context';
+import { AppContext } from '../../context';
 
 const Header = styled.header`
   background-color: ${({ theme }) => theme.primary};

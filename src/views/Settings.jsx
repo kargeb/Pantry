@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import AppContext from '../context';
+import { AppContext } from '../context';
 import H2 from '../components/atoms/texts/H2';
 import Label from '../components/atoms/formElements/Label';
 import ButtonIconSwitch from '../components/atoms/buttons/ButtonIconSwitch';
 import Button from '../components/atoms/buttons/Button';
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/settings/sampleData/SampleData';
-import CategoriesModal from '../components/settings/categories/CategoriesModal';
+import CategoriesContainer from '../components/settings/categories/container/CategoriesContainer';
 
 const Main = styled.main`
   color: ${props => props.theme.textPrimary};
@@ -83,17 +83,17 @@ const ButtonWithGap = styled(Button)`
 
 class Settings extends React.Component {
   state = {
-    isCategoryModalVisible: false,
+    isCategoriesContainerVisible: false,
   };
 
   toggleCategoriesModal = () => {
     this.setState(prevState => ({
-      isCategoryModalVisible: !prevState.isCategoryModalVisible,
+      isCategoriesContainerVisible: !prevState.isCategoriesContainerVisible,
     }));
   };
 
   render() {
-    const { isCategoryModalVisible } = this.state;
+    const { isCategoriesContainerVisible } = this.state;
     return (
       <AppContext.Consumer>
         {context => (
@@ -127,8 +127,8 @@ class Settings extends React.Component {
               </SectionCategories>
             </Wrapper>
 
-            {isCategoryModalVisible && (
-              <CategoriesModal toggleCategoriesModal={this.toggleCategoriesModal} />
+            {isCategoriesContainerVisible && (
+              <CategoriesContainer toggleCategoriesModal={this.toggleCategoriesModal} />
             )}
           </Main>
         )}

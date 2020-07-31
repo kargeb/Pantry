@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { CategoriesContext } from '../../../context';
 
 import Select from '../../atoms/formElements/Select';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
@@ -35,24 +37,38 @@ const Option = styled.option`
   }
 `;
 
-const SelectCategory = ({ handleForm, categoryToDelete, categories, pantryCategories }) => {
+// pantryCategories is from HOC, these are categories that currently contain products
+const SelectCategory = ({ pantryCategories }) => {
   return (
-    <Wrapper>
-      <CustomSelect id="categoryToDelete" onChange={handleForm} value={categoryToDelete} size="5">
-        <option aria-label="disable option" value="" disabled hidden />
-        {categories &&
-          categories.map(category => (
-            <Option
-              disabled={pantryCategories.includes(category)} // does the category contain products
-              key={category}
-              value={category}
-            >
-              {category}
-            </Option>
-          ))}
-      </CustomSelect>
-    </Wrapper>
+    <CategoriesContext.Consumer>
+      {context => (
+        <Wrapper>
+          <CustomSelect
+            id="categoryToDelete"
+            onChange={context.handleForm}
+            value={context.categoryToDelete}
+            size="5"
+          >
+            <option aria-label="disable option" value="" disabled hidden />
+            {context.categories &&
+              context.categories.map(category => (
+                <Option
+                  disabled={pantryCategories.includes(category)}
+                  key={category}
+                  value={category}
+                >
+                  {category}
+                </Option>
+              ))}
+          </CustomSelect>
+        </Wrapper>
+      )}
+    </CategoriesContext.Consumer>
   );
+};
+
+SelectCategory.propTypes = {
+  pantryCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default withProductsAndCategories(SelectCategory);
