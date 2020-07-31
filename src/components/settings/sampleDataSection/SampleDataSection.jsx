@@ -4,19 +4,21 @@ import H2 from '../../atoms/texts/H2';
 import Button from '../../atoms/buttons/Button';
 import InsertSampleDataModal from './InsertSampleDataModal';
 
-const WrapperVertical = styled.div`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   @media (min-width: 1024px) {
     height: 100%;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     margin: 0 20px;
   }
 `;
 
-const HeaderSection = styled.div`
+const Header = styled.div`
+  padding: 15px 0;
+
   @media (min-width: 1024px) {
     height: 100px;
     display: flex;
@@ -24,6 +26,8 @@ const HeaderSection = styled.div`
   }
 `;
 const WrapperButton = styled.div`
+  padding: 20px 0;
+
   @media (min-width: 1024px) {
     height: 90px;
     display: flex;
@@ -33,11 +37,7 @@ const WrapperButton = styled.div`
   }
 `;
 
-const ButtonWidthGap = styled(Button)`
-  margin: 8px 0;
-`;
-
-class SampleData extends React.Component {
+class SampleDataSection extends React.Component {
   state = {
     isInsertModalVisible: false,
   };
@@ -52,21 +52,21 @@ class SampleData extends React.Component {
     const { isInsertModalVisible } = this.state;
 
     return (
-      <WrapperVertical>
-        <HeaderSection>
+      <Section>
+        <Header>
           <H2>Przykładowe dane</H2>
-        </HeaderSection>
+        </Header>
         <WrapperButton>
-          <ButtonWidthGap type="button" onClick={this.toggleInsertModal}>
+          <Button type="button" onClick={this.toggleInsertModal}>
             Pobierz
-          </ButtonWidthGap>
+          </Button>
         </WrapperButton>
         {isInsertModalVisible && (
           <InsertSampleDataModal toggleInsertModal={this.toggleInsertModal} />
         )}
-      </WrapperVertical>
+      </Section>
     );
   }
 }
 
-export default SampleData;
+export default SampleDataSection;

@@ -11,8 +11,8 @@ const Divider = styled.div`
     width: 1px;
   }
 
-  ${({ categories }) =>
-    categories &&
+  ${({ horizontal }) =>
+    horizontal &&
     css`
       height: 1px;
       width: 200px;
