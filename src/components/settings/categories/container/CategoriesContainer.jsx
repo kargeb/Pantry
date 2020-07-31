@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CategoriesContext } from '../../../context';
+import { CategoriesContext } from '../../../../context';
 
-import db from '../../../fbase';
-import Modal from '../../templates/Modal';
-import ButtonIconCancel from '../../atoms/buttons/ButtonIconCancel';
-import Divider from '../../atoms/divider/Divider';
+import db from '../../../../fbase';
+import Modal from '../../../templates/Modal';
+import ButtonIconCancel from '../../../atoms/buttons/ButtonIconCancel';
+import Divider from '../../../atoms/divider/Divider';
+import Alert from '../../../molecules/Alert';
 
-import AddCategory from './AddCategory';
-import DeleteCategory from './DeleteCategory';
+import AddCategory from '../AddCategory';
+import DeleteCategory from '../DeleteCategory';
 
-class CategoriesModal extends React.Component {
+class CategoriesContainer extends React.Component {
   state = {
     categories: [],
     newCategory: '',
+    categoryToDelete: '',
     alertMessage: '',
+    isDeleteModalVisible: false,
   };
 
   componentDidMount() {
@@ -51,15 +54,47 @@ class CategoriesModal extends React.Component {
     }
   };
 
+  handleDeleteCategory = () => {
+    const { categoryToDelete, categories } = this.state;
+
+    if (categoryToDelete) {
+      const categoriesWithoutDeletedOne = categories.filter(
+        category => category !== categoryToDelete,
+      );
+      const newCategories = {
+        categories: [...categoriesWithoutDeletedOne],
+      };
+
+      db.collection('categories').doc('all').set(newCategories);
+
+      this.setState({ categoryToDelete: '', alertMessage: '' });
+    } else {
+      this.setState({ alertMessage: 'Wybierz kategorię!' });
+    }
+  };
+
+  toggleDeleteModal = () => {
+    this.setState(prevState => ({
+      isDeleteModalVisible: !prevState.isDeleteModalVisible,
+    }));
+  };
+
+  setAlertMessage = message => {
+    this.setState({ alertMessage: message });
+  };
+
   render() {
     const categoriesContext = {
       ...this.state,
       handleForm: this.handleForm,
       handleAddCategory: this.handleAddCategory,
+      handleDeleteCategory: this.handleDeleteCategory,
+      setAlertMessage: this.setAlertMessage,
+      toggleDeleteModal: this.toggleDeleteModal,
     };
 
     const { toggleCategoriesModal } = this.props;
-    const { categories } = this.state;
+    const { categories, alertMessage } = this.state;
     return (
       <Modal>
         <CategoriesContext.Provider value={categoriesContext}>
@@ -70,13 +105,14 @@ class CategoriesModal extends React.Component {
           <br />
           <ButtonIconCancel onClick={toggleCategoriesModal} />
         </CategoriesContext.Provider>
+        {alertMessage && <Alert>{alertMessage}</Alert>}
       </Modal>
     );
   }
 }
 
-CategoriesModal.propTypes = {
+CategoriesContainer.propTypes = {
   toggleCategoriesModal: PropTypes.func.isRequired,
 };
 
-export default CategoriesModal;
+export default CategoriesContainer;

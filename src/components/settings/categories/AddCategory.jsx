@@ -2,7 +2,6 @@ import React from 'react';
 import { CategoriesContext } from '../../../context';
 import H1 from '../../atoms/texts/H1';
 import Input from '../../atoms/formElements/Input';
-import Alert from '../../molecules/Alert';
 import Button from '../../atoms/buttons/Button';
 
 const AddCategory = () => (
@@ -22,8 +21,6 @@ const AddCategory = () => (
         <Button type="button" onClick={context.handleAddCategory}>
           Dodaj
         </Button>
-
-        {context.alertMessage && <Alert>{context.alertMessage}</Alert>}
       </>
     )}
   </CategoriesContext.Consumer>
