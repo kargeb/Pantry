@@ -94,14 +94,14 @@ class CategoriesContainer extends React.Component {
     };
 
     const { toggleCategoriesModal } = this.props;
-    const { categories, alertMessage } = this.state;
+    const { alertMessage } = this.state;
     return (
       <Modal>
         <CategoriesContext.Provider value={categoriesContext}>
-          <AddCategory categories={categories} />
+          <AddCategory />
           <br />
-          <Divider categories />
-          <DeleteCategory categories={categories} />
+          <Divider horizontal />
+          <DeleteCategory />
           <br />
           <ButtonIconCancel onClick={toggleCategoriesModal} />
         </CategoriesContext.Provider>

@@ -6,16 +6,18 @@ import H2 from '../../atoms/texts/H2';
 import Label from '../../atoms/formElements/Label';
 import ButtonIconSwitch from '../../atoms/buttons/ButtonIconSwitch';
 
-const SectionDarkMode = styled.section`
+const Section = styled.section`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
   @media (min-width: 1024px) {
     height: 100%;
-    display: flex;
-    flex-direction: column;
     margin: 0 20px;
   }
 `;
 
-const HeaderSection = styled.div`
+const Header = styled.div`
   @media (min-width: 1024px) {
     height: 100px;
     display: flex;
@@ -23,34 +25,34 @@ const HeaderSection = styled.div`
   }
 `;
 
-const WrapperDarkModeToggle = styled.div`
+const WrapperToggleButton = styled.div`
   display: flex;
   justify-content: space-between;
-
   align-items: center;
   width: 120px;
+  padding: 20px 0;
   @media (min-width: 1024px) {
     height: 90px;
   }
 `;
 
-const DarkMode = () => {
+const DarkModeSection = () => {
   return (
     <AppContext.Consumer>
       {context => (
-        <SectionDarkMode>
-          <HeaderSection>
+        <Section>
+          <Header>
             <H2>Dark Mode</H2>
-          </HeaderSection>
-          <WrapperDarkModeToggle>
+          </Header>
+          <WrapperToggleButton>
             <Label>Off</Label>
             <ButtonIconSwitch onClick={context.changeTheme} themeName={context.currentTheme.name} />
             <Label>On</Label>
-          </WrapperDarkModeToggle>
-        </SectionDarkMode>
+          </WrapperToggleButton>
+        </Section>
       )}
     </AppContext.Consumer>
   );
 };
 
-export default DarkMode;
+export default DarkModeSection;
