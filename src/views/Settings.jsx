@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { AppContext } from '../context';
+import DarkMode from '../components/settings/darkMode/DarkMode';
+import Categories from '../components/settings/categories/Categories';
 import H2 from '../components/atoms/texts/H2';
 import Label from '../components/atoms/formElements/Label';
 import ButtonIconSwitch from '../components/atoms/buttons/ButtonIconSwitch';
@@ -95,44 +98,29 @@ class Settings extends React.Component {
   render() {
     const { isCategoriesContainerVisible } = this.state;
     return (
-      <AppContext.Consumer>
-        {context => (
-          <Main>
-            <Wrapper>
-              <SectionDarkMode>
-                <HeaderSection>
-                  <H2>Dark Mode</H2>
-                </HeaderSection>
-                <WrapperDarkModeToggle>
-                  <Label>Off</Label>
-                  <ButtonIconSwitch
-                    onClick={context.changeTheme}
-                    themeName={context.currentTheme.name}
-                  />
-                  <Label>On</Label>
-                </WrapperDarkModeToggle>
-              </SectionDarkMode>
-              <Divider />
-              <InsertSampleData />
-              <Divider />
-              <SectionCategories>
-                <HeaderSection>
-                  <H2>Kategorie</H2>
-                </HeaderSection>
-                <WrapperCategoriesButtons>
-                  <ButtonWithGap type="button" onClick={this.toggleCategoriesModal}>
-                    Dodaj / usuń
-                  </ButtonWithGap>
-                </WrapperCategoriesButtons>
-              </SectionCategories>
-            </Wrapper>
+      <Main>
+        <Wrapper>
+          <DarkMode />
+          <Divider />
+          <InsertSampleData />
+          <Divider />
+          <Categories toggleCategoriesModal={this.toggleCategoriesModal} />
+          {/* <SectionCategories>
+            <HeaderSection>
+              <H2>Kategorie</H2>
+            </HeaderSection>
+            <WrapperCategoriesButtons>
+              <ButtonWithGap type="button" onClick={this.toggleCategoriesModal}>
+                Dodaj / usuń
+              </ButtonWithGap>
+            </WrapperCategoriesButtons>
+          </SectionCategories> */}
+        </Wrapper>
 
-            {isCategoriesContainerVisible && (
-              <CategoriesContainer toggleCategoriesModal={this.toggleCategoriesModal} />
-            )}
-          </Main>
+        {isCategoriesContainerVisible && (
+          <CategoriesContainer toggleCategoriesModal={this.toggleCategoriesModal} />
         )}
-      </AppContext.Consumer>
+      </Main>
     );
   }
 }
