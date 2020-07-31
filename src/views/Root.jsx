@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
 import db from '../fbase';
-import AppContext from '../context';
+import { AppContext } from '../context';
 import Pantry from './Pantry';
 import Shopping from './Shopping';
 import Settings from './Settings';

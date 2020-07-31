@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import AppContext from '../context';
+import { AppContext } from '../context';
 import H2 from '../components/atoms/texts/H2';
 import Label from '../components/atoms/formElements/Label';
 import ButtonIconSwitch from '../components/atoms/buttons/ButtonIconSwitch';

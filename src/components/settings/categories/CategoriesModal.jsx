@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CategoriesContext } from '../../../context';
 
 import db from '../../../fbase';
 import Modal from '../../templates/Modal';
@@ -12,6 +13,8 @@ import DeleteCategory from './DeleteCategory';
 class CategoriesModal extends React.Component {
   state = {
     categories: [],
+    newCategory: '',
+    alertMessage: '',
   };
 
   componentDidMount() {
@@ -27,17 +30,46 @@ class CategoriesModal extends React.Component {
     this.unsubscribe();
   }
 
+  handleForm = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  handleAddCategory = () => {
+    const { categories } = this.state;
+    let { newCategory } = this.state;
+
+    if (newCategory) {
+      newCategory = newCategory[0].toUpperCase() + newCategory.slice(1);
+      const newCategories = {
+        categories: [...categories, newCategory],
+      };
+      db.collection('categories').doc('all').set(newCategories);
+
+      this.setState({ newCategory: '', alertMessage: '' });
+    } else {
+      this.setState({ alertMessage: 'Wpisz nazwę!' });
+    }
+  };
+
   render() {
-    const { toggleCategoriesModal } = this.props; // pantryCategories is from HOC
+    const categoriesContext = {
+      ...this.state,
+      handleForm: this.handleForm,
+      handleAddCategory: this.handleAddCategory,
+    };
+
+    const { toggleCategoriesModal } = this.props;
     const { categories } = this.state;
     return (
       <Modal>
-        <AddCategory categories={categories} />
-        <br />
-        <Divider categories />
-        <DeleteCategory categories={categories} />
-        <br />
-        <ButtonIconCancel onClick={toggleCategoriesModal} />
+        <CategoriesContext.Provider value={categoriesContext}>
+          <AddCategory categories={categories} />
+          <br />
+          <Divider categories />
+          <DeleteCategory categories={categories} />
+          <br />
+          <ButtonIconCancel onClick={toggleCategoriesModal} />
+        </CategoriesContext.Provider>
       </Modal>
     );
   }

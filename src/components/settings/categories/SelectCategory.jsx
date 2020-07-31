@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CategoriesContext } from '../../../context';
 
 import Select from '../../atoms/formElements/Select';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
@@ -35,23 +36,32 @@ const Option = styled.option`
   }
 `;
 
-const SelectCategory = ({ handleForm, categoryToDelete, categories, pantryCategories }) => {
+const SelectCategory = ({ handleForm, categoryToDelete, pantryCategories }) => {
   return (
-    <Wrapper>
-      <CustomSelect id="categoryToDelete" onChange={handleForm} value={categoryToDelete} size="5">
-        <option aria-label="disable option" value="" disabled hidden />
-        {categories &&
-          categories.map(category => (
-            <Option
-              disabled={pantryCategories.includes(category)} // does the category contain products
-              key={category}
-              value={category}
-            >
-              {category}
-            </Option>
-          ))}
-      </CustomSelect>
-    </Wrapper>
+    <CategoriesContext.Consumer>
+      {context => (
+        <Wrapper>
+          <CustomSelect
+            id="categoryToDelete"
+            onChange={handleForm}
+            value={categoryToDelete}
+            size="5"
+          >
+            <option aria-label="disable option" value="" disabled hidden />
+            {context.categories &&
+              context.categories.map(category => (
+                <Option
+                  disabled={pantryCategories.includes(category)} // does the category contain products
+                  key={category}
+                  value={category}
+                >
+                  {category}
+                </Option>
+              ))}
+          </CustomSelect>
+        </Wrapper>
+      )}
+    </CategoriesContext.Consumer>
   );
 };
 
