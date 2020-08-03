@@ -75,7 +75,7 @@ class ProductPropertiesForm extends React.Component {
         category,
         min,
         unit,
-        onShoppingList: quantity < min,
+        onShoppingList: Number(quantity) < min,
         id,
       };
 

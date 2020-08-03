@@ -7,35 +7,32 @@ import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
 import ProductPropertiesForm from '../ProductPropertiesForm';
 
 const CategoriesItem = styled.li`
+  background-color: ${props => props.theme.background};
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    width: 400px;
     margin-bottom: 10px;
     margin: 0 5px 10px 5px;
     border: 1px solid ${({ theme }) => theme.grey20};
   }
 `;
 
-const CategoryLabel = styled.div`
-  padding: 5px 0 5px 20px;
-  font-style: normal;
-  font-weight: ${({ theme }) => theme.medium};
-  font-size: ${({ theme }) => theme.heading2};
-  line-height: 23px;
-  color: ${({ theme }) => theme.primary};
-
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
-    text-align: center;
-  }
+const TableHeader = styled.div`
+  display: flex;
+  padding: 10px;
 `;
 
-const TableHeader = styled.div`
-  position: relative;
+const CategoryLabel = styled.div`
+  flex: 1;
+  font-style: normal;
+  text-align: left;
+  overflow-wrap: anywhere;
+  font-weight: ${({ theme }) => theme.medium};
+  font-size: ${({ theme }) => theme.heading2};
+  color: ${({ theme }) => theme.primary};
 `;
 
 const ButtonAdd = styled(ButtonAddProduct)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 5px;
+  margin: 0px 15px 0px 0px;
   width: 23px;
   height: 23px;
   line-height: 23px;
@@ -53,8 +50,35 @@ const ButtonAdd = styled(ButtonAddProduct)`
 
 const ProductItem = styled.li`
   &:nth-child(odd) {
-    background-color: ${({ theme }) => theme.primary20};
+    /* background-color: ${({ theme }) => theme.primary20}; */
   }
+`;
+
+const ColumnDescriptionWrapper = styled.div`
+  display: flex;
+  height: 16px;
+`;
+
+const AboveCartIcon = styled.div`
+  margin-left: 2px;
+  width: 40px;
+`;
+
+const AboveName = styled.div`
+  flex: 3;
+  display: flex;
+`;
+
+const Description = styled.div`
+  font-size: 13px;
+  flex: 1;
+  font-style: italic;
+  text-align: center;
+`;
+
+const AboveButtonEditProduct = styled.div`
+  width: 45px;
+  margin: 0 10px;
 `;
 
 class PantryCategory extends React.Component {
@@ -78,6 +102,15 @@ class PantryCategory extends React.Component {
           <ButtonAdd onClick={this.handleClick}>+</ButtonAdd>
         </TableHeader>
         <ul>
+          <li>
+            <ColumnDescriptionWrapper>
+              <AboveCartIcon />
+              <AboveName />
+              <Description>Obecnie</Description>
+              <Description>Min</Description>
+              <AboveButtonEditProduct />
+            </ColumnDescriptionWrapper>
+          </li>
           {productsInCurrentCategory.map(currentProduct => (
             <ProductItem key={currentProduct.id}>
               <PantryProduct product={currentProduct} />

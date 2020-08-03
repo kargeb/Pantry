@@ -3,77 +3,82 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import DeleteProductModal from '../DeleteProductModal';
 import ChangeQuantityForm from '../ChangeQuantityForm';
 import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
   display: flex;
+  /* justify-content: space-between; */
   align-items: center;
   min-height: 40px;
   line-height: 20px;
 
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 400px;
+    /* overflow-wrap: anywhere; */
   }
 `;
 
-const StyledCartIconWrapper = styled.div`
+const CartIconWrapper = styled.div`
+  margin-left: 2px;
   width: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
+`;
+
+const Icon = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  font-size: 20px;
+  background-color: ${({ theme }) => theme.background};
+  /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25); */
+  color: ${({ theme }) => theme.primary};
+  cursor: pointer;
+  line-height: 30px;
+  text-align: center;
+  user-select: none;
 `;
 
 const StyledNameWrapper = styled.div`
-  width: calc(100% - 40px);
+  /* width: 50%; */
+  flex: 3;
+  display: flex;
+  align-items: center;
+  padding: 2px 10px;
   overflow-wrap: anywhere;
-  padding: 0 10px;
 
   &:first-letter {
     text-transform: capitalize;
   }
 `;
 
-const StyledCenterWrapper = styled.div`
+const QuantityWrapper = styled.div`
   display: flex;
-  width: 20%;
+  /* width: 70px; */
+  flex: 1;
 `;
 
-const StyledRightWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 20%;
-`;
-
-const StyledLeftWrapper = styled.div`
-  display: flex;
-  position: relative;
-  width: 50%;
-`;
-
-const StyledIcon = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  user-select: none;
-  line-height: 40px;
-  margin: 0 10px;
-  color: ${props => props.theme.grey60};
-`;
-
-const StyledQuantityWrapper = styled.div`
+const Quantity = styled.div`
   font-weight: 900;
-  text-align: center;
+  text-align: right;
 `;
-const StyledUnitWrapper = styled.div`
+
+const Unit = styled.div`
   margin-left: 5px;
   text-transform: capitalize;
+`;
+
+const Min = styled.div`
+  /* width: 50px; */
+  flex: 1;
   text-align: center;
-  font-size: 14px;
-  width: 10%;
 `;
 
 class PantryProduct extends React.Component {
   state = {
-    isDeleteModalVisible: false,
     isChangeQuantityFormVisible: false,
   };
 
@@ -83,47 +88,35 @@ class PantryProduct extends React.Component {
     }));
   };
 
-  toggleDeleteModal = () => {
-    this.setState(prevState => ({
-      isDeleteModalVisible: !prevState.isDeleteModalVisible,
-    }));
-  };
-
   render() {
-    const { isDeleteModalVisible, isChangeQuantityFormVisible } = this.state;
+    const { isChangeQuantityFormVisible } = this.state;
     const { product } = this.props;
-    const { name, quantity, unit, min, id } = product;
+    const { name, quantity, unit, min } = product;
     const cartIconShow = quantity < min;
 
     return (
       <>
         <Wrapper>
-          <StyledLeftWrapper>
-            <StyledCartIconWrapper>
-              {cartIconShow && <StyledIcon icon={faShoppingCart} />}
-            </StyledCartIconWrapper>
+          <CartIconWrapper>
+            {cartIconShow && (
+              <Icon>
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </Icon>
+            )}
+          </CartIconWrapper>
 
-            <StyledNameWrapper>{name}</StyledNameWrapper>
-          </StyledLeftWrapper>
-          <StyledCenterWrapper>
-            <StyledQuantityWrapper>{quantity}</StyledQuantityWrapper>
-            <StyledUnitWrapper>{unit}</StyledUnitWrapper>
-          </StyledCenterWrapper>
-          <StyledUnitWrapper>({min})</StyledUnitWrapper>
-
-          <StyledRightWrapper>
-            <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
-          </StyledRightWrapper>
-
-          {isDeleteModalVisible && (
-            <DeleteProductModal id={id} name={name} toggleDeleteModal={this.toggleDeleteModal} />
-          )}
+          <StyledNameWrapper>{name}</StyledNameWrapper>
+          <QuantityWrapper>
+            <Quantity>{quantity}</Quantity>
+            <Unit>{unit}</Unit>
+          </QuantityWrapper>
+          <Min>({min})</Min>
+          <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
         </Wrapper>
         {isChangeQuantityFormVisible && (
           <ChangeQuantityForm
             product={product}
             toggleChangeQuantityModal={this.toggleChangeQuantityModal}
-            toggleEditProductForm={this.toggleEditProductForm}
           />
         )}
       </>

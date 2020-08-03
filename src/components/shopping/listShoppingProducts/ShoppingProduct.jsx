@@ -15,6 +15,7 @@ const StyledWrapper = styled.div`
 
 const StyledNameWrapper = styled.div`
   width: 34%;
+  overflow-wrap: anywhere;
 `;
 
 const CurrentQuantity = styled.div`

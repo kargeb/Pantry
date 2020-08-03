@@ -11,13 +11,15 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: space-between;
   color: ${props => props.theme.textPrimary};
-  background-color: ${props => props.theme.background};
+  /* background-color: ${props => props.theme.background}; */
+  background-color: ${props => props.theme.grey10};
 `;
 
 const ButtonAddWrapper = styled.div`
   box-sizing: border-box;
   text-align: center;
   padding: 15px 0;
+  background-color: ${props => props.theme.background};
 `;
 
 const ButtonAdd = styled(ButtonAddProduct)`
