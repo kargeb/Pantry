@@ -8,7 +8,7 @@ import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   min-height: 40px;
   line-height: 20px;
@@ -32,9 +32,9 @@ const Icon = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 25px;
-  font-size: 16px;
+  font-size: 20px;
   background-color: ${({ theme }) => theme.background};
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25); */
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
   line-height: 30px;
@@ -43,7 +43,8 @@ const Icon = styled.div`
 `;
 
 const StyledNameWrapper = styled.div`
-  width: 50%;
+  /* width: 50%; */
+  flex: 3;
   display: flex;
   align-items: center;
   padding: 2px 10px;
@@ -56,7 +57,8 @@ const StyledNameWrapper = styled.div`
 
 const QuantityWrapper = styled.div`
   display: flex;
-  width: 70px;
+  /* width: 70px; */
+  flex: 1;
 `;
 
 const Quantity = styled.div`
@@ -70,7 +72,8 @@ const Unit = styled.div`
 `;
 
 const Min = styled.div`
-  width: 50px;
+  /* width: 50px; */
+  flex: 1;
   text-align: center;
 `;
 
