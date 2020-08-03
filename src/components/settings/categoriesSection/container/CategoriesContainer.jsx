@@ -8,8 +8,8 @@ import ButtonIconCancel from '../../../atoms/buttons/ButtonIconCancel';
 import Divider from '../../../atoms/divider/Divider';
 import Alert from '../../../molecules/Alert';
 
-import AddCategory from '../AddCategory';
-import DeleteCategory from '../DeleteCategory';
+import AddCategory from '../categories/AddCategory';
+import DeleteCategory from '../categories/DeleteCategory';
 
 class CategoriesContainer extends React.Component {
   state = {

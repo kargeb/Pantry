@@ -22,13 +22,9 @@ const Button = styled.button`
   }
 `;
 
-const Icon = styled(FontAwesomeIcon)`
-  /* color: ${({ theme }) => theme.primary}; */
-`;
-
 const ButtonIconEditProduct = ({ onClick }) => (
   <Button onClick={onClick}>
-    <Icon icon={faPen} />
+    <FontAwesomeIcon icon={faPen} />
   </Button>
 );
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { CategoriesContext } from '../../../context';
-import H1 from '../../atoms/texts/H1';
-import Button from '../../atoms/buttons/Button';
+import { CategoriesContext } from '../../../../context';
+import H1 from '../../../atoms/texts/H1';
+import Button from '../../../atoms/buttons/Button';
 
-import ModalConfirmDeletion from '../../molecules/ModalConfirmDeletion';
-import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
+import ModalConfirmDeletion from '../../../molecules/ModalConfirmDeletion';
+import withProductsAndCategories from '../../../../hoc/withProductsAndCategories';
 import SelectCategory from './SelectCategory';
 
 const DeleteCategory = () => (

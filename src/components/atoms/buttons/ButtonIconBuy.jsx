@@ -23,13 +23,9 @@ const Button = styled.button`
   }
 `;
 
-const Icon = styled(FontAwesomeIcon)`
-  /* color: ${({ theme }) => theme.primary}; */
-`;
-
 const ButtonIconBuy = ({ onClick }) => (
   <Button onClick={onClick}>
-    <Icon icon={faCartArrowDown} />
+    <FontAwesomeIcon icon={faCartArrowDown} />
   </Button>
 );
 
