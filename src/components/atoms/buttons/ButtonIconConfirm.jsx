@@ -6,7 +6,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Button = styled.button`
   border: none;
-  background-color: ${props => props.theme.background};
+  background-color: ${({ theme }) => theme.background};
   transition: all 0.1s;
   font-size: 45px;
   color: ${({ theme }) => theme.primary};

@@ -6,19 +6,18 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const Button = styled.button`
   width: 55px;
-  height: 40px;
+  height: 30px;
   border: none;
-  color: ${props => props.theme.textPrimary};
-  background-color: ${props => props.theme.background};
-  border: 1px solid ${props => props.theme.background};
-  border-radius: 10px;
-  border-radius: 10px;
-  font-size: 28px;
+  color: ${props => props.theme.grey60};
+  background-color: ${({ theme }) => theme.background};
+  /* border: 1px solid ${({ theme }) => theme.background}; */
+  border-radius: 25px;
+  font-size: 24px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
 
   &:hover {
     color: ${({ theme }) => theme.primary};
-    border-radius: 10px;
-    border: 1px solid ${({ theme }) => theme.primary};
+    box-shadow: 0px 0px 1px 1px ${({ theme }) => theme.primary};
     cursor: pointer;
   }
 `;
