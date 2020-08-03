@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 400px;
+    /* overflow-wrap: anywhere; */
   }
 `;
 
@@ -60,7 +61,7 @@ const QuantityWrapper = styled.div`
 
 const Quantity = styled.div`
   font-weight: 900;
-  text-align: center;
+  text-align: right;
 `;
 
 const Unit = styled.div`

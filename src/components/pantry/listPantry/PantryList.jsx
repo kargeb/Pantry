@@ -8,7 +8,7 @@ import PantryCategory from './PantryCategory';
 const CategoriesList = styled.ul`
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 0 3%;
   }

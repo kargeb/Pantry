@@ -10,6 +10,7 @@ export const defaultTheme = {
   mediumScreen: `${size.md}`,
   largeScreen: `${size.lg}`,
   grey60: '#808080',
+  grey10: '#E5E5E5',
   grey20: 'rgba(0,0,0,0.2)',
   primary20: '#FEE8CC',
   medium: 500,

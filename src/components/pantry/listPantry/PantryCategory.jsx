@@ -8,18 +8,29 @@ import ProductPropertiesForm from '../ProductPropertiesForm';
 
 const CategoriesItem = styled.li`
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    width: 400px;
     margin-bottom: 10px;
     margin: 0 5px 10px 5px;
     border: 1px solid ${({ theme }) => theme.grey20};
   }
 `;
 
+const TableHeader = styled.div`
+  /* position: relative; */
+  /* min-height: 30px; */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  /* line-height: 40px; */
+`;
+
 const CategoryLabel = styled.div`
-  padding: 5px 0 5px 20px;
+  /* padding: 5px 0 5px 20px; */
+
   font-style: normal;
+  overflow-wrap: anywhere;
   font-weight: ${({ theme }) => theme.medium};
   font-size: ${({ theme }) => theme.heading2};
-  line-height: 23px;
   color: ${({ theme }) => theme.primary};
 
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
@@ -27,15 +38,12 @@ const CategoryLabel = styled.div`
   }
 `;
 
-const TableHeader = styled.div`
-  position: relative;
-`;
-
 const ButtonAdd = styled(ButtonAddProduct)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 5px;
+  /* position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%); */
+  margin: 0px 15px 0px 0px;
   width: 23px;
   height: 23px;
   line-height: 23px;
@@ -74,8 +82,8 @@ class PantryCategory extends React.Component {
     return (
       <CategoriesItem key={currentCategory}>
         <TableHeader>
-          <CategoryLabel>{currentCategory}</CategoryLabel>
           <ButtonAdd onClick={this.handleClick}>+</ButtonAdd>
+          <CategoryLabel>{currentCategory}</CategoryLabel>
         </TableHeader>
         <ul>
           {productsInCurrentCategory.map(currentProduct => (
