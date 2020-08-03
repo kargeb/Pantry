@@ -9,26 +9,23 @@ const Button = styled.button`
   height: 26px;
   margin: 0 10px;
   border: none;
-  color: ${props => props.theme.background};
-  background-color: ${props => props.theme.grey60};
+  color: ${({ theme }) => theme.grey60};
+  background-color: ${({ theme }) => theme.background};
   border-radius: 25px;
   font-size: 15px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
   transition: all 0.1s;
 
   &:hover {
-    color: ${({ theme }) => theme.background};
-    background-color: ${props => props.theme.primary};
+    color: ${({ theme }) => theme.primary};
+    box-shadow: 0px 0px 1px 1px ${({ theme }) => theme.primary};
     cursor: pointer;
   }
 `;
 
-const Icon = styled(FontAwesomeIcon)`
-  /* color: ${({ theme }) => theme.primary}; */
-`;
-
 const ButtonIconEditProduct = ({ onClick }) => (
   <Button onClick={onClick}>
-    <Icon icon={faPen} />
+    <FontAwesomeIcon icon={faPen} />
   </Button>
 );
 

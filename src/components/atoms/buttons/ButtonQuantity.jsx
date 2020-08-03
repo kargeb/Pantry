@@ -5,9 +5,9 @@ const ButtonQuantity = styled.button`
   width: 40px;
   height: 28px;
   line-height: 28px;
-  color: ${props => props.theme.textPrimary};
-  background-color: ${props => props.theme.background};
-  border: 1px solid ${props => props.theme.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
+  background-color: ${({ theme }) => theme.background};
+  border: 1px solid ${({ theme }) => theme.textPrimary};
   border-radius: 4px;
   font-size: 28px;
   font-weight: 500;

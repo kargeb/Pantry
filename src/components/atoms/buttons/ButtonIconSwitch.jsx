@@ -8,7 +8,7 @@ const Button = styled.button`
   border: none;
   background-color: inherit;
   font-size: 35px;
-  color: ${props => props.theme.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 const ButtonIconSwitch = ({ onClick, themeName }) => (

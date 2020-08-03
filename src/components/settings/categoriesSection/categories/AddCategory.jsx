@@ -1,8 +1,8 @@
 import React from 'react';
-import { CategoriesContext } from '../../../context';
-import H1 from '../../atoms/texts/H1';
-import Input from '../../atoms/formElements/Input';
-import Button from '../../atoms/buttons/Button';
+import { CategoriesContext } from '../../../../context';
+import H1 from '../../../atoms/texts/H1';
+import Input from '../../../atoms/formElements/Input';
+import Button from '../../../atoms/buttons/Button';
 
 const AddCategory = () => (
   <CategoriesContext.Consumer>
