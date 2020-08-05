@@ -8,14 +8,12 @@ import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   min-height: 40px;
   line-height: 20px;
 
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 400px;
-    /* overflow-wrap: anywhere; */
   }
 `;
 
@@ -34,7 +32,6 @@ const Icon = styled.div`
   border-radius: 25px;
   font-size: 20px;
   background-color: ${({ theme }) => theme.background};
-  /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25); */
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
   line-height: 30px;
@@ -43,7 +40,6 @@ const Icon = styled.div`
 `;
 
 const StyledNameWrapper = styled.div`
-  /* width: 50%; */
   flex: 3;
   display: flex;
   align-items: center;
@@ -57,7 +53,6 @@ const StyledNameWrapper = styled.div`
 
 const QuantityWrapper = styled.div`
   display: flex;
-  /* width: 70px; */
   flex: 1;
 `;
 
@@ -72,7 +67,6 @@ const Unit = styled.div`
 `;
 
 const Min = styled.div`
-  /* width: 50px; */
   flex: 1;
   text-align: center;
 `;

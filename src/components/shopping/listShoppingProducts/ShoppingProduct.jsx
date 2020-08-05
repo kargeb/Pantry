@@ -5,27 +5,26 @@ import BuyProductModal from '../buyProductModal/BuyProductModal';
 import ButtonIconBuy from '../../atoms/buttons/ButtonIconBuy';
 
 const StyledWrapper = styled.div`
-  padding: 0 5%;
-  min-height: 50px;
+  padding: 0 10px;
+  min-height: 40px;
   line-height: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
 `;
 
 const StyledNameWrapper = styled.div`
-  width: 34%;
+  flex: 3;
   overflow-wrap: anywhere;
 `;
 
 const CurrentQuantity = styled.div`
   text-align: center;
-  width: 23%;
+  flex: 1;
 `;
 
 const Lack = styled.div`
+  flex: 1;
   text-align: center;
-  width: 23%;
   font-weight: bold;
   font-size: 18px;
 `;

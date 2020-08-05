@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import loadingGif from '../../../images/loading_dots.gif';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 import ShoppingCategory from './ShoppingCategory';
+import HeaderShoppingList from './HeaderShoppingList';
 
 const CategoriesList = styled.ul`
-  padding-top: 10px;
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 600px;
     margin: 0 auto;
@@ -19,21 +19,24 @@ const ShoppingList = ({ shoppingProducts, shoppingCategories }) => {
   return (
     <div>
       {shoppingProducts.length ? (
-        <CategoriesList>
-          {shoppingCategories.map(currentCategory => {
-            const productsInCurrentCategory = shoppingProducts.filter(
-              product => product.category === currentCategory,
-            );
-            return (
-              <li key={currentCategory}>
-                <ShoppingCategory
-                  currentCategory={currentCategory}
-                  productsInCurrentCategory={productsInCurrentCategory}
-                />
-              </li>
-            );
-          })}
-        </CategoriesList>
+        <>
+          <HeaderShoppingList />
+          <CategoriesList>
+            {shoppingCategories.map(currentCategory => {
+              const productsInCurrentCategory = shoppingProducts.filter(
+                product => product.category === currentCategory,
+              );
+              return (
+                <li key={currentCategory}>
+                  <ShoppingCategory
+                    currentCategory={currentCategory}
+                    productsInCurrentCategory={productsInCurrentCategory}
+                  />
+                </li>
+              );
+            })}
+          </CategoriesList>
+        </>
       ) : (
         <img src={loadingGif} alt="Loading gif" />
       )}

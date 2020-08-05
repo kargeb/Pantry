@@ -1,43 +1,48 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const StyledWrapper = styled.div`
-  padding: 5px 5% 0 5%;
-  min-height: 50px;
-  line-height: 50px;
+const Wrapper = styled.div`
+  padding: 10px 10px 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    width: 600px;
+    margin: 0 auto;
+  }
 `;
 
-const StyledNameWrapper = styled.div`
-  width: 34%;
+const AboveName = styled.div`
+  flex: 3;
+  display: flex;
 `;
 
-const StyledLackWrapper = styled.div`
-  width: 23%;
+const Description = styled.div`
+  font-size: 13px;
+  flex: 1;
+  font-style: italic;
   text-align: center;
+
+  ${({ bold }) =>
+    bold &&
+    css`
+      font-weight: bold;
+    `}
 `;
 
-const Lack = styled.div`
-  width: 23%;
-  text-align: center;
-  font-weight: bold;
-  font-size: 18px;
-`;
-
-const IconWrapper = styled.div`
+const AboveCartIcon = styled.div`
   width: 55px;
 `;
 
 const HeaderShoppingList = () => {
   return (
-    <StyledWrapper>
-      <StyledNameWrapper> </StyledNameWrapper>
-      <StyledLackWrapper>Obecnie</StyledLackWrapper>
-      <Lack>Brakuje</Lack>
-      <IconWrapper />
-    </StyledWrapper>
+    <Wrapper>
+      <AboveName />
+      <Description>Stan</Description>
+      <Description bold>Brakuje</Description>
+      <AboveCartIcon />
+    </Wrapper>
   );
 };
 

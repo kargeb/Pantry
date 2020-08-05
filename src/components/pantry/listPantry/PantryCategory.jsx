@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import PantryProduct from './PantryProduct';
@@ -74,6 +74,12 @@ const Description = styled.div`
   flex: 1;
   font-style: italic;
   text-align: center;
+
+  ${({ bold }) =>
+    bold &&
+    css`
+      font-weight: bold;
+    `}
 `;
 
 const AboveButtonEditProduct = styled.div`
@@ -106,7 +112,7 @@ class PantryCategory extends React.Component {
             <ColumnDescriptionWrapper>
               <AboveCartIcon />
               <AboveName />
-              <Description>Obecnie</Description>
+              <Description bold>Stan</Description>
               <Description>Min</Description>
               <AboveButtonEditProduct />
             </ColumnDescriptionWrapper>
