@@ -1,10 +1,11 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import PantryProduct from './PantryProduct';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
 import ProductPropertiesForm from '../ProductPropertiesForm';
+import HeaderPantryCategory from './HeaderPantryCategory';
 
 const CategoriesItem = styled.li`
   background-color: ${props => props.theme.background};
@@ -54,39 +55,6 @@ const ProductItem = styled.li`
   }
 `;
 
-const ColumnDescriptionWrapper = styled.div`
-  display: flex;
-  height: 16px;
-`;
-
-const AboveCartIcon = styled.div`
-  margin-left: 2px;
-  width: 40px;
-`;
-
-const AboveName = styled.div`
-  flex: 3;
-  display: flex;
-`;
-
-const Description = styled.div`
-  font-size: 13px;
-  flex: 1;
-  font-style: italic;
-  text-align: center;
-
-  ${({ bold }) =>
-    bold &&
-    css`
-      font-weight: bold;
-    `}
-`;
-
-const AboveButtonEditProduct = styled.div`
-  width: 45px;
-  margin: 0 10px;
-`;
-
 class PantryCategory extends React.Component {
   state = {
     isProductPropertiesForm: false,
@@ -108,15 +76,7 @@ class PantryCategory extends React.Component {
           <ButtonAdd onClick={this.handleClick}>+</ButtonAdd>
         </TableHeader>
         <ul>
-          <li>
-            <ColumnDescriptionWrapper>
-              <AboveCartIcon />
-              <AboveName />
-              <Description bold>Stan</Description>
-              <Description>Min</Description>
-              <AboveButtonEditProduct />
-            </ColumnDescriptionWrapper>
-          </li>
+          <HeaderPantryCategory />
           {productsInCurrentCategory.map(currentProduct => (
             <ProductItem key={currentProduct.id}>
               <PantryProduct product={currentProduct} />
