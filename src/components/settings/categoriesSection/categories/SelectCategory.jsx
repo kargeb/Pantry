@@ -51,7 +51,7 @@ const SelectCategory = ({ pantryCategories }) => {
           >
             <option aria-label="disable option" value="" disabled hidden />
             {context.categories &&
-              context.categories.map(category => (
+              context.categories.sort().map(category => (
                 <Option
                   disabled={pantryCategories.includes(category)}
                   key={category}

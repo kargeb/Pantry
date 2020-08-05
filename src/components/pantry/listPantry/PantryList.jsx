@@ -14,32 +14,29 @@ const CategoriesList = styled.ul`
   }
 `;
 
-const PantryList = ({ products, pantryCategories }) => {
-  pantryCategories.sort();
-
-  return (
-    <div>
-      {products.length ? (
-        <CategoriesList>
-          {pantryCategories.map(currentCategory => {
-            const productsInCurrentCategory = products.filter(
-              product => product.category === currentCategory,
-            );
-            return (
-              <PantryCategory
-                key={currentCategory}
-                currentCategory={currentCategory}
-                productsInCurrentCategory={productsInCurrentCategory}
-              />
-            );
-          })}
-        </CategoriesList>
-      ) : (
-        <img src={loadingGif} alt="Loading gif" />
-      )}
-    </div>
-  );
-};
+// pantryCategories is from HOC, these are categories that currently contain products
+const PantryList = ({ products, pantryCategories }) => (
+  <div>
+    {products.length ? (
+      <CategoriesList>
+        {pantryCategories.sort().map(currentCategory => {
+          const productsInCurrentCategory = products.filter(
+            product => product.category === currentCategory,
+          );
+          return (
+            <PantryCategory
+              key={currentCategory}
+              currentCategory={currentCategory}
+              productsInCurrentCategory={productsInCurrentCategory}
+            />
+          );
+        })}
+      </CategoriesList>
+    ) : (
+      <img src={loadingGif} alt="Loading gif" />
+    )}
+  </div>
+);
 
 PantryList.defaultProps = {
   products: [],

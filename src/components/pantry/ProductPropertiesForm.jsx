@@ -68,7 +68,7 @@ class ProductPropertiesForm extends React.Component {
     const { name, quantity, category, min, unit, id } = this.state;
     const { toggleFormVisibility, toggleChangeQuantityModal } = this.props;
 
-    if (name && quantity && category && min && unit) {
+    if (name && quantity >= 0 && category && min && unit) {
       const newProduct = {
         name,
         quantity: Number(quantity),
@@ -83,7 +83,7 @@ class ProductPropertiesForm extends React.Component {
 
       this.setState({
         name: '',
-        quantity: '',
+        quantity: 1,
         category: '',
         min: '1',
         unit: 'szt',
@@ -156,7 +156,7 @@ ProductPropertiesForm.defaultProps = {
   toggleChangeQuantityModal: () => {},
   // categories: [],
   name: '',
-  quantity: 0,
+  quantity: 1,
   category: '',
   min: '5',
   unit: 'szt',
