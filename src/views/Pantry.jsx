@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ShadowScrollbar from '../components/ShadowScrollbar/ShadowScrollbar';
 import PantryList from '../components/pantry/listPantry/PantryList';
-import ProductPropertiesForm from '../components/pantry/ProductPropertiesForm';
+import FormPantryProductContainer from '../components/pantry/FormPantryProduct/container/FormPantryProductContainer';
 import ButtonAddProduct from '../components/atoms/buttons/ButtonAddProduct';
 
 const Main = styled.main`
@@ -61,7 +61,7 @@ class Pantry extends React.Component {
           </ButtonAdd>
         </ButtonAddWrapper>
         {isFormVisible && (
-          <ProductPropertiesForm toggleFormVisibility={this.toggleFormVisibility} />
+          <FormPantryProductContainer toggleFormVisibility={this.toggleFormVisibility} />
         )}
       </Main>
     );

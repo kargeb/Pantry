@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PantryProduct from './PantryProduct';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
-import ProductPropertiesForm from '../ProductPropertiesForm';
+import FormPantryProductContainer from '../FormPantryProduct/container/FormPantryProductContainer';
 import HeaderPantryCategory from './HeaderPantryCategory';
 
 const CategoriesItem = styled.li`
@@ -85,7 +85,7 @@ class PantryCategory extends React.Component {
         </ul>
 
         {isProductPropertiesForm && (
-          <ProductPropertiesForm
+          <FormPantryProductContainer
             category={currentCategory}
             toggleFormVisibility={this.handleClick}
           />

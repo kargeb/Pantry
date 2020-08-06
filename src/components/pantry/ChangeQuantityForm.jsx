@@ -8,7 +8,7 @@ import Input from '../atoms/formElements/Input';
 import Button from '../atoms/buttons/Button';
 import db from '../../fbase';
 import DeleteProductModal from './DeleteProductModal';
-import ProductPropertiesForm from './ProductPropertiesForm';
+import FormPantryProductContainer from './FormPantryProduct/container/FormPantryProductContainer';
 import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
 import ButtonQuantity from '../atoms/buttons/ButtonQuantity';
 
@@ -158,7 +158,7 @@ class ChangeQuantityForm extends React.Component {
         )}
 
         {isProductPropertiesForm && (
-          <ProductPropertiesForm
+          <FormPantryProductContainer
             id={id}
             name={name}
             quantity={quantity}
