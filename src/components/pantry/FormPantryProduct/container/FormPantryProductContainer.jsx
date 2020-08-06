@@ -5,34 +5,26 @@ import db from '../../../../fbase';
 import FormPantryProduct from '../FormPantryProducts';
 
 class FormPantryProductContainer extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    isAlertVisible: false,
+    name: '',
+    quantity: this.props.quantity,
+    category: '',
+    min: 5,
+    unit: 'szt',
+    id: uuidv4(),
+  };
 
-    const { category, name, quantity, min, unit } = this.props;
-    let { id } = this.props;
+  componentDidMount() {
+    const { id } = this.props;
 
-    if (!id) {
-      id = uuidv4();
+    if (id) {
+      db.collection('products')
+        .doc(id)
+        .get()
+        .then(doc => this.setState({ ...doc.data() }));
     }
-
-    this.state = {
-      isAlertVisible: false,
-      // categories: [],
-      name,
-      quantity,
-      category,
-      min,
-      unit,
-      id,
-    };
   }
-
-  // componentDidMount() {
-  //   db.collection('categories')
-  //     .doc('all')
-  //     .get()
-  //     .then(doc => this.setState({ categories: [...doc.data().categories] }));
-  // }
 
   handleForm = e => {
     let { value } = e.target;
@@ -98,22 +90,14 @@ class FormPantryProductContainer extends React.Component {
 
 FormPantryProductContainer.defaultProps = {
   toggleChangeQuantityModal: () => {},
-  name: '',
-  quantity: 1,
-  category: '',
-  min: 5,
-  unit: 'szt',
+  quantity: 0,
   id: null,
 };
 
 FormPantryProductContainer.propTypes = {
   toggleFormVisibility: PropTypes.func.isRequired,
   toggleChangeQuantityModal: PropTypes.func,
-  name: PropTypes.string,
   quantity: PropTypes.number,
-  category: PropTypes.string,
-  min: PropTypes.number,
-  unit: PropTypes.string,
   id: PropTypes.string,
 };
 

@@ -43,15 +43,11 @@ const WrapperEditDeleteButtons = styled.div`
 class ChangeQuantityForm extends React.Component {
   constructor(props) {
     super(props);
-    const { product } = this.props;
-    const { quantity, name, id, min, category, unit } = product;
+    const { name, quantity, id } = this.props;
     this.state = {
       quantity: Number(quantity),
       name,
       id,
-      min: Number(min),
-      unit,
-      category,
       isProductPropertiesForm: false,
       isDeleteModalVisible: false,
     };
@@ -105,16 +101,7 @@ class ChangeQuantityForm extends React.Component {
   };
 
   render() {
-    const {
-      quantity,
-      id,
-      name,
-      category,
-      min,
-      unit,
-      isDeleteModalVisible,
-      isProductPropertiesForm,
-    } = this.state;
+    const { quantity, id, name, isDeleteModalVisible, isProductPropertiesForm } = this.state;
     const { toggleChangeQuantityModal } = this.props;
 
     return (
@@ -160,11 +147,7 @@ class ChangeQuantityForm extends React.Component {
         {isProductPropertiesForm && (
           <FormPantryProductContainer
             id={id}
-            name={name}
             quantity={quantity}
-            unit={unit}
-            min={min}
-            category={category}
             toggleFormVisibility={this.toggleEditProductForm}
             toggleChangeQuantityModal={toggleChangeQuantityModal}
           />
@@ -175,14 +158,10 @@ class ChangeQuantityForm extends React.Component {
 }
 
 ChangeQuantityForm.propTypes = {
-  product: PropTypes.shape({
-    quantity: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    min: PropTypes.number.isRequired,
-    category: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
-  }).isRequired,
+  quantity: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+
   toggleChangeQuantityModal: PropTypes.func.isRequired,
 };
 
