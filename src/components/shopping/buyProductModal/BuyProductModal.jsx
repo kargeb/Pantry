@@ -44,40 +44,41 @@ class BuyProductModal extends React.Component {
   constructor(props) {
     super(props);
 
-    const { id, lack, min, currentQuantity } = this.props;
+    const { id, toBuy, min, currentQuantity } = this.props;
 
     this.state = {
       min,
       currentQuantity,
-      lack,
+      toBuy,
       id,
     };
   }
 
   addQuantity = () => {
-    const { lack } = this.state;
-    this.setState({ lack: lack + 1 });
+    const { toBuy } = this.state;
+    this.setState({ toBuy: toBuy + 1 });
   };
 
   subtractQuantity = () => {
-    const { lack } = this.state;
-    if (lack === 0) {
+    const { toBuy } = this.state;
+    if (toBuy === 0) {
       return;
     }
-    this.setState({ lack: lack - 1 });
+    this.setState({ toBuy: toBuy - 1 });
   };
 
   handleInput = e => {
     let { value } = e.target;
+    value = parseInt(value, 10);
     if (value < 0) {
       value = 0;
     }
-    this.setState({ lack: value });
+    this.setState({ toBuy: value });
   };
 
   updateProductQuantity = toggleBuyProductModal => {
-    const { currentQuantity, id, lack, min } = this.state;
-    const quantityAfterShopping = +currentQuantity + +lack;
+    const { currentQuantity, id, toBuy, min } = this.state;
+    const quantityAfterShopping = +currentQuantity + +toBuy;
 
     db.collection('products')
       .doc(id)
@@ -90,7 +91,7 @@ class BuyProductModal extends React.Component {
 
   render() {
     const { name, toggleBuyProductModal } = this.props;
-    const { lack } = this.state;
+    const { toBuy } = this.state;
 
     return (
       <Modal>
@@ -104,7 +105,7 @@ class BuyProductModal extends React.Component {
             className="withoutSpinButtons"
             type="number"
             id="currentQuantity"
-            value={lack}
+            value={toBuy}
             onChange={this.handleInput}
           />
           <ButtonQuantity onClick={this.addQuantity}>+</ButtonQuantity>
@@ -122,8 +123,8 @@ BuyProductModal.propTypes = {
   name: PropTypes.string.isRequired,
   toggleBuyProductModal: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  lack: PropTypes.number.isRequired,
-  min: PropTypes.string.isRequired,
+  toBuy: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired,
   currentQuantity: PropTypes.number.isRequired,
 };
 

@@ -57,8 +57,13 @@ class ProductPropertiesForm extends React.Component {
 
   handleForm = e => {
     let { value } = e.target;
-    if (value < 0) {
-      value = 0;
+
+    if (e.target.id === 'min' || e.target.id === 'quantity') {
+      value = parseInt(value, 10);
+
+      if (value < 0) {
+        value = 0;
+      }
     }
 
     this.setState({ [e.target.id]: value });
@@ -73,7 +78,7 @@ class ProductPropertiesForm extends React.Component {
         name,
         quantity: Number(quantity),
         category,
-        min,
+        min: Number(min),
         unit,
         onShoppingList: Number(quantity) < min,
         id,
@@ -85,7 +90,7 @@ class ProductPropertiesForm extends React.Component {
         name: '',
         quantity: 1,
         category: '',
-        min: '1',
+        min: 1,
         unit: 'szt',
         id: null,
       });
@@ -158,7 +163,7 @@ ProductPropertiesForm.defaultProps = {
   name: '',
   quantity: 1,
   category: '',
-  min: '5',
+  min: 5,
   unit: 'szt',
   id: null,
 };
@@ -169,7 +174,7 @@ ProductPropertiesForm.propTypes = {
   name: PropTypes.string,
   quantity: PropTypes.number,
   category: PropTypes.string,
-  min: PropTypes.string,
+  min: PropTypes.number,
   unit: PropTypes.string,
   id: PropTypes.string,
 };

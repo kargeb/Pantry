@@ -122,7 +122,7 @@ PantryProduct.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
-    min: PropTypes.string.isRequired,
+    min: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     unit: PropTypes.string.isRequired,
   }).isRequired,

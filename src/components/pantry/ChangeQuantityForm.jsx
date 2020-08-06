@@ -49,7 +49,7 @@ class ChangeQuantityForm extends React.Component {
       quantity: Number(quantity),
       name,
       id,
-      min,
+      min: Number(min),
       unit,
       category,
       isProductPropertiesForm: false,
@@ -59,6 +59,7 @@ class ChangeQuantityForm extends React.Component {
 
   handleInput = e => {
     let { value } = e.target;
+    value = parseInt(value, 10);
     if (value < 0) {
       value = 0;
     }
@@ -178,7 +179,7 @@ ChangeQuantityForm.propTypes = {
     quantity: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    min: PropTypes.string.isRequired,
+    min: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired,
     unit: PropTypes.string.isRequired,
   }).isRequired,
