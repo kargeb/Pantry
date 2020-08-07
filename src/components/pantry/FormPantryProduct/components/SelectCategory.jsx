@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import db from '../../../fbase';
-import Label from '../../atoms/formElements/Label';
-import Select from '../../atoms/formElements/Select';
+import db from '../../../../fbase';
+import Label from '../../../atoms/formElements/Label';
+import Select from '../../../atoms/formElements/Select';
 
 const InputVerticalWrapper = styled.div`
   display: flex;
