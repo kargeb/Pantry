@@ -5,7 +5,6 @@ import DarkModeSection from '../components/settings/darkModeSection/DarkModeSect
 import CategoriesSection from '../components/settings/categoriesSection/CategoriesSection';
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/settings/sampleDataSection/SampleDataSection';
-import CategoriesContainer from '../components/settings/categoriesSection/container/CategoriesContainer';
 
 const Main = styled.main`
   color: ${props => props.theme.textPrimary};
@@ -27,35 +26,15 @@ const Wrapper = styled.div`
   }
 `;
 
-class Settings extends React.Component {
-  state = {
-    isCategoriesContainerVisible: false,
-  };
-
-  toggleCategoriesModal = () => {
-    this.setState(prevState => ({
-      isCategoriesContainerVisible: !prevState.isCategoriesContainerVisible,
-    }));
-  };
-
-  render() {
-    const { isCategoriesContainerVisible } = this.state;
-    return (
-      <Main>
-        <Wrapper>
-          <DarkModeSection />
-          <Divider />
-          <InsertSampleData />
-          <Divider />
-          <CategoriesSection toggleCategoriesModal={this.toggleCategoriesModal} />
-        </Wrapper>
-
-        {isCategoriesContainerVisible && (
-          <CategoriesContainer toggleCategoriesModal={this.toggleCategoriesModal} />
-        )}
-      </Main>
-    );
-  }
-}
-
+const Settings = () => (
+  <Main>
+    <Wrapper>
+      <DarkModeSection />
+      <Divider />
+      <InsertSampleData />
+      <Divider />
+      <CategoriesSection />
+    </Wrapper>
+  </Main>
+);
 export default Settings;

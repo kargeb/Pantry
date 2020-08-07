@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 import H2 from '../../atoms/texts/H2';
 import Button from '../../atoms/buttons/Button';
+import CategoriesContainer from './container/CategoriesContainer';
 
 const Header = styled.div`
   display: flex;
@@ -34,23 +34,35 @@ const WrapperButton = styled.div`
   }
 `;
 
-const CategoriesSection = ({ toggleCategoriesModal }) => {
-  return (
-    <Section>
-      <Header>
-        <H2>Kategorie</H2>
-      </Header>
-      <WrapperButton>
-        <Button type="button" onClick={toggleCategoriesModal}>
-          Dodaj / usuń
-        </Button>
-      </WrapperButton>
-    </Section>
-  );
-};
+class CategoriesSection extends React.Component {
+  state = {
+    isCategoriesContainerVisible: false,
+  };
 
-CategoriesSection.propTypes = {
-  toggleCategoriesModal: PropTypes.func.isRequired,
-};
+  toggleCategoriesContainer = () => {
+    this.setState(prevState => ({
+      isCategoriesContainerVisible: !prevState.isCategoriesContainerVisible,
+    }));
+  };
+
+  render() {
+    const { isCategoriesContainerVisible } = this.state;
+    return (
+      <Section>
+        <Header>
+          <H2>Kategorie</H2>
+        </Header>
+        <WrapperButton>
+          <Button type="button" onClick={this.toggleCategoriesContainer}>
+            Dodaj / usuń
+          </Button>
+        </WrapperButton>
+        {isCategoriesContainerVisible && (
+          <CategoriesContainer toggleCategoriesContainer={this.toggleCategoriesContainer} />
+        )}
+      </Section>
+    );
+  }
+}
 
 export default CategoriesSection;
