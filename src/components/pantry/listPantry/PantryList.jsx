@@ -14,7 +14,7 @@ const CategoriesList = styled.ul`
   }
 `;
 
-// pantryCategories is from HOC, these are categories that currently contain products
+// props are from HOC, pantryCategories are categories that currently contain products
 const PantryList = ({ products, pantryCategories }) => (
   <div>
     {products.length ? (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import ChangeQuantityForm from '../ChangeQuantityForm';
+import FormChangeQuantityContainer from '../FormChangeQuantity/container/FormChangeQuantityContainer';
 import ButtonIconEditProduct from '../../atoms/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
@@ -73,19 +73,19 @@ const Min = styled.div`
 
 class PantryProduct extends React.Component {
   state = {
-    isChangeQuantityFormVisible: false,
+    isFormChangeQuantityContainerVisible: false,
   };
 
   toggleChangeQuantityModal = () => {
     this.setState(prevState => ({
-      isChangeQuantityFormVisible: !prevState.isChangeQuantityFormVisible,
+      isFormChangeQuantityContainerVisible: !prevState.isFormChangeQuantityContainerVisible,
     }));
   };
 
   render() {
-    const { isChangeQuantityFormVisible } = this.state;
+    const { isFormChangeQuantityContainerVisible } = this.state;
     const { product } = this.props;
-    const { name, quantity, unit, min } = product;
+    const { name, quantity, unit, min, id } = product;
     const cartIconShow = quantity < min;
 
     return (
@@ -107,9 +107,12 @@ class PantryProduct extends React.Component {
           <Min>({min})</Min>
           <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
         </Wrapper>
-        {isChangeQuantityFormVisible && (
-          <ChangeQuantityForm
-            product={product}
+        {isFormChangeQuantityContainerVisible && (
+          <FormChangeQuantityContainer
+            // product={product}
+            name={name}
+            id={id}
+            quantity={quantity}
             toggleChangeQuantityModal={this.toggleChangeQuantityModal}
           />
         )}

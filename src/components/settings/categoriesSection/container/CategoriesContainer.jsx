@@ -93,7 +93,7 @@ class CategoriesContainer extends React.Component {
       toggleDeleteModal: this.toggleDeleteModal,
     };
 
-    const { toggleCategoriesModal } = this.props;
+    const { toggleCategoriesContainer } = this.props;
     const { alertMessage } = this.state;
     return (
       <Modal>
@@ -103,7 +103,7 @@ class CategoriesContainer extends React.Component {
           <Divider horizontal />
           <DeleteCategory />
           <br />
-          <ButtonIconCancel onClick={toggleCategoriesModal} />
+          <ButtonIconCancel onClick={toggleCategoriesContainer} />
         </CategoriesContext.Provider>
         {alertMessage && <Alert>{alertMessage}</Alert>}
       </Modal>
@@ -112,7 +112,7 @@ class CategoriesContainer extends React.Component {
 }
 
 CategoriesContainer.propTypes = {
-  toggleCategoriesModal: PropTypes.func.isRequired,
+  toggleCategoriesContainer: PropTypes.func.isRequired,
 };
 
 export default CategoriesContainer;
