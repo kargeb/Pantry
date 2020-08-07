@@ -43,13 +43,13 @@ class ShoppingProduct extends React.Component {
   render() {
     const { name, id, quantity, min } = this.props;
     const { isBuyProductModalVisible } = this.state;
-    const lack = min - quantity;
+    const toBuy = min - quantity;
 
     return (
       <StyledWrapper>
         <StyledNameWrapper>{name}</StyledNameWrapper>
         <CurrentQuantity>{quantity}</CurrentQuantity>
-        <Lack>{lack}</Lack>
+        <Lack>{toBuy}</Lack>
         <ButtonIconBuy onClick={this.toggleBuyProductModal} />
         {isBuyProductModalVisible && (
           <BuyProductModal
@@ -57,7 +57,7 @@ class ShoppingProduct extends React.Component {
             name={name}
             currentQuantity={quantity}
             min={min}
-            lack={lack}
+            toBuy={toBuy}
             toggleBuyProductModal={this.toggleBuyProductModal}
           />
         )}
@@ -70,7 +70,7 @@ ShoppingProduct.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
-  min: PropTypes.string.isRequired,
+  min: PropTypes.number.isRequired,
 };
 
 export default ShoppingProduct;

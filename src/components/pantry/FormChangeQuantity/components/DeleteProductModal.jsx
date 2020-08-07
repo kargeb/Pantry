@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import db from '../../fbase';
-import Modal from '../templates/Modal';
-import H1 from '../atoms/texts/H1';
-import Label from '../atoms/formElements/Label';
-import WrapperButtonsConfirmAndCancel from '../molecules/WrapperButtonsConfirmAndCancel';
+import db from '../../../../fbase';
+import Modal from '../../../templates/Modal';
+import H1 from '../../../atoms/texts/H1';
+import Label from '../../../atoms/formElements/Label';
+import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
 
 const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   const deleteProduct = () => {
