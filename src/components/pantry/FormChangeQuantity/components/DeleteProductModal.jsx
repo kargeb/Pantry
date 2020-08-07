@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import db from '../../../../fbase';
 import Modal from '../../../templates/Modal';
 import H1 from '../../../atoms/texts/H1';
-import Label from '../../../atoms/formElements/Label';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
+import H2 from '../../../atoms/texts/H2';
 
 const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   const deleteProduct = () => {
@@ -23,7 +23,9 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   return (
     <Modal>
       <H1 marginBottomDouble>Potwierdź usunięcie:</H1>
-      <Label>{name}</Label>
+      <H2 italic marginBottom>
+        {name}
+      </H2>
       <WrapperButtonsConfirmAndCancel
         cancelOnClick={toggleDeleteModal}
         confirmOnClick={deleteProduct}

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import db from '../../../../fbase';
 import DeleteProductModal from '../components/DeleteProductModal';
 import FormPantryProductContainer from '../../FormPantryProduct/container/FormPantryProductContainer';
-import FormChangeQuantity from '../components/FormChangeQuantity';
+import Modal from '../../../templates/Modal';
+import H1 from '../../../atoms/texts/H1';
+import ChangeQuantitySection from '../components/ChangeQuantitySection';
+import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
+import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
 
 class FormChangeQuantityContainer extends React.Component {
   constructor(props) {
@@ -70,18 +74,23 @@ class FormChangeQuantityContainer extends React.Component {
     const { toggleChangeQuantityModal } = this.props;
 
     return (
-      <>
-        <FormChangeQuantity
-          updateProductQuantity={this.updateProductQuantity}
-          toggleChangeQuantityModal={toggleChangeQuantityModal}
-          toggleDeleteModal={this.toggleDeleteModal}
-          toggleEditProductForm={this.toggleEditProductForm}
-          addQuantity={this.addQuantity}
-          handleInput={this.handleInput}
+      <Modal>
+        <H1 marginBottom>{name}</H1>
+        <ChangeQuantitySection
           quantity={quantity}
-          name={name}
+          handleInput={this.handleInput}
           subtractQuantity={this.subtractQuantity}
+          addQuantity={this.addQuantity}
         />
+        <EditDeleteButtonsSection
+          toggleEditProductForm={this.toggleEditProductForm}
+          toggleDeleteModal={this.toggleDeleteModal}
+        />
+        <WrapperButtonsConfirmAndCancel
+          cancelOnClick={toggleChangeQuantityModal}
+          confirmOnClick={this.updateProductQuantity}
+        />
+
         {isDeleteModalVisible && (
           <DeleteProductModal id={id} name={name} toggleDeleteModal={this.toggleDeleteModal} />
         )}
@@ -94,7 +103,7 @@ class FormChangeQuantityContainer extends React.Component {
             toggleChangeQuantityModal={toggleChangeQuantityModal}
           />
         )}
-      </>
+      </Modal>
     );
   }
 }

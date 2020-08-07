@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import db from '../../../../fbase';
-import FormPantryProduct from '../components/FormPantryProducts';
+import Modal from '../../../templates/Modal';
+import H1 from '../../../atoms/texts/H1';
+import InputName from '../components/InputName';
+import SelectCategory from '../components/SelectCategory';
+import SelectUnit from '../components/SelectUnit';
+import InputMin from '../components/InputMin';
+import InputQuantity from '../components/InputQuantity';
+import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
+import Alert from '../../../molecules/Alert';
 
 class FormPantryProductContainer extends React.Component {
   state = {
@@ -75,15 +83,22 @@ class FormPantryProductContainer extends React.Component {
 
   render() {
     const { toggleFormVisibility, id } = this.props;
+    const { name, quantity, unit, min, category, isAlertVisible } = this.state;
 
     return (
-      <FormPantryProduct
-        id={id}
-        toggleFormVisibility={toggleFormVisibility}
-        state={this.state}
-        handleForm={this.handleForm}
-        handleSubmit={this.handleSubmit}
-      />
+      <Modal>
+        <H1 marginBottomDouble>{id ? 'Edytuj produkt' : 'Nowy produkt'}</H1>
+        <InputName handleForm={this.handleForm} name={name} />
+        <SelectCategory handleForm={this.handleForm} category={category} />
+        <SelectUnit handleForm={this.handleForm} category={unit} />
+        <InputMin handleForm={this.handleForm} min={min} />
+        <InputQuantity handleForm={this.handleForm} quantity={quantity} />
+        <WrapperButtonsConfirmAndCancel
+          cancelOnClick={toggleFormVisibility}
+          confirmOnClick={this.handleSubmit}
+        />
+        {isAlertVisible && <Alert>Są puste pola!</Alert>}
+      </Modal>
     );
   }
 }

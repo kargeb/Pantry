@@ -8,8 +8,8 @@ import WrapperButtonsConfirmAndCancel from './WrapperButtonsConfirmAndCancel';
 
 const ModalConfirmDeletion = ({ name, toggleDeleteModal, handleDeleteCategory, heading }) => {
   const handleConfirmDelete = () => {
-    toggleDeleteModal();
     handleDeleteCategory();
+    toggleDeleteModal();
   };
 
   return (

@@ -8,6 +8,7 @@ import H1 from '../../atoms/texts/H1';
 import Label from '../../atoms/formElements/Label';
 import Input from '../../atoms/formElements/Input';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
+import H2 from '../../atoms/texts/H2';
 
 const WrapperChangeQuantity = styled.div`
   width: 160px;
@@ -96,7 +97,9 @@ class BuyProductModal extends React.Component {
     return (
       <Modal>
         <H1 marginBottomDouble>Ile chcesz kupić?</H1>
-        <Label>{name}</Label>
+        <H2 italic marginBottom>
+          {name}
+        </H2>
         <WrapperChangeQuantity>
           <ButtonQuantity onClick={this.subtractQuantity}>-</ButtonQuantity>
 
