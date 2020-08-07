@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Input from '../../../atoms/formElements/Input';
 import ButtonQuantity from '../../../atoms/buttons/ButtonQuantity';
+import Label from '../../../atoms/formElements/Label';
+import H2 from '../../../atoms/texts/H2';
 
 const InputNumber = styled(Input)`
   border: none;
@@ -25,19 +27,26 @@ const WrapperChangeQuantity = styled.div`
 
 const ChangeQuantitySection = ({ subtractQuantity, addQuantity, quantity, handleInput }) => {
   return (
-    <WrapperChangeQuantity>
-      <ButtonQuantity onClick={subtractQuantity}>-</ButtonQuantity>
+    <>
+      {/* <Label htmlFor="currentQuantity">Zmień ilość</Label> */}
+      <H2 italic marginBottom>
+        Zmień ilość
+      </H2>
 
-      <InputNumber
-        short
-        className="withoutSpinButtons"
-        type="number"
-        id="currentQuantity"
-        value={quantity}
-        onChange={handleInput}
-      />
-      <ButtonQuantity onClick={addQuantity}>+</ButtonQuantity>
-    </WrapperChangeQuantity>
+      <WrapperChangeQuantity>
+        <ButtonQuantity onClick={subtractQuantity}>-</ButtonQuantity>
+
+        <InputNumber
+          short
+          className="withoutSpinButtons"
+          type="number"
+          id="currentQuantity"
+          value={quantity}
+          onChange={handleInput}
+        />
+        <ButtonQuantity onClick={addQuantity}>+</ButtonQuantity>
+      </WrapperChangeQuantity>
+    </>
   );
 };
 
