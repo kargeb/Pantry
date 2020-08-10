@@ -11,7 +11,7 @@ const Main = styled.main`
   justify-content: space-between;
   color: ${props => props.theme.textPrimary};
   /* background-color: ${props => props.theme.background}; */
-  background-color: ${props => props.theme.grey10};
+  background-color: ${props => props.theme.wideScreenBackground};
 `;
 
 const Pantry = () => (

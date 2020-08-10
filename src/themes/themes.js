@@ -28,6 +28,8 @@ export const lightTheme = {
   textSecondary: '#fff',
   background: '#fff',
   activeTextColorNav: '#fff',
+  wideScreenBackground: defaultTheme.grey10,
+  buttonPrimary: defaultTheme.grey60,
 };
 
 export const darkTheme = {
@@ -37,4 +39,6 @@ export const darkTheme = {
   textSecondary: '#333',
   background: '#666',
   activeTextColorNav: '#333',
+  wideScreenBackground: '#202020',
+  buttonPrimary: defaultTheme.grey10,
 };

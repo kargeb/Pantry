@@ -8,12 +8,12 @@ const Button = styled.button`
   width: 55px;
   height: 30px;
   border: none;
-  color: ${props => props.theme.grey60};
+  color: ${({ theme }) => theme.buttonPrimary};
   background-color: ${({ theme }) => theme.background};
   /* border: 1px solid ${({ theme }) => theme.background}; */
   border-radius: 25px;
   font-size: 24px;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 1px 1px ${({ theme }) => theme.buttonPrimary};
 
   &:hover {
     color: ${({ theme }) => theme.primary};

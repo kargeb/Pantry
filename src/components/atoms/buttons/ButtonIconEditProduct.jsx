@@ -9,11 +9,12 @@ const Button = styled.button`
   height: 26px;
   margin: 0 10px;
   border: none;
-  color: ${({ theme }) => theme.grey60};
+  color: ${({ theme }) => theme.buttonPrimary};
   background-color: ${({ theme }) => theme.background};
   border-radius: 25px;
   font-size: 15px;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 0px 1px 1px ${({ theme }) => theme.buttonPrimary};
   transition: all 0.1s;
 
   &:hover {

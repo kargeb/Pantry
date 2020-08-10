@@ -23,12 +23,16 @@ const CustomSelect = styled(Select)`
 `;
 
 const Option = styled.option`
+  background-color: ${({ theme }) => theme.textSecondary};
+  color: ${({ theme }) => theme.textPrimary};
+
   &:hover {
     font-weight: 600;
   }
 
   &:disabled {
-    background-color: #f1f1f1;
+    background-color: ${({ theme }) => theme.grey20};
+    color: ${({ theme }) => theme.textPrimary};
     cursor: not-allowed;
 
     &:hover {

@@ -10,12 +10,11 @@ const H2 = styled.h2`
     css`
       font-style: italic;
     `}
-
   ${({ marginBottom }) =>
     marginBottom &&
     css`
       margin-bottom: 15px;
-    `}
+    `};
 `;
 
 export default H2;
