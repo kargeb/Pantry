@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Input from '../../../atoms/formElements/Input';
 import ButtonQuantity from '../../../atoms/buttons/ButtonQuantity';
-import Label from '../../../atoms/formElements/Label';
 import H2 from '../../../atoms/texts/H2';
 
 const InputNumber = styled(Input)`
@@ -28,7 +27,6 @@ const WrapperChangeQuantity = styled.div`
 const ChangeQuantitySection = ({ subtractQuantity, addQuantity, quantity, handleInput }) => {
   return (
     <>
-      {/* <Label htmlFor="currentQuantity">Zmień ilość</Label> */}
       <H2 italic marginBottom>
         Zmień ilość
       </H2>

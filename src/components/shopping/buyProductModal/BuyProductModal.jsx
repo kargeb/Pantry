@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import db from '../../../fbase';
 import Modal from '../../templates/Modal';
 import H1 from '../../atoms/texts/H1';
-import Label from '../../atoms/formElements/Label';
 import Input from '../../atoms/formElements/Input';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import H2 from '../../atoms/texts/H2';

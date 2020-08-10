@@ -39,16 +39,20 @@ class CategoriesContainer extends React.Component {
 
   handleAddCategory = () => {
     const { categories } = this.state;
-    let { newCategory } = this.state;
+    const { newCategory } = this.state;
 
     if (newCategory) {
-      newCategory = newCategory[0].toUpperCase() + newCategory.slice(1);
-      const newCategories = {
-        categories: [...categories, newCategory],
-      };
-      db.collection('categories').doc('all').set(newCategories);
+      const isCategoryUnique = !categories.includes(newCategory);
+      if (isCategoryUnique) {
+        const newCategories = {
+          categories: [...categories, newCategory],
+        };
+        db.collection('categories').doc('all').set(newCategories);
 
-      this.setState({ newCategory: '', alertMessage: '' });
+        this.setState({ newCategory: '', alertMessage: '' });
+      } else {
+        this.setState({ alertMessage: 'Taka kategoria już istnieje!' });
+      }
     } else {
       this.setState({ alertMessage: 'Wpisz nazwę!' });
     }
