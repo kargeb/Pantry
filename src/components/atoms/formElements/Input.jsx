@@ -23,6 +23,10 @@ const Input = styled.input`
     border: solid 1.5px rgba(251, 142, 1, 0.7);
     box-shadow: 0px 0px 2px #ffc52f;
   }
+
+  ::placeholder {
+    color: ${props => props.theme.buttonPrimary};
+  }
 `;
 
 export default Input;
