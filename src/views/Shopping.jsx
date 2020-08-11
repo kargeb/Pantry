@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Scrollbars } from 'react-custom-scrollbars';
 import ShoppingList from '../components/shopping/listShoppingProducts/ShoppingList';
+import ShadowScrollbar from '../components/ShadowScrollbar/ShadowScrollbar';
 
 const StyledMain = styled.main`
   height: calc(100vh - 70px);
@@ -12,9 +12,10 @@ const StyledMain = styled.main`
 const Shopping = () => {
   return (
     <StyledMain>
-      <Scrollbars style={{ height: 'calc(100vh - 70px)' }}>
+      {/* <ShadowScrollbar style={{ height: 'calc(100vh - 70px)' }}> */}
+      <ShadowScrollbar style={{ height: '100%' }}>
         <ShoppingList />
-      </Scrollbars>
+      </ShadowScrollbar>
     </StyledMain>
   );
 };

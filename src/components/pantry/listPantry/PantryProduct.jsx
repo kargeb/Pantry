@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   min-height: 40px;
   line-height: 20px;
 
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     width: 400px;
   }
 `;
@@ -58,7 +58,7 @@ const QuantityWrapper = styled.div`
 
 const Quantity = styled.div`
   font-weight: 900;
-  text-align: right;
+  text-align: center;
 `;
 
 const Unit = styled.div`

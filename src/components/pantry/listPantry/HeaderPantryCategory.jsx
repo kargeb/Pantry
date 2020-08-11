@@ -27,6 +27,13 @@ const Description = styled.div`
     css`
       font-weight: bold;
     `}
+
+  ${({ left }) =>
+    left &&
+    css`
+      text-align: left;
+      padding-left: 35px;
+    `}
 `;
 
 const AboveButtonEditProduct = styled.div`
@@ -39,7 +46,9 @@ const HeaderPantryCategory = () => {
     <Wrapper>
       <AboveCartIcon />
       <AboveName />
-      <Description bold>Stan</Description>
+      <Description bold left>
+        Stan
+      </Description>
       <Description>Min</Description>
       <AboveButtonEditProduct />
     </Wrapper>

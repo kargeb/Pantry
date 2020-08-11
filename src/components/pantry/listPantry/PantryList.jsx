@@ -6,7 +6,7 @@ import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 import PantryCategory from './PantryCategory';
 
 const CategoriesList = styled.ul`
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;

@@ -9,7 +9,7 @@ import HeaderPantryCategory from './HeaderPantryCategory';
 
 const CategoriesItem = styled.li`
   background-color: ${props => props.theme.background};
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     width: 400px;
     margin-bottom: 10px;
     margin: 0 5px 10px 5px;

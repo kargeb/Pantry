@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
 import FormPantryProductContainer from '../FormPantryProduct/container/FormPantryProductContainer';
 
-const ButtonAddWrapper = styled.div`
+const Wrapper = styled.div`
   box-sizing: border-box;
   text-align: center;
-  padding: 15px 0;
+  padding: 8px 0;
   background-color: ${props => props.theme.background};
+
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    padding: 15px 0;
+  }
 `;
 
 const ButtonAdd = styled(ButtonAddProduct)`
@@ -38,14 +42,14 @@ class ButtonAddProductSection extends React.Component {
   render() {
     const { isFormVisible } = this.state;
     return (
-      <ButtonAddWrapper>
+      <Wrapper>
         <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
           +
         </ButtonAdd>
         {isFormVisible && (
           <FormPantryProductContainer toggleFormVisibility={this.toggleFormVisibility} />
         )}
-      </ButtonAddWrapper>
+      </Wrapper>
     );
   }
 }

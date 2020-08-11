@@ -6,12 +6,15 @@ import ButtonAddProductSection from '../components/pantry/ButtonAddProductSectio
 
 const Main = styled.main`
   display: flex;
-  padding-top: 10px;
+  padding-top: 5px;
   flex-direction: column;
   justify-content: space-between;
   color: ${props => props.theme.textPrimary};
-  /* background-color: ${props => props.theme.background}; */
   background-color: ${props => props.theme.wideScreenBackground};
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    padding-top: 10px;
+  }
 `;
 
 const Pantry = () => (
