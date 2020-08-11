@@ -4,15 +4,24 @@ import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 class ShadowScrollbars extends Component {
+  constructor(props) {
+    super(props);
+    this.shadowTop = React.createRef();
+    this.shadowBottom = React.createRef();
+  }
+
   handleUpdate = values => {
-    const { shadowTop, shadowBottom } = this.refs;
+    // const { shadowTop, shadowBottom } = this.refs;
     const { scrollTop, scrollHeight, clientHeight } = values;
     const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
     const bottomScrollTop = scrollHeight - clientHeight;
     const shadowBottomOpacity =
       (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
-    css(shadowTop, { opacity: shadowTopOpacity });
-    css(shadowBottom, { opacity: shadowBottomOpacity });
+    console.log('THIS SHAODW TOP', this.shadowTop);
+    // css(this.shadowTop, { opacity: shadowTopOpacity });
+    this.shadowTop.current.style.opacity = shadowTopOpacity;
+    // css(this.shadowBottom.current.style, { opacity: shadowBottomOpacity });
+    this.shadowBottom.current.style.opacity = shadowBottomOpacity;
   };
 
   render() {
@@ -39,9 +48,10 @@ class ShadowScrollbars extends Component {
     };
     return (
       <div style={containerStyle}>
-        <Scrollbars ref="scrollbars" onUpdate={this.handleUpdate} {...props} />
-        <div ref="shadowTop" style={shadowTopStyle} />
-        <div ref="shadowBottom" style={shadowBottomStyle} />
+        {/* <Scrollbars ref="scrollbars" onUpdate={this.handleUpdate} {...props} /> */}
+        <Scrollbars onUpdate={this.handleUpdate} {...props} />
+        <div ref={this.shadowTop} style={shadowTopStyle} />
+        <div ref={this.shadowBottom} style={shadowBottomStyle} />
       </div>
     );
   }
