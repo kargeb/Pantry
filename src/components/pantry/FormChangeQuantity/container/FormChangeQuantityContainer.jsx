@@ -5,17 +5,19 @@ import DeleteProductModal from '../components/DeleteProductModal';
 import FormPantryProductContainer from '../../FormPantryProduct/container/FormPantryProductContainer';
 import Modal from '../../../templates/Modal';
 import H1 from '../../../atoms/texts/H1';
-import ChangeQuantitySection from '../components/ChangeQuantitySection';
 import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
+import H2 from '../../../atoms/texts/H2';
+import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
 
 class FormChangeQuantityContainer extends React.Component {
   constructor(props) {
     super(props);
-    const { name, quantity, id } = this.props;
+    const { name, quantity, id, min } = this.props;
     this.state = {
       quantity: Number(quantity),
       name,
+      min,
       id,
       isProductPropertiesForm: false,
       isDeleteModalVisible: false,
@@ -48,6 +50,8 @@ class FormChangeQuantityContainer extends React.Component {
     const { quantity, id, min } = this.state;
     const { toggleChangeQuantityModal } = this.props;
 
+    console.log('czy na szopinfg list ma byc: ', quantity < min);
+
     db.collection('products')
       .doc(id)
       .update({
@@ -76,7 +80,10 @@ class FormChangeQuantityContainer extends React.Component {
     return (
       <Modal>
         <H1 marginBottom>{name}</H1>
-        <ChangeQuantitySection
+        <H2 italic marginBottom>
+          Zmień ilość
+        </H2>
+        <ChangeQuantityInputAndButtons
           quantity={quantity}
           handleInput={this.handleInput}
           subtractQuantity={this.subtractQuantity}
@@ -112,6 +119,7 @@ FormChangeQuantityContainer.propTypes = {
   quantity: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  min: PropTypes.string.isRequired,
 
   toggleChangeQuantityModal: PropTypes.func.isRequired,
 };
