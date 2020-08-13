@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import BuyProductModal from '../buyProductModal/BuyProductModal';
+import ContainerBuyProduct from '../buyProductModal/ContainerBuyProduct';
 import ButtonIconBuy from '../../atoms/buttons/ButtonIconBuy';
 
 const StyledWrapper = styled.div`
@@ -52,7 +52,7 @@ class ShoppingProduct extends React.Component {
         <Lack>{toBuy}</Lack>
         <ButtonIconBuy onClick={this.toggleBuyProductModal} />
         {isBuyProductModalVisible && (
-          <BuyProductModal
+          <ContainerBuyProduct
             id={id}
             name={name}
             currentQuantity={quantity}
