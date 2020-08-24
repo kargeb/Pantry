@@ -119,7 +119,7 @@ FormChangeQuantityContainer.propTypes = {
   quantity: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  min: PropTypes.string.isRequired,
+  min: PropTypes.number.isRequired,
 
   toggleChangeQuantityModal: PropTypes.func.isRequired,
 };

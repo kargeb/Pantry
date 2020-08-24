@@ -109,7 +109,6 @@ class PantryProduct extends React.Component {
         </Wrapper>
         {isFormChangeQuantityContainerVisible && (
           <FormChangeQuantityContainer
-            // product={product}
             min={min}
             name={name}
             id={id}

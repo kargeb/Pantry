@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ShoppingProduct from './ShoppingProduct';
 
 const CategoryLabel = styled.div`
-  padding: 5px 0 5px 20px;
+  padding: 10px 0 5px 10px;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
