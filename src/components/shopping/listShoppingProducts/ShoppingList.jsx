@@ -13,12 +13,15 @@ const CategoriesList = styled.ul`
   }
 `;
 
-const ShoppingList = ({ shoppingProducts, shoppingCategories }) => {
+// props are from HOC
+const ShoppingList = ({ shoppingProducts, shoppingCategories, isLoading }) => {
   shoppingCategories.sort();
 
   return (
     <div>
-      {shoppingProducts.length ? (
+      {isLoading ? (
+        <img src={loadingGif} alt="Loading gif" />
+      ) : (
         <>
           <HeaderShoppingList />
           <CategoriesList>
@@ -37,8 +40,6 @@ const ShoppingList = ({ shoppingProducts, shoppingCategories }) => {
             })}
           </CategoriesList>
         </>
-      ) : (
-        <img src={loadingGif} alt="Loading gif" />
       )}
     </div>
   );
@@ -60,6 +61,7 @@ ShoppingList.propTypes = {
     }),
   ),
   shoppingCategories: PropTypes.arrayOf(PropTypes.string),
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default withProductsAndCategories(ShoppingList);

@@ -28,6 +28,10 @@ class Root extends React.Component {
 
       if (downloadedProducts.length === 0) {
         console.log('NIE MA NIC W ARRAY Z PRODUCKTAMI');
+        const newCategories = {
+          categories: ['food', 'beverages/spirits', 'stuff', 'others'],
+        };
+        db.collection('categories').doc('all').set(newCategories);
       }
 
       this.setState({
