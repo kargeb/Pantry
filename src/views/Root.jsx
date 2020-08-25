@@ -12,6 +12,7 @@ import Navigation from '../components/navigation/Navigation';
 
 class Root extends React.Component {
   state = {
+    isLoading: true,
     products: [],
     currentTheme: lightTheme,
   };
@@ -25,8 +26,13 @@ class Root extends React.Component {
         downloadedProducts.push(newProduct);
       });
 
+      if (downloadedProducts.length === 0) {
+        console.log('NIE MA NIC W ARRAY Z PRODUCKTAMI');
+      }
+
       this.setState({
         products: [...downloadedProducts],
+        isLoading: false,
       });
     });
   }

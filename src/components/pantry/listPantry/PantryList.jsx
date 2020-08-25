@@ -15,9 +15,11 @@ const CategoriesList = styled.ul`
 `;
 
 // props are from HOC, pantryCategories are categories that currently contain products
-const PantryList = ({ products, pantryCategories }) => (
+const PantryList = ({ products, pantryCategories, isLoading }) => (
   <div>
-    {products.length ? (
+    {isLoading ? (
+      <img src={loadingGif} alt="Loading gif" />
+    ) : (
       <CategoriesList>
         {pantryCategories.sort().map(currentCategory => {
           const productsInCurrentCategory = products.filter(
@@ -32,8 +34,6 @@ const PantryList = ({ products, pantryCategories }) => (
           );
         })}
       </CategoriesList>
-    ) : (
-      <img src={loadingGif} alt="Loading gif" />
     )}
   </div>
 );
@@ -54,6 +54,7 @@ PantryList.propTypes = {
     }),
   ),
   pantryCategories: PropTypes.arrayOf(PropTypes.string),
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default withProductsAndCategories(PantryList);
