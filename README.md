@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pantry-inspector
+
+> Thanks to this app you can control number of any kind of stuff in your pantry/stock/office or whatever place you need to. Add and delete products and categories and determine minimum quantity of each.
 
 ## Available Scripts
 
