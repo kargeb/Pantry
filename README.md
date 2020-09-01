@@ -1,68 +1,70 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pantry-inspector
 
-## Available Scripts
+> Application allows you control number of any kind of stuff in your pantry/stock/office or any place you need.
+>
+> - add and delete products and categories
+> - you can set the minimum quantity of each product and when it is exceeded this item will be added automatically to the shopping list
+>
+> All data is stored in the cloud.
 
-In the project directory, you can run:
+<!-- ## Table of contents
 
-### `yarn start`
+- [General info and inspiration](#general-info-and-inspiration)
+- [Screenshots](#screenshots)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Features](#features) -->
+<!-- - [Status](#status) -->
+<!-- - [Contact](#contact) -->
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## General info and inspiration
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Application idea was born during the online event called "React 10days challenge" witch was organized by eduweb.pl website. It was one of the project proposals that participants had to pick and develop within 10 days.
 
-### `yarn test`
+## Main application requirements:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- add, delete and edit products that is their names, units, and current and minimum quantity
+- amount of products should be easily seen and has easy to way to modify it
+- when quantity of specific product will be lower than it's minimum, this item should be automatically added to the shopping list
+- separate view for the shopping list, where you can also change products quantity and thus make them disappear from it
 
-### `yarn build`
+## Additional features
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- product categories
+- saving all data in the cloud (Firestore)
+- responsibility
+- settings view including:
+  - dark mode
+  - insert sample data
+  - category manager where you can add and remove them
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+At the end of the event, first version of this app got very good reviews, which motivated me to keep improving it. Finally, after a few months of works, I think it's worth to show it to the world and You :)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- ## Screenshots
 
-### `yarn eject`
+![Example screenshot](./img/screenshot.png) -->
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Technologies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React - version 1.0
+- Firebase: Cloud Firestore
+- Styled-components - version 2.0
+- Tech 3 - version 3.0
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<!-- ## Setup
 
-You don’t have to ever use `eject`. The curated feature set is suitable for smallScreen and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Describe how to install / setup your local environement / add link to demo version. -->
 
-## Learn More
+<!-- ## Status
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Project is: _in progress_, _finished_, _no longer continue_ and why?
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To-do list:
 
-### Code Splitting
+- Wow improvement to be done 1
+- Wow improvement to be done 2 -->
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+<!-- ## Contact
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me! -->
