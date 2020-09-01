@@ -51,10 +51,10 @@ class CategoriesContainer extends React.Component {
 
         this.setState({ newCategory: '', alertMessage: '' });
       } else {
-        this.setState({ alertMessage: 'Taka kategoria już istnieje!' });
+        this.setState({ alertMessage: 'Category already exist!' });
       }
     } else {
-      this.setState({ alertMessage: 'Wpisz nazwę!' });
+      this.setState({ alertMessage: 'Enter a name!' });
     }
   };
 
@@ -73,7 +73,7 @@ class CategoriesContainer extends React.Component {
 
       this.setState({ categoryToDelete: '', alertMessage: '' });
     } else {
-      this.setState({ alertMessage: 'Wybierz kategorię!' });
+      this.setState({ alertMessage: 'Choose a category!' });
     }
   };
 

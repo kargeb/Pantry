@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import db from '../../../../fbase';
 import Label from '../../../atoms/formElements/Label';
 import Select from '../../../atoms/formElements/Select';
@@ -28,7 +29,7 @@ class SelectCategory extends React.Component {
 
     return (
       <InputVerticalWrapper>
-        <Label htmlFor="category">Kategoria</Label>
+        <Label htmlFor="category">Category</Label>
         <Select id="category" onChange={handleForm} value={category}>
           <option aria-label="disable option" value="" disabled hidden />
           {categories.map(categoryItem => (
@@ -41,5 +42,10 @@ class SelectCategory extends React.Component {
     );
   }
 }
+
+SelectCategory.propTypes = {
+  handleForm: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+};
 
 export default SelectCategory;

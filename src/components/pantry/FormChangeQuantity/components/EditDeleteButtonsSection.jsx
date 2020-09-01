@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Button from '../../../atoms/buttons/Button';
 
 const WrapperEditDeleteButtons = styled.div`
@@ -19,13 +20,18 @@ const EditDeleteButtonsSection = ({ toggleDeleteModal, toggleEditProductForm }) 
           toggleEditProductForm();
         }}
       >
-        Edytuj
+        Edit
       </Button>
       <Button type="button" onClick={toggleDeleteModal}>
-        Usuń
+        Remove
       </Button>
     </WrapperEditDeleteButtons>
   );
+};
+
+EditDeleteButtonsSection.propTypes = {
+  toggleDeleteModal: PropTypes.func.isRequired,
+  toggleEditProductForm: PropTypes.func.isRequired,
 };
 
 export default EditDeleteButtonsSection;

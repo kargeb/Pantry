@@ -47,7 +47,7 @@ const HeaderPantryCategory = () => {
       <AboveCartIcon />
       <AboveName />
       <Description bold left>
-        Stan
+        Qty
       </Description>
       <Description>Min</Description>
       <AboveButtonEditProduct />

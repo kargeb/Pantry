@@ -20,23 +20,23 @@ const DeleteCategory = () => (
     {context => (
       <>
         <H1 marginBottom as="h2">
-          Usuń Kategorię
+          Remove category:
         </H1>
-        <StyledLabel>Można usunąć jedynie kategorie nie zawierające żadnych produktów</StyledLabel>
+        <StyledLabel>Only categories without products can be removed</StyledLabel>
         <SelectCategory />
         <Button
           type="button"
           onClick={() =>
             context.categoryToDelete
               ? context.toggleDeleteModal()
-              : context.setAlertMessage('Wybierz kategorię!')
+              : context.setAlertMessage('Choose a category!')
           }
         >
-          Usuń
+          Remove
         </Button>
         {context.isDeleteModalVisible && (
           <ModalConfirmDeletion
-            heading="Potwierdź usunięcie kategorii:"
+            heading="Confirm deletion of:"
             name={context.categoryToDelete}
             toggleDeleteModal={context.toggleDeleteModal}
             handleDeleteCategory={context.handleDeleteCategory}

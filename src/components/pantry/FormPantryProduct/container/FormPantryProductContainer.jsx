@@ -30,7 +30,7 @@ class FormPantryProductContainer extends React.Component {
       db.collection('products')
         .doc(id)
         .get()
-        .then(doc => this.setState({ ...doc.data() }));
+        .then(doc => this.setState({ ...doc.data(), quantity: this.state.quantity }));
     }
   }
 
@@ -87,7 +87,7 @@ class FormPantryProductContainer extends React.Component {
 
     return (
       <Modal>
-        <H1 marginBottomDouble>{id ? 'Edytuj produkt' : 'Nowy produkt'}</H1>
+        <H1 marginBottomDouble>{id ? 'Edit product' : 'New product'}</H1>
         <InputName handleForm={this.handleForm} name={name} />
         <SelectCategory handleForm={this.handleForm} category={category} />
         <SelectUnit handleForm={this.handleForm} category={unit} />
@@ -97,7 +97,7 @@ class FormPantryProductContainer extends React.Component {
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
-        {isAlertVisible && <Alert>Są puste pola!</Alert>}
+        {isAlertVisible && <Alert>There are empty fields!</Alert>}
       </Modal>
     );
   }

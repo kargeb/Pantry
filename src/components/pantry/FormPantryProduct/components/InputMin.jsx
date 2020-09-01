@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Label from '../../../atoms/formElements/Label';
 import Input from '../../../atoms/formElements/Input';
 
@@ -21,12 +22,17 @@ const InputMin = ({ handleForm, min }) => {
         short
         id="min"
         type="number"
-        placeholder="minimalna ilość"
+        placeholder="minimal quantity"
         onChange={handleForm}
         value={min}
       />
     </InputHorizontalWrapper>
   );
+};
+
+InputMin.propTypes = {
+  handleForm: PropTypes.func.isRequired,
+  min: PropTypes.number.isRequired,
 };
 
 export default InputMin;
