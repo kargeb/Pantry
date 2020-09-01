@@ -22,7 +22,7 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
 
   return (
     <Modal>
-      <H1 marginBottomDouble>Potwierdź usunięcie:</H1>
+      <H1 marginBottomDouble>Confirm deletion:</H1>
       <H2 italic marginBottom>
         {name}
       </H2>

@@ -50,8 +50,6 @@ class FormChangeQuantityContainer extends React.Component {
     const { quantity, id, min } = this.state;
     const { toggleChangeQuantityModal } = this.props;
 
-    console.log('czy na szopinfg list ma byc: ', quantity < min);
-
     db.collection('products')
       .doc(id)
       .update({
@@ -81,7 +79,7 @@ class FormChangeQuantityContainer extends React.Component {
       <Modal>
         <H1 marginBottom>{name}</H1>
         <H2 italic marginBottom>
-          Zmień ilość
+          Change quantity
         </H2>
         <ChangeQuantityInputAndButtons
           quantity={quantity}

@@ -9,17 +9,17 @@ const AddCategory = () => (
     {context => (
       <>
         <H1 marginBottom as="h2">
-          Dodaj Kategorię
+          Add category:
         </H1>
         <Input
           id="newCategory"
           type="text"
           onChange={context.handleForm}
           value={context.newCategory}
-          placeholder="Nazwa"
+          placeholder="Name"
         />
         <Button type="button" onClick={context.handleAddCategory}>
-          Dodaj
+          Add
         </Button>
       </>
     )}

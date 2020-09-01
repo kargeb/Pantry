@@ -39,8 +39,8 @@ const HeaderShoppingList = () => {
   return (
     <Wrapper>
       <AboveName />
-      <Description>Stan</Description>
-      <Description bold>Brakuje</Description>
+      <Description>Qty</Description>
+      <Description bold>Lack</Description>
       <AboveCartIcon />
     </Wrapper>
   );

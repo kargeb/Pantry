@@ -28,13 +28,13 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
 
   return (
     <Modal>
-      <H1 marginBottomDouble>Wstawione zostaną:</H1>
+      <H1 marginBottomDouble>Will be downloaded:</H1>
       {sampleData.products.map(product => (
         <H2 italic key={product.id}>
           {product.name}
         </H2>
       ))}
-      <H1 marginTop>Kontynuować ?</H1>
+      <H1 marginTop>Continue ?</H1>
       <WrapperButtonsConfirmAndCancel
         cancelOnClick={toggleInsertModal}
         confirmOnClick={insertDataAndCloseModal}

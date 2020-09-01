@@ -104,7 +104,7 @@ const Navigation = () => {
                   <span>{numberOfProductsOnShoppingList(context.products)}</span>
                 </ShoppingListCounter>
               </IconWithCounterWrapper>
-              <p>Shop</p>
+              <p>Shopping</p>
             </NavLinkWrapper>
           </Nav>
         </Header>

@@ -54,11 +54,11 @@ class SampleDataSection extends React.Component {
     return (
       <Section>
         <Header>
-          <H2>Przykładowe dane</H2>
+          <H2>Sample Data</H2>
         </Header>
         <WrapperButton>
           <Button type="button" onClick={this.toggleInsertModal}>
-            Pobierz
+            Download
           </Button>
         </WrapperButton>
         {isInsertModalVisible && (

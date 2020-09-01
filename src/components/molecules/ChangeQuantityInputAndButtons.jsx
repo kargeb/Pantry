@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import ButtonQuantity from '../atoms/buttons/ButtonQuantity';
 import Input from '../atoms/formElements/Input';
 
@@ -44,6 +45,13 @@ const ChangeQuantityInputAndButtons = ({
       <ButtonQuantity onClick={addQuantity}>+</ButtonQuantity>
     </WrapperChangeQuantity>
   );
+};
+
+ChangeQuantityInputAndButtons.propTypes = {
+  quantity: PropTypes.number.isRequired,
+  handleInput: PropTypes.func.isRequired,
+  addQuantity: PropTypes.func.isRequired,
+  subtractQuantity: PropTypes.func.isRequired,
 };
 
 export default ChangeQuantityInputAndButtons;

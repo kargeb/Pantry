@@ -50,11 +50,11 @@ class CategoriesSection extends React.Component {
     return (
       <Section>
         <Header>
-          <H2>Kategorie</H2>
+          <H2>Categories</H2>
         </Header>
         <WrapperButton>
           <Button type="button" onClick={this.toggleCategoriesContainer}>
-            Dodaj / usuń
+            Add / Remove
           </Button>
         </WrapperButton>
         {isCategoriesContainerVisible && (
