@@ -6,7 +6,7 @@ import Label from '../../../atoms/formElements/Label';
 
 const InputHorizontalWrapper = styled.div`
   display: flex;
-  min-width: 90px;
+  min-width: 120px;
   flex: 1;
 
   align-items: center;
@@ -19,9 +19,13 @@ const SelectUnit = ({ handleForm, unit }) => {
     <InputHorizontalWrapper>
       <Label htmlFor="unit">Unit</Label>
       <Select short id="unit" onChange={handleForm} value={unit}>
-        <option value="szt">unit</option>
+        <option value="item">item</option>
+        <option value="btl.">btl.</option>
+        <option value="pack">pack</option>
         <option value="l">l</option>
+        <option value="ml">ml</option>
         <option value="kg">kg</option>
+        <option value="g">g</option>
       </Select>
     </InputHorizontalWrapper>
   );

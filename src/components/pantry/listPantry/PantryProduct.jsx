@@ -39,12 +39,13 @@ const Icon = styled.div`
   user-select: none;
 `;
 
-const StyledNameWrapper = styled.div`
+const Name = styled.div`
   flex: 3;
   display: flex;
   align-items: center;
   padding: 2px 10px;
   overflow-wrap: anywhere;
+  text-transform: capitalize;
 
   &:first-letter {
     text-transform: capitalize;
@@ -63,7 +64,7 @@ const Quantity = styled.div`
 
 const Unit = styled.div`
   margin-left: 5px;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 `;
 
 const Min = styled.div`
@@ -99,7 +100,7 @@ class PantryProduct extends React.Component {
             )}
           </CartIconWrapper>
 
-          <StyledNameWrapper>{name}</StyledNameWrapper>
+          <Name>{name}</Name>
           <QuantityWrapper>
             <Quantity>{quantity}</Quantity>
             <Unit>{unit}</Unit>

@@ -17,20 +17,21 @@ class FormPantryProductContainer extends React.Component {
     isAlertVisible: false,
     name: '',
     quantity: this.props.quantity,
-    category: '',
+    category: this.props.category,
     min: 5,
-    unit: 'szt',
+    unit: 'item',
     id: uuidv4(),
   };
 
   componentDidMount() {
     const { id } = this.props;
+    const { quantity } = this.state;
 
     if (id) {
       db.collection('products')
         .doc(id)
         .get()
-        .then(doc => this.setState({ ...doc.data(), quantity: this.state.quantity }));
+        .then(doc => this.setState({ ...doc.data(), quantity }));
     }
   }
 
@@ -70,7 +71,7 @@ class FormPantryProductContainer extends React.Component {
         quantity: 1,
         category: '',
         min: 1,
-        unit: 'szt',
+        unit: 'item',
         id: null,
       });
 
@@ -90,7 +91,7 @@ class FormPantryProductContainer extends React.Component {
         <H1 marginBottomDouble>{id ? 'Edit product' : 'New product'}</H1>
         <InputName handleForm={this.handleForm} name={name} />
         <SelectCategory handleForm={this.handleForm} category={category} />
-        <SelectUnit handleForm={this.handleForm} category={unit} />
+        <SelectUnit handleForm={this.handleForm} unit={unit} />
         <InputMin handleForm={this.handleForm} min={min} />
         <InputQuantity handleForm={this.handleForm} quantity={quantity} />
         <WrapperButtonsConfirmAndCancel
@@ -107,6 +108,7 @@ FormPantryProductContainer.defaultProps = {
   toggleChangeQuantityModal: () => {},
   quantity: 0,
   id: null,
+  category: '',
 };
 
 FormPantryProductContainer.propTypes = {
@@ -114,6 +116,7 @@ FormPantryProductContainer.propTypes = {
   toggleChangeQuantityModal: PropTypes.func,
   quantity: PropTypes.number,
   id: PropTypes.string,
+  category: PropTypes.string,
 };
 
 export default FormPantryProductContainer;

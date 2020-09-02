@@ -14,7 +14,7 @@ const Select = styled.select`
     short &&
     css`
       margin-left: 10px;
-      width: 45px;
+      width: 55px;
     `} :focus {
     border: solid 1.5px rgba(251, 142, 1, 0.7);
     box-shadow: 0px 0px 2px #ffc52f;
