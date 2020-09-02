@@ -39,13 +39,16 @@
   ],
   "categories": {
     "default": [
-      "Słodycze",
-      "Napoje / Alkohol",
-      "Owoce / Warzywa",
-      "Pieczywo",
-      "Artykuły spożywcze",
-      "Kosmetyki",
-      "Chemia"
+      "sweets",
+      "fruits",
+      "vegetables",
+      "breadstuff",
+      "cosmetics",
+      "dairy",
+      "food",
+      "beverages/spirits",
+      "stuff",
+      "others"
     ]
   }
 }
