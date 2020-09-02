@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const H1 = styled.h1`
+text-transform: capitalize;
   font-size: ${({ theme }) => theme.heading1};
   font-weight: ${({ theme }) => theme.medium};
 
