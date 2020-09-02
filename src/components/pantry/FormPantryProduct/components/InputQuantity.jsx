@@ -6,7 +6,7 @@ import Input from '../../../atoms/formElements/Input';
 
 const InputHorizontalWrapper = styled.div`
   display: flex;
-  min-width: 90px;
+  min-width: 120px;
   flex: 1;
 
   align-items: center;

@@ -15,7 +15,7 @@ const Input = styled.input`
     short &&
     css`
       margin-left: 10px;
-      width: 45px;
+      width: 55px;
       text-align: center;
     `}
 

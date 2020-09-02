@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
+import sampleData from '../data/db.json';
 import db from '../fbase';
 import { AppContext } from '../context';
 import Pantry from './Pantry';
@@ -28,7 +29,7 @@ class Root extends React.Component {
 
       if (downloadedProducts.length === 0) {
         const newCategories = {
-          categories: ['food', 'beverages/spirits', 'stuff', 'others'],
+          categories: [...sampleData.categories],
         };
         db.collection('categories').doc('all').set(newCategories);
       }

@@ -31,21 +31,22 @@
       "id": "21fcbe45-048e-4905-a517-3a0919e599ac",
       "name": "Kitkat",
       "quantity": 1,
-      "unit": "szt",
+      "unit": "item",
       "category": "food",
       "min": 3,
       "onShoppingList": true
     }
   ],
-  "categories": {
-    "default": [
-      "Słodycze",
-      "Napoje / Alkohol",
-      "Owoce / Warzywa",
-      "Pieczywo",
-      "Artykuły spożywcze",
-      "Kosmetyki",
-      "Chemia"
-    ]
-  }
+  "categories": [
+    "sweets",
+    "fruits",
+    "vegetables",
+    "breadstuff",
+    "cosmetics",
+    "dairy",
+    "food",
+    "beverages/spirits",
+    "stuff",
+    "others"
+  ]
 }

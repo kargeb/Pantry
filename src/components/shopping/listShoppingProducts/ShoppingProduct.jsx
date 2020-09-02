@@ -12,9 +12,10 @@ const StyledWrapper = styled.div`
   align-items: center;
 `;
 
-const StyledNameWrapper = styled.div`
+const NameW = styled.div`
   flex: 3;
   overflow-wrap: anywhere;
+  text-transform: capitalize;
 `;
 
 const CurrentQuantity = styled.div`
@@ -47,7 +48,7 @@ class ShoppingProduct extends React.Component {
 
     return (
       <StyledWrapper>
-        <StyledNameWrapper>{name}</StyledNameWrapper>
+        <NameW>{name}</NameW>
         <CurrentQuantity>{quantity}</CurrentQuantity>
         <Lack>{toBuy}</Lack>
         <ButtonIconBuy onClick={this.toggleBuyProductModal} />

@@ -27,17 +27,18 @@ const CategoryLabel = styled.div`
   font-style: normal;
   text-align: left;
   overflow-wrap: anywhere;
+  text-transform: capitalize;
   font-weight: ${({ theme }) => theme.medium};
   font-size: ${({ theme }) => theme.heading2};
   color: ${({ theme }) => theme.primary};
 `;
 
 const ButtonAdd = styled(ButtonAddProduct)`
-  margin: 0px 15px 0px 0px;
-  width: 23px;
-  height: 23px;
-  line-height: 23px;
-  font-size: 18px;
+  margin: 0px 10px 0px 0px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
 

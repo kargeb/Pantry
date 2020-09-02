@@ -7,6 +7,7 @@ import ShoppingCategory from './ShoppingCategory';
 import HeaderShoppingList from './HeaderShoppingList';
 
 const CategoriesList = styled.ul`
+  padding: 0px 5px;
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
     width: 600px;
     margin: 0 auto;
@@ -23,7 +24,7 @@ const ShoppingList = ({ shoppingProducts, shoppingCategories, isLoading }) => {
         <img src={loadingGif} alt="Loading gif" />
       ) : (
         <>
-          <HeaderShoppingList />
+          {!!shoppingCategories.length && <HeaderShoppingList />}
           <CategoriesList>
             {shoppingCategories.map(currentCategory => {
               const productsInCurrentCategory = shoppingProducts.filter(
