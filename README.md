@@ -42,7 +42,7 @@ At the end of the event, first version of this app got very good reviews, which 
 
 ## Screenshots
 
-![Example screenshot](https://placeimg.com/640/480/any) -->
+![Main view](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg?s=100) -->
 
 ## Technologies
 
