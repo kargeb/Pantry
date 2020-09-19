@@ -50,6 +50,10 @@ At the end of the event, first version of this app got very good reviews, which 
 
 ![Settings](https://i.ibb.co/KWc1qsx/Settings-pc-quality.jpg)
 
+<div style="display: flex; justify-content: space-evenly"> <img src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" width="30%"> 
+ <img src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" width="30%"> 
+ <img src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" width="30%"> </div>
+
 ![Categories manager](https://i.ibb.co/6PXMBKJ/Categories-quality.jpg)
 
 ![New product](https://i.ibb.co/GH3fh5k/New-product-quality.jpg)
