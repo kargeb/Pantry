@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 
 const H1 = styled.h1`
-text-transform: capitalize;
+  text-transform: capitalize;
+
   font-size: ${({ theme }) => theme.heading1};
   font-weight: ${({ theme }) => theme.medium};
 
@@ -22,6 +23,12 @@ text-transform: capitalize;
     css`
       margin-top: 30px;
     `}
+
+    /* ${({ capitalize }) =>
+      capitalize &&
+      css`
+        text-transform: capitalize;
+      `} */
 `;
 
 export default H1;

@@ -21,6 +21,8 @@
 
 Application idea was born during the online event called "React 10days challenge" witch was organized by eduweb.pl website. It was one of the project proposals that participants had to pick and develop within 10 days.
 
+At the end of the event, first version of this app got very good reviews, which motivated me to keep improving it. Finally, after a few months of works, I think it's worth to show it to the world and You :)
+
 ## Main application requirements:
 
 - add, delete and edit products that is their names, units, and current and minimum quantity
@@ -38,18 +40,15 @@ Application idea was born during the online event called "React 10days challenge
   - insert sample data
   - category manager where you can add and remove them
 
-At the end of the event, first version of this app got very good reviews, which motivated me to keep improving it. Finally, after a few months of works, I think it's worth to show it to the world and You :)
+## Screenshots
 
-<!-- ## Screenshots
-
-![Example screenshot](./img/screenshot.png) -->
+![Example screenshot](https://placeimg.com/640/480/any) -->
 
 ## Technologies
 
 - React - version 1.0
 - Firebase: Cloud Firestore
 - Styled-components - version 2.0
-- Tech 3 - version 3.0
 
 <!-- ## Setup
 

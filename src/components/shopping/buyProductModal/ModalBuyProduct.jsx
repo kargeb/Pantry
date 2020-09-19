@@ -17,7 +17,7 @@ const ModalBuyProduct = ({
 }) => {
   return (
     <Modal>
-      <H1 marginBottomDouble>Quantity purchased?</H1>
+      <H1 marginBottomDouble>Quantity purchased:</H1>
       <H2 italic marginBottom>
         {name}
       </H2>
