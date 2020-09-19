@@ -42,7 +42,19 @@ At the end of the event, first version of this app got very good reviews, which 
 
 ## Screenshots
 
-![Main view](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg?s=100) -->
+![Multiple devices](https://i.ibb.co/NFHqnHC/Multiple-Device-latest-without-bg-edited.png)
+
+![Main view PC](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg)
+
+![Dark mode](https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg)
+
+![Settings](https://i.ibb.co/KWc1qsx/Settings-pc-quality.jpg)
+
+![Categories manager](https://i.ibb.co/6PXMBKJ/Categories-quality.jpg)
+
+![New product](https://i.ibb.co/GH3fh5k/New-product-quality.jpg)
+
+![Shopping list](https://i.ibb.co/58vChXG/shopping-list2-quality.jpg)
 
 ## Technologies
 
