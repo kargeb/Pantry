@@ -1,11 +1,17 @@
-# Pantry-inspector
+<h1 style="text-align: center"> Pantry Inspector</h1>
+<div style="text-align: center">
+<img src="https://i.ibb.co/NFHqnHC/Multiple-Device-latest-without-bg-edited.png" width="90%">
+</div>
 
-> Application allows you control number of any kind of stuff in your pantry/stock/office or any place you need.
->
-> - add and delete products and categories
-> - you can set the minimum quantity of each product and when it is exceeded this item will be added automatically to the shopping list
->
-> All data is stored in the cloud.
+<!-- ![Multiple devices](https://i.ibb.co/NFHqnHC/Multiple-Device-latest-without-bg-edited.png) -->
+
+## General info
+
+Application allows you control number of any kind of stuff in your pantry/stock/office or any place you need.
+
+- add and delete products and categories
+- you can set the minimum quantity of each product and when it is exceeded this item will be added automatically to the shopping list
+  All data is stored in the cloud.
 
 <!-- ## Table of contents
 
@@ -17,7 +23,7 @@
 <!-- - [Status](#status) -->
 <!-- - [Contact](#contact) -->
 
-## General info and inspiration
+## Inspiration
 
 Application idea was born during the online event called "React 10days challenge" witch was organized by eduweb.pl website. It was one of the project proposals that participants had to pick and develop within 10 days.
 
@@ -42,23 +48,34 @@ At the end of the event, first version of this app got very good reviews, which 
 
 ## Screenshots
 
-![Multiple devices](https://i.ibb.co/NFHqnHC/Multiple-Device-latest-without-bg-edited.png)
-
 ![Main view PC](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg)
 
-![Dark mode](https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg)
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+  <img style="margin-bottom: 16px; width: 30%; min-width: 450px" src="https://i.ibb.co/KWc1qsx/Settings-pc-quality.jpg" alt="Settings" width="300">
+  <img style="margin-bottom: 16px; width: 30%; min-width: 450px" src="https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg" alt="Dark mode" width="300"> 
+</div>
 
-![Settings](https://i.ibb.co/KWc1qsx/Settings-pc-quality.jpg)
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+  <img style="margin-bottom: 16px; width: 30%; min-width: 300px" src="https://i.ibb.co/GH3fh5k/New-product-quality.jpg" alt="New product" > 
+  <img style="margin-bottom: 16px; width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" alt="Categories">
+  <img style="margin-bottom: 16px; width: 30%; min-width: 300px" src="https://i.ibb.co/58vChXG/shopping-list2-quality.jpg" alt="Shopping list">
+</div>
 
-<div style="display: flex; justify-content: space-evenly"> <img src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" width="30%"> 
- <img src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" width="30%"> 
- <img src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" width="30%"> </div>
+<!-- ![Dark mode](https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg)
 
-![Categories manager](https://i.ibb.co/6PXMBKJ/Categories-quality.jpg)
+![Settings](https://i.ibb.co/KWc1qsx/Settings-pc-quality.jpg) -->
+
+<!-- <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;"> <img style="width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg">
+ <img  style="width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg">
+ <img style="width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" >
+
+ </div> -->
+
+<!-- ![Categories manager](https://i.ibb.co/6PXMBKJ/Categories-quality.jpg)
 
 ![New product](https://i.ibb.co/GH3fh5k/New-product-quality.jpg)
 
-![Shopping list](https://i.ibb.co/58vChXG/shopping-list2-quality.jpg)
+![Shopping list](https://i.ibb.co/58vChXG/shopping-list2-quality.jpg) -->
 
 ## Technologies
 
