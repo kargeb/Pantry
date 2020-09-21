@@ -11,7 +11,7 @@ Application allows you control number of any kind of stuff in your pantry/stock/
 
 - add and delete products and categories
 - you can set the minimum quantity of each product and when it is exceeded this item will be added automatically to the shopping list
-  All data is stored in the cloud.
+- all data is stored in the cloud.
 
 <!-- ## Table of contents
 
@@ -22,6 +22,10 @@ Application allows you control number of any kind of stuff in your pantry/stock/
 - [Features](#features) -->
 <!-- - [Status](#status) -->
 <!-- - [Contact](#contact) -->
+
+## Demo
+
+link here
 
 ## Inspiration
 
@@ -48,17 +52,12 @@ At the end of the event, first version of this app got very good reviews, which 
 
 ## Screenshots
 
-<!-- ![Main view PC](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg) -->
-
- <img style="margin-bottom: 16px; border: solid 1px #bbb;" src="https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg" width="100%" alt="Main view" >
+ <img style="margin-bottom: 16px;" src="https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg" width="100%" alt="Main view" >
 
 <p float="left" align="center">
-  <img style="margin-bottom: 16px;" src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" width="360px" alt="Settings" style="border:5px solid green" >
-  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" width="360px"alt="Dark mode" style="border:5px solid black">
+  <img src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" width="360px" alt="Settings">
+  <img  src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" width="360px"alt="Dark mode">
 </p>
-
-  <!-- <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" width="360px" alt="Settings" >
-  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" width="360px"alt="Dark mode"> -->
 
 <p float="left" align="center">
   <img style="margin-bottom: 16px;" src="https://i.ibb.co/m5qS23M/New-product-PC.jpg" width="360" alt="New product" > 
@@ -66,31 +65,23 @@ At the end of the event, first version of this app got very good reviews, which 
   <img style="margin-bottom: 16px;" src="https://i.ibb.co/Bg13tL7/dark-mode-MOBILE.jpg" width="360px" alt="Categories">
 </p>
 
-<!-- ![Dark mode](https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg)
-
-![Settings](https://i.ibb.co/KWc1qsx/Settings-pc-quality.jpg) -->
-
-<!-- <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;"> <img style="width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg">
- <img  style="width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg">
- <img style="width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" >
-
- </div> -->
-
-<!-- ![Categories manager](https://i.ibb.co/6PXMBKJ/Categories-quality.jpg)
-
-![New product](https://i.ibb.co/GH3fh5k/New-product-quality.jpg)
-
-![Shopping list](https://i.ibb.co/58vChXG/shopping-list2-quality.jpg) -->
-
 ## Technologies
 
 - React - version 1.0
 - Firebase: Cloud Firestore
 - Styled-components - version 2.0
 
-<!-- ## Setup
+## Setup
 
-Describe how to install / setup your local environement / add link to demo version. -->
+Instructions how to run this application using your own database:
+
+1. Create Cloud Firestore Database in your [Firebase console](https://firebase.google.com/products/firestore)
+1. Copy database credentials
+1. Copy content of `.env-sample` and create new file named `.env`
+1. Update your database credentials in `.env`
+1. Run: `npm install`
+1. Run: `npm start`
+1. Enjoy my app at [http://localhost:3000](http://localhost:3000) :)
 
 <!-- ## Status
 
