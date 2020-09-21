@@ -56,9 +56,15 @@ At the end of the event, first version of this app got very good reviews, which 
 </div>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start">
+<<<<<<< HEAD
   <img style="margin-bottom: 16px;" src="https://i.ibb.co/m5qS23M/New-product-PC.jpg" width="300" alt="New product" > 
   <img style="margin-bottom: 16px;" src="https://i.ibb.co/gD95c7r/Categories-PC.jpg" width="300" alt="Shopping list">
   <img style="margin-bottom: 16px;" src="https://i.ibb.co/Bg13tL7/dark-mode-MOBILE.jpg" width="300" alt="Categories">
+=======
+  <img style="margin-bottom: 16px; width: 300px;" src="https://i.ibb.co/m5qS23M/New-product-PC.jpg" alt="New product" > 
+  <img style="margin-bottom: 16px; width: 300px;" src="https://i.ibb.co/gD95c7r/Categories-PC.jpg" alt="Shopping list">
+  <img style="margin-bottom: 16px; width: 300px;" src="https://i.ibb.co/Bg13tL7/dark-mode-MOBILE.jpg" alt="Categories">
+>>>>>>> 67ebdcb666ca31ec1df8ea2b8ddfb5f64f9f734f
 </div>
 
 <!-- ![Dark mode](https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg)
