@@ -51,14 +51,14 @@ At the end of the event, first version of this app got very good reviews, which 
 ![Main view PC](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg)
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
-  <img style="margin-bottom: 16px; width: 30%; min-width: 450px" src="https://i.ibb.co/KWc1qsx/Settings-pc-quality.jpg" alt="Settings" width="300">
-  <img style="margin-bottom: 16px; width: 30%; min-width: 450px" src="https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg" alt="Dark mode" width="300"> 
+  <img style="margin-bottom: 16px; width: 30%; min-width: 450px" src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" alt="Settings" width="300">
+  <img style="margin-bottom: 16px; width: 30%; min-width: 450px" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" alt="Dark mode" width="300"> 
 </div>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
-  <img style="margin-bottom: 16px; width: 30%; min-width: 300px" src="https://i.ibb.co/GH3fh5k/New-product-quality.jpg" alt="New product" > 
-  <img style="margin-bottom: 16px; width: 30%; min-width: 300px" src="https://i.ibb.co/6PXMBKJ/Categories-quality.jpg" alt="Categories">
-  <img style="margin-bottom: 16px; width: 30%; min-width: 300px" src="https://i.ibb.co/58vChXG/shopping-list2-quality.jpg" alt="Shopping list">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; align-items: flex-start">
+  <img style="margin-bottom: 16px;" src="https://i.ibb.co/m5qS23M/New-product-PC.jpg" alt="New product" > 
+  <img style="margin-bottom: 16px;" src="https://i.ibb.co/gD95c7r/Categories-PC.jpg" alt="Shopping list">
+  <img style="margin-bottom: 16px;" src="https://i.ibb.co/Bg13tL7/dark-mode-MOBILE.jpg" alt="Categories">
 </div>
 
 <!-- ![Dark mode](https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg)
