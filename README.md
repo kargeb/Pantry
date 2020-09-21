@@ -48,17 +48,19 @@ At the end of the event, first version of this app got very good reviews, which 
 
 ## Screenshots
 
-![Main view PC](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg)
+<!-- ![Main view PC](https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg) -->
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
-  <img style="margin-bottom: 16px;" src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" alt="Settings" >
-  <img style="margin-bottom: 16px;" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" alt="Dark mode"> 
+ <img style="margin-bottom: 16px; border: solid 1px #bbb;" src="https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg" width="100%" alt="Main view" >
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; text-align: center">
+  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" width="460px" alt="Settings" >
+  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" width="460px"alt="Dark mode"> 
 </div>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start">
-  <img style="margin-bottom: 16px;" src="https://i.ibb.co/m5qS23M/New-product-PC.jpg" width="300" alt="New product" > 
-  <img style="margin-bottom: 16px;" src="https://i.ibb.co/gD95c7r/Categories-PC.jpg" width="300" alt="Shopping list">
-  <img style="margin-bottom: 16px;" src="https://i.ibb.co/Bg13tL7/dark-mode-MOBILE.jpg" width="300" alt="Categories">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; text-align: center">
+  <img style="margin-bottom: 16px;" src="https://i.ibb.co/m5qS23M/New-product-PC.jpg" width="360" alt="New product" > 
+  <img style="margin-bottom: 16px;" src="https://i.ibb.co/gD95c7r/Categories-PC.jpg" width="360" alt="Shopping list">
+  <img style="margin-bottom: 16px;" src="https://i.ibb.co/Bg13tL7/dark-mode-MOBILE.jpg" width="360" alt="Categories">
 </div>
 
 <!-- ![Dark mode](https://i.ibb.co/CQStsxg/dark-mode2-quality.jpg)
