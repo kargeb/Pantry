@@ -52,10 +52,13 @@ At the end of the event, first version of this app got very good reviews, which 
 
  <img style="margin-bottom: 16px; border: solid 1px #bbb;" src="https://i.ibb.co/Mg1T41M/Pantry-main-pc.jpg" width="100%" alt="Main view" >
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; text-align: center">
+<!-- <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; text-align: center">
   <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" width="360px" alt="Settings" >
-  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" width="360px"alt="Dark mode"> 
-</div>
+  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" width="360px"alt="Dark mode">
+</div> -->
+
+  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/ZdpbZR8/Settings-pc.jpg" width="360px" alt="Settings" >
+  <img style="margin-bottom: 16px; border: solid 1px #bbb" src="https://i.ibb.co/1qz99sT/shopping-list-PC.jpg" width="360px"alt="Dark mode">
 
 <div style="text-align: center">
   <img style="margin-bottom: 16px;" src="https://i.ibb.co/m5qS23M/New-product-PC.jpg" width="360" alt="New product" > 
