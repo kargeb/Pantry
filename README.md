@@ -5,6 +5,10 @@
 
 <!-- ![Multiple devices](https://i.ibb.co/NFHqnHC/Multiple-Device-latest-without-bg-edited.png) -->
 
+## Demo
+
+[https://kargeb.github.io/Pantry/](https://kargeb.github.io/Pantry/)
+
 ## General info
 
 Application allows you control number of any kind of stuff in your pantry/stock/office or any place you need.
@@ -22,10 +26,6 @@ Application allows you control number of any kind of stuff in your pantry/stock/
 - [Features](#features) -->
 <!-- - [Status](#status) -->
 <!-- - [Contact](#contact) -->
-
-## Demo
-
-link here
 
 ## Inspiration
 
