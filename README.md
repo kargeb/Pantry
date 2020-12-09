@@ -1,4 +1,4 @@
-<h1 style="text-align: center"> Pantry Inspector</h1>
+<h1 style="text-align: center"> Pantry </h1>
 <div style="text-align: center">
 <img src="https://i.ibb.co/NFHqnHC/Multiple-Device-latest-without-bg-edited.png" width="90%">
 </div>
@@ -7,7 +7,7 @@
 
 ## Demo
 
-[https://kargeb.github.io/Pantry/](https://kargeb.github.io/Pantry/)
+[https://pantry.pl/](https://pantry.pl/)
 
 ## General info
 
