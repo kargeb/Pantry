@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import loadingGif from '../../../images/loading_dots.gif';
 import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 import PantryCategory from './PantryCategory';
+import { AppContext } from '../../../context';
 
 const CategoriesList = styled.ul`
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
@@ -15,28 +16,36 @@ const CategoriesList = styled.ul`
 `;
 
 // props are from HOC, pantryCategories are categories that currently contain products
-const PantryList = ({ products, pantryCategories, isLoading }) => (
-  <div>
-    {isLoading ? (
-      <img src={loadingGif} alt="Loading gif" />
-    ) : (
-      <CategoriesList>
-        {pantryCategories.sort().map(currentCategory => {
-          const productsInCurrentCategory = products.filter(
-            product => product.category === currentCategory,
-          );
-          return (
-            <PantryCategory
-              key={currentCategory}
-              currentCategory={currentCategory}
-              productsInCurrentCategory={productsInCurrentCategory}
-            />
-          );
-        })}
-      </CategoriesList>
-    )}
-  </div>
-);
+// const PantryList = ({ products, pantryCategories, isLoading }) => {
+const PantryList = ({ pantryCategories }) => {
+  return (
+    <AppContext.Consumer>
+      {({ products }) => (
+        <div>
+          {console.log('Z CONTEXU:', products)}
+          {!products.length ? (
+            <img src={loadingGif} alt="Loading gif" />
+          ) : (
+            <CategoriesList>
+              {pantryCategories.sort().map(currentCategory => {
+                const productsInCurrentCategory = products.filter(
+                  product => product.category === currentCategory,
+                );
+                return (
+                  <PantryCategory
+                    key={currentCategory}
+                    currentCategory={currentCategory}
+                    productsInCurrentCategory={productsInCurrentCategory}
+                  />
+                );
+              })}
+            </CategoriesList>
+          )}
+        </div>
+      )}
+    </AppContext.Consumer>
+  );
+};
 
 PantryList.defaultProps = {
   products: [],
