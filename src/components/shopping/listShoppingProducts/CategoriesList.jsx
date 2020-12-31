@@ -10,27 +10,32 @@ const Categories = styled.ul`
   }
 `;
 
-const CategoriesList = ({ shoppingProducts }) => {
-  //   console.log('JESTEM W CATEGORIES LIST z propsem:', shoppingProducts);
-  //   console.log('jest tablica shopping porcuts', Array.isArray(shoppingProducts));
-  const shoppingCategories = () => {
-    const categoriesWithProducts = [];
+const CategoriesList = ({ productsOnShoppingList }) => {
+  const findCategoriesInProducts = () => {
+    const foundedCategories = [];
 
-    shoppingProducts.forEach(product => {
-      if (!categoriesWithProducts.includes(product.category)) {
-        categoriesWithProducts.push(product.category);
+    productsOnShoppingList.forEach(product => {
+      if (!foundedCategories.includes(product.category)) {
+        foundedCategories.push(product.category);
       }
     });
-    return categoriesWithProducts;
+    return foundedCategories;
+  };
+
+  const shoppingCategories = findCategoriesInProducts();
+
+  const findProductsInCategory = searchedCategory => {
+    const productsInCurrentCategory = productsOnShoppingList.filter(
+      product => product.category === searchedCategory,
+    );
+
+    return productsInCurrentCategory;
   };
 
   return (
     <Categories>
-      {console.log('shopping categoires co to:', shoppingCategories)}
-      {shoppingCategories().map(currentCategory => {
-        const productsInCurrentCategory = shoppingProducts.filter(
-          product => product.category === currentCategory,
-        );
+      {shoppingCategories.map(currentCategory => {
+        const productsInCurrentCategory = findProductsInCategory(currentCategory);
         return (
           <li key={currentCategory}>
             <ShoppingCategory
