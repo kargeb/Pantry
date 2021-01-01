@@ -6,13 +6,16 @@ import Button from '../components/atoms/buttons/Button';
 import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
+import pantry from '../images/pantry.jpg';
 
 const StyledMain = styled.div`
   height: 100vh;
   width: 100vw;
   color: ${props => props.theme.textPrimary};
-  background-color: ${props => props.theme.primary};
-  /* background-color: red; */
+  /* background-color: ${props => props.theme.primary}; */
+  background-size: cover;
+  background-position: bottom;
+  background-image: url(${props => props.pantry});
 `;
 
 class Login extends Component {
@@ -26,7 +29,7 @@ class Login extends Component {
     const { isAlertVisible } = this.state;
 
     return (
-      <StyledMain>
+      <StyledMain pantry={pantry}>
         <Modal>
           <H1 marginBottomDouble>Logowanie</H1>
           <Label htmlFor="email" />
