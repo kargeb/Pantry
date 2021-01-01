@@ -32,9 +32,14 @@ class Login extends Component {
       <StyledMain pantry={pantry}>
         <Modal>
           <H1 marginBottomDouble>Logowanie</H1>
-          <Label htmlFor="email" />
+          <Label htmlFor="email" alignLeft>
+            Login
+          </Label>
           <Input type="text" id="email" />
-          <Label htmlFor="password" />
+          <Label htmlFor="password" alignLeft>
+            {' '}
+            Password
+          </Label>
           <Input type="text" id="password" />
           <Button> Zaloguj</Button>
           {isAlertVisible && <Alert>There are empty fields!</Alert>}
