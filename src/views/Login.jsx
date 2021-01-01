@@ -20,9 +20,24 @@ const StyledMain = styled.div`
 
 class Login extends Component {
   state = {
-    userEmail: '',
+    login: '',
+    password: '',
     userId: null,
     isAlertVisible: false,
+  };
+
+  handleForm = e => {
+    const { value } = e.target;
+
+    console.log('e traget name & value', value, e.target.name);
+
+    this.setState({ [e.target.name]: value });
+  };
+
+  handleSubmit = e => {
+    console.log('JESTEM W HANDLE SUBIM');
+    e.preventDefault();
+    console.log('ZE STANU:', this.state.login, this.state.password);
   };
 
   render() {
@@ -32,16 +47,29 @@ class Login extends Component {
       <StyledMain pantry={pantry}>
         <Modal>
           <H1 marginBottomDouble>Logowanie</H1>
-          <Label htmlFor="email" alignLeft>
+          <Label htmlFor="login" alignLeft>
             Login
           </Label>
-          <Input type="text" id="email" />
+          <Input
+            type="text"
+            id="login"
+            name="login"
+            value={this.state.login}
+            onChange={this.handleForm}
+          />
           <Label htmlFor="password" alignLeft>
-            {' '}
             Password
           </Label>
-          <Input type="text" id="password" />
-          <Button> Zaloguj</Button>
+          <Input
+            type="text"
+            id="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleForm}
+          />
+          <Button type="submit" onClick={this.handleSubmit}>
+            Zaloguj
+          </Button>
           {isAlertVisible && <Alert>There are empty fields!</Alert>}
         </Modal>
       </StyledMain>
