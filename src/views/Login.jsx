@@ -7,10 +7,12 @@ import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
 
-const StyledMain = styled.main`
+const StyledMain = styled.div`
   height: 100vh;
+  width: 100vw;
   color: ${props => props.theme.textPrimary};
-  background-color: ${props => props.theme.background};
+  background-color: ${props => props.theme.primary};
+  /* background-color: red; */
 `;
 
 class Login extends Component {
