@@ -35,6 +35,17 @@ class Login extends Component {
     this.setState({ [e.target.name]: value });
   };
 
+  handleLogout = e => {
+    auth
+      .signOut()
+      .then(() => {
+        console.log('WYLOGOWANO');
+      })
+      .catch(error => {
+        console.log('Jakis blad');
+      });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -47,6 +58,7 @@ class Login extends Component {
         console.log('JESTEM ZALOGOWANY! ', user);
         console.log('USER EMAIL: ', user.user.email);
         this.setState({ user: { email: user.user.email, uid: user.user.uid } });
+        this.props.logIn(true);
       })
       .catch(error => {
         console.log('BLAD LOGOWANIA:');
@@ -81,8 +93,13 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handleForm}
           />
+          <br />
           <Button type="submit" onClick={this.handleSubmit}>
             Zaloguj
+          </Button>
+          <br />
+          <Button type="submit" onClick={this.handleLogout}>
+            Wyloguj
           </Button>
           {isAlertVisible && <Alert>There are empty fields!</Alert>}
         </Modal>
