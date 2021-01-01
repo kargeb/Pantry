@@ -7,6 +7,7 @@ import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
 import pantry from '../images/pantry.jpg';
+import { auth } from '../fbase';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -20,8 +21,8 @@ const StyledMain = styled.div`
 
 class Login extends Component {
   state = {
-    login: '',
-    password: '',
+    login: 'test@test.p',
+    password: 'testtest',
     userId: null,
     isAlertVisible: false,
   };
@@ -35,9 +36,22 @@ class Login extends Component {
   };
 
   handleSubmit = e => {
-    console.log('JESTEM W HANDLE SUBIM');
     e.preventDefault();
-    console.log('ZE STANU:', this.state.login, this.state.password);
+
+    const { login, password } = this.state;
+    console.log('ZE STANU:', login, password);
+
+    auth
+      .signInWithEmailAndPassword(login, password)
+      .then(user => {
+        console.log('JESTEM ZALOGOWANY! ', user);
+        console.log('USER EMAIL: ', user.user.email);
+        this.setState({ user: { email: user.user.email, uid: user.user.uid } });
+      })
+      .catch(error => {
+        console.log('BLAD LOGOWANIA:');
+        console.log(error.code, error.message);
+      });
   };
 
   render() {
