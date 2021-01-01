@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
 import sampleData from '../data/db.json';
-import db from '../fbase';
+import db, { auth } from '../fbase';
 import { AppContext } from '../context';
 import Pantry from './Pantry';
 import Shopping from './Shopping';
@@ -16,11 +16,26 @@ class Root extends React.Component {
     isLoading: true,
     products: [],
     currentTheme: lightTheme,
+    user: 'ni ma',
   };
 
   componentDidMount() {
     this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
       const downloadedProducts = [];
+
+      console.log('CURRENT USER:', auth.currentUser);
+
+      auth
+        .signInWithEmailAndPassword('test@test.pl', 'testtest')
+        .then(user => {
+          console.log('JESTEM ZALOGOWANY! ', user);
+          console.log('USER EMAIL: ', user.user.email);
+          this.setState({ user: { email: user.user.email, uid: user.user.uid } });
+        })
+        .catch(error => {
+          console.log('BLAD LOGOWANIA:');
+          console.log(error.code, error.message);
+        });
 
       querySnapshot.forEach(doc => {
         const newProduct = { ...doc.data() };
