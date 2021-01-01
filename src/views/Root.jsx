@@ -30,10 +30,10 @@ const Authorized = ({ mergedTheme, contextElements }) => (
 );
 
 // const Unauthorized = ({ mergedTheme }) => <Login />;
-const Unauthorized = ({ mergedTheme }) => (
+const Unauthorized = ({ mergedTheme, logIn }) => (
   <ThemeProvider theme={mergedTheme}>
     <GlobalStyle />
-    <Login />
+    <Login logIn={logIn} />
   </ThemeProvider>
 );
 
@@ -43,6 +43,7 @@ class Root extends React.Component {
     products: [],
     currentTheme: lightTheme,
     user: { email: null, uid: null },
+    isLogged: false,
   };
 
   componentDidMount() {
@@ -51,17 +52,17 @@ class Root extends React.Component {
 
       console.log('CURRENT USER:', auth.currentUser);
 
-      auth
-        .signInWithEmailAndPassword('test@test.pl', 'testtest')
-        .then(user => {
-          console.log('JESTEM ZALOGOWANY! ', user);
-          console.log('USER EMAIL: ', user.user.email);
-          this.setState({ user: { email: user.user.email, uid: user.user.uid } });
-        })
-        .catch(error => {
-          console.log('BLAD LOGOWANIA:');
-          console.log(error.code, error.message);
-        });
+      // auth
+      //   .signInWithEmailAndPassword('test@test.pl', 'testtest')
+      //   .then(user => {
+      //     console.log('JESTEM ZALOGOWANY! ', user);
+      //     console.log('USER EMAIL: ', user.user.email);
+      //     this.setState({ user: { email: user.user.email, uid: user.user.uid } });
+      //   })
+      //   .catch(error => {
+      //     console.log('BLAD LOGOWANIA:');
+      //     console.log(error.code, error.message);
+      //   });
 
       querySnapshot.forEach(doc => {
         const newProduct = { ...doc.data() };
@@ -93,17 +94,40 @@ class Root extends React.Component {
     });
   };
 
+  logIn = isLogged => {
+    console.log('JESTEM W LOGGED, ze stanem:', isLogged);
+    this.setState({ isLogged: true });
+  };
+
+  handleLogout = e => {
+    console.log('JESTEM W HANDLE LOGOUT!!');
+    auth
+      .signOut()
+      .then(() => {
+        console.log('WYLOGOWANO');
+        this.setState({ isLogged: false });
+      })
+      .catch(error => {
+        console.log('Jakis blad');
+      });
+  };
+
   render() {
-    const { currentTheme } = this.state;
+    const { currentTheme, isLogged } = this.state;
     const contextElements = {
       ...this.state,
       changeTheme: this.changeTheme,
+      handleLogout: this.handleLogout,
     };
 
     const mergedTheme = { ...defaultTheme, ...currentTheme };
 
     // return <Authorized mergedTheme={mergedTheme} contextElements={contextElements} />;
-    return <Unauthorized mergedTheme={mergedTheme} />;
+    return isLogged ? (
+      <Authorized mergedTheme={mergedTheme} contextElements={contextElements} />
+    ) : (
+      <Unauthorized mergedTheme={mergedTheme} logIn={this.logIn} />
+    );
   }
 }
 
