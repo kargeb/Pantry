@@ -16,7 +16,7 @@ class Root extends React.Component {
     isLoading: true,
     products: [],
     currentTheme: lightTheme,
-    user: 'ni ma',
+    user: { email: null, uid: null },
   };
 
   componentDidMount() {

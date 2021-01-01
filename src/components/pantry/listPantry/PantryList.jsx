@@ -27,13 +27,14 @@ const PantryList = () => {
 
   return (
     <AppContext.Consumer>
-      {({ products }) => (
+      {({ products, user }) => (
         <div>
           {console.log('Z CONTEXU:', products)}
           {!products.length ? (
             <img src={loadingGif} alt="Loading gif" />
           ) : (
             <div>
+              <h1>{user.email}</h1>
               <CategoriesList>
                 {getCategoriesFromProducts(products)
                   .sort()
