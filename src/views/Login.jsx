@@ -25,6 +25,7 @@ class Login extends Component {
     password: 'testtest',
     userId: null,
     isAlertVisible: false,
+    pending: true,
   };
 
   handleLogout = e => {
@@ -47,20 +48,34 @@ class Login extends Component {
   };
 
   componentDidMount() {
+    console.log('CZY TRZA CZEKAC?', this.state.pending);
     console.log('ZALADOWALEM SIE');
     console.log(auth.currentUser);
     this.unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         console.log('ZALOGOWANY z LISTENERA w LOGIN:', user);
-        this.zalogowany();
+        // this.zalogowany();
+        this.setState({ pending: false });
+        this.props.logIn(true);
+        // console.log('CZY TRZA CZEKAC?', this.state.pending);
         // this.funkcja.call(this);
       } else {
         console.log('NIE ZALOGOWANY z LISTENERA w LOGIN:', user);
+        this.setState({ pending: false });
+        this.props.logIn(false);
+        // console.log('CZY TRZA CZEKAC?', this.state.pending);
       }
     });
   }
 
+  componentDidUpdate() {
+    console.log('W DID UPDATE SIE');
+    console.log('current user:', auth.currentUser);
+    console.log('CZY TRZA CZEKAC? Z UPDATE', this.state.pending);
+  }
+
   componentWillUnmount() {
+    // console.log('CZY TRZA CZEKAC? Z UPDATE', this.state.pending);
     this.unsubscribe();
   }
 
@@ -71,11 +86,6 @@ class Login extends Component {
 
     this.setState({ [e.target.name]: value });
   };
-
-  componentDidUpdate() {
-    console.log('W DID UPDATE SIE');
-    console.log('current user:', auth.currentUser);
-  }
 
   // checkCurrentUser = () => {
   //   auth().currentUser;

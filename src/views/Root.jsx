@@ -96,7 +96,7 @@ class Root extends React.Component {
 
   logIn = isLogged => {
     console.log('JESTEM W LOGGED, ze stanem:', isLogged);
-    this.setState({ isLogged: true });
+    this.setState({ isLogged: !!isLogged });
   };
 
   handleLogout = e => {
