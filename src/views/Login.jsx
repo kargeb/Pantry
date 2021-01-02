@@ -27,14 +27,6 @@ class Login extends Component {
     isAlertVisible: false,
   };
 
-  handleForm = e => {
-    const { value } = e.target;
-
-    console.log('e traget name & value', value, e.target.name);
-
-    this.setState({ [e.target.name]: value });
-  };
-
   handleLogout = e => {
     auth
       .signOut()
@@ -45,6 +37,49 @@ class Login extends Component {
         console.log('Jakis blad');
       });
   };
+
+  zalogowany = () => {
+    this.props.logIn(true);
+  };
+
+  funkcja = () => {
+    return console.log('COS');
+  };
+
+  componentDidMount() {
+    console.log('ZALADOWALEM SIE');
+    console.log(auth.currentUser);
+    this.unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('ZALOGOWANY z LISTENERA w LOGIN:', user);
+        this.zalogowany();
+        // this.funkcja.call(this);
+      } else {
+        console.log('NIE ZALOGOWANY z LISTENERA w LOGIN:', user);
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  handleForm = e => {
+    const { value } = e.target;
+
+    console.log('e traget name & value', value, e.target.name);
+
+    this.setState({ [e.target.name]: value });
+  };
+
+  componentDidUpdate() {
+    console.log('W DID UPDATE SIE');
+    console.log('current user:', auth.currentUser);
+  }
+
+  // checkCurrentUser = () => {
+  //   auth().currentUser;
+  // };
 
   handleSubmit = e => {
     e.preventDefault();
