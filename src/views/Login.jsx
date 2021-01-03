@@ -13,7 +13,6 @@ const StyledMain = styled.div`
   height: 100vh;
   width: 100vw;
   color: ${props => props.theme.textPrimary};
-  /* background-color: ${props => props.theme.primary}; */
   background-size: cover;
   background-position: bottom;
   background-image: url(${props => props.pantry});
@@ -23,73 +22,13 @@ class Login extends Component {
   state = {
     login: 'test@test.p',
     password: 'testtest',
-    userId: null,
     isAlertVisible: false,
-    pending: true,
   };
-
-  handleLogout = e => {
-    auth
-      .signOut()
-      .then(() => {
-        console.log('WYLOGOWANO');
-      })
-      .catch(error => {
-        console.log('Jakis blad');
-      });
-  };
-
-  zalogowany = () => {
-    this.props.logIn(true);
-  };
-
-  funkcja = () => {
-    return console.log('COS');
-  };
-
-  componentDidMount() {
-    console.log('CZY TRZA CZEKAC?', this.state.pending);
-    console.log('ZALADOWALEM SIE');
-    console.log(auth.currentUser);
-    this.unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        console.log('ZALOGOWANY z LISTENERA w LOGIN:', user);
-        // this.zalogowany();
-        this.setState({ pending: false });
-        this.props.logIn(true);
-        // console.log('CZY TRZA CZEKAC?', this.state.pending);
-        // this.funkcja.call(this);
-      } else {
-        console.log('NIE ZALOGOWANY z LISTENERA w LOGIN:', user);
-        this.setState({ pending: false });
-        this.props.logIn(false);
-        // console.log('CZY TRZA CZEKAC?', this.state.pending);
-      }
-    });
-  }
-
-  componentDidUpdate() {
-    console.log('W DID UPDATE SIE');
-    console.log('current user:', auth.currentUser);
-    console.log('CZY TRZA CZEKAC? Z UPDATE', this.state.pending);
-  }
-
-  componentWillUnmount() {
-    // console.log('CZY TRZA CZEKAC? Z UPDATE', this.state.pending);
-    this.unsubscribe();
-  }
 
   handleForm = e => {
     const { value } = e.target;
-
-    console.log('e traget name & value', value, e.target.name);
-
     this.setState({ [e.target.name]: value });
   };
-
-  // checkCurrentUser = () => {
-  //   auth().currentUser;
-  // };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -102,8 +41,6 @@ class Login extends Component {
       .then(user => {
         console.log('JESTEM ZALOGOWANY! ', user);
         console.log('USER EMAIL: ', user.user.email);
-        this.setState({ user: { email: user.user.email, uid: user.user.uid } });
-        this.props.logIn(true);
       })
       .catch(error => {
         console.log('BLAD LOGOWANIA:');
@@ -112,35 +49,29 @@ class Login extends Component {
   };
 
   render() {
-    const { isAlertVisible } = this.state;
+    const { isAlertVisible, login, password } = this.state;
 
     return (
       <StyledMain pantry={pantry}>
         <Modal>
           <H1 marginBottomDouble>Logowanie</H1>
           <Label htmlFor="login" alignLeft>
-            Login
+            Email
           </Label>
-          <Input
-            type="text"
-            id="login"
-            name="login"
-            value={this.state.login}
-            onChange={this.handleForm}
-          />
+          <Input type="text" id="login" name="login" value={login} onChange={this.handleForm} />
           <Label htmlFor="password" alignLeft>
-            Password
+            Hasło
           </Label>
           <Input
             type="text"
             id="password"
             name="password"
-            value={this.state.password}
+            value={password}
             onChange={this.handleForm}
           />
           <br />
           <Button type="submit" onClick={this.handleSubmit}>
-            Zaloguj
+            Login
           </Button>
           <br />
           <Button type="submit" onClick={this.handleLogout}>
