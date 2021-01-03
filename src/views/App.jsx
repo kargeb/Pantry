@@ -1,9 +1,10 @@
 import React from 'react';
 import { auth } from '../fbase';
+import Unauthorized from './Unauthorized';
 
 class App extends React.Component {
   state = {
-    currentUserId: '',
+    currentUserId: null,
   };
 
   componentDidMount() {
@@ -13,9 +14,24 @@ class App extends React.Component {
         this.setState({ currentUserId: user.uid });
       } else {
         console.log('NIE ZALOGOWANY z LISTENERA w LOGIN:', user);
-        this.setState({ currentUserId: user.uid });
+        this.setState({ currentUserId: null });
       }
     });
+  }
+
+  handleLogout = e => {
+    auth
+      .signOut()
+      .then(() => {
+        console.log('WYLOGOWANO');
+      })
+      .catch(error => {
+        console.log('Jakis blad');
+      });
+  };
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {
@@ -23,12 +39,15 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>Im in the new Root</h1>
-        <p>Current User: {currentUserId}</p>
         {currentUserId ? (
-          <p>JEST TO BO JEST UZYTKOWNIK {currentUserId}</p>
+          <div>
+            <p>JEST TO BO JEST UZYTKOWNIK {currentUserId}</p>
+            <button onClick={this.handleLogout} type="button">
+              LogouT
+            </button>
+          </div>
         ) : (
-          <p>NIE MA TEGO BO NIE MA UZYTKOWNIKA {currentUserId} </p>
+          <Unauthorized />
         )}
       </div>
     );
