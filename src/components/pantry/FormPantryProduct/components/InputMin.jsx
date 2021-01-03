@@ -18,14 +18,7 @@ const InputMin = ({ handleForm, min }) => {
   return (
     <InputHorizontalWrapper>
       <Label htmlFor="min">Min</Label>
-      <Input
-        short
-        id="min"
-        type="number"
-        placeholder="minimal quantity"
-        onChange={handleForm}
-        value={min}
-      />
+      <Input short id="min" type="number" onChange={handleForm} value={min} />
     </InputHorizontalWrapper>
   );
 };
