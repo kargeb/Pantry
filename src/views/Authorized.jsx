@@ -37,7 +37,7 @@ import Navigation from '../components/navigation/Navigation';
 //   </ThemeProvider>
 // );
 
-class Root extends React.Component {
+class Authorized extends React.Component {
   state = {
     isLoading: true,
     products: [],
@@ -142,4 +142,4 @@ class Root extends React.Component {
   }
 }
 
-export default Root;
+export default Authorized;

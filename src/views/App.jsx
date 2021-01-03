@@ -1,6 +1,7 @@
 import React from 'react';
 import { auth } from '../fbase';
 import Unauthorized from './Unauthorized';
+import Authorized from './Authorized';
 
 class App extends React.Component {
   state = {
@@ -37,20 +38,7 @@ class App extends React.Component {
   render() {
     const { currentUserId } = this.state;
 
-    return (
-      <div>
-        {currentUserId ? (
-          <div>
-            <p>JEST TO BO JEST UZYTKOWNIK {currentUserId}</p>
-            <button onClick={this.handleLogout} type="button">
-              LogouT
-            </button>
-          </div>
-        ) : (
-          <Unauthorized />
-        )}
-      </div>
-    );
+    return <div>{currentUserId ? <Authorized /> : <Unauthorized />}</div>;
   }
 }
 
