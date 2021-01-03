@@ -10,32 +10,32 @@ import Pantry from './Pantry';
 import Shopping from './Shopping';
 import Settings from './Settings';
 import Navigation from '../components/navigation/Navigation';
-import Login from './Login';
+// import Login from './Login';
 
-const Authorized = ({ mergedTheme, contextElements }) => (
-  <BrowserRouter>
-    <ThemeProvider theme={mergedTheme}>
-      <GlobalStyle />
-      <AppContext.Provider value={contextElements}>
-        <Navigation />
-        <Switch>
-          <Route exact path="/" component={Pantry} />
-          <Route path="/pantry" component={Pantry} />
-          <Route path="/shopping" component={Shopping} />
-          <Route path="/settings" component={Settings} />
-        </Switch>
-      </AppContext.Provider>
-    </ThemeProvider>
-  </BrowserRouter>
-);
+// const Authorized = ({ mergedTheme, contextElements }) => (
+//   <BrowserRouter>
+//     <ThemeProvider theme={mergedTheme}>
+//       <GlobalStyle />
+//       <AppContext.Provider value={contextElements}>
+//         <Navigation />
+//         <Switch>
+//           <Route exact path="/" component={Pantry} />
+//           <Route path="/pantry" component={Pantry} />
+//           <Route path="/shopping" component={Shopping} />
+//           <Route path="/settings" component={Settings} />
+//         </Switch>
+//       </AppContext.Provider>
+//     </ThemeProvider>
+//   </BrowserRouter>
+// );
 
 // const Unauthorized = ({ mergedTheme }) => <Login />;
-const Unauthorized = ({ mergedTheme, logIn }) => (
-  <ThemeProvider theme={mergedTheme}>
-    <GlobalStyle />
-    <Login logIn={logIn} />
-  </ThemeProvider>
-);
+// const Unauthorized = ({ mergedTheme, logIn }) => (
+//   <ThemeProvider theme={mergedTheme}>
+//     <GlobalStyle />
+//     <Login logIn={logIn} />
+//   </ThemeProvider>
+// );
 
 class Root extends React.Component {
   state = {
@@ -113,7 +113,7 @@ class Root extends React.Component {
   };
 
   render() {
-    const { currentTheme, isLogged } = this.state;
+    const { currentTheme } = this.state;
     const contextElements = {
       ...this.state,
       changeTheme: this.changeTheme,
@@ -123,10 +123,21 @@ class Root extends React.Component {
     const mergedTheme = { ...defaultTheme, ...currentTheme };
 
     // return <Authorized mergedTheme={mergedTheme} contextElements={contextElements} />;
-    return isLogged ? (
-      <Authorized mergedTheme={mergedTheme} contextElements={contextElements} />
-    ) : (
-      <Unauthorized mergedTheme={mergedTheme} logIn={this.logIn} />
+    return (
+      <BrowserRouter>
+        <ThemeProvider theme={mergedTheme}>
+          <GlobalStyle />
+          <AppContext.Provider value={contextElements}>
+            <Navigation />
+            <Switch>
+              <Route exact path="/" component={Pantry} />
+              <Route path="/pantry" component={Pantry} />
+              <Route path="/shopping" component={Shopping} />
+              <Route path="/settings" component={Settings} />
+            </Switch>
+          </AppContext.Provider>
+        </ThemeProvider>
+      </BrowserRouter>
     );
   }
 }
