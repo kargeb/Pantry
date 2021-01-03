@@ -27,13 +27,17 @@ const PantryList = () => {
 
   return (
     <AppContext.Consumer>
-      {({ products }) => (
+      {({ products, user, handleLogout }) => (
         <div>
           {console.log('Z CONTEXU:', products)}
           {!products.length ? (
             <img src={loadingGif} alt="Loading gif" />
           ) : (
             <div>
+              <h1>{user.email}</h1>
+              <button type="button" onClick={handleLogout}>
+                Wyloguj
+              </button>
               <CategoriesList>
                 {getCategoriesFromProducts(products)
                   .sort()
