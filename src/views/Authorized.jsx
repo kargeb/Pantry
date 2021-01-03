@@ -10,36 +10,11 @@ import Pantry from './Pantry';
 import Shopping from './Shopping';
 import Settings from './Settings';
 import Navigation from '../components/navigation/Navigation';
-// import Login from './Login';
-
-// const Authorized = ({ mergedTheme, contextElements }) => (
-//   <BrowserRouter>
-//     <ThemeProvider theme={mergedTheme}>
-//       <GlobalStyle />
-//       <AppContext.Provider value={contextElements}>
-//         <Navigation />
-//         <Switch>
-//           <Route exact path="/" component={Pantry} />
-//           <Route path="/pantry" component={Pantry} />
-//           <Route path="/shopping" component={Shopping} />
-//           <Route path="/settings" component={Settings} />
-//         </Switch>
-//       </AppContext.Provider>
-//     </ThemeProvider>
-//   </BrowserRouter>
-// );
-
-// const Unauthorized = ({ mergedTheme }) => <Login />;
-// const Unauthorized = ({ mergedTheme, logIn }) => (
-//   <ThemeProvider theme={mergedTheme}>
-//     <GlobalStyle />
-//     <Login logIn={logIn} />
-//   </ThemeProvider>
-// );
 
 class Authorized extends React.Component {
   state = {
     isLoading: true,
+    currentUserId: this.props.currentUserId,
     products: [],
     currentTheme: lightTheme,
     user: { email: null, uid: null },
@@ -51,18 +26,6 @@ class Authorized extends React.Component {
       const downloadedProducts = [];
 
       console.log('CURRENT USER:', auth.currentUser);
-
-      // auth
-      //   .signInWithEmailAndPassword('test@test.pl', 'testtest')
-      //   .then(user => {
-      //     console.log('JESTEM ZALOGOWANY! ', user);
-      //     console.log('USER EMAIL: ', user.user.email);
-      //     this.setState({ user: { email: user.user.email, uid: user.user.uid } });
-      //   })
-      //   .catch(error => {
-      //     console.log('BLAD LOGOWANIA:');
-      //     console.log(error.code, error.message);
-      //   });
 
       querySnapshot.forEach(doc => {
         const newProduct = { ...doc.data() };
@@ -129,6 +92,7 @@ class Authorized extends React.Component {
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
             <Navigation />
+            <h2>{this.state.currentUserId}</h2>
             <Switch>
               <Route exact path="/" component={Pantry} />
               <Route path="/pantry" component={Pantry} />
