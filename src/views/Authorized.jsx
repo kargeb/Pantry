@@ -22,28 +22,36 @@ class Authorized extends React.Component {
   };
 
   componentDidMount() {
-    this.unsubscribe = db.collection('products').onSnapshot(querySnapshot => {
-      const downloadedProducts = [];
+    this.unsubscribe = db
+      .collection('users')
+      .doc('u1sYNdEoRknGeHEIzGgY')
+      .collection('products')
+      .onSnapshot(querySnapshot => {
+        const downloadedProducts = [];
 
-      console.log('CURRENT USER:', auth.currentUser);
+        console.log('CURRENT USER:', auth.currentUser);
 
-      querySnapshot.forEach(doc => {
-        const newProduct = { ...doc.data() };
-        downloadedProducts.push(newProduct);
+        // console.log(querySnapshot);
+
+        querySnapshot.forEach(doc => {
+          console.log('Z QUERY SNAPSHOT: ', doc.data());
+          // doc.data();
+          const newProduct = { ...doc.data() };
+          downloadedProducts.push(newProduct);
+        });
+
+        // if (downloadedProducts.length === 0) {
+        //   const newCategories = {
+        //     categories: [...sampleData.categories],
+        //   };
+        //   db.collection('categories').doc('all').set(newCategories);
+        // }
+
+        this.setState({
+          products: [...downloadedProducts],
+          isLoading: false,
+        });
       });
-
-      if (downloadedProducts.length === 0) {
-        const newCategories = {
-          categories: [...sampleData.categories],
-        };
-        db.collection('categories').doc('all').set(newCategories);
-      }
-
-      this.setState({
-        products: [...downloadedProducts],
-        isLoading: false,
-      });
-    });
   }
 
   componentWillUnmount() {
