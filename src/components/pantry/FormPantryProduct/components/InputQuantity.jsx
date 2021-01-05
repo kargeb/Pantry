@@ -14,17 +14,25 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
-const InputQuantity = ({ handleForm, quantity }) => {
+const InputQuantity = ({ handleForm, quantity, preventProhibitedCharacters }) => {
   return (
     <InputHorizontalWrapper>
       <Label htmlFor="quantity">Quantity</Label>
-      <Input short id="quantity" type="number" onChange={handleForm} value={quantity} />
+      <Input
+        short
+        id="quantity"
+        type="number"
+        onChange={handleForm}
+        onKeyDown={preventProhibitedCharacters}
+        value={quantity}
+      />
     </InputHorizontalWrapper>
   );
 };
 
 InputQuantity.propTypes = {
   handleForm: PropTypes.func.isRequired,
+  preventProhibitedCharacters: PropTypes.func.isRequired,
   quantity: PropTypes.any.isRequired,
 };
 

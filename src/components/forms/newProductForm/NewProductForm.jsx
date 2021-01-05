@@ -12,15 +12,6 @@ import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfir
 import Alert from '../../molecules/Alert';
 import { addNewProductToDatabase } from '../../../data/handlers';
 
-const isValuePositiveInteger = value => {
-  console.log('VALUE: ', value);
-  // /^\s*\d*\s*$/
-  // const regex = RegExp(/^\s*\d*\s*$/);
-  const regex = /^\s*\d*\s*$/;
-  console.log('TEST VALUE: ', typeof value);
-  console.log('tutaj wynik testu:', regex.test(value));
-};
-
 class NewProductForm extends React.Component {
   state = {
     isAlertVisible: false,
@@ -32,26 +23,20 @@ class NewProductForm extends React.Component {
     id: uuidv4(),
   };
 
+  preventProhibitedCharacters = e => {
+    const prohibitedCharacters = ['e', '-', '+', '.', ','];
+
+    if (prohibitedCharacters.includes(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   handleForm = e => {
-    const { value, id, type } = e.target;
+    const { value } = e.target;
 
     console.log('WYWOLALEM SIE!!!');
 
-    // isValuePositiveInteger(value);
-    // console.log('wypisz atrget czy jest type:', e.target.type);
-
-    // if (type === 'number') {
-    //   isValuePositiveInteger(value);
-    // }
-    // // if (id === 'min' || id === 'quantity') {
-    // //   value = parseInt(value, 10);
-
-    // // if (value > 10) {
-    // //   // value = 0;
-    // // } else {
-    // // }
-    // // }
-    // this.setState({ [e.target.id]: value });
+    this.setState({ [e.target.id]: value });
   };
 
   handleSubmit = () => {
@@ -96,8 +81,16 @@ class NewProductForm extends React.Component {
         <InputName handleForm={this.handleForm} name={name} />
         <SelectCategory handleForm={this.handleForm} category={category} />
         <SelectUnit handleForm={this.handleForm} unit={unit} />
-        <InputMin handleForm={this.handleForm} min={min} />
-        <InputQuantity handleForm={this.handleForm} quantity={quantity} />
+        <InputMin
+          handleForm={this.handleForm}
+          min={min}
+          preventProhibitedCharacters={this.preventProhibitedCharacters}
+        />
+        <InputQuantity
+          handleForm={this.handleForm}
+          preventProhibitedCharacters={this.preventProhibitedCharacters}
+          quantity={quantity}
+        />
         <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
