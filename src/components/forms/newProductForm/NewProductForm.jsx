@@ -16,13 +16,14 @@ class NewProductForm extends React.Component {
   state = {
     isAlertVisible: false,
     name: '',
-    quantity: '',
+    quantity: 0,
     category: '',
-    min: 5,
+    min: 1,
     unit: 'item',
     id: uuidv4(),
   };
 
+  // for type="number" Inputs
   preventProhibitedCharacters = e => {
     const prohibitedCharacters = ['e', '-', '+', '.', ','];
 
@@ -31,12 +32,21 @@ class NewProductForm extends React.Component {
     }
   };
 
+  resetState = () => {
+    this.setState({
+      name: '',
+      quantity: 0,
+      category: '',
+      min: 1,
+      unit: 'item',
+      id: null,
+    });
+  };
+
   handleForm = e => {
-    const { value } = e.target;
+    const { value, id } = e.target;
 
-    console.log('WYWOLALEM SIE!!!');
-
-    this.setState({ [e.target.id]: value });
+    this.setState({ [id]: value });
   };
 
   handleSubmit = () => {
@@ -55,15 +65,6 @@ class NewProductForm extends React.Component {
       };
 
       addNewProductToDatabase(newProduct);
-
-      this.setState({
-        name: '',
-        quantity: 1,
-        category: '',
-        min: 1,
-        unit: 'item',
-        id: null,
-      });
 
       toggleFormVisibility();
     } else {
