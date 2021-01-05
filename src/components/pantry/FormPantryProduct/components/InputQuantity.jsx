@@ -25,7 +25,7 @@ const InputQuantity = ({ handleForm, quantity }) => {
 
 InputQuantity.propTypes = {
   handleForm: PropTypes.func.isRequired,
-  quantity: PropTypes.number.isRequired,
+  quantity: PropTypes.any.isRequired,
 };
 
 export default InputQuantity;

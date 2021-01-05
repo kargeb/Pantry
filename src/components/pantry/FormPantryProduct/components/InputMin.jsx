@@ -25,7 +25,7 @@ const InputMin = ({ handleForm, min }) => {
 
 InputMin.propTypes = {
   handleForm: PropTypes.func.isRequired,
-  min: PropTypes.number.isRequired,
+  min: PropTypes.any.isRequired,
 };
 
 export default InputMin;

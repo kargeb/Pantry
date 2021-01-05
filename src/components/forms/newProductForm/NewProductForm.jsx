@@ -12,6 +12,15 @@ import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfir
 import Alert from '../../molecules/Alert';
 import { addNewProductToDatabase } from '../../../data/handlers';
 
+const isValuePositiveInteger = value => {
+  console.log('VALUE: ', value);
+  // /^\s*\d*\s*$/
+  // const regex = RegExp(/^\s*\d*\s*$/);
+  const regex = /^\s*\d*\s*$/;
+  console.log('TEST VALUE: ', typeof value);
+  console.log('tutaj wynik testu:', regex.test(value));
+};
+
 class NewProductForm extends React.Component {
   state = {
     isAlertVisible: false,
@@ -24,17 +33,25 @@ class NewProductForm extends React.Component {
   };
 
   handleForm = e => {
-    let { value, id } = e.target;
+    const { value, id, type } = e.target;
 
-    if (id === 'min' || id === 'quantity') {
-      value = parseInt(value, 10);
+    console.log('WYWOLALEM SIE!!!');
 
-      if (value < 0) {
-        value = 0;
-      }
-    }
+    // isValuePositiveInteger(value);
+    // console.log('wypisz atrget czy jest type:', e.target.type);
 
-    this.setState({ [e.target.id]: value });
+    // if (type === 'number') {
+    //   isValuePositiveInteger(value);
+    // }
+    // // if (id === 'min' || id === 'quantity') {
+    // //   value = parseInt(value, 10);
+
+    // // if (value > 10) {
+    // //   // value = 0;
+    // // } else {
+    // // }
+    // // }
+    // this.setState({ [e.target.id]: value });
   };
 
   handleSubmit = () => {
