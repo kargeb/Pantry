@@ -49,24 +49,81 @@ class NewProductForm extends React.Component {
     this.setState({ [id]: value });
   };
 
+  validateProductValues = product => {
+    console.log('Object.values(product):', Object.entries(product));
+
+    Object.entries(product).forEach(property => {
+      switch (property[0]) {
+        case 'name':
+          console.log('jestem w property NAME!!');
+          if (property[1].length === 0) {
+            console.log('name NIE MOZE BYC PUSTE!!');
+          }
+          break;
+        case 'unit':
+          if (property[1].length === 0) {
+            console.log('unit NIE MOZE BYC PUSTE!!');
+          }
+          break;
+        case 'category':
+          if (property[1].length === 0) {
+            console.log('cetgory NIE MOZE BYC PUSTE!!');
+          }
+          break;
+        case 'quantity':
+          if (property[1].length === 0) {
+            console.log('quantity NIE MOZE BYC PUSTE!!');
+          }
+          break;
+        case 'min':
+          if (property[1].length === 0) {
+            console.log('min NIE MOZE BYC PUSTE!!');
+          }
+          break;
+        default:
+          console.log('DEFAULT CASE');
+      }
+
+      console.log(property[0], ' ', property[1]);
+
+      // if (property[1].length === '' || property[1].length === undefined) {
+      //   console.log('JEST PUSTE POLE W: ', property[0]);
+      // }
+    });
+
+    // for (const property in product) {
+    //   console.log('property in product: ', property, product[property]);
+    // }
+  };
+
   handleSubmit = () => {
     const { name, quantity, category, min, unit, id } = this.state;
     const { toggleFormVisibility } = this.props;
 
-    if (name && quantity >= 0 && category && min && unit) {
+    // if (name && quantity >= 0 && category && min && unit) {
+    if (true) {
       const newProduct = {
         name,
-        quantity: Number(quantity),
+        quantity,
         category,
-        min: Number(min),
+        min,
         unit,
-        onShoppingList: Number(quantity) < min,
-        id,
       };
 
-      addNewProductToDatabase(newProduct);
+      this.validateProductValues(newProduct);
+      // const newProduct = {
+      //   name: name.trim(),
+      //   quantity: Number(quantity),
+      //   category,
+      //   min: Number(min),
+      //   unit,
+      //   onShoppingList: Number(quantity) < min,
+      //   id,
+      // };
 
-      toggleFormVisibility();
+      // addNewProductToDatabase(newProduct);
+
+      // toggleFormVisibility();
     } else {
       this.setState({ isAlertVisible: true });
     }
