@@ -25,6 +25,7 @@ const InputQuantity = ({ handleForm, quantity, preventProhibitedCharacters }) =>
         onChange={handleForm}
         onKeyDown={preventProhibitedCharacters}
         value={quantity}
+        min="0"
       />
     </InputHorizontalWrapper>
   );

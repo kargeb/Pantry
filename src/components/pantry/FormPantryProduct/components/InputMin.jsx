@@ -25,6 +25,7 @@ const InputMin = ({ handleForm, min, preventProhibitedCharacters }) => {
         onKeyDown={preventProhibitedCharacters}
         onChange={handleForm}
         value={min}
+        min="0"
       />
     </InputHorizontalWrapper>
   );
