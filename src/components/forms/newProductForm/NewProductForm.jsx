@@ -21,7 +21,7 @@ class NewProductForm extends React.Component {
     min: 1,
     unit: 'item',
     id: uuidv4(),
-    errors: {},
+    errors: [],
   };
 
   // for type="number" Inputs
@@ -52,6 +52,7 @@ class NewProductForm extends React.Component {
 
   validateProductValues = product => {
     console.log('Object.values(product):', Object.entries(product));
+    this.setState({ errors: [] });
 
     Object.entries(product).forEach(property => {
       const [key, value] = property;
@@ -61,12 +62,14 @@ class NewProductForm extends React.Component {
       if (value.length === 0) {
         console.log('name NIE MOZE BYC PUSTE!!');
         this.setState(prevState => ({
-          errors: {
-            ...prevState.errors,
-            [key]: 'pusty iput!',
-          },
+          errors: [...prevState.errors, key],
         }));
       }
+
+      // errors: {
+      //   ...prevState.errors,
+      //   [key]: 'pusty iput!',
+      // },
 
       // switch (key) {
       //   case 'name':
@@ -122,6 +125,11 @@ class NewProductForm extends React.Component {
     const { toggleFormVisibility } = this.props;
 
     // if (name && quantity >= 0 && category && min && unit) {
+
+    if (true) {
+      return;
+    }
+
     if (true) {
       const newProduct = {
         name,
@@ -132,6 +140,7 @@ class NewProductForm extends React.Component {
       };
 
       this.validateProductValues(newProduct);
+
       // const newProduct = {
       //   name: name.trim(),
       //   quantity: Number(quantity),
@@ -154,25 +163,33 @@ class NewProductForm extends React.Component {
 
   render() {
     const { toggleFormVisibility } = this.props;
-    const { name, quantity, unit, min, category, isAlertVisible } = this.state;
+    const { name, quantity, unit, min, category, isAlertVisible, errors } = this.state;
 
     return (
       <Modal>
         <H1 marginBottomDouble>New product</H1>
         {console.log('state errors:', this.state.errors)}
+        {/* {console.log('state errors:', this.state.errors)} */}
+        {console.log('name:', name)}
+        {console.log('error inclused name: ', errors.includes('name'))}
         <InputName handleForm={this.handleForm} name={name} />
+        {errors.includes('name') && <p>Input can not be empty!</p>}
         <SelectCategory handleForm={this.handleForm} category={category} />
+        {errors.includes('category') && <p>Input can not be empty!</p>}
         <SelectUnit handleForm={this.handleForm} unit={unit} />
+        {errors.includes('unit') && <p>Input can not be empty!</p>}
         <InputMin
           handleForm={this.handleForm}
           min={min}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
         />
+        {errors.includes('min') && <p>Input can not be empty!</p>}
         <InputQuantity
           handleForm={this.handleForm}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
           quantity={quantity}
         />
+        {errors.includes('quantity') && <p>Input can not be empty!</p>}
         <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
