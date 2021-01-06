@@ -22,6 +22,8 @@ class NewProductForm extends React.Component {
     unit: 'item',
     id: uuidv4(),
     errors: [],
+    errorMessage: '',
+    invalidInputNames: [],
   };
 
   // for type="number" Inputs
@@ -55,141 +57,128 @@ class NewProductForm extends React.Component {
     this.setState({ errors: [] });
 
     Object.entries(product).forEach(property => {
-      const [key, value] = property;
-
-      console.log('key, value', key, value);
-
+      const [name, value] = property;
+      console.log('name, value', name, value);
       if (value.length === 0) {
         console.log('name NIE MOZE BYC PUSTE!!');
         this.setState(prevState => ({
-          errors: [...prevState.errors, key],
+          errors: [...prevState.errors, name],
         }));
       }
-
-      // errors: {
-      //   ...prevState.errors,
-      //   [key]: 'pusty iput!',
-      // },
-
-      // switch (key) {
-      //   case 'name':
-      //     console.log('jestem w property NAME!!');
-      //     if (value.length === 0) {
-      //       console.log('name NIE MOZE BYC PUSTE!!');
-      //       this.setState(prevState => ({
-      //         errors: {
-      //             ...prevState.errors,
-      //             key: value
-      //         }
-      //     }))
-      //     }
-      //     break;
-      //   case 'unit':
-      //     if (value.length === 0) {
-      //       console.log('unit NIE MOZE BYC PUSTE!!');
-      //     }
-      //     break;
-      //   case 'category':
-      //     if (value.length === 0) {
-      //       console.log('cetgory NIE MOZE BYC PUSTE!!');
-      //     }
-      //     break;
-      //   case 'quantity':
-      //     if (value.length === 0) {
-      //       console.log('quantity NIE MOZE BYC PUSTE!!');
-      //     }
-      //     break;
-      //   case 'min':
-      //     if (value.length === 0) {
-      //       console.log('min NIE MOZE BYC PUSTE!!');
-      //     }
-      //     break;
-      //   default:
-      //     console.log('DEFAULT CASE');
-      // }
-
-      console.log(key, ' ', value);
-
-      // if (value.length === '' || value.length === undefined) {
-      //   console.log('JEST PUSTE POLE W: ', key);
-      // }
+      console.log(name, ' ', value);
     });
-
-    // for (const property in product) {
-    //   console.log('property in product: ', property, product[property]);
-    // }
   };
 
+  formHasEmptyFields = () => {
+    const { name, quantity, category, min, unit } = this.state;
+
+    const formFields = {
+      name: name.trim(),
+      quantity: String(quantity),
+      category: category.trim(),
+      min: String(min),
+      unit: unit.trim(),
+    };
+
+    const formHasEmptyInputs = false;
+    const invalidInputNames = [];
+
+    Object.entries(formFields).forEach(field => {
+      const [key, value] = field;
+      console.log('key, value', key, value);
+      if (value.length === 0) {
+        console.log('name NIE MOZE BYC PUSTE!!');
+        invalidInputNames.push(key);
+      }
+      console.log(key, ' ', value);
+    });
+
+    console.log('INVALID INPUTS ZE SPRAWDZACZA:', invalidInputNames);
+    if (invalidInputNames.length) {
+      this.setState({ invalidInputNames });
+    }
+
+    return invalidInputNames.length;
+  };
+
+  // this.setState(prevState => ({
+  //   errors: [...prevState.errors, key],
+  // }));
+
+  // }
   handleSubmit = () => {
     const { name, quantity, category, min, unit, id } = this.state;
     const { toggleFormVisibility } = this.props;
 
-    // if (name && quantity >= 0 && category && min && unit) {
-
-    if (true) {
+    if (this.formHasEmptyFields()) {
+      this.setState({ errorMessage: 'Pole nie może byc puste' });
+      // console.log('SO PUSTE POLA W FORMIE, WYPELNIJ JESCZZE RAZ');
       return;
     }
 
-    if (true) {
-      const newProduct = {
-        name,
-        quantity,
-        category,
-        min,
-        unit,
-      };
+    // if (true) {
+    const newProduct = {
+      name,
+      quantity,
+      category,
+      min,
+      unit,
+    };
 
-      this.validateProductValues(newProduct);
+    this.validateProductValues(newProduct);
 
-      // const newProduct = {
-      //   name: name.trim(),
-      //   quantity: Number(quantity),
-      //   category,
-      //   min: Number(min),
-      //   unit,
-      //   onShoppingList: Number(quantity) < min,
-      //   id,
-      // };
+    // this.checkNoEmptyInputs()
 
-      // console.log('state errors:', this.state.errors);
+    // this.thereAreEmptyInputs()
+    // const newProduct = {
+    //   name: name.trim(),
+    //   quantity: Number(quantity),
+    //   category,
+    //   min: Number(min),
+    //   unit,
+    //   onShoppingList: Number(quantity) < min,
+    //   id,
+    // };
 
-      // addNewProductToDatabase(newProduct);
+    // console.log('state errors:', this.state.errors);
 
-      // toggleFormVisibility();
-    } else {
-      this.setState({ isAlertVisible: true });
-    }
+    // addNewProductToDatabase(newProduct);
+
+    // toggleFormVisibility();
+    // } else {
+    //   this.setState({ isAlertVisible: true });
+    // }
   };
 
   render() {
     const { toggleFormVisibility } = this.props;
-    const { name, quantity, unit, min, category, isAlertVisible, errors } = this.state;
+    const { name, quantity, unit, min, category, isAlertVisible, invalidInputNames } = this.state;
 
     return (
       <Modal>
         <H1 marginBottomDouble>New product</H1>
-        {console.log('state errors:', this.state.errors)}
-        {/* {console.log('state errors:', this.state.errors)} */}
+        {console.log('state errors:', this.state.invalidInputNames)}
+        {/* {console.log('state invalidInputNames:', this.state.invalidInputNames)} */}
         {console.log('name:', name)}
-        {console.log('error inclused name: ', errors.includes('name'))}
+        {console.log('error inclused name: ', invalidInputNames.includes('name'))}
         <InputName handleForm={this.handleForm} name={name} />
-        {errors.includes('name') && <p>Input can not be empty!</p>}
+        {invalidInputNames.includes('name') && <p>Input can not be empty!</p>}
         <SelectCategory handleForm={this.handleForm} category={category} />
-        {errors.includes('category') && <p>Input can not be empty!</p>}
+        {invalidInputNames.includes('category') && <p>Input can not be empty!</p>}
         <SelectUnit handleForm={this.handleForm} unit={unit} />
-        {errors.includes('unit') && <p>Input can not be empty!</p>}
+        {invalidInputNames.includes('unit') && <p>Input can not be empty!</p>}
         <InputMin
           handleForm={this.handleForm}
           min={min}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
         />
-        {errors.includes('min') && <p>Input can not be empty!</p>}
+        {invalidInputNames.includes('min') && <p>Input can not be empty!</p>}
         <InputQuantity
           handleForm={this.handleForm}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
           quantity={quantity}
         />
-        {errors.includes('quantity') && <p>Input can not be empty!</p>}
+        {invalidInputNames.includes('quantity') && <p>Input can not be empty!</p>}
         <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
