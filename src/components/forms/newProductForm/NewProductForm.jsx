@@ -21,8 +21,15 @@ class NewProductForm extends React.Component {
     min: 1,
     unit: 'item',
     id: uuidv4(),
-    errors: [],
-    errorMessage: '',
+    errorsOld: {},
+    errorMessages: {
+      name: '',
+      quantity: '',
+      category: '',
+      min: '',
+      unit: '',
+    },
+    // errorMessage: '',
     invalidInputNames: [],
   };
 
@@ -54,7 +61,7 @@ class NewProductForm extends React.Component {
 
   validateProductValues = product => {
     console.log('Object.values(product):', Object.entries(product));
-    this.setState({ errors: [] });
+    this.setState({ errorsOld: [] });
 
     Object.entries(product).forEach(property => {
       const [name, value] = property;
@@ -62,7 +69,7 @@ class NewProductForm extends React.Component {
       if (value.length === 0) {
         console.log('name NIE MOZE BYC PUSTE!!');
         this.setState(prevState => ({
-          errors: [...prevState.errors, name],
+          errorsOld: [...prevState.errorsOld, name],
         }));
       }
       console.log(name, ' ', value);
@@ -71,6 +78,16 @@ class NewProductForm extends React.Component {
 
   formHasEmptyFields = () => {
     const { name, quantity, category, min, unit } = this.state;
+    let formHasEmptyFields = false;
+    const newErrors = {
+      name: '',
+      quantity: '',
+      category: '',
+      min: '',
+      unit: '',
+    };
+
+    console.log('NEW ERRORS:', newErrors);
 
     const formFields = {
       name: name.trim(),
@@ -88,21 +105,27 @@ class NewProductForm extends React.Component {
       console.log('key, value', key, value);
       if (value.length === 0) {
         console.log('name NIE MOZE BYC PUSTE!!');
+        newErrors[key] = 'Nie moze byc puste!';
+        formHasEmptyFields = true;
         invalidInputNames.push(key);
       }
       console.log(key, ' ', value);
     });
 
     console.log('INVALID INPUTS ZE SPRAWDZACZA:', invalidInputNames);
+
+    console.log('NEW ERRORS PO SPRAWDZENIU:', newErrors);
+    this.setState({ errorMessages: newErrors });
+
     if (invalidInputNames.length) {
       this.setState({ invalidInputNames });
     }
 
-    return invalidInputNames.length;
+    return formHasEmptyFields;
   };
 
   // this.setState(prevState => ({
-  //   errors: [...prevState.errors, key],
+  //   errorsOld: [...prevState.errorsOld, key],
   // }));
 
   // }
@@ -111,10 +134,13 @@ class NewProductForm extends React.Component {
     const { toggleFormVisibility } = this.props;
 
     if (this.formHasEmptyFields()) {
-      this.setState({ errorMessage: 'Pole nie może byc puste' });
+      // this.setState({ errorMessage: 'Pole nie może byc puste' });
       // console.log('SO PUSTE POLA W FORMIE, WYPELNIJ JESCZZE RAZ');
+      console.log('FORM HAS EMPTY FIELDS!');
       return;
     }
+
+    console.log('FORM HAS NOT EMPTY FIELDS');
 
     // if (true) {
     const newProduct = {
@@ -140,7 +166,7 @@ class NewProductForm extends React.Component {
     //   id,
     // };
 
-    // console.log('state errors:', this.state.errors);
+    // console.log('state errorsOld:', this.state.errorsOld);
 
     // addNewProductToDatabase(newProduct);
 
@@ -152,12 +178,21 @@ class NewProductForm extends React.Component {
 
   render() {
     const { toggleFormVisibility } = this.props;
-    const { name, quantity, unit, min, category, isAlertVisible, invalidInputNames } = this.state;
+    const {
+      name,
+      quantity,
+      unit,
+      min,
+      category,
+      isAlertVisible,
+      invalidInputNames,
+      errorMessages,
+    } = this.state;
 
     return (
       <Modal>
         <H1 marginBottomDouble>New product</H1>
-        {console.log('state errors:', this.state.invalidInputNames)}
+        {console.log('state errorsOld:', this.state.invalidInputNames)}
         {/* {console.log('state invalidInputNames:', this.state.invalidInputNames)} */}
         {console.log('name:', name)}
         {console.log('error inclused name: ', invalidInputNames.includes('name'))}
@@ -171,8 +206,9 @@ class NewProductForm extends React.Component {
           handleForm={this.handleForm}
           min={min}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
+          errorMessage={errorMessages.min}
         />
-        {invalidInputNames.includes('min') && <p>Input can not be empty!</p>}
+        {/* {invalidInputNames.includes('min') && <p>Input can not be empty!</p>} */}
         <InputQuantity
           handleForm={this.handleForm}
           preventProhibitedCharacters={this.preventProhibitedCharacters}

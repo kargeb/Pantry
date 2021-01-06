@@ -14,20 +14,25 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
-const InputMin = ({ handleForm, min, preventProhibitedCharacters }) => {
+const InputMin = ({ handleForm, min, preventProhibitedCharacters, errorMessage }) => {
   return (
-    <InputHorizontalWrapper>
-      <Label htmlFor="min">Min</Label>
-      <Input
-        short
-        id="min"
-        type="number"
-        onKeyDown={preventProhibitedCharacters}
-        onChange={handleForm}
-        value={min}
-        min="0"
-      />
-    </InputHorizontalWrapper>
+    <>
+      <InputHorizontalWrapper>
+        {console.log('ERRORS Z INPUT MIN:', errorMessage)}
+        <Label htmlFor="min">Min</Label>
+        <Input
+          short
+          id="min"
+          type="number"
+          onKeyDown={preventProhibitedCharacters}
+          onChange={handleForm}
+          value={min}
+          min="0"
+        />
+        {console.log('ERRORS MIN:', errorMessage)}
+      </InputHorizontalWrapper>
+      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+    </>
   );
 };
 
