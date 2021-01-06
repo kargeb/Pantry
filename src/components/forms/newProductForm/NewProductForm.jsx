@@ -21,6 +21,7 @@ class NewProductForm extends React.Component {
     min: 1,
     unit: 'item',
     id: uuidv4(),
+    errors: {},
   };
 
   // for type="number" Inputs
@@ -53,41 +54,61 @@ class NewProductForm extends React.Component {
     console.log('Object.values(product):', Object.entries(product));
 
     Object.entries(product).forEach(property => {
-      switch (property[0]) {
-        case 'name':
-          console.log('jestem w property NAME!!');
-          if (property[1].length === 0) {
-            console.log('name NIE MOZE BYC PUSTE!!');
-          }
-          break;
-        case 'unit':
-          if (property[1].length === 0) {
-            console.log('unit NIE MOZE BYC PUSTE!!');
-          }
-          break;
-        case 'category':
-          if (property[1].length === 0) {
-            console.log('cetgory NIE MOZE BYC PUSTE!!');
-          }
-          break;
-        case 'quantity':
-          if (property[1].length === 0) {
-            console.log('quantity NIE MOZE BYC PUSTE!!');
-          }
-          break;
-        case 'min':
-          if (property[1].length === 0) {
-            console.log('min NIE MOZE BYC PUSTE!!');
-          }
-          break;
-        default:
-          console.log('DEFAULT CASE');
+      const [key, value] = property;
+
+      console.log('key, value', key, value);
+
+      if (value.length === 0) {
+        console.log('name NIE MOZE BYC PUSTE!!');
+        this.setState(prevState => ({
+          errors: {
+            ...prevState.errors,
+            [key]: 'pusty iput!',
+          },
+        }));
       }
 
-      console.log(property[0], ' ', property[1]);
+      // switch (key) {
+      //   case 'name':
+      //     console.log('jestem w property NAME!!');
+      //     if (value.length === 0) {
+      //       console.log('name NIE MOZE BYC PUSTE!!');
+      //       this.setState(prevState => ({
+      //         errors: {
+      //             ...prevState.errors,
+      //             key: value
+      //         }
+      //     }))
+      //     }
+      //     break;
+      //   case 'unit':
+      //     if (value.length === 0) {
+      //       console.log('unit NIE MOZE BYC PUSTE!!');
+      //     }
+      //     break;
+      //   case 'category':
+      //     if (value.length === 0) {
+      //       console.log('cetgory NIE MOZE BYC PUSTE!!');
+      //     }
+      //     break;
+      //   case 'quantity':
+      //     if (value.length === 0) {
+      //       console.log('quantity NIE MOZE BYC PUSTE!!');
+      //     }
+      //     break;
+      //   case 'min':
+      //     if (value.length === 0) {
+      //       console.log('min NIE MOZE BYC PUSTE!!');
+      //     }
+      //     break;
+      //   default:
+      //     console.log('DEFAULT CASE');
+      // }
 
-      // if (property[1].length === '' || property[1].length === undefined) {
-      //   console.log('JEST PUSTE POLE W: ', property[0]);
+      console.log(key, ' ', value);
+
+      // if (value.length === '' || value.length === undefined) {
+      //   console.log('JEST PUSTE POLE W: ', key);
       // }
     });
 
@@ -121,6 +142,8 @@ class NewProductForm extends React.Component {
       //   id,
       // };
 
+      // console.log('state errors:', this.state.errors);
+
       // addNewProductToDatabase(newProduct);
 
       // toggleFormVisibility();
@@ -136,6 +159,7 @@ class NewProductForm extends React.Component {
     return (
       <Modal>
         <H1 marginBottomDouble>New product</H1>
+        {console.log('state errors:', this.state.errors)}
         <InputName handleForm={this.handleForm} name={name} />
         <SelectCategory handleForm={this.handleForm} category={category} />
         <SelectUnit handleForm={this.handleForm} unit={unit} />
