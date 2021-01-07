@@ -20,27 +20,18 @@ class App extends React.Component {
     });
   }
 
-  handleLogout = e => {
-    auth
-      .signOut()
-      .then(() => {
-        console.log('WYLOGOWANO');
-      })
-      .catch(error => {
-        console.log('Jakis blad');
-      });
-  };
-
   componentWillUnmount() {
     this.unsubscribe();
   }
 
   render() {
-    const { currentUserId } = this.state;
+    // const { currentUserId } = this.state;
 
     return (
       <div>
-        {auth.currentUser ? <Authorized currentUserId={currentUserId} /> : <Unauthorized />}
+        {console.log(' UTHI CUREMNT:', auth.currentUser)}
+        {/* {auth.currentUser ? <Authorized currentUserId={currentUserId} /> : <Unauthorized />} */}
+        {auth.currentUser ? <Authorized /> : <Unauthorized />}
       </div>
     );
   }
