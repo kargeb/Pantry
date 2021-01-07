@@ -10,6 +10,7 @@ import Pantry from './Pantry';
 import Shopping from './Shopping';
 import Settings from './Settings';
 import Navigation from '../components/navigation/Navigation';
+import { databaseListener } from '../data/handlers';
 
 class Authorized extends React.Component {
   state = {
@@ -21,23 +22,16 @@ class Authorized extends React.Component {
   };
 
   componentDidMount() {
-    this.unsubscribe = db
-      .collection('users')
-      .doc('u1sYNdEoRknGeHEIzGgY')
-      .collection('products')
-      .onSnapshot(querySnapshot => {
-        const downloadedProducts = [];
-
-        querySnapshot.forEach(doc => {
-          const newProduct = { ...doc.data() };
-          downloadedProducts.push(newProduct);
-        });
-
-        this.setState({
-          products: [...downloadedProducts],
-          isLoading: false,
-        });
+    const getProductsFromDatabase = downloadedProducts => {
+      this.setState({
+        products: [...downloadedProducts],
+        isLoading: false,
       });
+    };
+
+    this.unsubscribe = databaseListener(getProductsFromDatabase);
+
+    console.log('TO JEST UNSUBSCRIBE:', this.unsubscribe);
   }
 
   componentWillUnmount() {
@@ -77,6 +71,7 @@ class Authorized extends React.Component {
     // return <Authorized mergedTheme={mergedTheme} contextElements={contextElements} />;
     return (
       <BrowserRouter>
+        {console.log('CURRENT USER Z AUTH:', auth.currentUser.uid)}
         <ThemeProvider theme={mergedTheme}>
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
