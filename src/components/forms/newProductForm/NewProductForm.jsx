@@ -9,7 +9,6 @@ import SelectUnit from '../../pantry/FormPantryProduct/components/SelectUnit';
 import InputMin from '../../pantry/FormPantryProduct/components/InputMin';
 import InputQuantity from '../../pantry/FormPantryProduct/components/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
-import Alert from '../../molecules/Alert';
 import { addNewProductToDatabase } from '../../../data/handlers';
 
 class NewProductForm extends React.Component {
@@ -21,7 +20,6 @@ class NewProductForm extends React.Component {
     category: '',
     id: uuidv4(),
 
-    // errorsOld: {},
     errorMessages: {
       min: '',
       unit: '',
@@ -51,40 +49,26 @@ class NewProductForm extends React.Component {
     });
   };
 
-  handleForm = e => {
-    const { value, id } = e.target;
-
-    this.setState({ [id]: value });
-  };
-
-  // validateProductValues = product => {
-  //   console.log('Object.values(product):', Object.entries(product));
-  //   this.setState({ errorsOld: [] });
-
-  //   Object.entries(product).forEach(property => {
-  //     const [name, value] = property;
-  //     console.log('name, value', name, value);
-  //     if (value.length === 0) {
-  //       console.log('name NIE MOZE BYC PUSTE!!');
-  //       this.setState(prevState => ({
-  //         errorsOld: [...prevState.errorsOld, name],
-  //       }));
-  //     }
-  //     console.log(name, ' ', value);
-  //   });
-  // };
-
-  formHasEmptyFields = () => {
-    const { name, quantity, category, min, unit } = this.state;
-    let formHasEmptyFields = false;
-
-    const currentErrorMessages = {
+  resetErrorMessages = () => {
+    const errorMessages = {
       min: '',
       unit: '',
       name: '',
       quantity: '',
       category: '',
     };
+    return { ...errorMessages };
+  };
+
+  handleForm = e => {
+    const { value, id } = e.target;
+    this.setState({ [id]: value });
+  };
+
+  formHasEmptyFields = () => {
+    const { name, quantity, category, min, unit } = this.state;
+    let formHasEmptyFields = false;
+    const currentErrorMessages = this.resetErrorMessages();
 
     const formFields = {
       min: String(min),
@@ -107,26 +91,24 @@ class NewProductForm extends React.Component {
     return formHasEmptyFields;
   };
 
-  numberPropertiesArePositiveInteger = product => {
-    const currentErrorMessages = {
-      min: '',
-      unit: '',
-    };
+  numberPropertiesAreWrong = product => {
+    let thereAreWrongProperties = false;
+    const currentErrorMessages = this.resetErrorMessages();
 
     Object.entries(product).forEach(property => {
       const [key, value] = property;
 
       if (key == 'min' || key == 'quantity') {
-        // console.log('Sprawdzamy KEY: i VALUE: ', key, ' ', value);
-        if (Number.isInteger(value) && value >= 0) {
-          // console.log('JEST OK!! ', key, ' ', value);
-        } else {
+        if (!Number.isInteger(value) || value < 0) {
           currentErrorMessages[key] = 'Incorrect number!';
+          thereAreWrongProperties = true;
         }
       }
     });
 
     this.setState({ errorMessages: currentErrorMessages });
+
+    return thereAreWrongProperties;
   };
 
   handleSubmit = () => {
@@ -134,11 +116,8 @@ class NewProductForm extends React.Component {
     const { toggleFormVisibility } = this.props;
 
     if (this.formHasEmptyFields()) {
-      console.log('FORM HAS EMPTY FIELDS!');
       return;
     }
-
-    console.log('FORM HAS NO EMPTY FIELDS');
 
     const newProduct = {
       name,
@@ -150,78 +129,40 @@ class NewProductForm extends React.Component {
       id,
     };
 
-    if (this.numberPropertiesArePositiveInteger(newProduct)) {
-      console.log('FORMULARZ OK:', newProduct);
-    } else {
-      console.log('Formularz nie jest ok!');
+    if (this.numberPropertiesAreWrong(newProduct)) {
+      return;
     }
 
-    // this.validateProductValues(newProduct);
-
-    // this.checkNoEmptyInputs()
-
-    // this.thereAreEmptyInputs()
-    // const newProduct = {
-    //   name: name.trim(),
-    //   quantity: Number(quantity),
-    //   category,
-    //   min: Number(min),
-    //   unit,
-    //   onShoppingList: Number(quantity) < min,
-    //   id,
-    // };
-
-    // console.log('state errorsOld:', this.state.errorsOld);
-
-    // addNewProductToDatabase(newProduct);
-
-    // toggleFormVisibility();
-    // } else {
-    //   this.setState({ isAlertVisible: true });
-    // }
+    addNewProductToDatabase(newProduct);
+    toggleFormVisibility();
   };
 
   render() {
     const { toggleFormVisibility } = this.props;
-    const {
-      name,
-      quantity,
-      unit,
-      min,
-      category,
-
-      errorMessages,
-    } = this.state;
+    const { name, quantity, unit, min, category, errorMessages } = this.state;
 
     return (
       <Modal>
-        {console.log('error messages:', errorMessages)}
         <H1 marginBottomDouble>New product</H1>
-
         <InputName handleForm={this.handleForm} name={name} errorMessage={errorMessages.name} />
-
         <SelectCategory
           handleForm={this.handleForm}
           category={category}
           errorMessage={errorMessages.category}
         />
-
         <SelectUnit handleForm={this.handleForm} unit={unit} errorMessage={errorMessages.unit} />
-
         <InputMin
           handleForm={this.handleForm}
           min={min}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
           errorMessage={errorMessages.min}
         />
-
         <InputQuantity
           handleForm={this.handleForm}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
           quantity={quantity}
           errorMessage={errorMessages.quantity}
         />
-
         <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
