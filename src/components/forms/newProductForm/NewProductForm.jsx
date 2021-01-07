@@ -14,23 +14,21 @@ import { addNewProductToDatabase } from '../../../data/handlers';
 
 class NewProductForm extends React.Component {
   state = {
-    isAlertVisible: false,
+    min: 1,
     name: '',
     quantity: 0,
-    category: '',
-    min: 1,
     unit: 'item',
+    category: '',
     id: uuidv4(),
-    errorsOld: {},
+
+    // errorsOld: {},
     errorMessages: {
+      min: '',
+      unit: '',
       name: '',
       quantity: '',
       category: '',
-      min: '',
-      unit: '',
     },
-    // errorMessage: '',
-    invalidInputNames: [],
   };
 
   // for type="number" Inputs
@@ -59,99 +57,106 @@ class NewProductForm extends React.Component {
     this.setState({ [id]: value });
   };
 
-  validateProductValues = product => {
-    console.log('Object.values(product):', Object.entries(product));
-    this.setState({ errorsOld: [] });
+  // validateProductValues = product => {
+  //   console.log('Object.values(product):', Object.entries(product));
+  //   this.setState({ errorsOld: [] });
 
-    Object.entries(product).forEach(property => {
-      const [name, value] = property;
-      console.log('name, value', name, value);
-      if (value.length === 0) {
-        console.log('name NIE MOZE BYC PUSTE!!');
-        this.setState(prevState => ({
-          errorsOld: [...prevState.errorsOld, name],
-        }));
-      }
-      console.log(name, ' ', value);
-    });
-  };
+  //   Object.entries(product).forEach(property => {
+  //     const [name, value] = property;
+  //     console.log('name, value', name, value);
+  //     if (value.length === 0) {
+  //       console.log('name NIE MOZE BYC PUSTE!!');
+  //       this.setState(prevState => ({
+  //         errorsOld: [...prevState.errorsOld, name],
+  //       }));
+  //     }
+  //     console.log(name, ' ', value);
+  //   });
+  // };
 
   formHasEmptyFields = () => {
     const { name, quantity, category, min, unit } = this.state;
     let formHasEmptyFields = false;
-    const newErrors = {
+
+    const currentErrorMessages = {
+      min: '',
+      unit: '',
       name: '',
       quantity: '',
       category: '',
-      min: '',
-      unit: '',
     };
-
-    console.log('NEW ERRORS:', newErrors);
 
     const formFields = {
-      name: name.trim(),
-      quantity: String(quantity),
-      category: category.trim(),
       min: String(min),
+      name: name.trim(),
       unit: unit.trim(),
+      category: category.trim(),
+      quantity: String(quantity),
     };
-
-    const formHasEmptyInputs = false;
-    const invalidInputNames = [];
 
     Object.entries(formFields).forEach(field => {
       const [key, value] = field;
-      console.log('key, value', key, value);
       if (value.length === 0) {
-        console.log('name NIE MOZE BYC PUSTE!!');
-        newErrors[key] = 'Nie moze byc puste!';
+        currentErrorMessages[key] = 'Nie moze byc puste!';
         formHasEmptyFields = true;
-        invalidInputNames.push(key);
       }
-      console.log(key, ' ', value);
     });
 
-    console.log('INVALID INPUTS ZE SPRAWDZACZA:', invalidInputNames);
-
-    console.log('NEW ERRORS PO SPRAWDZENIU:', newErrors);
-    this.setState({ errorMessages: newErrors });
-
-    if (invalidInputNames.length) {
-      this.setState({ invalidInputNames });
-    }
+    this.setState({ errorMessages: currentErrorMessages });
 
     return formHasEmptyFields;
   };
 
-  // this.setState(prevState => ({
-  //   errorsOld: [...prevState.errorsOld, key],
-  // }));
+  numberPropertiesArePositiveInteger = product => {
+    const currentErrorMessages = {
+      min: '',
+      unit: '',
+    };
 
-  // }
+    Object.entries(product).forEach(property => {
+      const [key, value] = property;
+
+      if (key == 'min' || key == 'quantity') {
+        // console.log('Sprawdzamy KEY: i VALUE: ', key, ' ', value);
+        if (Number.isInteger(value) && value >= 0) {
+          // console.log('JEST OK!! ', key, ' ', value);
+        } else {
+          currentErrorMessages[key] = 'Incorrect number!';
+        }
+      }
+    });
+
+    this.setState({ errorMessages: currentErrorMessages });
+  };
+
   handleSubmit = () => {
     const { name, quantity, category, min, unit, id } = this.state;
     const { toggleFormVisibility } = this.props;
 
     if (this.formHasEmptyFields()) {
-      // this.setState({ errorMessage: 'Pole nie może byc puste' });
-      // console.log('SO PUSTE POLA W FORMIE, WYPELNIJ JESCZZE RAZ');
       console.log('FORM HAS EMPTY FIELDS!');
       return;
     }
 
-    console.log('FORM HAS NOT EMPTY FIELDS');
+    console.log('FORM HAS NO EMPTY FIELDS');
 
-    // if (true) {
     const newProduct = {
       name,
-      quantity,
+      quantity: Number(quantity),
       category,
-      min,
+      min: Number(min),
       unit,
+      onShoppingList: Boolean(quantity < min),
+      id,
     };
 
-    this.validateProductValues(newProduct);
+    if (this.numberPropertiesArePositiveInteger(newProduct)) {
+      console.log('FORMULARZ OK:', newProduct);
+    } else {
+      console.log('Formularz nie jest ok!');
+    }
+
+    // this.validateProductValues(newProduct);
 
     // this.checkNoEmptyInputs()
 
@@ -184,42 +189,43 @@ class NewProductForm extends React.Component {
       unit,
       min,
       category,
-      isAlertVisible,
-      invalidInputNames,
+
       errorMessages,
     } = this.state;
 
     return (
       <Modal>
+        {console.log('error messages:', errorMessages)}
         <H1 marginBottomDouble>New product</H1>
-        {console.log('state errorsOld:', this.state.invalidInputNames)}
-        {/* {console.log('state invalidInputNames:', this.state.invalidInputNames)} */}
-        {console.log('name:', name)}
-        {console.log('error inclused name: ', invalidInputNames.includes('name'))}
-        <InputName handleForm={this.handleForm} name={name} />
-        {invalidInputNames.includes('name') && <p>Input can not be empty!</p>}
-        <SelectCategory handleForm={this.handleForm} category={category} />
-        {invalidInputNames.includes('category') && <p>Input can not be empty!</p>}
-        <SelectUnit handleForm={this.handleForm} unit={unit} />
-        {invalidInputNames.includes('unit') && <p>Input can not be empty!</p>}
+
+        <InputName handleForm={this.handleForm} name={name} errorMessage={errorMessages.name} />
+
+        <SelectCategory
+          handleForm={this.handleForm}
+          category={category}
+          errorMessage={errorMessages.category}
+        />
+
+        <SelectUnit handleForm={this.handleForm} unit={unit} errorMessage={errorMessages.unit} />
+
         <InputMin
           handleForm={this.handleForm}
           min={min}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
           errorMessage={errorMessages.min}
         />
-        {/* {invalidInputNames.includes('min') && <p>Input can not be empty!</p>} */}
+
         <InputQuantity
           handleForm={this.handleForm}
           preventProhibitedCharacters={this.preventProhibitedCharacters}
           quantity={quantity}
+          errorMessage={errorMessages.quantity}
         />
-        {invalidInputNames.includes('quantity') && <p>Input can not be empty!</p>}
+
         <WrapperButtonsConfirmAndCancel
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
-        {isAlertVisible && <Alert>There are empty fields!</Alert>}
       </Modal>
     );
   }
