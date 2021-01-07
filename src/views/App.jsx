@@ -39,7 +39,9 @@ class App extends React.Component {
     const { currentUserId } = this.state;
 
     return (
-      <div>{currentUserId ? <Authorized currentUserId={currentUserId} /> : <Unauthorized />}</div>
+      <div>
+        {auth.currentUser ? <Authorized currentUserId={currentUserId} /> : <Unauthorized />}
+      </div>
     );
   }
 }
