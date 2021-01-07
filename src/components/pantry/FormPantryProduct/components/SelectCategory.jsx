@@ -25,20 +25,23 @@ class SelectCategory extends React.Component {
 
   render() {
     const { categories } = this.state;
-    const { handleForm, category } = this.props;
+    const { handleForm, category, errorMessage } = this.props;
 
     return (
-      <InputVerticalWrapper>
-        <Label htmlFor="category">Category</Label>
-        <Select id="category" onChange={handleForm} value={category}>
-          <option aria-label="disable option" value="" disabled hidden />
-          {categories.map(categoryItem => (
-            <option key={categoryItem} value={categoryItem}>
-              {categoryItem}
-            </option>
-          ))}
-        </Select>
-      </InputVerticalWrapper>
+      <>
+        <InputVerticalWrapper>
+          <Label htmlFor="category">Category</Label>
+          <Select id="category" onChange={handleForm} value={category}>
+            <option aria-label="disable option" value="" disabled hidden />
+            {categories.map(categoryItem => (
+              <option key={categoryItem} value={categoryItem}>
+                {categoryItem}
+              </option>
+            ))}
+          </Select>
+        </InputVerticalWrapper>
+        {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+      </>
     );
   }
 }
@@ -46,6 +49,7 @@ class SelectCategory extends React.Component {
 SelectCategory.propTypes = {
   handleForm: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default SelectCategory;

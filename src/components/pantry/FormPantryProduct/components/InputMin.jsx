@@ -39,6 +39,7 @@ const InputMin = ({ handleForm, min, preventProhibitedCharacters, errorMessage }
 InputMin.propTypes = {
   handleForm: PropTypes.func.isRequired,
   preventProhibitedCharacters: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   min: PropTypes.any.isRequired,
 };
 
