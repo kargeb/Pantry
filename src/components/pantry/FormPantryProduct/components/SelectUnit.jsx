@@ -14,26 +14,30 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
-const SelectUnit = ({ handleForm, unit }) => {
+const SelectUnit = ({ handleForm, unit, errorMessage }) => {
   return (
-    <InputHorizontalWrapper>
-      <Label htmlFor="unit">Unit</Label>
-      <Select short id="unit" onChange={handleForm} value={unit}>
-        <option value="item">item</option>
-        <option value="btl.">btl.</option>
-        <option value="pack">pack</option>
-        <option value="l">l</option>
-        <option value="ml">ml</option>
-        <option value="kg">kg</option>
-        <option value="g">g</option>
-      </Select>
-    </InputHorizontalWrapper>
+    <>
+      <InputHorizontalWrapper>
+        <Label htmlFor="unit">Unit</Label>
+        <Select short id="unit" onChange={handleForm} value={unit}>
+          <option value="item">item</option>
+          <option value="btl.">btl.</option>
+          <option value="pack">pack</option>
+          <option value="l">l</option>
+          <option value="ml">ml</option>
+          <option value="kg">kg</option>
+          <option value="g">g</option>
+        </Select>
+      </InputHorizontalWrapper>
+      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+    </>
   );
 };
 
 SelectUnit.propTypes = {
   handleForm: PropTypes.func.isRequired,
   unit: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default SelectUnit;
