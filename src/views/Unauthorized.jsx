@@ -32,7 +32,9 @@ const Unauthorized = ({ isLoading }) => (
         {/* <Modal> */}
         {/* {isLoading ? <Loading /> : <Login />} */}
         {isLoading ? (
-          <Loading />
+          <Modal>
+            <Loading />
+          </Modal>
         ) : (
           <Modal>
             <Login />
