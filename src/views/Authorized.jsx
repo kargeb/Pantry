@@ -15,7 +15,7 @@ import { databaseListener } from '../data/handlers';
 class Authorized extends React.Component {
   state = {
     isLoading: true,
-    currentUserId: this.props.currentUserId,
+    // currentUserId: this.props.currentUserId,
     products: [],
     currentTheme: lightTheme,
     user: { email: null, uid: null },

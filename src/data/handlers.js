@@ -30,7 +30,3 @@ export const databaseListener = callback => {
       })
   );
 };
-
-// export const
-
-export const shutUpLinter = () => {};
