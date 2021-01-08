@@ -1,24 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import GlobalStyle from '../themes/GlobalStyle';
-import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
-import sampleData from '../data/db.json';
-import db, { auth } from '../fbase';
-import { AppContext } from '../context';
-import Pantry from './Pantry';
-import Shopping from './Shopping';
-import Settings from './Settings';
-import Navigation from '../components/navigation/Navigation';
-import { databaseListener } from '../data/handlers';
+import GlobalStyle from '../../themes/GlobalStyle';
+import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
+import sampleData from '../../data/db.json';
+import db, { auth } from '../../fbase';
+import { AppContext } from '../../context';
+import Pantry from '../../views/Pantry';
+import Shopping from '../../views/Shopping';
+import Settings from '../../views/Settings';
+import Navigation from '../../components/navigation/Navigation';
+import { databaseListener } from '../../data/handlers';
 
-class Authorized extends React.Component {
+class App extends React.Component {
   state = {
-    isLoading: true,
-    // currentUserId: this.props.currentUserId,
     products: [],
     currentTheme: lightTheme,
-    user: { email: null, uid: null },
   };
 
   componentDidMount() {
@@ -45,30 +42,16 @@ class Authorized extends React.Component {
     });
   };
 
-  handleLogout = e => {
-    console.log('JESTEM W HANDLE LOGOUT!!');
-    auth
-      .signOut()
-      .then(() => {
-        console.log('WYLOGOWANO');
-      })
-      .catch(error => {
-        console.log('Jakis blad');
-        console.log(error);
-      });
-  };
-
   render() {
     const { currentTheme } = this.state;
     const contextElements = {
       ...this.state,
       changeTheme: this.changeTheme,
-      handleLogout: this.handleLogout,
     };
 
     const mergedTheme = { ...defaultTheme, ...currentTheme };
 
-    // return <Authorized mergedTheme={mergedTheme} contextElements={contextElements} />;
+    // return <App mergedTheme={mergedTheme} contextElements={contextElements} />;
     return (
       <BrowserRouter>
         {console.log('CURRENT USER Z AUTH:', auth.currentUser.uid)}
@@ -90,4 +73,4 @@ class Authorized extends React.Component {
   }
 }
 
-export default Authorized;
+export default App;

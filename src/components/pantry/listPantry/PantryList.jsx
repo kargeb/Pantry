@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import loadingGif from '../../../images/loading_dots.gif';
 import PantryCategory from './PantryCategory';
 import { AppContext } from '../../../context';
+import { auth } from '../../../fbase';
 
 const CategoriesList = styled.ul`
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
@@ -12,6 +13,18 @@ const CategoriesList = styled.ul`
     margin: 0 3%;
   }
 `;
+
+const logout = () => {
+  auth
+    .signOut()
+    .then(() => {
+      console.log('WYLOGOWANO');
+    })
+    .catch(error => {
+      console.log('Jakis blad');
+      console.log(error);
+    });
+};
 
 const PantryList = () => {
   const getCategoriesFromProducts = products => {
@@ -27,15 +40,14 @@ const PantryList = () => {
 
   return (
     <AppContext.Consumer>
-      {({ products, user, handleLogout }) => (
+      {({ products }) => (
         <div>
           {console.log('Z CONTEXU:', products)}
           {!products.length ? (
             <img src={loadingGif} alt="Loading gif" />
           ) : (
             <div>
-              <h1>{user.email}</h1>
-              <button type="button" onClick={handleLogout}>
+              <button type="button" onClick={logout}>
                 Wyloguj
               </button>
               <CategoriesList>

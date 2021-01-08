@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
-import pantry from '../images/pantry.jpg';
 import Modal from '../components/templates/Modal';
 import GlobalStyle from '../themes/GlobalStyle';
 
