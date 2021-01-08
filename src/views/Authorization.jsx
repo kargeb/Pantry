@@ -18,7 +18,7 @@ const StyledMain = styled.div`
   /* background-image: url(${pantry}); */
 `;
 
-const Unauthorized = ({ isLoading }) => {
+const Authorization = ({ isLoading }) => {
   const imageBackgroundStyles = {
     backgroundImage: `url(${`${process.env.PUBLIC_URL}/pantry.jpg`})`,
     backgroundSize: 'cover',
@@ -45,4 +45,4 @@ const Unauthorized = ({ isLoading }) => {
   );
 };
 
-export default Unauthorized;
+export default Authorization;
