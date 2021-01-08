@@ -6,7 +6,6 @@ import Button from '../components/atoms/buttons/Button';
 import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
-import pantry from '../images/pantry.jpg';
 import { auth } from '../fbase';
 
 const StyledMain = styled.div`
@@ -16,7 +15,6 @@ const StyledMain = styled.div`
   background-size: cover;
   background-position: bottom;
   /* background-image: url(${props => props.pantry}); */
-  background-image: url(${pantry});
 `;
 
 class Login extends Component {

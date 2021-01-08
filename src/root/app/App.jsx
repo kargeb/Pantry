@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import GlobalStyle from '../themes/GlobalStyle';
-import { defaultTheme, darkTheme, lightTheme } from '../themes/themes';
-import sampleData from '../data/db.json';
-import db, { auth } from '../fbase';
-import { AppContext } from '../context';
-import Pantry from './Pantry';
-import Shopping from './Shopping';
-import Settings from './Settings';
-import Navigation from '../components/navigation/Navigation';
-import { databaseListener } from '../data/handlers';
+import GlobalStyle from '../../themes/GlobalStyle';
+import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
+import sampleData from '../../data/db.json';
+import db, { auth } from '../../fbase';
+import { AppContext } from '../../context';
+import Pantry from '../../views/Pantry';
+import Shopping from '../../views/Shopping';
+import Settings from '../../views/Settings';
+import Navigation from '../../components/navigation/Navigation';
+import { databaseListener } from '../../data/handlers';
 
 class App extends React.Component {
   state = {
