@@ -14,11 +14,8 @@ import { databaseListener } from '../../data/handlers';
 
 class App extends React.Component {
   state = {
-    isLoading: true,
-    // currentUserId: this.props.currentUserId,
     products: [],
     currentTheme: lightTheme,
-    user: { email: null, uid: null },
   };
 
   componentDidMount() {
@@ -45,25 +42,11 @@ class App extends React.Component {
     });
   };
 
-  handleLogout = e => {
-    console.log('JESTEM W HANDLE LOGOUT!!');
-    auth
-      .signOut()
-      .then(() => {
-        console.log('WYLOGOWANO');
-      })
-      .catch(error => {
-        console.log('Jakis blad');
-        console.log(error);
-      });
-  };
-
   render() {
     const { currentTheme } = this.state;
     const contextElements = {
       ...this.state,
       changeTheme: this.changeTheme,
-      handleLogout: this.handleLogout,
     };
 
     const mergedTheme = { ...defaultTheme, ...currentTheme };
