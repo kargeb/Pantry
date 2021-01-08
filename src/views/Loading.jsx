@@ -5,17 +5,29 @@ import pantry from '../images/pantry.jpg';
 import Modal from '../components/templates/Modal';
 import GlobalStyle from '../themes/GlobalStyle';
 
-const StyledMain = styled.div`
-  height: 100vh;
+const Background = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  
   width: 100vw;
-  color: ${props => props.theme.textPrimary};
-  background-size: cover;
-  background-position: bottom;
-  background-image: url(${pantry});
+  background-color: transparent;
+  /* color: ${props => props.theme.textPrimary}; */
 `;
 
-const Background = styled.div`
-  background-color: blue;
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  width: 300px;
+  height: 300px;
 `;
 
 const Loader = styled.div`
@@ -31,8 +43,9 @@ const Loader = styled.div`
     position: relative;
     text-indent: -9999em;
     border-top: 1.1em solid rgba(255, 255, 255, 0.2);
-    border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-right: 1.1em solid #ffffff;
     border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+    /* border-bottom: 1.1em solid #ffffff; */
     border-left: 1.1em solid #ffffff;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
@@ -64,9 +77,11 @@ const Loader = styled.div`
 
 const Loading = () => (
   <Background>
-    <Loader>
-      <div className="loader">Loading...</div>
-    </Loader>
+    <Wrapper>
+      <Loader>
+        <div className="loader" />
+      </Loader>
+    </Wrapper>
   </Background>
 );
 
