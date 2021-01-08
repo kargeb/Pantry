@@ -18,33 +18,31 @@ const StyledMain = styled.div`
   /* background-image: url(${pantry}); */
 `;
 
-const Unauthorized = ({ isLoading }) => (
-  <div
-    style={{
-      backgroundImage: `url(${`${process.env.PUBLIC_URL}/pantry.jpg`})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'bottom',
-    }}
-  >
-    <ThemeProvider theme={{ ...defaultTheme, ...lightTheme }}>
-      <GlobalStyle />
-      <StyledMain>
-        {/* <Modal> */}
-        {/* {isLoading ? <Loading /> : <Login />} */}
-        {isLoading ? (
-          <Modal>
-            <Loading />
-          </Modal>
-        ) : (
-          <Modal>
-            <Login />
-          </Modal>
-        )}
+const Unauthorized = ({ isLoading }) => {
+  const imageBackgroundStyles = {
+    backgroundImage: `url(${`${process.env.PUBLIC_URL}/pantry.jpg`})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'bottom',
+  };
 
-        {/* </Modal> */}
-      </StyledMain>
-    </ThemeProvider>
-  </div>
-);
+  return (
+    <div style={imageBackgroundStyles}>
+      <ThemeProvider theme={{ ...defaultTheme, ...lightTheme }}>
+        <GlobalStyle />
+        <StyledMain>
+          {isLoading ? (
+            <>
+              <Loading />
+            </>
+          ) : (
+            <Modal>
+              <Login />
+            </Modal>
+          )}
+        </StyledMain>
+      </ThemeProvider>
+    </div>
+  );
+};
 
 export default Unauthorized;
