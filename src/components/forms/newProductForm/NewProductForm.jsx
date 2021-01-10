@@ -13,12 +13,12 @@ import { addNewProductToDatabase } from '../../../data/handlers';
 
 class NewProductForm extends React.Component {
   state = {
-    min: 1,
-    name: '',
-    quantity: 0,
-    unit: 'item',
-    category: '',
-    id: uuidv4(),
+    min: this.props.min || 1,
+    name: this.props.name || '',
+    quantity: this.props.quantity || 0,
+    unit: this.props.unit || 'item',
+    category: this.props.category || '',
+    id: this.props.id || uuidv4(),
 
     errorMessages: {
       min: '',
@@ -29,7 +29,7 @@ class NewProductForm extends React.Component {
     },
   };
 
-  // for type="number" Inputs
+  // for Inputs type="number"
   preventProhibitedCharacters = e => {
     const prohibitedCharacters = ['e', '-', '+', '.', ','];
 
