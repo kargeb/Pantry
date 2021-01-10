@@ -61,3 +61,16 @@ export const removeProductFromDatabase = id => {
       console.error('Error removing document: ', error);
     });
 };
+
+export const addCategoryToDatabase = newCategories => {
+  return db
+    .collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .doc('category')
+    .set(newCategories)
+    .then(() => console.log('DODANO'))
+    .catch(error => {
+      console.error('Sth wrong with new category ', error);
+    });
+};

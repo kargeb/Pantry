@@ -5,14 +5,13 @@ import Modal from '../../../templates/Modal';
 import ButtonIconCancel from '../../../atoms/buttons/ButtonIconCancel';
 import Divider from '../../../atoms/divider/Divider';
 import Alert from '../../../molecules/Alert';
-
+import { AppContext } from '../../../../context';
 import AddCategory from '../components/AddCategory';
 import DeleteCategory from '../components/DeleteCategory';
 
 class CategoriesContainer extends React.Component {
   state = {
     namesOfAllCategories: this.props.allCategories,
-    newCategory: '',
     NamesOfCategoriesContainingProducts: [],
     categoryToDelete: '',
     alertMessage: '',
@@ -40,33 +39,6 @@ class CategoriesContainer extends React.Component {
 
   handleForm = e => {
     this.setState({ [e.target.id]: e.target.value });
-  };
-
-  handleAddCategory = () => {
-    const { namesOfAllCategories } = this.state;
-    const { newCategory } = this.state;
-
-    if (newCategory) {
-      const isCategoryUnique = !namesOfAllCategories.includes(newCategory);
-      if (isCategoryUnique) {
-        const newCategories = {
-          namesOfAllCategories: [...namesOfAllCategories, newCategory],
-        };
-
-        console.log(`FROM CATEGORY MANAGER:
-        namesOfAllCategories: ${namesOfAllCategories}
-        newCategories: ${newCategories.namesOfAllCategories}
-          `);
-
-        // db.collection('categories').doc('all').set(newCategories);
-
-        this.setState({ newCategory: '', alertMessage: '' });
-      } else {
-        this.setState({ alertMessage: 'Category already exist!' });
-      }
-    } else {
-      this.setState({ alertMessage: 'Enter a name!' });
-    }
   };
 
   handleDeleteCategory = () => {
@@ -104,33 +76,32 @@ class CategoriesContainer extends React.Component {
       NamesOfCategoriesContainingProducts,
       namesOfAllCategories,
       alertMessage,
-      newCategory,
       categoryToDelete,
       isDeleteModalVisible,
     } = this.state;
     return (
-      <Modal>
-        <AddCategory
-          handleForm={this.handleForm}
-          newCategory={newCategory}
-          handleAddCategory={this.handleAddCategory}
-        />
-        <br />
-        <Divider horizontal />
-        <DeleteCategory
-          NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
-          categoryToDelete={categoryToDelete}
-          isDeleteModalVisible={isDeleteModalVisible}
-          handleDeleteCategory={this.handleDeleteCategory}
-          setAlertMessage={this.setAlertMessage}
-          toggleDeleteModal={this.toggleDeleteModal}
-          namesOfAllCategories={namesOfAllCategories}
-          handleForm={this.handleForm}
-        />
-        <br />
-        <ButtonIconCancel onClick={toggleCategoriesContainer} />
-        {alertMessage && <Alert>{alertMessage}</Alert>}
-      </Modal>
+      <AppContext.Consumer>
+        {({ products, allCategories }) => (
+          <Modal>
+            <AddCategory allCategories={allCategories} />
+            <br />
+            <Divider horizontal />
+            <DeleteCategory
+              NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
+              categoryToDelete={categoryToDelete}
+              isDeleteModalVisible={isDeleteModalVisible}
+              handleDeleteCategory={this.handleDeleteCategory}
+              setAlertMessage={this.setAlertMessage}
+              toggleDeleteModal={this.toggleDeleteModal}
+              namesOfAllCategories={namesOfAllCategories}
+              handleForm={this.handleForm}
+            />
+            <br />
+            <ButtonIconCancel onClick={toggleCategoriesContainer} />
+            {alertMessage && <Alert>{alertMessage}</Alert>}
+          </Modal>
+        )}
+      </AppContext.Consumer>
     );
   }
 }
