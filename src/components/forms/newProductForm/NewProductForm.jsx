@@ -13,12 +13,12 @@ import { addNewProductToDatabase } from '../../../data/handlers';
 
 class NewProductForm extends React.Component {
   state = {
-    min: 1,
-    name: '',
-    quantity: 0,
-    unit: 'item',
+    min: this.props.min || 1,
+    name: this.props.name || '',
+    quantity: this.props.quantity || 0,
+    unit: this.props.unit || 'item',
     category: this.props.category || '',
-    id: uuidv4(),
+    id: this.props.id || uuidv4(),
 
     errorMessages: {
       min: '',

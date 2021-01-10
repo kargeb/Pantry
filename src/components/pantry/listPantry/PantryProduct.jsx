@@ -86,7 +86,7 @@ class PantryProduct extends React.Component {
   render() {
     const { isFormChangeQuantityContainerVisible } = this.state;
     const { product } = this.props;
-    const { name, quantity, unit, min, id } = product;
+    const { name, quantity, unit, min, id, category } = product;
     const cartIconShow = quantity < min;
 
     return (
@@ -114,6 +114,8 @@ class PantryProduct extends React.Component {
             name={name}
             id={id}
             quantity={quantity}
+            category={category}
+            unit={unit}
             toggleChangeQuantityModal={this.toggleChangeQuantityModal}
           />
         )}

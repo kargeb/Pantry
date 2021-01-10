@@ -9,6 +9,7 @@ import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
 import H2 from '../../../atoms/texts/H2';
 import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
+import NewProductForm from '../../../forms/newProductForm/NewProductForm';
 
 class FormChangeQuantityContainer extends React.Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class FormChangeQuantityContainer extends React.Component {
 
   render() {
     const { quantity, id, name, isDeleteModalVisible, isProductPropertiesForm } = this.state;
-    const { toggleChangeQuantityModal } = this.props;
+    const { toggleChangeQuantityModal, unit, category } = this.props;
 
     return (
       <Modal>
@@ -101,9 +102,12 @@ class FormChangeQuantityContainer extends React.Component {
         )}
 
         {isProductPropertiesForm && (
-          <FormPantryProductContainer
+          <NewProductForm
             id={id}
             quantity={quantity}
+            unit={unit}
+            name={name}
+            category={category}
             toggleFormVisibility={this.toggleEditProductForm}
             toggleChangeQuantityModal={toggleChangeQuantityModal}
           />
