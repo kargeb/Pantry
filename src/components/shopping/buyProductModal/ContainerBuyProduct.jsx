@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import db from '../../../fbase';
-
 import ModalBuyProduct from './ModalBuyProduct';
+import { updateProductQuantityInDatabase } from '../../../data/handlers';
 
 class ContainerBuyProduct extends React.Component {
   constructor(props) {
@@ -43,14 +41,14 @@ class ContainerBuyProduct extends React.Component {
 
   updateProductQuantity = toggleBuyProductModal => {
     const { currentQuantity, id, toBuy, min } = this.state;
-    const quantityAfterShopping = +currentQuantity + +toBuy;
 
-    db.collection('products')
-      .doc(id)
-      .update({
-        quantity: quantityAfterShopping,
-        onShoppingList: quantityAfterShopping < min,
-      });
+    const quantityAfterShopping = Number(currentQuantity) + Number(toBuy);
+
+    const quantity = quantityAfterShopping;
+    const onShoppingList = Boolean(quantityAfterShopping < min);
+
+    updateProductQuantityInDatabase(quantity, onShoppingList, id);
+
     toggleBuyProductModal();
   };
 
