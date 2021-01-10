@@ -50,7 +50,7 @@ class CategoriesSection extends React.Component {
     const { isCategoriesContainerVisible } = this.state;
     return (
       <AppContext.Consumer>
-        {({ products, allCategories }) => (
+        {({ products, allCategories, NamesOfCategoriesContainingProducts }) => (
           <Section>
             <Header>
               <H2>Categories</H2>
