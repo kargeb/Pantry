@@ -4,31 +4,31 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
 import sampleData from '../../data/db.json';
-import db, { auth } from '../../fbase';
 import { AppContext } from '../../context';
 import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';
 import Settings from '../../views/Settings';
 import Navigation from '../../components/navigation/Navigation';
-import { databaseListener } from '../../data/handlers';
+import { databaseListener, getAllCategories } from '../../data/handlers';
 
 class App extends React.Component {
   state = {
     products: [],
+    allCategories: [],
     currentTheme: lightTheme,
   };
 
   componentDidMount() {
-    const getProductsFromDatabase = downloadedProducts => {
+    getAllCategories().then(allCategories => {
+      this.setState({ allCategories });
+    });
+
+    this.unsubscribe = databaseListener(downloadedProducts => {
       this.setState({
         products: [...downloadedProducts],
         isLoading: false,
       });
-    };
-
-    this.unsubscribe = databaseListener(getProductsFromDatabase);
-
-    console.log('TO JEST UNSUBSCRIBE:', this.unsubscribe);
+    });
   }
 
   componentWillUnmount() {
@@ -51,15 +51,12 @@ class App extends React.Component {
 
     const mergedTheme = { ...defaultTheme, ...currentTheme };
 
-    // return <App mergedTheme={mergedTheme} contextElements={contextElements} />;
     return (
       <BrowserRouter>
-        {console.log('CURRENT USER Z AUTH:', auth.currentUser.uid)}
         <ThemeProvider theme={mergedTheme}>
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
             <Navigation />
-            <h2>{this.state.currentUserId}</h2>
             <Switch>
               <Route exact path="/" component={Pantry} />
               <Route path="/pantry" component={Pantry} />
