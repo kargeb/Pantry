@@ -10,15 +10,20 @@ import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';
 import Settings from '../../views/Settings';
 import Navigation from '../../components/navigation/Navigation';
-import { databaseListener } from '../../data/handlers';
+import { databaseListener, getAllCategories } from '../../data/handlers';
 
 class App extends React.Component {
   state = {
     products: [],
+    allCategories: [],
     currentTheme: lightTheme,
   };
 
   componentDidMount() {
+    getAllCategories().then(allCategories => {
+      this.setState({ allCategories });
+    });
+
     const getProductsFromDatabase = downloadedProducts => {
       this.setState({
         products: [...downloadedProducts],
@@ -27,13 +32,21 @@ class App extends React.Component {
     };
 
     this.unsubscribe = databaseListener(getProductsFromDatabase);
-
-    console.log('TO JEST UNSUBSCRIBE:', this.unsubscribe);
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
+
+  getCategories = () => {
+    return db
+      .collection('users')
+      .doc(auth.currentUser.uid)
+      .collection('categories')
+      .doc('category')
+      .get()
+      .then(doc => doc.data().categories);
+  };
 
   changeTheme = () => {
     const { currentTheme } = this.state;
@@ -59,6 +72,9 @@ class App extends React.Component {
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
             <Navigation />
+            <button type="button" onClick={this.getCategories}>
+              get categories
+            </button>
             <h2>{this.state.currentUserId}</h2>
             <Switch>
               <Route exact path="/" component={Pantry} />

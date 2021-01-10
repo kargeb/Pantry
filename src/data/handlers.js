@@ -11,22 +11,30 @@ export const addNewProductToDatabase = product => {
     .set(product);
 };
 
+export const getAllCategories = () => {
+  return db
+    .collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .doc('category')
+    .get()
+    .then(doc => doc.data().categories);
+};
+
 export const databaseListener = callback => {
-  return (
-    db
-      .collection('users')
-      // .doc('FyMcgt8sSqg4AquNvQAHOak062T2')
-      .doc(auth.currentUser.uid)
-      .collection('products')
-      .onSnapshot(querySnapshot => {
-        const downloadedProducts = [];
+  return db
+    .collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('products')
+    .onSnapshot(querySnapshot => {
+      const downloadedProducts = [];
 
-        querySnapshot.forEach(doc => {
-          const newProduct = { ...doc.data() };
-          downloadedProducts.push(newProduct);
-        });
+      querySnapshot.forEach(doc => {
+        const newProduct = { ...doc.data() };
+        console.log('DOC DATA:', doc.data());
+        downloadedProducts.push(newProduct);
+      });
 
-        callback(downloadedProducts);
-      })
-  );
+      callback(downloadedProducts);
+    });
 };
