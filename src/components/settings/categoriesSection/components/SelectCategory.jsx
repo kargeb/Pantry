@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { CategoriesContext } from '../../../../context';
 
 import Select from '../../../atoms/formElements/Select';
-import withProductsAndCategories from '../../../../hoc/withProductsAndCategories';
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,38 +39,34 @@ const Option = styled.option`
   }
 `;
 
-// pantryCategories is from HOC, these are categories that currently contain products
-const SelectCategory = ({ pantryCategories }) => {
+// pantryCategories is from HOC, these are namesOfAllCategories that currently contain products
+const SelectCategory = ({
+  categoryToDelete,
+  handleForm,
+  namesOfAllCategories,
+  NamesOfCategoriesContainingProducts,
+}) => {
   return (
-    <CategoriesContext.Consumer>
-      {context => (
-        <Wrapper>
-          <CustomSelect
-            id="categoryToDelete"
-            onChange={context.handleForm}
-            value={context.categoryToDelete}
-            size="5"
-          >
-            <option aria-label="disable option" value="" disabled hidden />
-            {context.categories &&
-              context.categories.sort().map(category => (
-                <Option
-                  disabled={pantryCategories.includes(category)}
-                  key={category}
-                  value={category}
-                >
-                  {category}
-                </Option>
-              ))}
-          </CustomSelect>
-        </Wrapper>
-      )}
-    </CategoriesContext.Consumer>
+    <Wrapper>
+      <CustomSelect id="categoryToDelete" onChange={handleForm} value={categoryToDelete} size="5">
+        <option aria-label="disable option" value="" disabled hidden />
+        {namesOfAllCategories &&
+          namesOfAllCategories.sort().map(category => (
+            <Option
+              disabled={NamesOfCategoriesContainingProducts.includes(category)}
+              key={category}
+              value={category}
+            >
+              {category}
+            </Option>
+          ))}
+      </CustomSelect>
+    </Wrapper>
   );
 };
 
 SelectCategory.propTypes = {
-  pantryCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  NamesOfCategoriesContainingProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default withProductsAndCategories(SelectCategory);
+export default SelectCategory;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import H2 from '../../atoms/texts/H2';
 import Button from '../../atoms/buttons/Button';
 import CategoriesContainer from './container/CategoriesContainer';
+import { AppContext } from '../../../context';
 
 const Header = styled.div`
   display: flex;
@@ -48,19 +49,27 @@ class CategoriesSection extends React.Component {
   render() {
     const { isCategoriesContainerVisible } = this.state;
     return (
-      <Section>
-        <Header>
-          <H2>Categories</H2>
-        </Header>
-        <WrapperButton>
-          <Button type="button" onClick={this.toggleCategoriesContainer}>
-            Add / Remove
-          </Button>
-        </WrapperButton>
-        {isCategoriesContainerVisible && (
-          <CategoriesContainer toggleCategoriesContainer={this.toggleCategoriesContainer} />
+      <AppContext.Consumer>
+        {({ products, allCategories }) => (
+          <Section>
+            <Header>
+              <H2>Categories</H2>
+            </Header>
+            <WrapperButton>
+              <Button type="button" onClick={this.toggleCategoriesContainer}>
+                Add / Remove
+              </Button>
+            </WrapperButton>
+            {isCategoriesContainerVisible && (
+              <CategoriesContainer
+                products={products}
+                allCategories={allCategories}
+                toggleCategoriesContainer={this.toggleCategoriesContainer}
+              />
+            )}
+          </Section>
         )}
-      </Section>
+      </AppContext.Consumer>
     );
   }
 }

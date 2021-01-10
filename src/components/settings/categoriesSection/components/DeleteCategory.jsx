@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CategoriesContext } from '../../../../context';
 import H1 from '../../../atoms/texts/H1';
 import Label from '../../../atoms/formElements/Label';
 import Button from '../../../atoms/buttons/Button';
@@ -15,35 +14,43 @@ const StyledLabel = styled(Label)`
   text-align: center;
 `;
 
-const DeleteCategory = () => (
-  <CategoriesContext.Consumer>
-    {context => (
-      <>
-        <H1 marginBottom as="h2">
-          Remove category:
-        </H1>
-        <StyledLabel>Only categories without products can be removed</StyledLabel>
-        <SelectCategory />
-        <Button
-          type="button"
-          onClick={() =>
-            context.categoryToDelete
-              ? context.toggleDeleteModal()
-              : context.setAlertMessage('Choose a category!')
-          }
-        >
-          Remove
-        </Button>
-        {context.isDeleteModalVisible && (
-          <ModalConfirmDeletion
-            heading="Confirm deletion of:"
-            name={context.categoryToDelete}
-            toggleDeleteModal={context.toggleDeleteModal}
-            handleDeleteCategory={context.handleDeleteCategory}
-          />
-        )}
-      </>
+const DeleteCategory = ({
+  categoryToDelete,
+  toggleDeleteModal,
+  setAlertMessage,
+  isDeleteModalVisible,
+  handleDeleteCategory,
+  NamesOfCategoriesContainingProducts,
+  namesOfAllCategories,
+  handleForm,
+}) => (
+  <>
+    <H1 marginBottom as="h2">
+      Remove category:
+    </H1>
+    <StyledLabel>Only categories without products can be removed</StyledLabel>
+    <SelectCategory
+      categoryToDelete={categoryToDelete}
+      handleForm={handleForm}
+      namesOfAllCategories={namesOfAllCategories}
+      NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
+    />
+    <Button
+      type="button"
+      onClick={() =>
+        categoryToDelete ? toggleDeleteModal() : setAlertMessage('Choose a category!')
+      }
+    >
+      Remove
+    </Button>
+    {isDeleteModalVisible && (
+      <ModalConfirmDeletion
+        heading="Confirm deletion of:"
+        name={categoryToDelete}
+        toggleDeleteModal={toggleDeleteModal}
+        handleDeleteCategory={handleDeleteCategory}
+      />
     )}
-  </CategoriesContext.Consumer>
+  </>
 );
 export default withProductsAndCategories(DeleteCategory);

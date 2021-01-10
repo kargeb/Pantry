@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CategoriesContext } from '../../../../context';
-
 import db from '../../../../fbase';
 import Modal from '../../../templates/Modal';
 import ButtonIconCancel from '../../../atoms/buttons/ButtonIconCancel';
@@ -13,41 +11,55 @@ import DeleteCategory from '../components/DeleteCategory';
 
 class CategoriesContainer extends React.Component {
   state = {
-    categories: [],
+    namesOfAllCategories: this.props.allCategories,
     newCategory: '',
+    NamesOfCategoriesContainingProducts: [],
     categoryToDelete: '',
     alertMessage: '',
     isDeleteModalVisible: false,
   };
 
   componentDidMount() {
-    this.unsubscribe = db
-      .collection('categories')
-      .doc('all')
-      .onSnapshot(querySnapshot => {
-        this.setState({ categories: querySnapshot.data().categories });
-      });
+    const { namesOfAllCategories } = this.state;
+    const NamesOfCategoriesContainingProducts = this.SelectNamesOfCategoriesContainingProducts(
+      namesOfAllCategories,
+    );
+
+    this.setState({ NamesOfCategoriesContainingProducts });
   }
 
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
+  SelectNamesOfCategoriesContainingProducts = products => {
+    const NamesOfCategoriesContainingProducts = [];
+    products.forEach(product => {
+      if (!NamesOfCategoriesContainingProducts.includes(product.category)) {
+        NamesOfCategoriesContainingProducts.push(product.category);
+      }
+    });
+
+    return NamesOfCategoriesContainingProducts;
+  };
 
   handleForm = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
   handleAddCategory = () => {
-    const { categories } = this.state;
+    const { namesOfAllCategories } = this.state;
     const { newCategory } = this.state;
 
     if (newCategory) {
-      const isCategoryUnique = !categories.includes(newCategory);
+      const isCategoryUnique = !namesOfAllCategories.includes(newCategory);
       if (isCategoryUnique) {
         const newCategories = {
-          categories: [...categories, newCategory],
+          namesOfAllCategories: [...namesOfAllCategories, newCategory],
         };
-        db.collection('categories').doc('all').set(newCategories);
+
+        console.log(`FROM CATEGORY MANAGER:
+        namesOfAllCategories: ${namesOfAllCategories}
+        newCategories: ${newCategories.namesOfAllCategories}
+          `);
+
+        // db.collection('categories').doc('all').set(newCategories);
 
         this.setState({ newCategory: '', alertMessage: '' });
       } else {
@@ -59,14 +71,14 @@ class CategoriesContainer extends React.Component {
   };
 
   handleDeleteCategory = () => {
-    const { categoryToDelete, categories } = this.state;
+    const { categoryToDelete, namesOfAllCategories } = this.state;
 
     if (categoryToDelete) {
-      const categoriesWithoutDeletedOne = categories.filter(
+      const categoriesWithoutDeletedOne = namesOfAllCategories.filter(
         category => category !== categoryToDelete,
       );
       const newCategories = {
-        categories: [...categoriesWithoutDeletedOne],
+        namesOfAllCategories: [...categoriesWithoutDeletedOne],
       };
 
       db.collection('categories').doc('all').set(newCategories);
@@ -88,27 +100,36 @@ class CategoriesContainer extends React.Component {
   };
 
   render() {
-    const categoriesContext = {
-      ...this.state,
-      handleForm: this.handleForm,
-      handleAddCategory: this.handleAddCategory,
-      handleDeleteCategory: this.handleDeleteCategory,
-      setAlertMessage: this.setAlertMessage,
-      toggleDeleteModal: this.toggleDeleteModal,
-    };
-
     const { toggleCategoriesContainer } = this.props;
-    const { alertMessage } = this.state;
+    const {
+      NamesOfCategoriesContainingProducts,
+      namesOfAllCategories,
+      alertMessage,
+      newCategory,
+      categoryToDelete,
+      isDeleteModalVisible,
+    } = this.state;
     return (
       <Modal>
-        <CategoriesContext.Provider value={categoriesContext}>
-          <AddCategory />
-          <br />
-          <Divider horizontal />
-          <DeleteCategory />
-          <br />
-          <ButtonIconCancel onClick={toggleCategoriesContainer} />
-        </CategoriesContext.Provider>
+        <AddCategory
+          handleForm={this.handleForm}
+          newCategory={newCategory}
+          handleAddCategory={this.handleAddCategory}
+        />
+        <br />
+        <Divider horizontal />
+        <DeleteCategory
+          NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
+          categoryToDelete={categoryToDelete}
+          isDeleteModalVisible={isDeleteModalVisible}
+          handleDeleteCategory={this.handleDeleteCategory}
+          setAlertMessage={this.setAlertMessage}
+          toggleDeleteModal={this.toggleDeleteModal}
+          namesOfAllCategories={namesOfAllCategories}
+          handleForm={this.handleForm}
+        />
+        <br />
+        <ButtonIconCancel onClick={toggleCategoriesContainer} />
         {alertMessage && <Alert>{alertMessage}</Alert>}
       </Modal>
     );
