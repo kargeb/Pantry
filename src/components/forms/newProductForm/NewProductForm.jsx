@@ -17,7 +17,7 @@ class NewProductForm extends React.Component {
     name: '',
     quantity: 0,
     unit: 'item',
-    category: '',
+    category: this.props.category || '',
     id: uuidv4(),
 
     errorMessages: {
@@ -29,7 +29,7 @@ class NewProductForm extends React.Component {
     },
   };
 
-  // for type="number" Inputs
+  // for Inputs type="number"
   preventProhibitedCharacters = e => {
     const prohibitedCharacters = ['e', '-', '+', '.', ','];
 
