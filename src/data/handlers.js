@@ -36,9 +36,28 @@ export const setDatabaseListener = callback => {
     });
 };
 
+// prettier-ignore
 export const updateProductQuantityInDatabase = (quantity, onShoppingList, id) => {
-  db.collection('users').doc(auth.currentUser.uid).collection('products').doc(id).update({
+  db.collection('users')
+  .doc(auth.currentUser.uid)
+  .collection('products')
+  .doc(id)
+  .update({
     quantity,
     onShoppingList,
   });
+};
+
+export const removeProductFromDatabase = id => {
+  db.collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('products')
+    .doc(id)
+    .delete()
+    .then(() => {
+      console.log('Document successfully deleted!');
+    })
+    .catch(error => {
+      console.error('Error removing document: ', error);
+    });
 };
