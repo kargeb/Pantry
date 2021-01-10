@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
 import PantryProduct from './PantryProduct';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
-import FormPantryProductContainer from '../FormPantryProduct/container/FormPantryProductContainer';
 import HeaderPantryCategory from './HeaderPantryCategory';
+import NewProductForm from '../../forms/newProductForm/NewProductForm';
 
 const CategoriesItem = styled.li`
   background-color: ${props => props.theme.background};
@@ -86,10 +85,7 @@ class PantryCategory extends React.Component {
         </ul>
 
         {isProductPropertiesForm && (
-          <FormPantryProductContainer
-            category={currentCategory}
-            toggleFormVisibility={this.handleClick}
-          />
+          <NewProductForm category={currentCategory} toggleFormVisibility={this.handleClick} />
         )}
       </CategoriesItem>
     );
