@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import db from '../../../../fbase';
 import DeleteProductModal from '../components/DeleteProductModal';
-import FormPantryProductContainer from '../../FormPantryProduct/container/FormPantryProductContainer';
 import Modal from '../../../templates/Modal';
 import H1 from '../../../atoms/texts/H1';
 import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
@@ -10,16 +8,14 @@ import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsCon
 import H2 from '../../../atoms/texts/H2';
 import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
 import NewProductForm from '../../../forms/newProductForm/NewProductForm';
+import { updateProductQuantityInDatabase } from '../../../../data/handlers';
 
 class FormChangeQuantityContainer extends React.Component {
   constructor(props) {
     super(props);
-    const { name, quantity, id, min } = this.props;
+    const { quantity } = this.props.product;
     this.state = {
       quantity: Number(quantity),
-      name,
-      min,
-      id,
       isProductPropertiesForm: false,
       isDeleteModalVisible: false,
     };
@@ -48,15 +44,13 @@ class FormChangeQuantityContainer extends React.Component {
   };
 
   updateProductQuantity = () => {
-    const { quantity, id, min } = this.state;
-    const { toggleChangeQuantityModal } = this.props;
+    const { quantity } = this.state;
+    const { toggleChangeQuantityModal, id, min } = this.props;
 
-    db.collection('products')
-      .doc(id)
-      .update({
-        quantity,
-        onShoppingList: quantity < min,
-      });
+    const onShoppingList = Boolean(quantity < min);
+
+    updateProductQuantityInDatabase(quantity, onShoppingList, id);
+
     toggleChangeQuantityModal();
   };
 
@@ -73,8 +67,9 @@ class FormChangeQuantityContainer extends React.Component {
   };
 
   render() {
-    const { quantity, id, name, isDeleteModalVisible, isProductPropertiesForm } = this.state;
-    const { toggleChangeQuantityModal, unit, category } = this.props;
+    const { isDeleteModalVisible, isProductPropertiesForm, quantity } = this.state;
+    const { toggleChangeQuantityModal } = this.props;
+    const { unit, category, id, name } = this.props.product;
 
     return (
       <Modal>
@@ -104,7 +99,7 @@ class FormChangeQuantityContainer extends React.Component {
         {isProductPropertiesForm && (
           <NewProductForm
             id={id}
-            quantity={quantity}
+            quantity={this.state.quantity}
             unit={unit}
             name={name}
             category={category}
@@ -118,10 +113,14 @@ class FormChangeQuantityContainer extends React.Component {
 }
 
 FormChangeQuantityContainer.propTypes = {
-  quantity: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  min: PropTypes.number.isRequired,
+  product: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    min: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    unit: PropTypes.string.isRequired,
+  }).isRequired,
 
   toggleChangeQuantityModal: PropTypes.func.isRequired,
 };

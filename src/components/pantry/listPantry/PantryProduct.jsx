@@ -110,6 +110,7 @@ class PantryProduct extends React.Component {
         </Wrapper>
         {isFormChangeQuantityContainerVisible && (
           <FormChangeQuantityContainer
+            product={product}
             min={min}
             name={name}
             id={id}
@@ -126,6 +127,7 @@ class PantryProduct extends React.Component {
 
 PantryProduct.propTypes = {
   product: PropTypes.shape({
+    category: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,

@@ -9,7 +9,7 @@ import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';
 import Settings from '../../views/Settings';
 import Navigation from '../../components/navigation/Navigation';
-import { databaseListener, getAllCategories } from '../../data/handlers';
+import { setDatabaseListener, getAllCategories } from '../../data/handlers';
 
 class App extends React.Component {
   state = {
@@ -23,7 +23,7 @@ class App extends React.Component {
       this.setState({ allCategories });
     });
 
-    this.unsubscribe = databaseListener(downloadedProducts => {
+    this.unsubscribe = setDatabaseListener(downloadedProducts => {
       this.setState({
         products: [...downloadedProducts],
         isLoading: false,

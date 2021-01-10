@@ -1,9 +1,6 @@
 import db, { auth } from '../fbase';
 
 export const addNewProductToDatabase = product => {
-  console.log('auth current user from handler:', auth.currentUser);
-  console.log('NEW PRODUCT z handlera:', product);
-
   db.collection('users')
     .doc(auth.currentUser.uid)
     .collection('products')
@@ -21,7 +18,7 @@ export const getAllCategories = () => {
     .then(doc => doc.data().categories);
 };
 
-export const databaseListener = callback => {
+export const setDatabaseListener = callback => {
   return db
     .collection('users')
     .doc(auth.currentUser.uid)
@@ -37,4 +34,11 @@ export const databaseListener = callback => {
 
       callback(downloadedProducts);
     });
+};
+
+export const updateProductQuantityInDatabase = (quantity, onShoppingList, id) => {
+  db.collection('users').doc(auth.currentUser.uid).collection('products').doc(id).update({
+    quantity,
+    onShoppingList,
+  });
 };
