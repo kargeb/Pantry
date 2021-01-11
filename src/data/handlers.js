@@ -1,4 +1,4 @@
-import db, { auth, arrayUnion } from '../fbase';
+import db, { auth, arrayUnion, arrayRemove } from '../fbase';
 // import db, { auth } from '../fbase';
 
 export const addNewProductToDatabase = product => {
@@ -7,16 +7,6 @@ export const addNewProductToDatabase = product => {
     .collection('products')
     .doc(product.id)
     .set(product);
-};
-
-export const getAllCategories = () => {
-  return db
-    .collection('users')
-    .doc(auth.currentUser.uid)
-    .collection('categories')
-    .doc('category')
-    .get()
-    .then(doc => doc.data().categories);
 };
 
 export const setCategoriesDatabaseListener = callback => {
@@ -28,11 +18,9 @@ export const setCategoriesDatabaseListener = callback => {
       let categoriesFromDatabes = null;
 
       querySnapshot.forEach(doc => {
-        // console.log('DOC DATA: KATEGORIES', doc.data().categories);
         categoriesFromDatabes = [...doc.data().categories];
       });
 
-      console.log('CATEGORIES FROM DATABASE:', categoriesFromDatabes);
       callback(categoriesFromDatabes);
     });
 };
@@ -82,29 +70,27 @@ export const removeProductFromDatabase = id => {
 };
 
 export const addCategoryToDatabase = newCategories => {
-  console.log('DOSTALEM neqw category:', newCategories);
-
-  return db
-    .collection('users')
+  db.collection('users')
     .doc(auth.currentUser.uid)
     .collection('categories')
     .doc('category')
     .update({
       categories: arrayUnion(newCategories),
     })
-    .then(() => console.log('DODANO'))
     .catch(error => {
       console.error('Sth wrong with new category ', error);
     });
+};
 
-  // return db
-  //   .collection('users')
-  //   .doc(auth.currentUser.uid)
-  //   .collection('categories')
-  //   .doc('category')
-  //   .set(newCategories)
-  //   .then(() => console.log('DODANO'))
-  //   .catch(error => {
-  //     console.error('Sth wrong with new category ', error);
-  //   });
+export const removeCategoryfromDatabase = categoryToRemove => {
+  db.collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .doc('category')
+    .update({
+      categories: arrayRemove(categoryToRemove),
+    })
+    .catch(error => {
+      console.error('Sth wrong with new category ', error);
+    });
 };
