@@ -4,8 +4,6 @@ import H1 from '../../../atoms/texts/H1';
 import Label from '../../../atoms/formElements/Label';
 import Button from '../../../atoms/buttons/Button';
 
-import ModalConfirmDeletion from '../../../molecules/ModalConfirmDeletion';
-import withProductsAndCategories from '../../../../hoc/withProductsAndCategories';
 import SelectCategory from './SelectCategory';
 
 const StyledLabel = styled(Label)`
@@ -53,4 +51,4 @@ const DeleteCategory = ({
     )}
   </>
 );
-export default withProductsAndCategories(DeleteCategory);
+export default DeleteCategory;
