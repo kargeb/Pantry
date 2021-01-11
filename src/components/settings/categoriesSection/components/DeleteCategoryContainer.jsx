@@ -1,20 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import H1 from '../../../atoms/texts/H1';
-import Label from '../../../atoms/formElements/Label';
-import Button from '../../../atoms/buttons/Button';
-import db from '../../../../fbase';
 
 import ModalConfirmDeletion from '../../../molecules/ModalConfirmDeletion';
-import SelectCategory from './SelectCategory';
 import Alert from '../../../molecules/Alert';
 import { removeCategoryfromDatabase } from '../../../../data/handlers';
-
-const StyledLabel = styled(Label)`
-  width: 155px;
-  /* color: ${({ theme }) => theme.grey60}; */
-  text-align: center;
-`;
+import DeleteCategory from './DeleteCategory';
 
 class DeleteCategoryContainer extends React.Component {
   state = {
@@ -61,11 +50,7 @@ class DeleteCategoryContainer extends React.Component {
   };
 
   handleDeleteCategory = () => {
-    const {
-      categoryToDelete,
-      namesOfAllCategories,
-      NamesOfCategoriesContainingProducts,
-    } = this.state;
+    const { categoryToDelete, NamesOfCategoriesContainingProducts } = this.state;
 
     if (categoryToDelete) {
       if (NamesOfCategoriesContainingProducts.includes(categoryToDelete)) {
@@ -89,30 +74,19 @@ class DeleteCategoryContainer extends React.Component {
       alertMessage,
       isDeleteModalVisible,
       categoryToDelete,
-      namesOfAllCategories,
       NamesOfCategoriesContainingProducts,
     } = this.state;
 
     return (
       <>
-        <H1 marginBottom as="h2">
-          Remove category:
-        </H1>
-        <StyledLabel>Only categories without products can be removed</StyledLabel>
-        <SelectCategory
+        <DeleteCategory
+          setAlertMessage={this.setAlertMessage}
+          toggleDeleteModal={this.toggleDeleteModal}
+          NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
+          namesOfAllCategories={this.props.allCategories}
           categoryToDelete={categoryToDelete}
           handleForm={this.handleForm}
-          namesOfAllCategories={this.props.allCategories}
-          NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
         />
-        <Button
-          type="button"
-          onClick={() =>
-            categoryToDelete ? this.toggleDeleteModal() : this.setAlertMessage('Choose a category!')
-          }
-        >
-          Remove
-        </Button>
         {isDeleteModalVisible && (
           <ModalConfirmDeletion
             heading="Confirm deletion of:"

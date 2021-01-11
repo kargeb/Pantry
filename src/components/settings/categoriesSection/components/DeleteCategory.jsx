@@ -16,8 +16,6 @@ const DeleteCategory = ({
   categoryToDelete,
   toggleDeleteModal,
   setAlertMessage,
-  isDeleteModalVisible,
-  handleDeleteCategory,
   NamesOfCategoriesContainingProducts,
   namesOfAllCategories,
   handleForm,
@@ -41,14 +39,6 @@ const DeleteCategory = ({
     >
       Remove
     </Button>
-    {isDeleteModalVisible && (
-      <ModalConfirmDeletion
-        heading="Confirm deletion of:"
-        name={categoryToDelete}
-        toggleDeleteModal={toggleDeleteModal}
-        handleDeleteCategory={handleDeleteCategory}
-      />
-    )}
   </>
 );
 export default DeleteCategory;
