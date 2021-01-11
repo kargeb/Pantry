@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import H1 from '../../../../atoms/texts/H1';
 import Label from '../../../../atoms/formElements/Label';
@@ -37,4 +38,14 @@ const DeleteCategory = ({
     </Button>
   </>
 );
+
+DeleteCategory.propTypes = {
+  categoryToDelete: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  namesOfAllCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleForm: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  NamesOfCategoriesContainingProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 export default DeleteCategory;
