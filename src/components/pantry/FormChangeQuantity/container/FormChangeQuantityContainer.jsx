@@ -13,7 +13,8 @@ import { updateProductQuantityInDatabase } from '../../../../data/handlers';
 class FormChangeQuantityContainer extends React.Component {
   constructor(props) {
     super(props);
-    const { quantity } = this.props.product;
+    const { quantity } = props.product;
+
     this.state = {
       quantity: Number(quantity),
       isProductPropertiesForm: false,
@@ -68,8 +69,8 @@ class FormChangeQuantityContainer extends React.Component {
 
   render() {
     const { isDeleteModalVisible, isProductPropertiesForm, quantity } = this.state;
-    const { toggleChangeQuantityModal } = this.props;
-    const { unit, category, id, name } = this.props.product;
+    const { toggleChangeQuantityModal, product } = this.props;
+    const { unit, category, id, name } = product;
 
     return (
       <Modal>
@@ -99,6 +100,7 @@ class FormChangeQuantityContainer extends React.Component {
         {isProductPropertiesForm && (
           <NewProductForm
             id={id}
+            // to ensure that quantity is from state, not from props
             quantity={this.state.quantity}
             unit={unit}
             name={name}
