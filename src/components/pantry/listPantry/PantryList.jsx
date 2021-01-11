@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import loadingGif from '../../../images/loading_dots.gif';
-import withProductsAndCategories from '../../../hoc/withProductsAndCategories';
 import PantryCategory from './PantryCategory';
+import { AppContext } from '../../../context';
+import { auth } from '../../../fbase';
 
 const CategoriesList = styled.ul`
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
@@ -14,47 +14,64 @@ const CategoriesList = styled.ul`
   }
 `;
 
-// props are from HOC, pantryCategories are categories that currently contain products
-const PantryList = ({ products, pantryCategories, isLoading }) => (
-  <div>
-    {isLoading ? (
-      <img src={loadingGif} alt="Loading gif" />
-    ) : (
-      <CategoriesList>
-        {pantryCategories.sort().map(currentCategory => {
-          const productsInCurrentCategory = products.filter(
-            product => product.category === currentCategory,
-          );
-          return (
-            <PantryCategory
-              key={currentCategory}
-              currentCategory={currentCategory}
-              productsInCurrentCategory={productsInCurrentCategory}
-            />
-          );
-        })}
-      </CategoriesList>
-    )}
-  </div>
-);
-
-PantryList.defaultProps = {
-  products: [],
-  pantryCategories: [],
+const logout = () => {
+  auth
+    .signOut()
+    .then(() => {
+      console.log('WYLOGOWANO');
+    })
+    .catch(error => {
+      console.log('Jakis blad');
+      console.log(error);
+    });
 };
 
-PantryList.propTypes = {
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      quantity: PropTypes.number.isRequired,
-      min: PropTypes.number.isRequired,
-      id: PropTypes.string.isRequired,
-      unit: PropTypes.string.isRequired,
-    }),
-  ),
-  pantryCategories: PropTypes.arrayOf(PropTypes.string),
-  isLoading: PropTypes.bool.isRequired,
+const PantryList = () => {
+  const getCategoriesFromProducts = products => {
+    const categories = [];
+    products.forEach(product => {
+      if (!categories.includes(product.category)) {
+        categories.push(product.category);
+      }
+    });
+
+    return categories;
+  };
+
+  return (
+    <AppContext.Consumer>
+      {({ products }) => (
+        <div>
+          {console.log('Z CONTEXU:', products)}
+          {!products.length ? (
+            <img src={loadingGif} alt="Loading gif" />
+          ) : (
+            <div>
+              <button type="button" onClick={logout}>
+                Wyloguj
+              </button>
+              <CategoriesList>
+                {getCategoriesFromProducts(products)
+                  .sort()
+                  .map(currentCategory => {
+                    const productsInCurrentCategory = products.filter(
+                      product => product.category === currentCategory,
+                    );
+                    return (
+                      <PantryCategory
+                        key={currentCategory}
+                        currentCategory={currentCategory}
+                        productsInCurrentCategory={productsInCurrentCategory}
+                      />
+                    );
+                  })}
+              </CategoriesList>
+            </div>
+          )}
+        </div>
+      )}
+    </AppContext.Consumer>
+  );
 };
 
-export default withProductsAndCategories(PantryList);
+export default PantryList;

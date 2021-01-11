@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
 import FormPantryProductContainer from '../FormPantryProduct/container/FormPantryProductContainer';
+import NewProductForm from '../../forms/newProductForm/NewProductForm';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -46,9 +47,7 @@ class ButtonAddProductSection extends React.Component {
         <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
           +
         </ButtonAdd>
-        {isFormVisible && (
-          <FormPantryProductContainer toggleFormVisibility={this.toggleFormVisibility} />
-        )}
+        {isFormVisible && <NewProductForm toggleFormVisibility={this.toggleFormVisibility} />}
       </Wrapper>
     );
   }

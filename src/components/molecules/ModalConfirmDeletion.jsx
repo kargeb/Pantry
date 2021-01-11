@@ -6,10 +6,10 @@ import H1 from '../atoms/texts/H1';
 import H2 from '../atoms/texts/H2';
 import WrapperButtonsConfirmAndCancel from './WrapperButtonsConfirmAndCancel';
 
-const ModalConfirmDeletion = ({ name, toggleDeleteModal, handleDeleteCategory, heading }) => {
+const ModalConfirmDeletion = ({ name, toggleConfirmationModal, handleDeleteCategory, heading }) => {
   const handleConfirmDelete = () => {
     handleDeleteCategory();
-    toggleDeleteModal();
+    toggleConfirmationModal();
   };
 
   return (
@@ -19,7 +19,7 @@ const ModalConfirmDeletion = ({ name, toggleDeleteModal, handleDeleteCategory, h
         {name}
       </H2>
       <WrapperButtonsConfirmAndCancel
-        cancelOnClick={toggleDeleteModal}
+        cancelOnClick={toggleConfirmationModal}
         confirmOnClick={handleConfirmDelete}
       />
     </Modal>
@@ -29,7 +29,7 @@ const ModalConfirmDeletion = ({ name, toggleDeleteModal, handleDeleteCategory, h
 ModalConfirmDeletion.propTypes = {
   heading: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  toggleDeleteModal: PropTypes.func.isRequired,
+  toggleConfirmationModal: PropTypes.func.isRequired,
   handleDeleteCategory: PropTypes.func.isRequired,
 };
 

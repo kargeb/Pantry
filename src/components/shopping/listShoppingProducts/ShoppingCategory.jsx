@@ -23,7 +23,7 @@ const ListItem = styled.li`
 `;
 
 const ShoppingCategory = ({ currentCategory, productsInCurrentCategory }) => (
-  <>
+  <div>
     <CategoryLabel>{currentCategory}</CategoryLabel>
     <ul>
       {productsInCurrentCategory.map(currentProduct => (
@@ -37,7 +37,7 @@ const ShoppingCategory = ({ currentCategory, productsInCurrentCategory }) => (
         </ListItem>
       ))}
     </ul>
-  </>
+  </div>
 );
 
 ShoppingCategory.propTypes = {

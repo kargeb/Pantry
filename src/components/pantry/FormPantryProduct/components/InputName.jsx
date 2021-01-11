@@ -10,18 +10,22 @@ const InputVerticalWrapper = styled.div`
   align-items: flex-start;
 `;
 
-const InputName = ({ handleForm, name }) => {
+const InputName = ({ handleForm, name, errorMessage }) => {
   return (
-    <InputVerticalWrapper>
-      <Label htmlFor="name">Name</Label>
-      <Input id="name" type="text" onChange={handleForm} value={name} />
-    </InputVerticalWrapper>
+    <>
+      <InputVerticalWrapper>
+        <Label htmlFor="name">Name</Label>
+        <Input id="name" type="text" onChange={handleForm} value={name} />
+      </InputVerticalWrapper>
+      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+    </>
   );
 };
 
 InputName.propTypes = {
   handleForm: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default InputName;
