@@ -49,27 +49,23 @@ class CategoriesSection extends React.Component {
   render() {
     const { isCategoriesContainerVisible } = this.state;
     return (
-      <AppContext.Consumer>
-        {({ products, allCategories, NamesOfCategoriesContainingProducts }) => (
-          <Section>
-            <Header>
-              <H2>Categories</H2>
-            </Header>
-            <WrapperButton>
-              <Button type="button" onClick={this.toggleCategoriesContainer}>
-                Add / Remove
-              </Button>
-            </WrapperButton>
-            {isCategoriesContainerVisible && (
-              <CategoriesContainer
-                products={products}
-                allCategories={allCategories}
-                toggleCategoriesContainer={this.toggleCategoriesContainer}
-              />
-            )}
-          </Section>
+      <Section>
+        <Header>
+          <H2>Categories</H2>
+        </Header>
+        <WrapperButton>
+          <Button type="button" onClick={this.toggleCategoriesContainer}>
+            Add / Remove
+          </Button>
+        </WrapperButton>
+        {isCategoriesContainerVisible && (
+          <CategoriesContainer
+            // products={products}
+            // allCategories={allCategories}
+            toggleCategoriesContainer={this.toggleCategoriesContainer}
+          />
         )}
-      </AppContext.Consumer>
+      </Section>
     );
   }
 }
