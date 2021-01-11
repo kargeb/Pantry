@@ -8,6 +8,7 @@ import db from '../../../../fbase';
 import ModalConfirmDeletion from '../../../molecules/ModalConfirmDeletion';
 import SelectCategory from './SelectCategory';
 import Alert from '../../../molecules/Alert';
+import { removeCategoryfromDatabase } from '../../../../data/handlers';
 
 const StyledLabel = styled(Label)`
   width: 155px;
@@ -60,19 +61,24 @@ class DeleteCategoryContainer extends React.Component {
   };
 
   handleDeleteCategory = () => {
-    const { categoryToDelete, namesOfAllCategories } = this.state;
+    const {
+      categoryToDelete,
+      namesOfAllCategories,
+      NamesOfCategoriesContainingProducts,
+    } = this.state;
 
     if (categoryToDelete) {
-      const categoriesWithoutDeletedOne = namesOfAllCategories.filter(
-        category => category !== categoryToDelete,
-      );
-      const newCategories = {
-        namesOfAllCategories: [...categoriesWithoutDeletedOne],
-      };
+      if (NamesOfCategoriesContainingProducts.includes(categoryToDelete)) {
+        console.log('KATEGORIA MA PRODUKTY!!!!! NIE MOZNA USUNAC!!!');
+      } else {
+        console.log('usuwamy kategorie:', categoryToDelete);
+        removeCategoryfromDatabase(categoryToDelete);
 
-      db.collection('categories').doc('all').set(newCategories);
-
-      this.setState({ categoryToDelete: '', alertMessage: '' });
+        this.setState({
+          categoryToDelete: '',
+          alertMessage: '',
+        });
+      }
     } else {
       this.setState({ alertMessage: 'Choose a category!' });
     }
@@ -96,7 +102,7 @@ class DeleteCategoryContainer extends React.Component {
         <SelectCategory
           categoryToDelete={categoryToDelete}
           handleForm={this.handleForm}
-          namesOfAllCategories={namesOfAllCategories}
+          namesOfAllCategories={this.props.allCategories}
           NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
         />
         <Button
