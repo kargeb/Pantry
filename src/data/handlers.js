@@ -1,4 +1,5 @@
-import db, { auth } from '../fbase';
+import db, { auth, arrayUnion, arrayRemove } from '../fbase';
+// import db, { auth } from '../fbase';
 
 export const addNewProductToDatabase = product => {
   db.collection('users')
@@ -8,17 +9,23 @@ export const addNewProductToDatabase = product => {
     .set(product);
 };
 
-export const getAllCategories = () => {
+export const setCategoriesDatabaseListener = callback => {
   return db
     .collection('users')
     .doc(auth.currentUser.uid)
     .collection('categories')
-    .doc('category')
-    .get()
-    .then(doc => doc.data().categories);
+    .onSnapshot(querySnapshot => {
+      let categoriesFromDatabes = null;
+
+      querySnapshot.forEach(doc => {
+        categoriesFromDatabes = [...doc.data().categories];
+      });
+
+      callback(categoriesFromDatabes);
+    });
 };
 
-export const setDatabaseListener = callback => {
+export const setProductsDatabaseListener = callback => {
   return db
     .collection('users')
     .doc(auth.currentUser.uid)
@@ -59,5 +66,31 @@ export const removeProductFromDatabase = id => {
     })
     .catch(error => {
       console.error('Error removing document: ', error);
+    });
+};
+
+export const addCategoryToDatabase = newCategories => {
+  db.collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .doc('category')
+    .update({
+      categories: arrayUnion(newCategories),
+    })
+    .catch(error => {
+      console.error('Sth wrong with new category ', error);
+    });
+};
+
+export const removeCategoryfromDatabase = categoryToRemove => {
+  db.collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .doc('category')
+    .update({
+      categories: arrayRemove(categoryToRemove),
+    })
+    .catch(error => {
+      console.error('Sth wrong with new category ', error);
     });
 };

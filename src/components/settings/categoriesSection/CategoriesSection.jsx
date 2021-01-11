@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 import H2 from '../../atoms/texts/H2';
 import Button from '../../atoms/buttons/Button';
-import CategoriesContainer from './container/CategoriesContainer';
+import ModalCategoriesManager from './modalCategoriesManager/ModalCategoriesManager';
+import { AppContext } from '../../../context';
 
 const Header = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ class CategoriesSection extends React.Component {
           </Button>
         </WrapperButton>
         {isCategoriesContainerVisible && (
-          <CategoriesContainer toggleCategoriesContainer={this.toggleCategoriesContainer} />
+          <ModalCategoriesManager toggleCategoriesContainer={this.toggleCategoriesContainer} />
         )}
       </Section>
     );

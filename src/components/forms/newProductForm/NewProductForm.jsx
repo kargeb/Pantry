@@ -12,22 +12,27 @@ import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfir
 import { addNewProductToDatabase } from '../../../data/handlers';
 
 class NewProductForm extends React.Component {
-  state = {
-    min: this.props.min || 1,
-    name: this.props.name || '',
-    quantity: this.props.quantity || 0,
-    unit: this.props.unit || 'item',
-    category: this.props.category || '',
-    id: this.props.id || uuidv4(),
+  constructor(props) {
+    super(props);
+    const { min, name, quantity, unit, category } = props;
+    this.state = {
+      min,
+      name,
+      quantity,
+      unit,
+      category,
+      // because of problem with uuidv4() in defaultProps
+      id: props.id || uuidv4(),
 
-    errorMessages: {
-      min: '',
-      unit: '',
-      name: '',
-      quantity: '',
-      category: '',
-    },
-  };
+      errorMessages: {
+        min: '',
+        unit: '',
+        name: '',
+        quantity: '',
+        category: '',
+      },
+    };
+  }
 
   // for Inputs type="number"
   preventProhibitedCharacters = e => {
@@ -98,7 +103,7 @@ class NewProductForm extends React.Component {
     Object.entries(product).forEach(property => {
       const [key, value] = property;
 
-      if (key == 'min' || key == 'quantity') {
+      if (key === 'min' || key === 'quantity') {
         if (!Number.isInteger(value) || value < 0) {
           currentErrorMessages[key] = 'Incorrect number!';
           thereAreWrongProperties = true;
@@ -172,8 +177,21 @@ class NewProductForm extends React.Component {
   }
 }
 
+NewProductForm.defaultProps = {
+  min: 1,
+  name: '',
+  quantity: 0,
+  unit: 'item',
+  category: '',
+};
+
 NewProductForm.propTypes = {
   toggleFormVisibility: PropTypes.func.isRequired,
+  min: PropTypes.number,
+  name: PropTypes.string,
+  quantity: PropTypes.number,
+  unit: PropTypes.string,
+  category: PropTypes.string,
 };
 
 export default NewProductForm;

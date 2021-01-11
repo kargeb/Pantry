@@ -9,7 +9,7 @@ import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';
 import Settings from '../../views/Settings';
 import Navigation from '../../components/navigation/Navigation';
-import { setDatabaseListener, getAllCategories } from '../../data/handlers';
+import { setProductsDatabaseListener, setCategoriesDatabaseListener } from '../../data/handlers';
 
 class App extends React.Component {
   state = {
@@ -19,11 +19,13 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    getAllCategories().then(allCategories => {
-      this.setState({ allCategories });
+    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(downloadedCategories => {
+      this.setState({
+        allCategories: [...downloadedCategories],
+      });
     });
 
-    this.unsubscribe = setDatabaseListener(downloadedProducts => {
+    this.unsubscribeProductsListener = setProductsDatabaseListener(downloadedProducts => {
       this.setState({
         products: [...downloadedProducts],
         isLoading: false,
@@ -32,7 +34,8 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    this.unsubscribeProductsListener();
+    this.unsubscribeCategoriesListener();
   }
 
   changeTheme = () => {
@@ -41,6 +44,23 @@ class App extends React.Component {
       currentTheme: currentTheme === lightTheme ? darkTheme : lightTheme,
     });
   };
+
+  // SelectNamesOfCategoriesContainingProducts = () => {
+  //   const {products} = this.state;
+  //   const NamesOfCategoriesContainingProducts = [];
+
+  //   console.log('JESTEM W funkcji, products:', products);
+  //   products.forEach(product => {
+  //     if (!NamesOfCategoriesContainingProducts.includes(product.category)) {
+  //       console.log('JESTEM W PETLI');
+  //       NamesOfCategoriesContainingProducts.push(product.category);
+  //     }
+  //   });
+
+  //   console.log('koniec petli: categories:', NamesOfCategoriesContainingProducts);
+
+  //   return NamesOfCategoriesContainingProducts;
+  // };
 
   render() {
     const { currentTheme } = this.state;

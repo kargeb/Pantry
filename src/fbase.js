@@ -21,6 +21,16 @@ const firebaseConfig = {
 // };
 
 firebase.initializeApp(firebaseConfig);
+// const { arrayUnion } = firebase.FieldValue;
+
+// console.log('ARRAY UNION:', arrayUnion);
+/*
+Atomically add a new region to the "regions" array field.
+washingtonRef.update({
+  regions: firebase.firestore.FieldValue.arrayUnion("greater_virginia")
+});
+*/
+export const { arrayUnion, arrayRemove } = firebase.firestore.FieldValue;
 
 export const auth = firebase.auth();
 const db = firebase.firestore();
