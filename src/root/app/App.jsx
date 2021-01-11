@@ -9,7 +9,7 @@ import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';
 import Settings from '../../views/Settings';
 import Navigation from '../../components/navigation/Navigation';
-import { setDatabaseListener, getAllCategories } from '../../data/handlers';
+import { setProductsDatabaseListener, setCategoriesDatabaseListener } from '../../data/handlers';
 
 class App extends React.Component {
   state = {
@@ -19,11 +19,13 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    getAllCategories().then(allCategories => {
-      this.setState({ allCategories });
+    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(downloadedCategories => {
+      this.setState({
+        allCategories: [...downloadedCategories],
+      });
     });
 
-    this.unsubscribe = setDatabaseListener(downloadedProducts => {
+    this.unsubscribeProductsListener = setProductsDatabaseListener(downloadedProducts => {
       this.setState({
         products: [...downloadedProducts],
         isLoading: false,
@@ -32,7 +34,8 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    this.unsubscribeProductsListener();
+    this.unsubscribeCategoriesListener();
   }
 
   changeTheme = () => {

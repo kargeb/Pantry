@@ -1,4 +1,5 @@
-import db, { auth } from '../fbase';
+import db, { auth, arrayUnion } from '../fbase';
+// import db, { auth } from '../fbase';
 
 export const addNewProductToDatabase = product => {
   db.collection('users')
@@ -18,7 +19,25 @@ export const getAllCategories = () => {
     .then(doc => doc.data().categories);
 };
 
-export const setDatabaseListener = callback => {
+export const setCategoriesDatabaseListener = callback => {
+  return db
+    .collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .onSnapshot(querySnapshot => {
+      let categoriesFromDatabes = null;
+
+      querySnapshot.forEach(doc => {
+        // console.log('DOC DATA: KATEGORIES', doc.data().categories);
+        categoriesFromDatabes = [...doc.data().categories];
+      });
+
+      console.log('CATEGORIES FROM DATABASE:', categoriesFromDatabes);
+      callback(categoriesFromDatabes);
+    });
+};
+
+export const setProductsDatabaseListener = callback => {
   return db
     .collection('users')
     .doc(auth.currentUser.uid)
@@ -63,14 +82,29 @@ export const removeProductFromDatabase = id => {
 };
 
 export const addCategoryToDatabase = newCategories => {
+  console.log('DOSTALEM neqw category:', newCategories);
+
   return db
     .collection('users')
     .doc(auth.currentUser.uid)
     .collection('categories')
     .doc('category')
-    .set(newCategories)
+    .update({
+      categories: arrayUnion(newCategories),
+    })
     .then(() => console.log('DODANO'))
     .catch(error => {
       console.error('Sth wrong with new category ', error);
     });
+
+  // return db
+  //   .collection('users')
+  //   .doc(auth.currentUser.uid)
+  //   .collection('categories')
+  //   .doc('category')
+  //   .set(newCategories)
+  //   .then(() => console.log('DODANO'))
+  //   .catch(error => {
+  //     console.error('Sth wrong with new category ', error);
+  //   });
 };

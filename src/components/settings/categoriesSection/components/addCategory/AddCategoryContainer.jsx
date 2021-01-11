@@ -27,7 +27,8 @@ class AddCategoryContainer extends React.Component {
           categories: [...allCategories, newCategory],
         };
 
-        addCategoryToDatabase(newCategories);
+        // addCategoryToDatabase(newCategories);
+        addCategoryToDatabase(newCategory);
 
         this.setState({ newCategory: '', alertMessage: '' });
       } else {
