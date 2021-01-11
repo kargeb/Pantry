@@ -8,6 +8,7 @@ import Alert from '../../../molecules/Alert';
 import { AppContext } from '../../../../context';
 import DeleteCategory from '../components/DeleteCategory';
 import AddCategoryContainer from '../components/addCategory/AddCategoryContainer';
+import DeleteCategoryContainer from '../components/DeleteCategoryContainer';
 
 class CategoriesContainer extends React.Component {
   state = {
@@ -73,11 +74,11 @@ class CategoriesContainer extends React.Component {
   render() {
     const { toggleCategoriesContainer } = this.props;
     const {
-      NamesOfCategoriesContainingProducts,
-      namesOfAllCategories,
+      // NamesOfCategoriesContainingProducts,
+      // namesOfAllCategories,
       alertMessage,
-      categoryToDelete,
-      isDeleteModalVisible,
+      // categoryToDelete,
+      // isDeleteModalVisible,
     } = this.state;
     return (
       <AppContext.Consumer>
@@ -86,7 +87,8 @@ class CategoriesContainer extends React.Component {
             <AddCategoryContainer allCategories={allCategories} />
             <br />
             <Divider horizontal />
-            <DeleteCategory
+            <DeleteCategoryContainer products={products} allCategories={allCategories} />
+            {/* <DeleteCategory
               NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
               categoryToDelete={categoryToDelete}
               isDeleteModalVisible={isDeleteModalVisible}
@@ -95,10 +97,10 @@ class CategoriesContainer extends React.Component {
               toggleDeleteModal={this.toggleDeleteModal}
               namesOfAllCategories={namesOfAllCategories}
               handleForm={this.handleForm}
-            />
+            /> */}
             <br />
             <ButtonIconCancel onClick={toggleCategoriesContainer} />
-            {alertMessage && <Alert>{alertMessage}</Alert>}
+            {/* {alertMessage && <Alert>{alertMessage}</Alert>} */}
           </Modal>
         )}
       </AppContext.Consumer>

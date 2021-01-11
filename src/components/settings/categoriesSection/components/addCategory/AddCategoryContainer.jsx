@@ -23,11 +23,6 @@ class AddCategoryContainer extends React.Component {
     if (newCategory) {
       const isCategoryUnique = !allCategories.includes(newCategory);
       if (isCategoryUnique) {
-        const newCategories = {
-          categories: [...allCategories, newCategory],
-        };
-
-        // addCategoryToDatabase(newCategories);
         addCategoryToDatabase(newCategory);
 
         this.setState({ newCategory: '', alertMessage: '' });
