@@ -30,7 +30,7 @@ washingtonRef.update({
   regions: firebase.firestore.FieldValue.arrayUnion("greater_virginia")
 });
 */
-export const { arrayUnion } = firebase.firestore.FieldValue;
+export const { arrayUnion, arrayRemove } = firebase.firestore.FieldValue;
 
 export const auth = firebase.auth();
 const db = firebase.firestore();
