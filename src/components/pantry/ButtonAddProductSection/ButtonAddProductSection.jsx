@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
-import FormPantryProductContainer from '../FormPantryProduct/container/FormPantryProductContainer';
 import NewProductForm from '../../forms/newProductForm/NewProductForm';
 
 const Wrapper = styled.div`
