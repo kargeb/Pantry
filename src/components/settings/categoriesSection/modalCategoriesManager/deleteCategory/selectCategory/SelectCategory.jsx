@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Select from '../../../atoms/formElements/Select';
+import Select from '../../../../../atoms/formElements/Select';
 
 const Wrapper = styled.div`
   display: flex;

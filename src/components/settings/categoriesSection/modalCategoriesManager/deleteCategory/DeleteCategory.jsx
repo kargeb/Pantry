@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import H1 from '../../../atoms/texts/H1';
-import Label from '../../../atoms/formElements/Label';
-import Button from '../../../atoms/buttons/Button';
+import H1 from '../../../../atoms/texts/H1';
+import Label from '../../../../atoms/formElements/Label';
+import Button from '../../../../atoms/buttons/Button';
 
-import SelectCategory from './SelectCategory';
+import SelectCategory from './selectCategory/SelectCategory';
 
 const StyledLabel = styled(Label)`
   width: 155px;

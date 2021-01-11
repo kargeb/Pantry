@@ -4,10 +4,10 @@ import Modal from '../../../templates/Modal';
 import ButtonIconCancel from '../../../atoms/buttons/ButtonIconCancel';
 import Divider from '../../../atoms/divider/Divider';
 import { AppContext } from '../../../../context';
-import AddCategoryContainer from '../components/addCategory/AddCategoryContainer';
-import DeleteCategoryContainer from '../components/DeleteCategoryContainer';
+import AddCategoryContainer from './addCategory/AddCategoryContainer';
+import DeleteCategoryContainer from './deleteCategory/DeleteCategoryContainer';
 
-const CategoriesContainer = ({ toggleCategoriesContainer }) => (
+const ModalCategoriesManager = ({ toggleCategoriesContainer }) => (
   <AppContext.Consumer>
     {({ products, allCategories }) => (
       <Modal>
@@ -22,8 +22,8 @@ const CategoriesContainer = ({ toggleCategoriesContainer }) => (
   </AppContext.Consumer>
 );
 
-CategoriesContainer.propTypes = {
+ModalCategoriesManager.propTypes = {
   toggleCategoriesContainer: PropTypes.func.isRequired,
 };
 
-export default CategoriesContainer;
+export default ModalCategoriesManager;
