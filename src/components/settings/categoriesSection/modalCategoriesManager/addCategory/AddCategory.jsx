@@ -2,9 +2,8 @@ import React from 'react';
 import H1 from '../../../../atoms/texts/H1';
 import Input from '../../../../atoms/formElements/Input';
 import Button from '../../../../atoms/buttons/Button';
-import Alert from '../../../../molecules/Alert';
 
-const AddCategory = ({ handleAddCategory, alertMessage, newCategory, handleForm }) => (
+const AddCategory = ({ handleAddCategory, errorMessage, newCategory, handleForm }) => (
   <>
     <H1 marginBottom as="h2">
       Add category:
@@ -16,10 +15,10 @@ const AddCategory = ({ handleAddCategory, alertMessage, newCategory, handleForm 
       value={newCategory}
       placeholder="Name"
     />
+    {errorMessage && <p>{errorMessage}</p>}
     <Button type="button" onClick={handleAddCategory}>
       Add
     </Button>
-    {alertMessage && <Alert>{alertMessage}</Alert>}
   </>
 );
 

@@ -5,44 +5,68 @@ import AddCategory from './AddCategory';
 class AddCategoryContainer extends React.Component {
   state = {
     newCategory: '',
-    alertMessage: '',
+    errorMessage: '',
   };
 
   handleForm = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  setAlertMessage = message => {
-    this.setState({ alertMessage: message });
+  InputIsEmpty = () => {
+    const { newCategory } = this.state;
+
+    let emptyInput = null;
+
+    if (newCategory.trim()) {
+      emptyInput = false;
+      this.setState({ errorMessage: '' });
+    } else {
+      this.setState({ errorMessage: 'Wpisz nazwę kategorii' });
+      emptyInput = true;
+    }
+
+    return emptyInput;
+  };
+
+  categoryAlreadyExists = () => {
+    const { newCategory } = this.state;
+    const { allCategories } = this.props;
+
+    const categoryExists = allCategories.includes(newCategory);
+
+    if (categoryExists) {
+      this.setState({ errorMessage: 'Taka kategoria juz istnieje' });
+    } else {
+      this.setState({ errorMessage: '' });
+    }
+
+    return categoryExists;
   };
 
   handleAddCategory = () => {
-    const { allCategories } = this.props;
     const { newCategory } = this.state;
 
-    if (newCategory) {
-      const isCategoryUnique = !allCategories.includes(newCategory);
-      if (isCategoryUnique) {
-        addCategoryToDatabase(newCategory);
-
-        this.setState({ newCategory: '', alertMessage: '' });
-      } else {
-        console.log('Category already exist!');
-        this.setState({ alertMessage: 'Category already exist!' });
-      }
-    } else {
-      this.setState({ alertMessage: 'Enter a name!' });
+    if (this.InputIsEmpty()) {
+      return;
     }
+
+    if (this.categoryAlreadyExists()) {
+      return;
+    }
+
+    addCategoryToDatabase(newCategory);
+
+    this.setState({ newCategory: '' });
   };
 
   render() {
-    const { alertMessage, newCategory } = this.state;
+    const { errorMessage, newCategory } = this.state;
     return (
       <AddCategory
         handleForm={this.handleForm}
         handleAddCategory={this.handleAddCategory}
-        alertMessage={alertMessage}
         newCategory={newCategory}
+        errorMessage={errorMessage}
       />
     );
   }
