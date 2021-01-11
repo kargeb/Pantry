@@ -6,8 +6,8 @@ import ButtonIconCancel from '../../../atoms/buttons/ButtonIconCancel';
 import Divider from '../../../atoms/divider/Divider';
 import Alert from '../../../molecules/Alert';
 import { AppContext } from '../../../../context';
-import AddCategory from '../components/AddCategory';
 import DeleteCategory from '../components/DeleteCategory';
+import AddCategoryContainer from '../components/addCategory/AddCategoryContainer';
 
 class CategoriesContainer extends React.Component {
   state = {
@@ -83,7 +83,7 @@ class CategoriesContainer extends React.Component {
       <AppContext.Consumer>
         {({ products, allCategories }) => (
           <Modal>
-            <AddCategory allCategories={allCategories} />
+            <AddCategoryContainer allCategories={allCategories} />
             <br />
             <Divider horizontal />
             <DeleteCategory

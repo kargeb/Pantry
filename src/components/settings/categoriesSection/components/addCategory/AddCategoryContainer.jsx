@@ -1,11 +1,8 @@
 import React from 'react';
-import H1 from '../../../atoms/texts/H1';
-import Input from '../../../atoms/formElements/Input';
-import Button from '../../../atoms/buttons/Button';
-import Alert from '../../../molecules/Alert';
-import { addCategoryToDatabase } from '../../../../data/handlers';
+import { addCategoryToDatabase } from '../../../../../data/handlers';
+import AddCategory from './AddCategory';
 
-class AddCategory extends React.Component {
+class AddCategoryContainer extends React.Component {
   state = {
     newCategory: '',
     alertMessage: '',
@@ -45,26 +42,14 @@ class AddCategory extends React.Component {
   render() {
     const { alertMessage, newCategory } = this.state;
     return (
-      <>
-        <H1 marginBottom as="h2">
-          Add category:
-        </H1>
-        <Input
-          id="newCategory"
-          type="text"
-          onChange={this.handleForm}
-          value={newCategory}
-          placeholder="Name"
-        />
-        <Button type="button" onClick={this.handleAddCategory}>
-          Add
-        </Button>
-        {alertMessage && <Alert>{alertMessage}</Alert>}
-      </>
+      <AddCategory
+        handleForm={this.handleForm}
+        handleAddCategory={this.handleAddCategory}
+        alertMessage={alertMessage}
+        newCategory={newCategory}
+      />
     );
   }
 }
 
-export default AddCategory;
-
-// ({ handleForm, newCategory, handleAddCategory }) =>
+export default AddCategoryContainer;
