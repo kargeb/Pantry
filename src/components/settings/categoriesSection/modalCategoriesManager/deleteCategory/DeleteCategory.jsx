@@ -14,11 +14,11 @@ const StyledLabel = styled(Label)`
 
 const DeleteCategory = ({
   categoryToDelete,
-  toggleDeleteModal,
-  setAlertMessage,
+  handleSubmit,
   NamesOfCategoriesContainingProducts,
   namesOfAllCategories,
   handleForm,
+  errorMessage,
 }) => (
   <>
     <H1 marginBottom as="h2">
@@ -31,12 +31,8 @@ const DeleteCategory = ({
       namesOfAllCategories={namesOfAllCategories}
       NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
     />
-    <Button
-      type="button"
-      onClick={() =>
-        categoryToDelete ? toggleDeleteModal() : setAlertMessage('Choose a category!')
-      }
-    >
+    {errorMessage && <p>{errorMessage}</p>}
+    <Button type="button" onClick={() => handleSubmit()}>
       Remove
     </Button>
   </>

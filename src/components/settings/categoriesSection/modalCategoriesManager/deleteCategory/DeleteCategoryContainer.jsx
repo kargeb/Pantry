@@ -11,7 +11,8 @@ class DeleteCategoryContainer extends React.Component {
     NamesOfCategoriesContainingProducts: [],
     categoryToDelete: '',
     alertMessage: '',
-    isDeleteModalVisible: false,
+    isConfirmationModalVisible: false,
+    errorMessage: '',
   };
 
   componentDidMount() {
@@ -22,6 +23,12 @@ class DeleteCategoryContainer extends React.Component {
 
     this.setState({ NamesOfCategoriesContainingProducts });
   }
+
+  toggleConfirmationModal = () => {
+    this.setState(prevState => ({
+      isConfirmationModalVisible: !prevState.isConfirmationModalVisible,
+    }));
+  };
 
   SelectNamesOfCategoriesContainingProducts = products => {
     const NamesOfCategoriesContainingProducts = [];
@@ -39,59 +46,89 @@ class DeleteCategoryContainer extends React.Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  toggleDeleteModal = () => {
-    this.setState(prevState => ({
-      isDeleteModalVisible: !prevState.isDeleteModalVisible,
-    }));
+  handleSubmit = () => {
+    if (this.noCategorySelected()) {
+      return;
+    }
+
+    if (this.categoryContainsProducts()) {
+      return;
+    }
+
+    this.toggleConfirmationModal();
   };
 
   setAlertMessage = message => {
     this.setState({ alertMessage: message });
   };
 
-  handleDeleteCategory = () => {
-    const { categoryToDelete, NamesOfCategoriesContainingProducts } = this.state;
+  noCategorySelected = () => {
+    const { categoryToDelete } = this.state;
+
+    let categoryIsNotSelected = false;
 
     if (categoryToDelete) {
-      if (NamesOfCategoriesContainingProducts.includes(categoryToDelete)) {
-        console.log('KATEGORIA MA PRODUKTY!!!!! NIE MOZNA USUNAC!!!');
-      } else {
-        console.log('usuwamy kategorie:', categoryToDelete);
-        removeCategoryfromDatabase(categoryToDelete);
-
-        this.setState({
-          categoryToDelete: '',
-          alertMessage: '',
-        });
-      }
+      categoryIsNotSelected = false;
     } else {
-      this.setState({ alertMessage: 'Choose a category!' });
+      this.setState({ errorMessage: 'Select category!' });
+      categoryIsNotSelected = true;
     }
+
+    return categoryIsNotSelected;
+  };
+
+  categoryContainsProducts = () => {
+    const { categoryToDelete, NamesOfCategoriesContainingProducts } = this.state;
+
+    let categoryHasProducts = false;
+
+    if (NamesOfCategoriesContainingProducts.includes(categoryToDelete)) {
+      categoryHasProducts = true;
+      this.setState({ errorMessage: "You can't remove this category" });
+    } else {
+      categoryHasProducts = false;
+    }
+
+    return categoryHasProducts;
+  };
+
+  handleDeleteCategory = () => {
+    const { categoryToDelete } = this.state;
+
+    removeCategoryfromDatabase(categoryToDelete);
+
+    this.setState({
+      categoryToDelete: '',
+      errorMessage: '',
+    });
   };
 
   render() {
     const {
       alertMessage,
-      isDeleteModalVisible,
+      isConfirmationModalVisible,
       categoryToDelete,
       NamesOfCategoriesContainingProducts,
+      errorMessage,
     } = this.state;
 
     return (
       <>
         <DeleteCategory
           setAlertMessage={this.setAlertMessage}
-          toggleDeleteModal={this.toggleDeleteModal}
+          handleSubmit={this.handleSubmit}
           NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
           namesOfAllCategories={this.props.allCategories}
           categoryToDelete={categoryToDelete}
           handleForm={this.handleForm}
+          errorMessage={errorMessage}
         />
-        {isDeleteModalVisible && (
+        {isConfirmationModalVisible && (
           <ModalConfirmDeletion
             heading="Confirm deletion of:"
             name={categoryToDelete}
-            toggleDeleteModal={this.toggleDeleteModal}
+            // toggleDeleteModal={this.toggleDeleteModal}
+            toggleConfirmationModal={this.toggleConfirmationModal}
             handleDeleteCategory={this.handleDeleteCategory}
           />
         )}

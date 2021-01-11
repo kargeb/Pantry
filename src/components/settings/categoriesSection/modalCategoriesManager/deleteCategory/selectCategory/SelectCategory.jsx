@@ -39,7 +39,6 @@ const Option = styled.option`
   }
 `;
 
-// pantryCategories is from HOC, these are namesOfAllCategories that currently contain products
 const SelectCategory = ({
   categoryToDelete,
   handleForm,
@@ -48,8 +47,6 @@ const SelectCategory = ({
 }) => {
   return (
     <Wrapper>
-      {console.log('NamesOfCategoriesContainingProducts:', NamesOfCategoriesContainingProducts)}
-      {console.log('namesOfAllCategories:', namesOfAllCategories)}
       <CustomSelect id="categoryToDelete" onChange={handleForm} value={categoryToDelete} size="5">
         <option aria-label="disable option" value="" disabled hidden />
         {namesOfAllCategories &&
