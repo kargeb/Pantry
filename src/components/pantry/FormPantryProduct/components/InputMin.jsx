@@ -14,25 +14,33 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
-const InputMin = ({ handleForm, min }) => {
+const InputMin = ({ handleForm, min, preventProhibitedCharacters, errorMessage }) => {
   return (
-    <InputHorizontalWrapper>
-      <Label htmlFor="min">Min</Label>
-      <Input
-        short
-        id="min"
-        type="number"
-        placeholder="minimal quantity"
-        onChange={handleForm}
-        value={min}
-      />
-    </InputHorizontalWrapper>
+    <>
+      <InputHorizontalWrapper>
+        {console.log('ERRORS Z INPUT MIN:', errorMessage)}
+        <Label htmlFor="min">Min</Label>
+        <Input
+          short
+          id="min"
+          type="number"
+          onKeyDown={preventProhibitedCharacters}
+          onChange={handleForm}
+          value={min}
+          min="0"
+        />
+        {console.log('ERRORS MIN:', errorMessage)}
+      </InputHorizontalWrapper>
+      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+    </>
   );
 };
 
 InputMin.propTypes = {
   handleForm: PropTypes.func.isRequired,
-  min: PropTypes.number.isRequired,
+  preventProhibitedCharacters: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  min: PropTypes.any.isRequired,
 };
 
 export default InputMin;

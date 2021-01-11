@@ -6,11 +6,6 @@ import CategoriesSection from '../components/settings/categoriesSection/Categori
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/settings/sampleDataSection/SampleDataSection';
 
-const Main = styled.main`
-  color: ${props => props.theme.textPrimary};
-  background-color: ${props => props.theme.background};
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,14 +22,12 @@ const Wrapper = styled.div`
 `;
 
 const Settings = () => (
-  <Main>
-    <Wrapper>
-      <DarkModeSection />
-      <Divider />
-      <InsertSampleData />
-      <Divider />
-      <CategoriesSection />
-    </Wrapper>
-  </Main>
+  <Wrapper>
+    <DarkModeSection />
+    <Divider />
+    <InsertSampleData />
+    <Divider />
+    <CategoriesSection />
+  </Wrapper>
 );
 export default Settings;

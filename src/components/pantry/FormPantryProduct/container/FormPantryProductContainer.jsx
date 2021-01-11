@@ -11,6 +11,7 @@ import InputMin from '../components/InputMin';
 import InputQuantity from '../components/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
 import Alert from '../../../molecules/Alert';
+import { addNewProductToDatabase } from '../../../../data/handlers';
 
 class FormPantryProductContainer extends React.Component {
   state = {
@@ -64,7 +65,8 @@ class FormPantryProductContainer extends React.Component {
         id,
       };
 
-      db.collection('products').doc(newProduct.id).set(newProduct);
+      // db.collection('products').doc(newProduct.id).set(newProduct);
+      addNewProductToDatabase(newProduct);
 
       this.setState({
         name: '',
