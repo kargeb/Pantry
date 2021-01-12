@@ -7,6 +7,7 @@ import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
 import { auth } from '../fbase';
+import { logIn } from '../data/handlers';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -35,16 +36,20 @@ class Login extends Component {
     const { login, password } = this.state;
     console.log('ZE STANU:', login, password);
 
-    auth
-      .signInWithEmailAndPassword(login, password)
-      .then(user => {
-        console.log('JESTEM ZALOGOWANY! ', user);
-        console.log('USER EMAIL: ', user.user.email);
-      })
-      .catch(error => {
-        console.log('BLAD LOGOWANIA:');
-        console.log(error.code, error.message);
-      });
+    logIn(login, password).then(resoult => console.log(resoult));
+
+    // auth
+    //   .signInWithEmailAndPassword(login, password)
+    //   .then(user => {
+    //     console.log('JESTEM ZALOGOWANY! ', user);
+    //     console.log('USER EMAIL: ', user.user.email);
+    //     return user
+    //   })
+    //   .catch(error => {
+    //     console.log('BLAD LOGOWANIA:');
+    //     console.log(error.code, error.message);
+    //     return error
+    //   });
   };
 
   render() {
@@ -72,6 +77,14 @@ class Login extends Component {
         <br />
         <Button type="submit" onClick={this.handleSubmit}>
           Login
+        </Button>
+        <br />
+        <Button type="submit" onClick={this.handleSubmit}>
+          Login as Test User
+        </Button>
+        <br />
+        <Button type="submit" onClick={this.handleSubmit}>
+          Register
         </Button>
         <br />
         <Button type="submit" onClick={this.handleLogout}>

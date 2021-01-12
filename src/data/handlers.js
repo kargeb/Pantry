@@ -1,5 +1,7 @@
 import db, { auth, arrayUnion, arrayRemove } from '../fbase';
-// import db, { auth } from '../fbase';
+
+/* *************************************************** */
+// PRODUCTS AND CATEGORIES
 
 export const addNewProductToDatabase = product => {
   db.collection('users')
@@ -15,13 +17,13 @@ export const setCategoriesDatabaseListener = callback => {
     .doc(auth.currentUser.uid)
     .collection('categories')
     .onSnapshot(querySnapshot => {
-      let categoriesFromDatabes = null;
+      let categoriesFromDatabase = null;
 
       querySnapshot.forEach(doc => {
-        categoriesFromDatabes = [...doc.data().categories];
+        categoriesFromDatabase = [...doc.data().categories];
       });
 
-      callback(categoriesFromDatabes);
+      callback(categoriesFromDatabase);
     });
 };
 
@@ -35,7 +37,6 @@ export const setProductsDatabaseListener = callback => {
 
       querySnapshot.forEach(doc => {
         const newProduct = { ...doc.data() };
-        console.log('DOC DATA:', doc.data());
         downloadedProducts.push(newProduct);
       });
 
@@ -92,5 +93,23 @@ export const removeCategoryfromDatabase = categoryToRemove => {
     })
     .catch(error => {
       console.error('Sth wrong with new category ', error);
+    });
+};
+
+/* *************************************************** */
+// USER AUTHENTICATION
+
+export const logIn = (userName, userPassword) => {
+  return auth
+    .signInWithEmailAndPassword(userName, userPassword)
+    .then(user => {
+      console.log('JESTEM ZALOGOWANY! ', user);
+      console.log('USER EMAIL: ', user.user.email);
+      return user.user.email;
+    })
+    .catch(error => {
+      console.log('BLAD LOGOWANIA:');
+      console.log(error.code, error.message);
+      return error.message;
     });
 };
