@@ -36,21 +36,21 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
     const { login, password } = this.state;
-    console.log('ZE STANU:', login, password);
 
     logIn(login, password).then(resoult => console.log(resoult));
   };
 
   logInAsTestUser = e => {
     e.preventDefault();
-
     const { testLogin, testPassword } = this.state.testUser;
 
-    console.log('LOGGED IN AS TEST USER:', testLogin, testPassword);
-
     logIn(testLogin, testPassword).then(resoult => console.log(resoult));
+  };
+
+  register = e => {
+    e.preventDefault();
+    const { login, password } = this.state;
   };
 
   render() {

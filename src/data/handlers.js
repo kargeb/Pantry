@@ -113,3 +113,24 @@ export const logIn = (userName, userPassword) => {
       return error.message;
     });
 };
+
+export const register = (userName, userPassword) => {
+
+
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((cred) => {
+        console.log('STWORZYLEM UZYTKONIWKA', cred);
+        // console.log(cred);
+        return cred;
+      })
+      .then((cred) => {
+        console.log('CRED z REJESTRACJI: ', cred);
+        // return db.collection('app-users').doc(cred.user.uid).set({ email: cred.user.email });
+        return cred
+      })
+      .then((data) => console.log('Zarejestrowalismy: ', data))
+      .catch((err) => console.log(err));
+  };
+
+}
