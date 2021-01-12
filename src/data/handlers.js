@@ -22,6 +22,8 @@ export const addInitialProductToDatabase = userId => {
     onShoppingList: false,
   };
 
+  console.log('w addinitialProducts To database MAMU USERA O ID:', userId);
+
   return db
     .collection('users')
     .doc(userId)
@@ -97,13 +99,32 @@ export const removeProductFromDatabase = id => {
     });
 };
 
-export const addCategoryToDatabase = newCategories => {
+export const addCategoryToDatabase = newCategory => {
   db.collection('users')
     .doc(auth.currentUser.uid)
     .collection('categories')
     .doc('category')
     .update({
-      categories: arrayUnion(newCategories),
+      categories: arrayUnion(newCategory),
+    })
+    .catch(error => {
+      console.error('Sth wrong with new category ', error);
+    });
+};
+
+export const addInitialCategoryToDatabase = userId => {
+  const initialCategory = { categories: ['others'] };
+
+  console.log('DDOAJEMY KATEGORIES JAKO: ', userId);
+  return db
+    .collection('users')
+    .doc(userId)
+    .collection('categories')
+    .doc('category')
+    .set(initialCategory)
+    .then(res => {
+      console.log('DODALISMY KATEGORIE :', res);
+      return res;
     })
     .catch(error => {
       console.error('Sth wrong with new category ', error);

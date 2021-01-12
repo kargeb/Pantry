@@ -30,7 +30,6 @@ class Root extends React.Component {
 
     return (
       <>
-        {/* {registrationIsPending ? ( */}
         {auth.currentUser ? (
           <App />
         ) : (
@@ -41,11 +40,6 @@ class Root extends React.Component {
         )}
       </>
     );
-    // return (
-    //   <>
-    //     <Authorization userDataLoading={userDataLoading} />
-    //   </>
-    // );
   }
 }
 

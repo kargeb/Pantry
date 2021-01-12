@@ -11,6 +11,7 @@ import {
   logOut,
   registerUserInUsersDatabase,
   registerUserInProductDatabase,
+  addInitialCategoryToDatabase,
   addInitialProductToDatabase,
 } from '../data/handlers';
 
@@ -56,17 +57,24 @@ class Login extends Component {
   register = e => {
     e.preventDefault();
     const { login, password } = this.state;
+    let newUserId = null;
 
     registerUserInUsersDatabase(login, password)
       .then(userId => {
         console.log('ZAREJESTROWANO UZYTKOWNIKA Z ID: ', userId);
-        return userId;
+        newUserId = userId;
+        return newUserId;
       })
       .then(userId => {
-        addInitialProductToDatabase(userId).then(result =>
-          console.log('RESULT OF REGISTRATION:', result),
-        );
-      });
+        console.log('DODAJEMY PRODKT DO BAZY INITIAL z uzytkownikiem:', userId);
+        return addInitialProductToDatabase(userId);
+      })
+      .then(result => {
+        console.log('DODALISMY PRODUKTY DO BAZY, TEARZ KATEGORIE:', result);
+        console.log('A USERID NOWY TO JEST TAKI::', newUserId);
+        return addInitialCategoryToDatabase(newUserId);
+      })
+      .then(result => console.log('KONIEC!!!:', result));
   };
 
   handleLogout = e => {
