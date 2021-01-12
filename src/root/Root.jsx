@@ -6,15 +6,14 @@ import App from './app/App';
 class Root extends React.Component {
   state = {
     userDataLoading: true,
+    registrationIsPending: true,
   };
 
   componentDidMount() {
     this.unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ userDataLoading: false });
-      } else {
-        this.setState({ userDataLoading: false });
-      }
+      console.log('USER z LISTENERA:', user);
+
+      this.setState({ userDataLoading: false });
     });
   }
 
@@ -22,10 +21,25 @@ class Root extends React.Component {
     this.unsubscribe();
   }
 
-  render() {
-    const { userDataLoading } = this.state;
+  changeRegistrationState(isPending) {
+    this.setState({ registrationIsPending: isPending });
+  }
 
-    return <>{auth.currentUser ? <App /> : <Authorization userDataLoading={userDataLoading} />}</>;
+  render() {
+    const { userDataLoading, registrationIsPending } = this.state;
+
+    return (
+      <>
+        {!registrationIsPending ? (
+          <App />
+        ) : (
+          <Authorization
+            changeRegistrationState={this.changeRegistrationState}
+            userDataLoading={userDataLoading}
+          />
+        )}
+      </>
+    );
     // return (
     //   <>
     //     <Authorization userDataLoading={userDataLoading} />

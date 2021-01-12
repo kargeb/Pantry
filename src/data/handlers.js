@@ -114,20 +114,25 @@ export const logIn = (userName, userPassword) => {
     });
 };
 
-export const register = (userName, userPassword) => {
+export const registerUserInUsersDatabase = (userName, userPassword) => {
   return auth
     .createUserWithEmailAndPassword(userName, userPassword)
     .then(cred => {
       console.log('STWORZYLEM UZYTKONIWKA', cred);
       console.log('I MA ON UID: ', cred.user.uid);
       // console.log(cred);
-      return cred;
+      return cred.user.uid;
     })
-    .then(cred => {
-      console.log('CRED z REJESTRACJI: ', cred);
-      return db.collection('users').doc(cred.user.uid);
-      // return cred;
-    })
+    .catch(err => {
+      console.log('BŁONT!: ', err);
+      return err;
+    });
+};
+
+export const registerUserInProductDatabase = ({ id }) => {
+  return db
+    .collection('users')
+    .doc(id)
     .then(data => {
       console.log('Zarejestrowalismy: ', data);
       return data;

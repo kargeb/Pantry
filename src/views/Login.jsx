@@ -6,7 +6,7 @@ import Button from '../components/atoms/buttons/Button';
 import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
-import { logIn, logOut, register } from '../data/handlers';
+import { logIn, logOut, registerUserInUsersDatabase } from '../data/handlers';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -51,8 +51,8 @@ class Login extends Component {
     e.preventDefault();
     const { login, password } = this.state;
 
-    register(login, password).then(cred =>
-      console.log('ZAREJESTROWANO JUZ WIDOCZNIOSC Z APP: ', cred),
+    registerUserInUsersDatabase(login, password).then(userId =>
+      console.log('ZAREJESTROWANO UZYTKOWNIKA Z ID: ', userId),
     );
   };
 
