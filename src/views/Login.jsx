@@ -6,8 +6,14 @@ import Button from '../components/atoms/buttons/Button';
 import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
-import { auth } from '../fbase';
-import { logIn } from '../data/handlers';
+import {
+  logIn,
+  logOut,
+  registerUserInUsersDatabase,
+  registerUserInProductDatabase,
+  addInitialCategoryToDatabase,
+  addInitialProductToDatabase,
+} from '../data/handlers';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -36,21 +42,49 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
     const { login, password } = this.state;
-    console.log('ZE STANU:', login, password);
 
     logIn(login, password).then(resoult => console.log(resoult));
   };
 
   logInAsTestUser = e => {
     e.preventDefault();
-
     const { testLogin, testPassword } = this.state.testUser;
 
-    console.log('LOGGED IN AS TEST USER:', testLogin, testPassword);
-
     logIn(testLogin, testPassword).then(resoult => console.log(resoult));
+  };
+
+  register = e => {
+    e.preventDefault();
+    const { login, password } = this.state;
+    const { setRegistrationStatus } = this.props;
+    let newUserId = null;
+
+    setRegistrationStatus(true);
+
+    registerUserInUsersDatabase(login, password)
+      .then(userId => {
+        console.log('ZAREJESTROWANO UZYTKOWNIKA Z ID: ', userId);
+        newUserId = userId;
+        return newUserId;
+      })
+      .then(userId => {
+        console.log('DODAJEMY PRODKT DO BAZY INITIAL z uzytkownikiem:', userId);
+        return addInitialProductToDatabase(userId);
+      })
+      .then(result => {
+        console.log('DODALISMY PRODUKTY DO BAZY, TEARZ KATEGORIE:', result);
+        console.log('A USERID NOWY TO JEST TAKI::', newUserId);
+        return addInitialCategoryToDatabase(newUserId);
+      })
+      .then(result => {
+        console.log('KONIEC!!!:', result);
+        setRegistrationStatus(false);
+      });
+  };
+
+  handleLogout = e => {
+    logOut();
   };
 
   render() {
@@ -84,7 +118,7 @@ class Login extends Component {
           Login as Test User
         </Button>
         <br />
-        <Button type="submit" onClick={() => {}}>
+        <Button type="submit" onClick={this.register}>
           Register
         </Button>
         <br />
