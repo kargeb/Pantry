@@ -6,8 +6,7 @@ import Button from '../components/atoms/buttons/Button';
 import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
-import { auth } from '../fbase';
-import { logIn } from '../data/handlers';
+import { logIn, register } from '../data/handlers';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -51,6 +50,10 @@ class Login extends Component {
   register = e => {
     e.preventDefault();
     const { login, password } = this.state;
+
+    register(login, password).then(cred =>
+      console.log('ZAREJESTROWANO JUZ WIDOCZNIOSC Z APP: ', cred),
+    );
   };
 
   render() {
@@ -84,7 +87,7 @@ class Login extends Component {
           Login as Test User
         </Button>
         <br />
-        <Button type="submit" onClick={() => {}}>
+        <Button type="submit" onClick={this.register}>
           Register
         </Button>
         <br />
