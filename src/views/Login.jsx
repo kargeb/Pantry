@@ -57,7 +57,10 @@ class Login extends Component {
   register = e => {
     e.preventDefault();
     const { login, password } = this.state;
+    const { setRegistrationStatus } = this.props;
     let newUserId = null;
+
+    setRegistrationStatus(true);
 
     registerUserInUsersDatabase(login, password)
       .then(userId => {
@@ -74,7 +77,10 @@ class Login extends Component {
         console.log('A USERID NOWY TO JEST TAKI::', newUserId);
         return addInitialCategoryToDatabase(newUserId);
       })
-      .then(result => console.log('KONIEC!!!:', result));
+      .then(result => {
+        console.log('KONIEC!!!:', result);
+        setRegistrationStatus(false);
+      });
   };
 
   handleLogout = e => {

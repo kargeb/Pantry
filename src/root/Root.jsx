@@ -1,12 +1,12 @@
 import React from 'react';
 import { auth } from '../fbase';
-import Authorization from './authorization/Authorization';
 import App from './app/App';
+import Authorization from './authorization/Authorization';
 
 class Root extends React.Component {
   state = {
     userDataLoading: true,
-    registrationIsPending: true,
+    registrationIsPending: false,
   };
 
   componentDidMount() {
@@ -21,8 +21,20 @@ class Root extends React.Component {
     this.unsubscribe();
   }
 
-  changeRegistrationState(isPending) {
+  setRegistrationStatus = isPending => {
+    console.log('JESTEM W REGISTRATION I MAM STATUS:', isPending);
     this.setState({ registrationIsPending: isPending });
+  };
+
+  authenticationConfirmed() {
+    const { registrationIsPending } = this.state;
+    let authConfirmed = false;
+
+    if (auth.currentUser && !registrationIsPending) {
+      authConfirmed = true;
+    }
+
+    return authConfirmed;
   }
 
   render() {
@@ -30,11 +42,11 @@ class Root extends React.Component {
 
     return (
       <>
-        {auth.currentUser ? (
+        {this.authenticationConfirmed() ? (
           <App />
         ) : (
           <Authorization
-            changeRegistrationState={this.changeRegistrationState}
+            setRegistrationStatus={this.setRegistrationStatus}
             userDataLoading={userDataLoading}
           />
         )}

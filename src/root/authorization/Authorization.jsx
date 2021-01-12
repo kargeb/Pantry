@@ -17,7 +17,7 @@ const StyledMain = styled.div`
   
 `;
 
-const Authorization = ({ userDataLoading, changeRegistrationState }) => {
+const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
   const imageBackgroundStyles = {
     backgroundImage: `url(${`${process.env.PUBLIC_URL}/pantry.jpg`})`,
     backgroundSize: 'cover',
@@ -35,7 +35,7 @@ const Authorization = ({ userDataLoading, changeRegistrationState }) => {
             </>
           ) : (
             <Modal>
-              <Login changeRegistrationState={changeRegistrationState} />
+              <Login setRegistrationStatus={setRegistrationStatus} />
             </Modal>
           )}
         </StyledMain>
