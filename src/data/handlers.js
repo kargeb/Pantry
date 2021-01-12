@@ -119,14 +119,33 @@ export const register = (userName, userPassword) => {
     .createUserWithEmailAndPassword(userName, userPassword)
     .then(cred => {
       console.log('STWORZYLEM UZYTKONIWKA', cred);
+      console.log('I MA ON UID: ', cred.user.uid);
       // console.log(cred);
       return cred;
     })
     .then(cred => {
       console.log('CRED z REJESTRACJI: ', cred);
-      // return db.collection('app-users').doc(cred.user.uid).set({ email: cred.user.email });
-      return cred;
+      return db.collection('users').doc(cred.user.uid);
+      // return cred;
     })
-    .then(data => console.log('Zarejestrowalismy: ', data))
-    .catch(err => console.log(err));
+    .then(data => {
+      console.log('Zarejestrowalismy: ', data);
+      return data;
+    })
+    .catch(err => {
+      console.log('BŁONT!: ', err);
+      return err;
+    });
+};
+
+export const logOut = () => {
+  auth
+    .signOut()
+    .then(() => {
+      console.log('WYLOGOWANO');
+    })
+    .catch(error => {
+      console.log('Jakis blad');
+      console.log(error);
+    });
 };

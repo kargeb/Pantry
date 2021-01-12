@@ -26,6 +26,11 @@ class Root extends React.Component {
     const { userDataLoading } = this.state;
 
     return <>{auth.currentUser ? <App /> : <Authorization userDataLoading={userDataLoading} />}</>;
+    // return (
+    //   <>
+    //     <Authorization userDataLoading={userDataLoading} />
+    //   </>
+    // );
   }
 }
 

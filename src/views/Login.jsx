@@ -6,7 +6,7 @@ import Button from '../components/atoms/buttons/Button';
 import Label from '../components/atoms/formElements/Label';
 import Alert from '../components/molecules/Alert';
 import Input from '../components/atoms/formElements/Input';
-import { logIn, register } from '../data/handlers';
+import { logIn, logOut, register } from '../data/handlers';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -54,6 +54,10 @@ class Login extends Component {
     register(login, password).then(cred =>
       console.log('ZAREJESTROWANO JUZ WIDOCZNIOSC Z APP: ', cred),
     );
+  };
+
+  handleLogout = e => {
+    logOut();
   };
 
   render() {
