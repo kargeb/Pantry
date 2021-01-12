@@ -4,12 +4,14 @@ import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
 import NewProductForm from '../../forms/newProductForm/NewProductForm';
 
 const Wrapper = styled.div`
+  height: 71px;
   box-sizing: border-box;
   text-align: center;
   padding: 8px 0;
   background-color: ${props => props.theme.background};
 
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    height: 110px;
     padding: 15px 0;
   }
 `;

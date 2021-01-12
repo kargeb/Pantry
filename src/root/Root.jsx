@@ -25,13 +25,7 @@ class Root extends React.Component {
   render() {
     const { userDataLoading } = this.state;
 
-    return (
-      <div>
-        <div>
-          {auth.currentUser ? <App /> : <Authorization userDataLoading={userDataLoading} />}
-        </div>
-      </div>
-    );
+    return <>{auth.currentUser ? <App /> : <Authorization userDataLoading={userDataLoading} />}</>;
   }
 }
 

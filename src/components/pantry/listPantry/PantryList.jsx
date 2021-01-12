@@ -47,9 +47,9 @@ const PantryList = () => {
             <img src={loadingGif} alt="Loading gif" />
           ) : (
             <div>
-              <button type="button" onClick={logout}>
+              {/* <button type="button" onClick={logout}>
                 Wyloguj
-              </button>
+              </button> */}
               <CategoriesList>
                 {getCategoriesFromProducts(products)
                   .sort()

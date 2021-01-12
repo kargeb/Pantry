@@ -13,12 +13,21 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+    html {
+        height: 100%
+    }
+
     body{
         position: relative;
         font-family: 'Roboto', sans-serif;
         ${'' /* max-width: 400px; */}
         margin: 0 auto;
-        height: 100vh;
+        height: 100%;
+        background-color: green;
+    }
+
+    #root{
+        height: 100%
     }
 
     header{
@@ -26,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main{
-        height: calc(100vh - 70px);
+        height: calc(100% - 70px);
     }
 
     ul{
@@ -42,11 +51,13 @@ const GlobalStyle = createGlobalStyle`
       '' /* disable arrow buttons added by browser inside
             Input type="number" in changeQuantityForm  */
     }
-    input[type=number].withoutSpinButtons::-webkit-inner-spin-button,
+    
+      input[type=number].withoutSpinButtons::-webkit-inner-spin-button,
     input[type=number].withoutSpinButtons::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
-    }
+    } 
+    
 
     button {
         outline: none;

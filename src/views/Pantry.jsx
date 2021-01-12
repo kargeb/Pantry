@@ -6,6 +6,8 @@ import ButtonAddProductSection from '../components/pantry/ButtonAddProductSectio
 
 const Main = styled.main`
   display: flex;
+  /* height: calc(100vh-70px); */
+  position: relative;
   padding-top: 5px;
   flex-direction: column;
   justify-content: space-between;
@@ -17,11 +19,17 @@ const Main = styled.main`
   }
 `;
 
+const ScrollContainer = styled.div`
+  height: calc(100% - 71px);
+`;
+
 const Pantry = () => (
   <Main>
-    <ShadowScrollbar style={{ height: '100%' }}>
-      <PantryList />
-    </ShadowScrollbar>
+    <ScrollContainer>
+      <ShadowScrollbar style={{ height: '100%' }}>
+        <PantryList />
+      </ShadowScrollbar>
+    </ScrollContainer>
     <ButtonAddProductSection />
   </Main>
 );
