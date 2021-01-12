@@ -22,6 +22,10 @@ class Login extends Component {
   state = {
     login: 'test@test.p',
     password: 'testtest',
+    testUser: {
+      testLogin: 'test@test.pl',
+      testPassword: 'testtest',
+    },
     isAlertVisible: false,
   };
 
@@ -37,19 +41,16 @@ class Login extends Component {
     console.log('ZE STANU:', login, password);
 
     logIn(login, password).then(resoult => console.log(resoult));
+  };
 
-    // auth
-    //   .signInWithEmailAndPassword(login, password)
-    //   .then(user => {
-    //     console.log('JESTEM ZALOGOWANY! ', user);
-    //     console.log('USER EMAIL: ', user.user.email);
-    //     return user
-    //   })
-    //   .catch(error => {
-    //     console.log('BLAD LOGOWANIA:');
-    //     console.log(error.code, error.message);
-    //     return error
-    //   });
+  logInAsTestUser = e => {
+    e.preventDefault();
+
+    const { testLogin, testPassword } = this.state.testUser;
+
+    console.log('LOGGED IN AS TEST USER:', testLogin, testPassword);
+
+    logIn(testLogin, testPassword).then(resoult => console.log(resoult));
   };
 
   render() {
@@ -79,11 +80,11 @@ class Login extends Component {
           Login
         </Button>
         <br />
-        <Button type="submit" onClick={this.handleSubmit}>
+        <Button type="submit" onClick={this.logInAsTestUser}>
           Login as Test User
         </Button>
         <br />
-        <Button type="submit" onClick={this.handleSubmit}>
+        <Button type="submit" onClick={() => {}}>
           Register
         </Button>
         <br />
