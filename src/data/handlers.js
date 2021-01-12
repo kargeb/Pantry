@@ -11,6 +11,33 @@ export const addNewProductToDatabase = product => {
     .set(product);
 };
 
+export const addInitialProductToDatabase = userId => {
+  const initialProduct = {
+    id: '9bb55edg-23d2-228f-bb04-f71dr231e57c',
+    name: 'Flour',
+    quantity: 2,
+    unit: 'kg',
+    category: 'food',
+    min: 2,
+    onShoppingList: false,
+  };
+
+  return db
+    .collection('users')
+    .doc(userId)
+    .collection('products')
+    .doc(initialProduct.id)
+    .set(initialProduct)
+    .then(data => {
+      console.log('Zarejestrowalismy: ', data);
+      return data;
+    })
+    .catch(err => {
+      console.log('BŁONT!: ', err);
+      return err;
+    });
+};
+
 export const setCategoriesDatabaseListener = callback => {
   return db
     .collection('users')
@@ -129,7 +156,7 @@ export const registerUserInUsersDatabase = (userName, userPassword) => {
     });
 };
 
-export const registerUserInProductDatabase = ({ id }) => {
+export const registerUserInProductDatabase = id => {
   return db
     .collection('users')
     .doc(id)

@@ -30,7 +30,8 @@ class Root extends React.Component {
 
     return (
       <>
-        {!registrationIsPending ? (
+        {/* {registrationIsPending ? ( */}
+        {auth.currentUser ? (
           <App />
         ) : (
           <Authorization
