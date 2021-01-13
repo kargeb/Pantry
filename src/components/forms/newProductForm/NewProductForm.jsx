@@ -10,7 +10,11 @@ import InputMin from '../../pantry/FormPantryProduct/components/InputMin';
 import InputQuantity from '../../pantry/FormPantryProduct/components/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import { addNewProductToDatabase } from '../../../data/handlers';
-import { checkForEmptyValues, setErrorMessages, checkForPositiveIntegers } from '../../../helpers';
+import {
+  checkForEmptyValues,
+  setErrorMessages,
+  checkForPositiveIntegers,
+} from '../../../helpers';
 
 class NewProductForm extends React.Component {
   constructor(props) {
@@ -54,7 +58,7 @@ class NewProductForm extends React.Component {
 
   handleSubmit = () => {
     const { name, quantity, category, min, unit, id } = this.state;
-    const { toggleFormVisibility } = this.props;
+    const { toggleFormVisibility, toggleChangeQuantityModal } = this.props;
 
     if (this.formHasEmptyFields()) {
       return;
@@ -76,57 +80,38 @@ class NewProductForm extends React.Component {
 
     addNewProductToDatabase(newProduct);
     toggleFormVisibility();
-    this.props.toggleChangeQuantityModal();
+    if (toggleChangeQuantityModal) {
+      toggleChangeQuantityModal();
+    }
   };
 
   formHasEmptyFields = () => {
     const { name, quantity, category, min, unit } = this.state;
 
-    const emptyFieldsNames = checkForEmptyValues({ name, quantity, category, min, unit });
+    const emptyFieldsNames = checkForEmptyValues({
+      name,
+      quantity,
+      category,
+      min,
+      unit,
+    });
 
     if (emptyFieldsNames.length === 0) {
       return false;
     }
 
-    console.log('MAM YPUSTE POLA:', emptyFieldsNames);
-    const errorMessages = setErrorMessages(emptyFieldsNames, 'Nie moze byc puste!');
-    console.log('mamy error Messages takie:', errorMessages);
+    const errorMessages = setErrorMessages(
+      emptyFieldsNames,
+      'Nie moze byc puste!',
+    );
 
     this.setState({ errorMessages });
 
     return true;
   };
 
-  // formHasEmptyFields = () => {
-  //   const { name, quantity, category, min, unit } = this.state;
-  //   let formHasEmptyFields = false;
-  //   const currentErrorMessages = this.resetErrorMessages();
-
-  //   const formFields = {
-  //     min: String(min),
-  //     name: name.trim(),
-  //     unit: unit.trim(),
-  //     category: category.trim(),
-  //     quantity: String(quantity),
-  //   };
-
-  //   Object.entries(formFields).forEach(field => {
-  //     const [key, value] = field;
-  //     if (value.length === 0) {
-  //       currentErrorMessages[key] = 'Nie moze byc puste!';
-  //       formHasEmptyFields = true;
-  //     }
-  //   });
-
-  //   this.setState({ errorMessages: currentErrorMessages });
-
-  //   return formHasEmptyFields;
-  // };
-
   numberPropertiesAreIncorrect = () => {
     const { quantity, min } = this.state;
-    // let thereAreWrongProperties = false;
-    // const currentErrorMessages = this.resetErrorMessages();
 
     const nonPositiveIntegers = checkForPositiveIntegers({ quantity, min });
 
@@ -134,28 +119,14 @@ class NewProductForm extends React.Component {
       return false;
     }
 
-    console.log('MAMY ZLE LICZBY!:', nonPositiveIntegers);
-    const errorMessages = setErrorMessages(nonPositiveIntegers, 'LICZBA MUSI BYC DODATNIA!');
-    console.log('mamy error Messages takie:', errorMessages);
+    const errorMessages = setErrorMessages(
+      nonPositiveIntegers,
+      'LICZBA MUSI BYC DODATNIA!',
+    );
 
     this.setState({ errorMessages });
 
     return true;
-
-    // Object.entries(product).forEach(property => {
-    //   const [key, value] = property;
-
-    //   if (key === 'min' || key === 'quantity') {
-    //     if (!Number.isInteger(value) || value < 0) {
-    //       currentErrorMessages[key] = 'Incorrect number!';
-    //       thereAreWrongProperties = true;
-    //     }
-    //   }
-    // });
-
-    // this.setState({ errorMessages: currentErrorMessages });
-
-    // return thereAreWrongProperties;
   };
 
   resetState = () => {
@@ -187,13 +158,21 @@ class NewProductForm extends React.Component {
     return (
       <Modal>
         <H1 marginBottomDouble>New product</H1>
-        <InputName handleForm={this.handleForm} name={name} errorMessage={errorMessages.name} />
+        <InputName
+          handleForm={this.handleForm}
+          name={name}
+          errorMessage={errorMessages.name}
+        />
         <SelectCategory
           handleForm={this.handleForm}
           category={category}
           errorMessage={errorMessages.category}
         />
-        <SelectUnit handleForm={this.handleForm} unit={unit} errorMessage={errorMessages.unit} />
+        <SelectUnit
+          handleForm={this.handleForm}
+          unit={unit}
+          errorMessage={errorMessages.unit}
+        />
         <InputMin
           handleForm={this.handleForm}
           min={min}

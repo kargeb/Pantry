@@ -10,12 +10,17 @@ import {
   addInitialCategoryToDatabase,
   addInitialProductToDatabase,
 } from '../../../../data/handlers';
+import { checkForEmptyValues, setErrorMessages } from '../../../../helpers';
 
 class RegistrationForm extends Component {
   state = {
     login: '',
     password: '',
     isAlertVisible: false,
+    errorMessages: {
+      login: '',
+      password: '',
+    },
   };
 
   handleForm = e => {
@@ -26,6 +31,16 @@ class RegistrationForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { login, password } = this.state;
+
+    const emptyFieldsNames = checkForEmptyValues({ login, password });
+
+    if (emptyFieldsNames.length !== 0) {
+      const errorMessages = setErrorMessages(emptyFieldsNames, 'Nie moze byc puste!');
+
+      this.setState({ errorMessages });
+      return false;
+    }
+
     const { setRegistrationStatus } = this.props;
     let newUserId = null;
 
@@ -50,7 +65,7 @@ class RegistrationForm extends Component {
   };
 
   render() {
-    const { login, password } = this.state;
+    const { login, password, errorMessages } = this.state;
 
     return (
       <Modal>
@@ -59,6 +74,7 @@ class RegistrationForm extends Component {
           Email
         </Label>
         <Input type="text" id="login" name="login" value={login} onChange={this.handleForm} />
+        {errorMessages.login && <p>{errorMessages.login}</p>}
         <Label htmlFor="password" alignLeft>
           Hasło
         </Label>
@@ -70,6 +86,7 @@ class RegistrationForm extends Component {
           onChange={this.handleForm}
         />
         <br />
+        {errorMessages.password && <p>{errorMessages.password}</p>}
         <Button type="submit" onClick={this.handleSubmit}>
           Zarejestruj
         </Button>

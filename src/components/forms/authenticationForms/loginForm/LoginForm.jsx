@@ -7,6 +7,7 @@ import Button from '../../../atoms/buttons/Button';
 import Label from '../../../atoms/formElements/Label';
 import Input from '../../../atoms/formElements/Input';
 import { logIn, logOut } from '../../../../data/handlers';
+import { checkForEmptyValues, setErrorMessages } from '../../../../helpers';
 
 class LoginForm extends Component {
   state = {
@@ -17,6 +18,10 @@ class LoginForm extends Component {
       testPassword: 'testtest',
     },
     isAlertVisible: false,
+    errorMessages: {
+      login: '',
+      password: '',
+    },
   };
 
   handleForm = e => {
@@ -27,6 +32,15 @@ class LoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { login, password } = this.state;
+
+    const emptyFieldsNames = checkForEmptyValues({ login, password });
+
+    if (emptyFieldsNames.length !== 0) {
+      const errorMessages = setErrorMessages(emptyFieldsNames, 'Nie moze byc puste!');
+
+      this.setState({ errorMessages });
+      return false;
+    }
 
     logIn(login, password).then(resoult => console.log(resoult));
   };
@@ -43,7 +57,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { login, password } = this.state;
+    const { login, password, errorMessages } = this.state;
 
     return (
       <Modal>
@@ -52,6 +66,7 @@ class LoginForm extends Component {
           Email
         </Label>
         <Input type="text" id="login" name="login" value={login} onChange={this.handleForm} />
+        {errorMessages.login && <p>{errorMessages.login}</p>}
         <Label htmlFor="password" alignLeft>
           Hasło
         </Label>
@@ -62,6 +77,7 @@ class LoginForm extends Component {
           value={password}
           onChange={this.handleForm}
         />
+        {errorMessages.password && <p>{errorMessages.password}</p>}
         <br />
         <Button type="submit" onClick={this.handleSubmit}>
           Login
