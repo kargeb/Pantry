@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
-import LoginForm from '../../components/forms/authenticationForm/loginForm/LoginForm';
+import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
+import RegistrationForm from '../../components/forms/authenticationForms/registrationForm/RegistrationForm';
 import Loading from '../../views/Loading';
 
 const StyledMain = styled.div`
@@ -22,20 +24,33 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
   };
 
   return (
-    <div style={imageBackgroundStyles}>
-      <ThemeProvider theme={{ ...defaultTheme, ...lightTheme }}>
-        <GlobalStyle />
-        <StyledMain>
-          {userDataLoading ? (
-            <>
-              <Loading />
-            </>
-          ) : (
-            <LoginForm setRegistrationStatus={setRegistrationStatus} />
-          )}
-        </StyledMain>
-      </ThemeProvider>
-    </div>
+    <Router>
+      <div style={imageBackgroundStyles}>
+        <ThemeProvider theme={{ ...defaultTheme, ...lightTheme }}>
+          <GlobalStyle />
+          <StyledMain>
+            {userDataLoading ? (
+              <>
+                <Loading />
+              </>
+            ) : (
+              <Switch>
+                <Route exact path="/" component={LoginForm} />
+                <Route path="/pantry" component={LoginForm} />
+                {/* <Route path="/register" component={RegistrationForm} /> */}
+                <Route
+                  path="/register"
+                  render={props => (
+                    <RegistrationForm {...props} setRegistrationStatus={setRegistrationStatus} />
+                  )}
+                />
+                <Route component={LoginForm} />
+              </Switch>
+            )}
+          </StyledMain>
+        </ThemeProvider>
+      </div>
+    </Router>
   );
 };
 

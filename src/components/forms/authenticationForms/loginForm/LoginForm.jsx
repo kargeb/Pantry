@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Modal from '../../../templates/Modal';
 import H1 from '../../../atoms/texts/H1';
 import Button from '../../../atoms/buttons/Button';
@@ -70,9 +71,11 @@ class LoginForm extends Component {
           Login as Test User
         </Button>
         <br />
-        <Button type="submit" onClick={() => {}}>
-          Zarejestruj nowe konto ->
-        </Button>
+        <Link to="/register">
+          <Button type="button" onClick={() => {}}>
+            Rejestracja
+          </Button>
+        </Link>
         <br />
         <Button type="submit" onClick={this.handleLogout}>
           Wyloguj

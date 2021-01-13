@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Modal from '../../../templates/Modal';
 import H1 from '../../../atoms/texts/H1';
 import Button from '../../../atoms/buttons/Button';
@@ -22,20 +22,6 @@ class RegistrationForm extends Component {
     const { value } = e.target;
     this.setState({ [e.target.name]: value });
   };
-
-//   handleSubmit = e => {
-//     e.preventDefault();
-//     const { login, password } = this.state;
-
-//     logIn(login, password).then(resoult => console.log(resoult));
-//   };
-
-//   logInAsTestUser = e => {
-//     e.preventDefault();
-//     const { testLogin, testPassword } = this.state.testUser;
-
-//     logIn(testLogin, testPassword).then(resoult => console.log(resoult));
-//   };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -87,10 +73,12 @@ class RegistrationForm extends Component {
         <Button type="submit" onClick={this.handleSubmit}>
           Zarejestruj
         </Button>
-       <br />
-        <Button type="submit" onClick={this.handleLogout}>
-          <- Powrót do logowania
-        </Button>
+        <br />
+        <Link to="/login">
+          <Button type="button" onClick={this.handleLogout}>
+            Powrót do logowania
+          </Button>
+        </Link>
       </Modal>
     );
   }
