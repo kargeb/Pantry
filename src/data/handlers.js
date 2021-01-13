@@ -14,10 +14,10 @@ export const addNewProductToDatabase = product => {
 export const addInitialProductToDatabase = userId => {
   const initialProduct = {
     id: '9bb55edg-23d2-228f-bb04-f71dr231e57c',
-    name: 'Flour',
+    name: 'Your first product',
     quantity: 2,
     unit: 'kg',
-    category: 'food',
+    category: 'others',
     min: 2,
     onShoppingList: false,
   };

@@ -1,11 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
-import Button from '../../components/atoms/buttons/Button';
-import Login from '../../views/Login';
+import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
+import RegistrationForm from '../../components/forms/authenticationForms/registrationForm/RegistrationForm';
 import Loading from '../../views/Loading';
-import Modal from '../../components/templates/Modal';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -14,7 +14,6 @@ const StyledMain = styled.div`
   background-size: cover;
   background-position: bottom;
   /* background-image: url(${props => props.pantry}); */
-  
 `;
 
 const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
@@ -25,22 +24,33 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
   };
 
   return (
-    <div style={imageBackgroundStyles}>
-      <ThemeProvider theme={{ ...defaultTheme, ...lightTheme }}>
-        <GlobalStyle />
-        <StyledMain>
-          {userDataLoading ? (
-            <>
-              <Loading />
-            </>
-          ) : (
-            <Modal>
-              <Login setRegistrationStatus={setRegistrationStatus} />
-            </Modal>
-          )}
-        </StyledMain>
-      </ThemeProvider>
-    </div>
+    <Router>
+      <div style={imageBackgroundStyles}>
+        <ThemeProvider theme={{ ...defaultTheme, ...lightTheme }}>
+          <GlobalStyle />
+          <StyledMain>
+            {userDataLoading ? (
+              <>
+                <Loading />
+              </>
+            ) : (
+              <Switch>
+                <Route exact path="/" component={LoginForm} />
+                <Route path="/pantry" component={LoginForm} />
+                {/* <Route path="/register" component={RegistrationForm} /> */}
+                <Route
+                  path="/register"
+                  render={props => (
+                    <RegistrationForm {...props} setRegistrationStatus={setRegistrationStatus} />
+                  )}
+                />
+                <Route component={LoginForm} />
+              </Switch>
+            )}
+          </StyledMain>
+        </ThemeProvider>
+      </div>
+    </Router>
   );
 };
 

@@ -29,15 +29,20 @@ const SelectUnit = ({ handleForm, unit, errorMessage }) => {
           <option value="g">g</option>
         </Select>
       </InputHorizontalWrapper>
-      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+      {/* {errorMessage.length !== 0 && <p>{errorMessage}</p>} */}
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
+};
+
+SelectUnit.defaultProps = {
+  errorMessage: '',
 };
 
 SelectUnit.propTypes = {
   handleForm: PropTypes.func.isRequired,
   unit: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
 };
 
 export default SelectUnit;

@@ -10,18 +10,25 @@ import InputMin from '../../pantry/FormPantryProduct/components/InputMin';
 import InputQuantity from '../../pantry/FormPantryProduct/components/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import { addNewProductToDatabase } from '../../../data/handlers';
+import {
+  checkForEmptyValues,
+  setErrorMessages,
+  checkForPositiveIntegers,
+} from '../../../helpers';
 
 class NewProductForm extends React.Component {
   constructor(props) {
     super(props);
+    // props for edited product
     const { min, name, quantity, unit, category } = props;
+    // initial values for new product are in defaultProps
     this.state = {
       min,
       name,
       quantity,
       unit,
       category,
-      // because of problem with uuidv4() in defaultProps
+      // conditional is here because of problem with uuidv4() in defaultProps
       id: props.id || uuidv4(),
 
       errorMessages: {
@@ -41,6 +48,85 @@ class NewProductForm extends React.Component {
     if (prohibitedCharacters.includes(e.key)) {
       e.preventDefault();
     }
+  };
+
+  handleForm = e => {
+    // all validation is in handleSubmit
+    const { value, id } = e.target;
+    this.setState({ [id]: value });
+  };
+
+  handleSubmit = () => {
+    const { name, quantity, category, min, unit, id } = this.state;
+    const { toggleFormVisibility, toggleChangeQuantityModal } = this.props;
+
+    if (this.formHasEmptyFields()) {
+      return;
+    }
+
+    if (this.numberPropertiesAreIncorrect()) {
+      return;
+    }
+
+    const newProduct = {
+      name,
+      quantity: Number(quantity),
+      category,
+      min: Number(min),
+      unit,
+      onShoppingList: Boolean(quantity < min),
+      id,
+    };
+
+    addNewProductToDatabase(newProduct);
+    toggleFormVisibility();
+    if (toggleChangeQuantityModal) {
+      toggleChangeQuantityModal();
+    }
+  };
+
+  formHasEmptyFields = () => {
+    const { name, quantity, category, min, unit } = this.state;
+
+    const emptyFieldsNames = checkForEmptyValues({
+      name,
+      quantity,
+      category,
+      min,
+      unit,
+    });
+
+    if (emptyFieldsNames.length === 0) {
+      return false;
+    }
+
+    const errorMessages = setErrorMessages(
+      emptyFieldsNames,
+      'Nie moze byc puste!',
+    );
+
+    this.setState({ errorMessages });
+
+    return true;
+  };
+
+  numberPropertiesAreIncorrect = () => {
+    const { quantity, min } = this.state;
+
+    const nonPositiveIntegers = checkForPositiveIntegers({ quantity, min });
+
+    if (nonPositiveIntegers.length === 0) {
+      return false;
+    }
+
+    const errorMessages = setErrorMessages(
+      nonPositiveIntegers,
+      'LICZBA MUSI BYC DODATNIA!',
+    );
+
+    this.setState({ errorMessages });
+
+    return true;
   };
 
   resetState = () => {
@@ -65,83 +151,6 @@ class NewProductForm extends React.Component {
     return { ...errorMessages };
   };
 
-  handleForm = e => {
-    const { value, id } = e.target;
-    this.setState({ [id]: value });
-  };
-
-  formHasEmptyFields = () => {
-    const { name, quantity, category, min, unit } = this.state;
-    let formHasEmptyFields = false;
-    const currentErrorMessages = this.resetErrorMessages();
-
-    const formFields = {
-      min: String(min),
-      name: name.trim(),
-      unit: unit.trim(),
-      category: category.trim(),
-      quantity: String(quantity),
-    };
-
-    Object.entries(formFields).forEach(field => {
-      const [key, value] = field;
-      if (value.length === 0) {
-        currentErrorMessages[key] = 'Nie moze byc puste!';
-        formHasEmptyFields = true;
-      }
-    });
-
-    this.setState({ errorMessages: currentErrorMessages });
-
-    return formHasEmptyFields;
-  };
-
-  numberPropertiesAreWrong = product => {
-    let thereAreWrongProperties = false;
-    const currentErrorMessages = this.resetErrorMessages();
-
-    Object.entries(product).forEach(property => {
-      const [key, value] = property;
-
-      if (key === 'min' || key === 'quantity') {
-        if (!Number.isInteger(value) || value < 0) {
-          currentErrorMessages[key] = 'Incorrect number!';
-          thereAreWrongProperties = true;
-        }
-      }
-    });
-
-    this.setState({ errorMessages: currentErrorMessages });
-
-    return thereAreWrongProperties;
-  };
-
-  handleSubmit = () => {
-    const { name, quantity, category, min, unit, id } = this.state;
-    const { toggleFormVisibility } = this.props;
-
-    if (this.formHasEmptyFields()) {
-      return;
-    }
-
-    const newProduct = {
-      name,
-      quantity: Number(quantity),
-      category,
-      min: Number(min),
-      unit,
-      onShoppingList: Boolean(quantity < min),
-      id,
-    };
-
-    if (this.numberPropertiesAreWrong(newProduct)) {
-      return;
-    }
-
-    addNewProductToDatabase(newProduct);
-    toggleFormVisibility();
-  };
-
   render() {
     const { toggleFormVisibility } = this.props;
     const { name, quantity, unit, min, category, errorMessages } = this.state;
@@ -149,13 +158,21 @@ class NewProductForm extends React.Component {
     return (
       <Modal>
         <H1 marginBottomDouble>New product</H1>
-        <InputName handleForm={this.handleForm} name={name} errorMessage={errorMessages.name} />
+        <InputName
+          handleForm={this.handleForm}
+          name={name}
+          errorMessage={errorMessages.name}
+        />
         <SelectCategory
           handleForm={this.handleForm}
           category={category}
           errorMessage={errorMessages.category}
         />
-        <SelectUnit handleForm={this.handleForm} unit={unit} errorMessage={errorMessages.unit} />
+        <SelectUnit
+          handleForm={this.handleForm}
+          unit={unit}
+          errorMessage={errorMessages.unit}
+        />
         <InputMin
           handleForm={this.handleForm}
           min={min}

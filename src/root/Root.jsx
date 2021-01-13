@@ -7,13 +7,14 @@ class Root extends React.Component {
   state = {
     userDataLoading: true,
     registrationIsPending: false,
+    authenticationConfirmed: false,
   };
 
   componentDidMount() {
-    this.unsubscribe = auth.onAuthStateChanged(user => {
-      console.log('USER z LISTENERA:', user);
+    this.unsubscribe = auth.onAuthStateChanged(() => {
+      // console.log('USER z LISTENERA:', user);
 
-      this.setState({ userDataLoading: false });
+      this.setState({ userDataLoading: false }, () => this.checkAuthentication());
     });
   }
 
@@ -22,27 +23,31 @@ class Root extends React.Component {
   }
 
   setRegistrationStatus = isPending => {
-    console.log('JESTEM W REGISTRATION I MAM STATUS:', isPending);
-    this.setState({ registrationIsPending: isPending });
+    // console.log('JESTEM W REGISTRATION I MAM STATUS:', isPending);
+    this.setState({ registrationIsPending: isPending }, () => this.checkAuthentication());
   };
 
-  authenticationConfirmed() {
+  checkAuthentication() {
     const { registrationIsPending } = this.state;
-    let authConfirmed = false;
 
     if (auth.currentUser && !registrationIsPending) {
-      authConfirmed = true;
+      // console.log('auth.currentUser z AUHENITE: ', auth.currentUser);
+      // console.log('!registrationIsPending z AUHENITE', !registrationIsPending);
+      this.setState({ authenticationConfirmed: true });
+    } else {
+      // console.log('NIE JESTEM SPOELNIONYM ATHENITACTEM');
+      // console.log('auth.currentUser z AUHENITE: ', auth.currentUser);
+      // console.log('!registrationIsPending z AUHENITE', !registrationIsPending);
+      this.setState({ authenticationConfirmed: false });
     }
-
-    return authConfirmed;
   }
 
   render() {
-    const { userDataLoading, registrationIsPending } = this.state;
+    const { userDataLoading, authenticationConfirmed } = this.state;
 
     return (
       <>
-        {this.authenticationConfirmed() ? (
+        {authenticationConfirmed ? (
           <App />
         ) : (
           <Authorization

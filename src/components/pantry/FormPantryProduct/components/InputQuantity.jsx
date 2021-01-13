@@ -29,15 +29,20 @@ const InputQuantity = ({ handleForm, quantity, preventProhibitedCharacters, erro
           min="0"
         />
       </InputHorizontalWrapper>
-      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+      {/* {errorMessage.length !== 0 && <p>{errorMessage}</p>} */}
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
+};
+
+InputQuantity.defaultProps = {
+  errorMessage: '',
 };
 
 InputQuantity.propTypes = {
   handleForm: PropTypes.func.isRequired,
   preventProhibitedCharacters: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
   quantity: PropTypes.any.isRequired,
 };
 
