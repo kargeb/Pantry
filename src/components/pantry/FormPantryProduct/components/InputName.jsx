@@ -17,15 +17,19 @@ const InputName = ({ handleForm, name, errorMessage }) => {
         <Label htmlFor="name">Name</Label>
         <Input id="name" type="text" onChange={handleForm} value={name} />
       </InputVerticalWrapper>
-      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
+};
+
+InputName.defaultProps = {
+  errorMessage: '',
 };
 
 InputName.propTypes = {
   handleForm: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
 };
 
 export default InputName;
