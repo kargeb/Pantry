@@ -10,19 +10,9 @@ import {
   logIn,
   logOut,
   registerUserInUsersDatabase,
-  registerUserInProductDatabase,
   addInitialCategoryToDatabase,
   addInitialProductToDatabase,
 } from '../data/handlers';
-
-const StyledMain = styled.div`
-  height: 100vh;
-  width: 100vw;
-  color: ${props => props.theme.textPrimary};
-  background-size: cover;
-  background-position: bottom;
-  /* background-image: url(${props => props.pantry}); */
-`;
 
 class Login extends Component {
   state = {
@@ -63,22 +53,19 @@ class Login extends Component {
     setRegistrationStatus(true);
 
     registerUserInUsersDatabase(login, password)
-      .then(userId => {
-        console.log('ZAREJESTROWANO UZYTKOWNIKA Z ID: ', userId);
-        newUserId = userId;
+      .then(idObtainedFromDatabase => {
+        newUserId = idObtainedFromDatabase;
         return newUserId;
       })
-      .then(userId => {
-        console.log('DODAJEMY PRODKT DO BAZY INITIAL z uzytkownikiem:', userId);
-        return addInitialProductToDatabase(userId);
+      .then(() => {
+        //  new user registration in ProductsDatabase is done by adding first product
+        return addInitialProductToDatabase(newUserId);
       })
-      .then(result => {
-        console.log('DODALISMY PRODUKTY DO BAZY, TEARZ KATEGORIE:', result);
-        console.log('A USERID NOWY TO JEST TAKI::', newUserId);
+      .then(() => {
         return addInitialCategoryToDatabase(newUserId);
       })
-      .then(result => {
-        console.log('KONIEC!!!:', result);
+      .then(() => {
+        console.log('Registration succeeded');
         setRegistrationStatus(false);
       });
   };
@@ -91,9 +78,7 @@ class Login extends Component {
     const { isAlertVisible, login, password } = this.state;
 
     return (
-      // <StyledMain>
-      // <Modal>
-      <>
+      <Modal>
         <H1 marginBottomDouble>Logowanie</H1>
         <Label htmlFor="login" alignLeft>
           Email
@@ -126,9 +111,7 @@ class Login extends Component {
           Wyloguj
         </Button>
         {isAlertVisible && <Alert>There are empty fields!</Alert>}
-      </>
-      // </Modal>
-      // </StyledMain>
+      </Modal>
     );
   }
 }

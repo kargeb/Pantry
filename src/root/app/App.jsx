@@ -45,23 +45,6 @@ class App extends React.Component {
     });
   };
 
-  // SelectNamesOfCategoriesContainingProducts = () => {
-  //   const {products} = this.state;
-  //   const NamesOfCategoriesContainingProducts = [];
-
-  //   console.log('JESTEM W funkcji, products:', products);
-  //   products.forEach(product => {
-  //     if (!NamesOfCategoriesContainingProducts.includes(product.category)) {
-  //       console.log('JESTEM W PETLI');
-  //       NamesOfCategoriesContainingProducts.push(product.category);
-  //     }
-  //   });
-
-  //   console.log('koniec petli: categories:', NamesOfCategoriesContainingProducts);
-
-  //   return NamesOfCategoriesContainingProducts;
-  // };
-
   render() {
     const { currentTheme } = this.state;
     const contextElements = {
