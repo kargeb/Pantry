@@ -76,6 +76,7 @@ class NewProductForm extends React.Component {
 
     addNewProductToDatabase(newProduct);
     toggleFormVisibility();
+    this.props.toggleChangeQuantityModal();
   };
 
   formHasEmptyFields = () => {
