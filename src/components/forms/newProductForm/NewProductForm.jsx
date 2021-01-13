@@ -10,6 +10,7 @@ import InputMin from '../../pantry/FormPantryProduct/components/InputMin';
 import InputQuantity from '../../pantry/FormPantryProduct/components/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import { addNewProductToDatabase } from '../../../data/handlers';
+import { checkForEmptyValues, setErrorMessages, checkForPositiveIntegers } from '../../../helpers';
 
 class NewProductForm extends React.Component {
   constructor(props) {
@@ -59,6 +60,10 @@ class NewProductForm extends React.Component {
       return;
     }
 
+    if (this.numberPropertiesAreIncorrect()) {
+      return;
+    }
+
     const newProduct = {
       name,
       quantity: Number(quantity),
@@ -69,58 +74,87 @@ class NewProductForm extends React.Component {
       id,
     };
 
-    if (this.numberPropertiesAreIncorrect(newProduct)) {
-      return;
-    }
-
     addNewProductToDatabase(newProduct);
     toggleFormVisibility();
   };
 
   formHasEmptyFields = () => {
     const { name, quantity, category, min, unit } = this.state;
-    let formHasEmptyFields = false;
-    const currentErrorMessages = this.resetErrorMessages();
 
-    const formFields = {
-      min: String(min),
-      name: name.trim(),
-      unit: unit.trim(),
-      category: category.trim(),
-      quantity: String(quantity),
-    };
+    const emptyFieldsNames = checkForEmptyValues({ name, quantity, category, min, unit });
 
-    Object.entries(formFields).forEach(field => {
-      const [key, value] = field;
-      if (value.length === 0) {
-        currentErrorMessages[key] = 'Nie moze byc puste!';
-        formHasEmptyFields = true;
-      }
-    });
+    if (emptyFieldsNames.length === 0) {
+      return false;
+    }
 
-    this.setState({ errorMessages: currentErrorMessages });
+    console.log('MAM YPUSTE POLA:', emptyFieldsNames);
+    const errorMessages = setErrorMessages(emptyFieldsNames, 'Nie moze byc puste!');
+    console.log('mamy error Messages takie:', errorMessages);
 
-    return formHasEmptyFields;
+    this.setState({ errorMessages });
+
+    return true;
   };
 
-  numberPropertiesAreIncorrect = product => {
-    let thereAreWrongProperties = false;
-    const currentErrorMessages = this.resetErrorMessages();
+  // formHasEmptyFields = () => {
+  //   const { name, quantity, category, min, unit } = this.state;
+  //   let formHasEmptyFields = false;
+  //   const currentErrorMessages = this.resetErrorMessages();
 
-    Object.entries(product).forEach(property => {
-      const [key, value] = property;
+  //   const formFields = {
+  //     min: String(min),
+  //     name: name.trim(),
+  //     unit: unit.trim(),
+  //     category: category.trim(),
+  //     quantity: String(quantity),
+  //   };
 
-      if (key === 'min' || key === 'quantity') {
-        if (!Number.isInteger(value) || value < 0) {
-          currentErrorMessages[key] = 'Incorrect number!';
-          thereAreWrongProperties = true;
-        }
-      }
-    });
+  //   Object.entries(formFields).forEach(field => {
+  //     const [key, value] = field;
+  //     if (value.length === 0) {
+  //       currentErrorMessages[key] = 'Nie moze byc puste!';
+  //       formHasEmptyFields = true;
+  //     }
+  //   });
 
-    this.setState({ errorMessages: currentErrorMessages });
+  //   this.setState({ errorMessages: currentErrorMessages });
 
-    return thereAreWrongProperties;
+  //   return formHasEmptyFields;
+  // };
+
+  numberPropertiesAreIncorrect = () => {
+    const { quantity, min } = this.state;
+    // let thereAreWrongProperties = false;
+    // const currentErrorMessages = this.resetErrorMessages();
+
+    const nonPositiveIntegers = checkForPositiveIntegers({ quantity, min });
+
+    if (nonPositiveIntegers.length === 0) {
+      return false;
+    }
+
+    console.log('MAMY ZLE LICZBY!:', nonPositiveIntegers);
+    const errorMessages = setErrorMessages(nonPositiveIntegers, 'LICZBA MUSI BYC DODATNIA!');
+    console.log('mamy error Messages takie:', errorMessages);
+
+    this.setState({ errorMessages });
+
+    return true;
+
+    // Object.entries(product).forEach(property => {
+    //   const [key, value] = property;
+
+    //   if (key === 'min' || key === 'quantity') {
+    //     if (!Number.isInteger(value) || value < 0) {
+    //       currentErrorMessages[key] = 'Incorrect number!';
+    //       thereAreWrongProperties = true;
+    //     }
+    //   }
+    // });
+
+    // this.setState({ errorMessages: currentErrorMessages });
+
+    // return thereAreWrongProperties;
   };
 
   resetState = () => {
