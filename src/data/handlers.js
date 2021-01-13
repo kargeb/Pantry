@@ -112,6 +112,31 @@ export const addCategoryToDatabase = newCategory => {
     });
 };
 
+export const uploadSampleProductsAndCategories = () => {
+  const sampleCategories = [
+    'sweets',
+    'fruits',
+    'vegetables',
+    'cosmetics',
+    'sweets',
+    'food',
+    'beverages/spirits',
+  ];
+
+  db.collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .doc('category')
+    .update({
+      categories: arrayUnion(...sampleCategories),
+    })
+    .then(() => console.log('DDOANO SAMPLE CATEGORIES'))
+    .catch(error => {
+      console.error('Sth wrong with SAMPLE new category ', error);
+    })
+    .then(() => {});
+};
+
 export const addInitialCategoryToDatabase = userId => {
   const initialCategory = { categories: ['others'] };
 
