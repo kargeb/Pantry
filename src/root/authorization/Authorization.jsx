@@ -2,10 +2,8 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
-import Button from '../../components/atoms/buttons/Button';
-import Login from '../../views/Login';
+import LoginForm from '../../components/forms/authenticationForm/loginForm/LoginForm';
 import Loading from '../../views/Loading';
-import Modal from '../../components/templates/Modal';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -14,7 +12,6 @@ const StyledMain = styled.div`
   background-size: cover;
   background-position: bottom;
   /* background-image: url(${props => props.pantry}); */
-  
 `;
 
 const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
@@ -34,9 +31,7 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
               <Loading />
             </>
           ) : (
-            <Modal>
-              <Login setRegistrationStatus={setRegistrationStatus} />
-            </Modal>
+            <LoginForm setRegistrationStatus={setRegistrationStatus} />
           )}
         </StyledMain>
       </ThemeProvider>

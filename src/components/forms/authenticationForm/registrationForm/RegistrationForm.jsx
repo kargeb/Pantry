@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Modal from '../components/templates/Modal';
-import H1 from '../components/atoms/texts/H1';
-import Button from '../components/atoms/buttons/Button';
-import Label from '../components/atoms/formElements/Label';
-import Alert from '../components/molecules/Alert';
-import Input from '../components/atoms/formElements/Input';
+import Modal from '../../../templates/Modal';
+import H1 from '../../../atoms/texts/H1';
+import Button from '../../../atoms/buttons/Button';
+import Label from '../../../atoms/formElements/Label';
+import Input from '../../../atoms/formElements/Input';
 import {
-  logIn,
-  logOut,
   registerUserInUsersDatabase,
   addInitialCategoryToDatabase,
   addInitialProductToDatabase,
-} from '../data/handlers';
+} from '../../../../data/handlers';
 
-class Login extends Component {
+class RegistrationForm extends Component {
   state = {
-    login: 'test@test.p',
-    password: 'testtest',
-    testUser: {
-      testLogin: 'test@test.pl',
-      testPassword: 'testtest',
-    },
+    login: '',
+    password: '',
     isAlertVisible: false,
   };
 
@@ -30,21 +23,21 @@ class Login extends Component {
     this.setState({ [e.target.name]: value });
   };
 
+//   handleSubmit = e => {
+//     e.preventDefault();
+//     const { login, password } = this.state;
+
+//     logIn(login, password).then(resoult => console.log(resoult));
+//   };
+
+//   logInAsTestUser = e => {
+//     e.preventDefault();
+//     const { testLogin, testPassword } = this.state.testUser;
+
+//     logIn(testLogin, testPassword).then(resoult => console.log(resoult));
+//   };
+
   handleSubmit = e => {
-    e.preventDefault();
-    const { login, password } = this.state;
-
-    logIn(login, password).then(resoult => console.log(resoult));
-  };
-
-  logInAsTestUser = e => {
-    e.preventDefault();
-    const { testLogin, testPassword } = this.state.testUser;
-
-    logIn(testLogin, testPassword).then(resoult => console.log(resoult));
-  };
-
-  register = e => {
     e.preventDefault();
     const { login, password } = this.state;
     const { setRegistrationStatus } = this.props;
@@ -70,16 +63,12 @@ class Login extends Component {
       });
   };
 
-  handleLogout = e => {
-    logOut();
-  };
-
   render() {
-    const { isAlertVisible, login, password } = this.state;
+    const { login, password } = this.state;
 
     return (
       <Modal>
-        <H1 marginBottomDouble>Logowanie</H1>
+        <H1 marginBottomDouble>Rejestracja</H1>
         <Label htmlFor="login" alignLeft>
           Email
         </Label>
@@ -96,24 +85,15 @@ class Login extends Component {
         />
         <br />
         <Button type="submit" onClick={this.handleSubmit}>
-          Login
+          Zarejestruj
         </Button>
-        <br />
-        <Button type="submit" onClick={this.logInAsTestUser}>
-          Login as Test User
-        </Button>
-        <br />
-        <Button type="submit" onClick={this.register}>
-          Register
-        </Button>
-        <br />
+       <br />
         <Button type="submit" onClick={this.handleLogout}>
-          Wyloguj
+          <- Powrót do logowania
         </Button>
-        {isAlertVisible && <Alert>There are empty fields!</Alert>}
       </Modal>
     );
   }
 }
 
-export default Login;
+export default RegistrationForm;
