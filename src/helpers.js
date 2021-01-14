@@ -19,7 +19,6 @@ export const checkForEmptyValues = objectToCheck => {
 
   Object.entries(objectToCheck).forEach(property => {
     let [key, value] = property;
-
     value = String(value).trim();
 
     if (value.length === 0) {
@@ -30,15 +29,12 @@ export const checkForEmptyValues = objectToCheck => {
   return emptyProperties;
 };
 
-export const checkForPositiveIntegers = objectToCheck => {
+export const checkForNonPositiveIntegers = objectToCheck => {
   const nonPositiveIntegers = [];
 
   Object.entries(objectToCheck).forEach(property => {
     let [key, value] = property;
-
     value = Number(value);
-
-    console.log('VALUE AKTUALNA:', value);
 
     if (!Number.isInteger(value) || value < 0) {
       nonPositiveIntegers.push(key);
@@ -48,9 +44,8 @@ export const checkForPositiveIntegers = objectToCheck => {
   return nonPositiveIntegers;
 };
 
-export const setErrorMessages = (properties, message) => {
+export const setErrorMessages = (message, ...properties) => {
   const errorMessages = {};
-
   properties.forEach(property => {
     errorMessages[property] = message;
   });
@@ -58,4 +53,25 @@ export const setErrorMessages = (properties, message) => {
   return errorMessages;
 };
 
-export const fun = () => {};
+export const isEmailValid = email => {
+  const pattern = new RegExp(
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i,
+  );
+
+  if (pattern.test(email)) {
+    console.log('Email:', email, ' is valid');
+    return true;
+  }
+  console.log('Email:', email, ' JEST INVALID');
+  return false;
+};
+
+export const isPasswordStrong = password => {
+  if (password.length >= 7) {
+    console.log('password is OK');
+    return true;
+  }
+
+  console.log('Password is too weak');
+  return false;
+};

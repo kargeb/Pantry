@@ -13,16 +13,17 @@ import { addNewProductToDatabase } from '../../../data/handlers';
 import {
   checkForEmptyValues,
   setErrorMessages,
-  checkForPositiveIntegers,
+  checkForNonPositiveIntegers,
 } from '../../../helpers';
 
 class NewProductForm extends React.Component {
   constructor(props) {
     super(props);
-    // props for edited product
+    // props for editing product
     const { min, name, quantity, unit, category } = props;
-    // initial values for new product are in defaultProps
+
     this.state = {
+      // initial values for new product are in defaultProps at the bottom
       min,
       name,
       quantity,
@@ -58,7 +59,6 @@ class NewProductForm extends React.Component {
 
   handleSubmit = () => {
     const { name, quantity, category, min, unit, id } = this.state;
-    const { toggleFormVisibility, toggleChangeQuantityModal } = this.props;
 
     if (this.formHasEmptyFields()) {
       return;
@@ -79,10 +79,8 @@ class NewProductForm extends React.Component {
     };
 
     addNewProductToDatabase(newProduct);
-    toggleFormVisibility();
-    if (toggleChangeQuantityModal) {
-      toggleChangeQuantityModal();
-    }
+
+    this.closeFormModal();
   };
 
   formHasEmptyFields = () => {
@@ -101,8 +99,8 @@ class NewProductForm extends React.Component {
     }
 
     const errorMessages = setErrorMessages(
-      emptyFieldsNames,
       'Nie moze byc puste!',
+      ...emptyFieldsNames,
     );
 
     this.setState({ errorMessages });
@@ -113,20 +111,26 @@ class NewProductForm extends React.Component {
   numberPropertiesAreIncorrect = () => {
     const { quantity, min } = this.state;
 
-    const nonPositiveIntegers = checkForPositiveIntegers({ quantity, min });
-
+    const nonPositiveIntegers = checkForNonPositiveIntegers({ quantity, min });
     if (nonPositiveIntegers.length === 0) {
       return false;
     }
 
     const errorMessages = setErrorMessages(
-      nonPositiveIntegers,
       'LICZBA MUSI BYC DODATNIA!',
+      ...nonPositiveIntegers,
     );
 
     this.setState({ errorMessages });
-
     return true;
+  };
+
+  closeFormModal = () => {
+    const { toggleFormVisibility, toggleChangeQuantityModal } = this.props;
+    toggleFormVisibility();
+    if (toggleChangeQuantityModal) {
+      toggleChangeQuantityModal();
+    }
   };
 
   resetState = () => {
@@ -204,6 +208,7 @@ NewProductForm.defaultProps = {
 
 NewProductForm.propTypes = {
   toggleFormVisibility: PropTypes.func.isRequired,
+  toggleChangeQuantityModal: PropTypes.func.isRequired,
   min: PropTypes.number,
   name: PropTypes.string,
   quantity: PropTypes.number,

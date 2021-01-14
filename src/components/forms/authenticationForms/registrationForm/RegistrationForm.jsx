@@ -10,7 +10,12 @@ import {
   addInitialCategoryToDatabase,
   addInitialProductToDatabase,
 } from '../../../../data/handlers';
-import { checkForEmptyValues, setErrorMessages } from '../../../../helpers';
+import {
+  checkForEmptyValues,
+  isEmailValid,
+  isPasswordStrong,
+  setErrorMessages,
+} from '../../../../helpers';
 
 class RegistrationForm extends Component {
   state = {
@@ -35,12 +40,38 @@ class RegistrationForm extends Component {
     const emptyFieldsNames = checkForEmptyValues({ login, password });
 
     if (emptyFieldsNames.length !== 0) {
-      const errorMessages = setErrorMessages(emptyFieldsNames, 'Nie moze byc puste!');
+      const errorMessages = setErrorMessages(
+        'Nie moze byc puste!',
+        ...emptyFieldsNames,
+      );
 
       this.setState({ errorMessages });
       return false;
     }
 
+    if (!isEmailValid(login)) {
+      const errorMessages = setErrorMessages(
+        'Nieprawidłowy adres email',
+        'login',
+      );
+
+      this.setState({ errorMessages });
+      return false;
+    }
+
+    if (!isPasswordStrong(password)) {
+      const errorMessages = setErrorMessages('Zbyt słabe haslo', 'password');
+
+      this.setState({ errorMessages });
+      return false;
+    }
+
+    this.setState({
+      errorMessages: {
+        login: '',
+        password: '',
+      },
+    });
     const { setRegistrationStatus } = this.props;
     let newUserId = null;
 
@@ -73,7 +104,13 @@ class RegistrationForm extends Component {
         <Label htmlFor="login" alignLeft>
           Email
         </Label>
-        <Input type="text" id="login" name="login" value={login} onChange={this.handleForm} />
+        <Input
+          type="email"
+          id="login"
+          name="login"
+          value={login}
+          onChange={this.handleForm}
+        />
         {errorMessages.login && <p>{errorMessages.login}</p>}
         <Label htmlFor="password" alignLeft>
           Hasło

@@ -112,6 +112,111 @@ export const addCategoryToDatabase = newCategory => {
     });
 };
 
+export const uploadSampleProductsAndCategories = () => {
+  const sampleCategories = [
+    'sweets',
+    'fruits',
+    'vegetables',
+    'cosmetics',
+    'sweets',
+    'food',
+    'beverages/spirits',
+  ];
+
+  const sampleProducts = [
+    {
+      id: 'fb583f-3ee5-474e-9bba-14098213bc4f',
+      name: 'Coca-cola',
+      quantity: 3,
+      unit: 'l',
+      category: 'beverages/spirits',
+      min: 2,
+      onShoppingList: false,
+    },
+    {
+      id: 'fb23383f-3e95-477e-9bba-1408213bc4f',
+      name: 'Jack Daniels',
+      quantity: 0,
+      unit: 'l',
+      category: 'beverages/spirits',
+      min: 1,
+      onShoppingList: true,
+    },
+    {
+      id: 'fb5d38weq3f-3e95-477e-9bba-1403bc4f',
+      name: 'Carlsberg',
+      quantity: 3,
+      unit: 'l',
+      category: 'beverages/spirits',
+      min: 4,
+      onShoppingList: true,
+    },
+    {
+      id: 'fb5dwe383f-3e95-477e-9bba-140ewewq98213bc4f',
+      name: 'Kitkat',
+      quantity: 1,
+      unit: 'item',
+      category: 'sweets',
+      min: 3,
+      onShoppingList: true,
+    },
+    {
+      id: 'fb5d35-477e-9bba-1409fdfdf8213bc4f',
+      name: 'rice',
+      quantity: 2,
+      unit: 'kg',
+      category: 'food',
+      min: 3,
+      onShoppingList: true,
+    },
+    {
+      id: 'fb5sdfdfd383f-3e95-47ba-14098213bc4f',
+      name: 'bananas',
+      quantity: 5,
+      unit: 'item',
+      category: 'fruits',
+      min: 3,
+      onShoppingList: false,
+    },
+    {
+      id: 'fb5d383f-3e95-bba-1409ddddd8213bc4f',
+      name: 'apples',
+      quantity: 8,
+      unit: 'kg',
+      category: 'fruits',
+      min: 4,
+      onShoppingList: false,
+    },
+  ];
+
+  db.collection('users')
+    .doc(auth.currentUser.uid)
+    .collection('categories')
+    .doc('category')
+    .update({
+      categories: arrayUnion(...sampleCategories),
+    })
+    .then(() => console.log('DDOANO SAMPLE CATEGORIES'))
+    .catch(error => {
+      console.error('Sth wrong with SAMPLE new category ', error);
+    });
+
+  const batch = db.batch();
+
+  sampleProducts.forEach(doc => {
+    batch.set(
+      db
+        .collection('users')
+        .doc(auth.currentUser.uid)
+        .collection('products')
+        .doc(doc.id),
+      doc,
+    );
+  });
+
+  batch.commit().then(() => console.log('zaladowalismy batcha'));
+};
+
 export const addInitialCategoryToDatabase = userId => {
   const initialCategory = { categories: ['others'] };
 

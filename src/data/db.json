@@ -1,15 +1,6 @@
 {
   "products": [
     {
-      "id": "9bb85eda-23d2-488f-bb04-f71dc231e57c",
-      "name": "Flour",
-      "quantity": 2,
-      "unit": "kg",
-      "category": "food",
-      "min": 2,
-      "onShoppingList": false
-    },
-    {
       "id": "fb5d383f-3e95-477e-9bba-14098213bc4f",
       "name": "Coca-cola",
       "quantity": 3,
@@ -17,6 +8,15 @@
       "category": "beverages/spirits",
       "min": 2,
       "onShoppingList": false
+    },
+    {
+      "id": "fb52383f-3e95-447e-9b4a-14fr8213bc4f",
+      "name": "Jack Daniels",
+      "quantity": 0,
+      "unit": "l",
+      "category": "beverages/spirits",
+      "min": 1,
+      "onShoppingList": true
     },
     {
       "id": "fb5d383f-3e95-477e-9bba-12298213bc4f",
@@ -32,7 +32,7 @@
       "name": "Kitkat",
       "quantity": 1,
       "unit": "item",
-      "category": "food",
+      "category": "sweets",
       "min": 3,
       "onShoppingList": true
     }
@@ -41,12 +41,9 @@
     "sweets",
     "fruits",
     "vegetables",
-    "breadstuff",
     "cosmetics",
-    "dairy",
+    "sweets",
     "food",
-    "beverages/spirits",
-    "stuff",
-    "others"
+    "beverages/spirits"
   ]
 }
