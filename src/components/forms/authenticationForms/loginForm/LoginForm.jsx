@@ -17,7 +17,6 @@ class LoginForm extends Component {
       testLogin: 'test@test.pl',
       testPassword: 'testtest',
     },
-    isAlertVisible: false,
     errorMessages: {
       login: '',
       password: '',
@@ -36,7 +35,10 @@ class LoginForm extends Component {
     const emptyFieldsNames = checkForEmptyValues({ login, password });
 
     if (emptyFieldsNames.length !== 0) {
-      const errorMessages = setErrorMessages(emptyFieldsNames, 'Nie moze byc puste!');
+      const errorMessages = setErrorMessages(
+        'Nie moze byc puste!',
+        ...emptyFieldsNames,
+      );
 
       this.setState({ errorMessages });
       return false;
@@ -65,7 +67,13 @@ class LoginForm extends Component {
         <Label htmlFor="login" alignLeft>
           Email
         </Label>
-        <Input type="text" id="login" name="login" value={login} onChange={this.handleForm} />
+        <Input
+          type="text"
+          id="login"
+          name="login"
+          value={login}
+          onChange={this.handleForm}
+        />
         {errorMessages.login && <p>{errorMessages.login}</p>}
         <Label htmlFor="password" alignLeft>
           Hasło
