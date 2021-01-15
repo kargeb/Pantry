@@ -5,6 +5,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import H2 from '../../atoms/texts/H2';
 import Button from '../../atoms/buttons/Button';
 import { auth } from '../../../fbase';
+import { logOut } from '../../../data/handlers';
 
 // import InsertSampleDataModal from './ModalInsertSampleData';
 
@@ -77,11 +78,12 @@ class LogoutSection extends React.Component {
             <FontAwesomeIcon icon={faUserCircle} />
           </UserIcon>
           <Header>
-            <H2>{auth.currentUser.email}</H2>
+            <H2>{auth.currentUser && auth.currentUser.email}</H2>
           </Header>
         </UserContainer>
         <WrapperButton>
-          <Button type="button" onClick={this.toggleInsertModal}>
+          {/* <Button type="button" onClick={this.toggleInsertModal}> */}
+          <Button type="button" onClick={() => logOut()}>
             Wyloguj
           </Button>
         </WrapperButton>
