@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* max-width: 400px; */}
         margin: 0 auto;
         height: 100%;
-        background-color: #555;
+        background-color: #fff;
     }
 
     #root{
