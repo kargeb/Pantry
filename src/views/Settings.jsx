@@ -5,6 +5,7 @@ import DarkModeSection from '../components/settings/darkModeSection/DarkModeSect
 import CategoriesSection from '../components/settings/categoriesSection/CategoriesSection';
 import Divider from '../components/atoms/divider/Divider';
 import InsertSampleData from '../components/settings/sampleDataSection/SampleDataSection';
+import LogoutSection from '../components/settings/logoutSection/LogoutSection';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,6 +24,8 @@ const Wrapper = styled.div`
 
 const Settings = () => (
   <Wrapper>
+    <LogoutSection />
+    <Divider />
     <DarkModeSection />
     <Divider />
     <InsertSampleData />
