@@ -5,9 +5,9 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import H2 from '../../atoms/texts/H2';
 import Button from '../../atoms/buttons/Button';
 import { auth } from '../../../fbase';
-import { logOut } from '../../../data/handlers';
 
 // import InsertSampleDataModal from './ModalInsertSampleData';
+import ConfirmLogoutModal from './ConfirmLogoutModal';
 
 const Section = styled.section`
   display: flex;
@@ -59,17 +59,17 @@ const WrapperButton = styled.div`
 
 class LogoutSection extends React.Component {
   state = {
-    isInsertModalVisible: false,
+    isConfirmLogoutModalVisible: false,
   };
 
-  toggleInsertModal = () => {
+  toggleConfirmLogoutModal = () => {
     this.setState(prevState => ({
-      isInsertModalVisible: !prevState.isInsertModalVisible,
+      isConfirmLogoutModalVisible: !prevState.isConfirmLogoutModalVisible,
     }));
   };
 
   render() {
-    const { isInsertModalVisible } = this.state;
+    const { isConfirmLogoutModalVisible } = this.state;
 
     return (
       <Section>
@@ -82,14 +82,16 @@ class LogoutSection extends React.Component {
           </Header>
         </UserContainer>
         <WrapperButton>
-          {/* <Button type="button" onClick={this.toggleInsertModal}> */}
-          <Button type="button" onClick={() => logOut()}>
+          {/* <Button type="button" onClick={this.toggleConfirmLogoutModal}> */}
+          <Button type="button" onClick={this.toggleConfirmLogoutModal}>
             Wyloguj
           </Button>
         </WrapperButton>
-        {/* {isInsertModalVisible && (
-          <InsertSampleDataModal toggleInsertModal={this.toggleInsertModal} />
-        )} */}
+        {isConfirmLogoutModalVisible && (
+          <ConfirmLogoutModal
+            toggleConfirmLogoutModal={this.toggleConfirmLogoutModal}
+          />
+        )}
       </Section>
     );
   }

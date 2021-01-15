@@ -14,7 +14,9 @@ class Root extends React.Component {
     this.unsubscribe = auth.onAuthStateChanged(() => {
       // console.log('USER z LISTENERA:', user);
 
-      this.setState({ userDataLoading: false }, () => this.checkAuthentication());
+      this.setState({ userDataLoading: false }, () =>
+        this.checkAuthentication(),
+      );
     });
   }
 
@@ -24,7 +26,9 @@ class Root extends React.Component {
 
   setRegistrationStatus = isPending => {
     // console.log('JESTEM W REGISTRATION I MAM STATUS:', isPending);
-    this.setState({ registrationIsPending: isPending }, () => this.checkAuthentication());
+    this.setState({ registrationIsPending: isPending }, () =>
+      this.checkAuthentication(),
+    );
   };
 
   checkAuthentication() {
