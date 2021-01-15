@@ -204,11 +204,12 @@ NewProductForm.defaultProps = {
   quantity: 0,
   unit: 'item',
   category: '',
+  toggleChangeQuantityModal: () => {},
 };
 
 NewProductForm.propTypes = {
   toggleFormVisibility: PropTypes.func.isRequired,
-  toggleChangeQuantityModal: PropTypes.func.isRequired,
+  toggleChangeQuantityModal: PropTypes.func,
   min: PropTypes.number,
   name: PropTypes.string,
   quantity: PropTypes.number,

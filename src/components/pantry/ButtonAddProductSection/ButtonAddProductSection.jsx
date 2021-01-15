@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
 import NewProductForm from '../../forms/newProductForm/NewProductForm';
+import Stepper from '../../stepper/Stepper';
 
 const Wrapper = styled.div`
   height: 71px;
@@ -32,23 +35,57 @@ const ButtonAdd = styled(ButtonAddProduct)`
   }
 `;
 
+const HelpWrapper = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 120px;
+  color: ${props => props.theme.primary};
+  left: 8px;
+  bottom: 8px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #aaa;
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 class ButtonAddProductSection extends React.Component {
   state = {
     isFormVisible: false,
+    isHelpVisible: false,
   };
 
   toggleFormVisibility = () => {
     this.setState(prevState => ({ isFormVisible: !prevState.isFormVisible }));
   };
 
+  toggleHelp = () => {
+    this.setState(prevState => ({ isHelpVisible: !prevState.isHelpVisible }));
+  };
+
   render() {
-    const { isFormVisible } = this.state;
+    const { isFormVisible, isHelpVisible } = this.state;
     return (
       <Wrapper>
+        <HelpWrapper onClick={this.toggleHelp}>
+          <FontAwesomeIcon icon={faQuestionCircle} />
+        </HelpWrapper>
         <ButtonAdd type="button" onClick={this.toggleFormVisibility}>
           +
         </ButtonAdd>
-        {isFormVisible && <NewProductForm toggleFormVisibility={this.toggleFormVisibility} />}
+        {isFormVisible && (
+          <NewProductForm toggleFormVisibility={this.toggleFormVisibility} />
+        )}
+        {isHelpVisible && <Stepper toggleHelp={this.toggleHelp} />}
       </Wrapper>
     );
   }
