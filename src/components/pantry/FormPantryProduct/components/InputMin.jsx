@@ -31,15 +31,19 @@ const InputMin = ({ handleForm, min, preventProhibitedCharacters, errorMessage }
         />
         {console.log('ERRORS MIN:', errorMessage)}
       </InputHorizontalWrapper>
-      {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
+};
+
+InputMin.defaultProps = {
+  errorMessage: '',
 };
 
 InputMin.propTypes = {
   handleForm: PropTypes.func.isRequired,
   preventProhibitedCharacters: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
   min: PropTypes.any.isRequired,
 };
 

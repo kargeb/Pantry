@@ -70,7 +70,7 @@ class FormChangeQuantityContainer extends React.Component {
   render() {
     const { isDeleteModalVisible, isProductPropertiesForm, quantity } = this.state;
     const { toggleChangeQuantityModal, product } = this.props;
-    const { unit, category, id, name } = product;
+    const { unit, category, id, name, min } = product;
 
     return (
       <Modal>
@@ -104,6 +104,7 @@ class FormChangeQuantityContainer extends React.Component {
             quantity={this.state.quantity}
             unit={unit}
             name={name}
+            min={min}
             category={category}
             toggleFormVisibility={this.toggleEditProductForm}
             toggleChangeQuantityModal={toggleChangeQuantityModal}

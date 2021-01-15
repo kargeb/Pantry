@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
@@ -45,23 +45,6 @@ class App extends React.Component {
     });
   };
 
-  // SelectNamesOfCategoriesContainingProducts = () => {
-  //   const {products} = this.state;
-  //   const NamesOfCategoriesContainingProducts = [];
-
-  //   console.log('JESTEM W funkcji, products:', products);
-  //   products.forEach(product => {
-  //     if (!NamesOfCategoriesContainingProducts.includes(product.category)) {
-  //       console.log('JESTEM W PETLI');
-  //       NamesOfCategoriesContainingProducts.push(product.category);
-  //     }
-  //   });
-
-  //   console.log('koniec petli: categories:', NamesOfCategoriesContainingProducts);
-
-  //   return NamesOfCategoriesContainingProducts;
-  // };
-
   render() {
     const { currentTheme } = this.state;
     const contextElements = {
@@ -72,7 +55,7 @@ class App extends React.Component {
     const mergedTheme = { ...defaultTheme, ...currentTheme };
 
     return (
-      <BrowserRouter>
+      <Router>
         <ThemeProvider theme={mergedTheme}>
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
@@ -82,10 +65,11 @@ class App extends React.Component {
               <Route path="/pantry" component={Pantry} />
               <Route path="/shopping" component={Shopping} />
               <Route path="/settings" component={Settings} />
+              <Redirect to="/pantry" />
             </Switch>
           </AppContext.Provider>
         </ThemeProvider>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

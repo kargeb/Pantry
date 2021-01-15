@@ -7,18 +7,11 @@ import sampleData from '../../../data/db.json';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import H1 from '../../atoms/texts/H1';
 import H2 from '../../atoms/texts/H2';
+import { uploadSampleProductsAndCategories } from '../../../data/handlers';
 
 const InsertSampleDataModal = ({ toggleInsertModal }) => {
   const uploadSampleData = () => {
-    const dbRef = db.collection('products');
-
-    sampleData.products.forEach(sampleProduct => {
-      dbRef
-        .doc(sampleProduct.id)
-        .set({ ...sampleProduct })
-        .then(() => console.log('SUCCESSS'))
-        .catch(() => console.log('ERROR!!!'));
-    });
+    uploadSampleProductsAndCategories();
   };
 
   const insertDataAndCloseModal = () => {

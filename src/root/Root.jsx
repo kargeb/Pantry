@@ -1,20 +1,22 @@
 import React from 'react';
 import { auth } from '../fbase';
-import Authorization from './authorization/Authorization';
 import App from './app/App';
+import Authorization from './authorization/Authorization';
 
 class Root extends React.Component {
   state = {
     userDataLoading: true,
+    registrationIsPending: false,
+    authenticationConfirmed: false,
   };
 
   componentDidMount() {
-    this.unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ userDataLoading: false });
-      } else {
-        this.setState({ userDataLoading: false });
-      }
+    this.unsubscribe = auth.onAuthStateChanged(() => {
+      // console.log('USER z LISTENERA:', user);
+
+      this.setState({ userDataLoading: false }, () =>
+        this.checkAuthentication(),
+      );
     });
   }
 
@@ -22,10 +24,43 @@ class Root extends React.Component {
     this.unsubscribe();
   }
 
-  render() {
-    const { userDataLoading } = this.state;
+  setRegistrationStatus = isPending => {
+    // console.log('JESTEM W REGISTRATION I MAM STATUS:', isPending);
+    this.setState({ registrationIsPending: isPending }, () =>
+      this.checkAuthentication(),
+    );
+  };
 
-    return <>{auth.currentUser ? <App /> : <Authorization userDataLoading={userDataLoading} />}</>;
+  checkAuthentication() {
+    const { registrationIsPending } = this.state;
+
+    if (auth.currentUser && !registrationIsPending) {
+      // console.log('auth.currentUser z AUHENITE: ', auth.currentUser);
+      // console.log('!registrationIsPending z AUHENITE', !registrationIsPending);
+      this.setState({ authenticationConfirmed: true });
+    } else {
+      // console.log('NIE JESTEM SPOELNIONYM ATHENITACTEM');
+      // console.log('auth.currentUser z AUHENITE: ', auth.currentUser);
+      // console.log('!registrationIsPending z AUHENITE', !registrationIsPending);
+      this.setState({ authenticationConfirmed: false });
+    }
+  }
+
+  render() {
+    const { userDataLoading, authenticationConfirmed } = this.state;
+
+    return (
+      <>
+        {authenticationConfirmed ? (
+          <App />
+        ) : (
+          <Authorization
+            setRegistrationStatus={this.setRegistrationStatus}
+            userDataLoading={userDataLoading}
+          />
+        )}
+      </>
+    );
   }
 }
 

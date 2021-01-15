@@ -26,16 +26,20 @@ const SelectCategory = ({ handleForm, errorMessage, category }) => (
             ))}
           </Select>
         </InputVerticalWrapper>
-        {errorMessage.length !== 0 && <p>{errorMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
       </>
     )}
   </AppContext.Consumer>
 );
 
+SelectCategory.defaultProps = {
+  errorMessage: '',
+};
+
 SelectCategory.propTypes = {
   handleForm: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
 };
 
 export default SelectCategory;
