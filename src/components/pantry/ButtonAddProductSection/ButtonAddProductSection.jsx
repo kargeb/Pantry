@@ -40,21 +40,29 @@ const HelpWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 120px;
+  font-size: 55px;
+  width: 80px;
+  height: 80px;
   color: ${props => props.theme.primary};
   left: 8px;
   bottom: 8px;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
   background-color: #fff;
   border: 2px solid #aaa;
   cursor: pointer;
   transform: scale(1);
   transition: transform 0.1s ease;
+  border-radius: 50%;
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    font-size: 120px;
+    left: 8px;
+    bottom: 8px;
+    width: 150px;
+    height: 150px;
   }
 `;
 
