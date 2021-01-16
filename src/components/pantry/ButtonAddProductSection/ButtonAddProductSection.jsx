@@ -41,6 +41,7 @@ const HelpWrapper = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 55px;
+  z-index: 999999;
   width: 80px;
   height: 80px;
   color: ${props => props.theme.primary};
