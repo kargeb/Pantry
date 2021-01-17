@@ -40,6 +40,14 @@ export const addInitialProductToDatabase = userId => {
     });
 };
 
+// TypeError: downloadedCategories is not iterable
+// |    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(downloadedCategories => {
+//   23 |      this.setState({
+// > 24 |        allCategories: [...downloadedCategories],
+//      | ^  25 |      });
+//   26 |    });
+//   27 |
+
 export const setCategoriesDatabaseListener = callback => {
   return db
     .collection('users')
@@ -48,11 +56,18 @@ export const setCategoriesDatabaseListener = callback => {
     .onSnapshot(querySnapshot => {
       let categoriesFromDatabase = null;
 
+      console.log('WYPISALES PRZED BLEDE M?');
+      console.log('querySnapshot', querySnapshot[0]);
+
       querySnapshot.forEach(doc => {
         categoriesFromDatabase = [...doc.data().categories];
       });
 
-      callback(categoriesFromDatabase);
+      if (categoriesFromDatabase) {
+        callback(categoriesFromDatabase);
+      } else {
+        console.log('nie pobrano zanydhc kategori');
+      }
     });
 };
 
@@ -69,7 +84,13 @@ export const setProductsDatabaseListener = callback => {
         downloadedProducts.push(newProduct);
       });
 
-      callback(downloadedProducts);
+      if (downloadedProducts) {
+        callback(downloadedProducts);
+      } else {
+        console.log('nie pobrano zadnych produktow');
+      }
+
+      // callback(downloadedProducts);
     });
 };
 
