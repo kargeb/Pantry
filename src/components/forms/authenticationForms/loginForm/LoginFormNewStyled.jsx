@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 import {
-  Form as DefaultForm,
+  Form as StyledForm,
   Button,
   Modal,
   Label,
   Input,
-  P,
+  P as StyledP,
   A,
 } from '../../../styled';
-// import Button from '../../../styled';
-// import Modal from '../../../styled';
-// import Label from '../../../styled';
-// import Input from '../../../styled';
 
-const Form = styled(DefaultForm)`
-  padding-top: 200px;
+const P = styled(StyledP)`
+  margin-bottom: 20px;
 `;
-export { Form, Button, Modal, Label, Input, P, A };
+
+const Form = styled(StyledForm)`
+  padding-top: 70px;
+`;
+
+const GuestLoginButton = styled(Button)`
+  margin-bottom: 20px;
+`;
+export { Form, Button, Modal, Label, Input, P, A, GuestLoginButton };

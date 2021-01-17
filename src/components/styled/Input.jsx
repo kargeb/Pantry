@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 const Input = styled.input`
-  width: 250px;
-  height: 27px;
-  padding-left: 5px;
+  /* width: 250px; */
+  width: 100%;
+  height: 55px;
+  /* padding-top: 20px; */
+  /* padding-left: 5px; */
+  font-size: 18px;
+  line-height: 55px;
   border: none;
   border-bottom: solid 2px #fff;
   background-color: rgba(0, 0, 0, 0.2);

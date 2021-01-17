@@ -81,7 +81,9 @@ class LoginForm extends Component {
           </Logo>
           {/* <H1 marginBottomDouble>Logowaniiiie</H1> */}
           <S.P center>logging as guest</S.P>
-          <S.Button type="submit">Guest login</S.Button>
+          <S.GuestLoginButton type="submit">Guest login</S.GuestLoginButton>
+          <S.P center>or logging on your own account</S.P>
+
           <S.Label htmlFor="login" left>
             Email
           </S.Label>

@@ -8,8 +8,9 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 350px;
 
-  padding: 2% 4%;
+  padding: 2% 30px;
   color: ${props => props.theme.textPrimary};
   background-color: rgba(0,0,0,0.5);
   /* background-color: ${props => props.theme.background}; */
