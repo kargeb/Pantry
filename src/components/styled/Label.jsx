@@ -4,6 +4,7 @@ const Label = styled.label`
   font-size: 14px;
   font-weight: ${({ theme }) => theme.medium};
   color: #fff;
+  margin-top: ${props => props.top || '0px'};
 
   ${({ left }) =>
     left &&

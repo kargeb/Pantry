@@ -80,9 +80,11 @@ class LoginForm extends Component {
             <img src={LogoForms} width="100%" />
           </Logo>
           {/* <H1 marginBottomDouble>Logowaniiiie</H1> */}
-          <S.P center>logging as guest</S.P>
-          <S.GuestLoginButton type="submit">Guest login</S.GuestLoginButton>
-          <S.P center>or logging on your own account</S.P>
+          <S.P padding="20px" center>
+            logging as guest
+          </S.P>
+          <S.Button type="submit">Guest login</S.Button>
+          <S.P center>or logging on your account</S.P>
 
           <S.Label htmlFor="login" left>
             Email
@@ -95,8 +97,8 @@ class LoginForm extends Component {
             // onChange={this.handleForm}
           />
           {/* {errorMessages.login && <p>{errorMessages.login}</p>} */}
-          <S.Label htmlFor="password" left>
-            Hasło
+          <S.Label htmlFor="password" left top="20px">
+            Password
           </S.Label>
           <S.Input
             type="text"
@@ -105,6 +107,7 @@ class LoginForm extends Component {
             // value={password}
             // onChange={this.handleForm}
           />
+          <S.P error>Password has to have at least 6 characters</S.P>
           {/* {errorMessages.password && <p>{errorMessages.password}</p>} */}
           {/* <br /> */}
           <S.Button type="submit">Login</S.Button>
@@ -112,16 +115,16 @@ class LoginForm extends Component {
           {/* <br />
         <Button type="submit">Login as Test User</Button>
         <br /> */}
-          {/* <Link to="/register"> */}
           {/* <Button type="button" onClick={() => {}}>
           Rejestracja
         </Button> */}
-          {/* </Link> */}
           {/* <br /> */}
-          <S.P>
-            or <S.A>crete your ow account</S.A>
-          </S.P>
-          {/* <Button type="submit">Wyloguj</Button> */}
+          <Link to="/register">
+            <S.P>
+              or <S.A>create ow account</S.A>
+            </S.P>
+            {/* <Button type="submit">Wyloguj</Button> */}
+          </Link>
         </S.Form>
       </S.Modal>
     );
