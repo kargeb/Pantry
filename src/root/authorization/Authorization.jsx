@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
 import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
+import LoginFormNew from '../../components/forms/authenticationForms/loginForm/LoginFormNew';
 import RegistrationForm from '../../components/forms/authenticationForms/registrationForm/RegistrationForm';
 import Loading from '../../views/Loading';
 
@@ -35,16 +36,22 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
               </>
             ) : (
               <Switch>
-                <Route exact path="/" component={LoginForm} />
-                <Route path="/pantry" component={LoginForm} />
+                {/* <Route exact path="/" component={LoginForm} /> */}
+                {/* <Route path="/pantry" component={LoginForm} /> */}
+                <Route exact path="/" component={LoginFormNew} />
+                <Route path="/pantry" component={LoginFormNew} />
                 {/* <Route path="/register" component={RegistrationForm} /> */}
                 <Route
                   path="/register"
                   render={props => (
-                    <RegistrationForm {...props} setRegistrationStatus={setRegistrationStatus} />
+                    <RegistrationForm
+                      {...props}
+                      setRegistrationStatus={setRegistrationStatus}
+                    />
                   )}
                 />
-                <Route component={LoginForm} />
+                {/* <Route component={LoginForm} /> */}
+                <Route component={LoginFormNew} />
               </Switch>
             )}
           </StyledMain>
