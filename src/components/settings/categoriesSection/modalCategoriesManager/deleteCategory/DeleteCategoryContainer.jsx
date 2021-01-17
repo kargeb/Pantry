@@ -74,11 +74,18 @@ class DeleteCategoryContainer extends React.Component {
       categoryIsNotSelected = true;
     }
 
+    console.log('namesOfAllCategories: ', this.state.namesOfAllCategories);
+
+    console.log('PREVENT TO DELETE LAST CATEGORY');
+
     return categoryIsNotSelected;
   };
 
   categoryContainsProducts = () => {
-    const { categoryToDelete, NamesOfCategoriesContainingProducts } = this.state;
+    const {
+      categoryToDelete,
+      NamesOfCategoriesContainingProducts,
+    } = this.state;
 
     let categoryHasProducts = false;
 
@@ -117,7 +124,9 @@ class DeleteCategoryContainer extends React.Component {
         <DeleteCategory
           setAlertMessage={this.setAlertMessage}
           handleSubmit={this.handleSubmit}
-          NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
+          NamesOfCategoriesContainingProducts={
+            NamesOfCategoriesContainingProducts
+          }
           namesOfAllCategories={this.props.allCategories}
           categoryToDelete={categoryToDelete}
           handleForm={this.handleForm}
