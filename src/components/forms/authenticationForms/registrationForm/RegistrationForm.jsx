@@ -21,6 +21,7 @@ import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
 import Input from '../../../styledComponents/atoms/formElements/Input';
 import Label from '../../../styledComponents/atoms/formElements/Label';
 import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
+import { validation } from './../../../../helpers';
 
 const Logo = styled.div`
   position: absolute;
@@ -59,39 +60,21 @@ class RegistrationForm extends Component {
     const { login, password } = this.state;
 
     let allErrorMessages = {};
-    let invalidEmailError = {};
-    let weakPasswordError = {};
-    let emptyFieldsErrors = {};
 
-    if (!isEmailValid(login)) {
-      invalidEmailError = setErrorMessages(
-        'Nieprawidłowy adres email',
-        'login',
-      );
-    }
-
-    if (!isPasswordStrong(password)) {
-      weakPasswordError = setErrorMessages('Zbyt słabe haslo', 'password');
-    }
-
-    const emptyFieldsNames = checkForEmptyValues({ login, password });
-    if (emptyFieldsNames.length !== 0) {
-      emptyFieldsErrors = setErrorMessages(
-        'Nie moze byc puste!',
-        ...emptyFieldsNames,
-      );
-    }
+    const loginErrorMessage = validation('login', login);
+    const passwordErrorMessage = validation('password', password);
 
     allErrorMessages = {
-      ...invalidEmailError,
-      ...weakPasswordError,
-      ...emptyFieldsErrors,
+      ...loginErrorMessage,
+      ...passwordErrorMessage,
     };
 
     if (Object.keys(allErrorMessages).length === 0) {
+      console.log('NIE MA BLEDOW, MOZNA WYSYLAC');
       this.setState({ errorMessages: allErrorMessages });
       return false;
     } else {
+      console.log('SA BLEDY, TRZEBA ZATRZYMAC!!!!!!!');
       this.setState({ errorMessages: allErrorMessages });
       return true;
     }
@@ -106,14 +89,6 @@ class RegistrationForm extends Component {
 
     registerUserInUsersDatabase(login, password)
       .then(idObtainedFromDatabase => {
-        console.log(
-          'COS DOTSOŁ TUATJ <CZU BLON TEZ WIDAC?',
-          idObtainedFromDatabase,
-        );
-        if (idObtainedFromDatabase.code) {
-          console.log('CODE:', idObtainedFromDatabase.code);
-        }
-
         newUserId = idObtainedFromDatabase;
         return newUserId;
       })
