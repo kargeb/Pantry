@@ -111,6 +111,7 @@ class AnotherLoginForm extends Component {
             Email
           </Label>
           <Input
+            errorBorder={errorMessages.login}
             type="text"
             id="login"
             name="login"
@@ -126,6 +127,7 @@ class AnotherLoginForm extends Component {
             Password
           </Label>
           <Input
+            errorBorder={errorMessages.password}
             type="text"
             id="password"
             name="password"

@@ -115,6 +115,7 @@ class RegistrationForm extends Component {
             Email
           </Label>
           <Input
+            errorBorder={errorMessages.login}
             type="email"
             id="login"
             name="login"
@@ -130,6 +131,7 @@ class RegistrationForm extends Component {
             Hasło
           </Label>
           <Input
+            errorBorder={errorMessages.password}
             type="text"
             id="password"
             name="password"
