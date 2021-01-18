@@ -266,18 +266,16 @@ export const removeCategoryfromDatabase = categoryToRemove => {
 // USER AUTHENTICATION
 
 export const logIn = (userName, userPassword) => {
-  return auth
-    .signInWithEmailAndPassword(userName, userPassword)
-    .then(user => {
-      console.log('JESTEM ZALOGOWANY! ', user);
-      console.log('USER EMAIL: ', user.user.email);
-      return user.user.email;
-    })
-    .catch(error => {
-      console.log('BLAD LOGOWANIA:');
-      console.log(error.code, error.message);
-      return error.message;
-    });
+  return auth.signInWithEmailAndPassword(userName, userPassword).then(user => {
+    console.log('JESTEM ZALOGOWANY! ', user);
+    console.log('USER EMAIL: ', user.user.email);
+    return user.user.email;
+  });
+  // .catch(error => {
+  //   console.log('BLAD LOGOWANIA:');
+  //   console.log(error.code, error.message);
+  //   return error.message;
+  // });
 };
 
 export const registerUserInUsersDatabase = (userName, userPassword) => {

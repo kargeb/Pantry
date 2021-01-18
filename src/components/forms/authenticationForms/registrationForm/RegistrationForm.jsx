@@ -7,10 +7,9 @@ import {
   addInitialProductToDatabase,
 } from '../../../../data/handlers';
 import {
-  checkForEmptyValues,
-  isEmailValid,
-  isPasswordStrong,
+  validation,
   setErrorMessages,
+  authDataValidation,
 } from '../../../../helpers';
 
 import LogoForms from '../../../../images/logoForms.svg';
@@ -21,7 +20,6 @@ import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
 import Input from '../../../styledComponents/atoms/formElements/Input';
 import Label from '../../../styledComponents/atoms/formElements/Label';
 import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
-import { validation } from './../../../../helpers';
 
 const Logo = styled.div`
   position: absolute;
@@ -59,23 +57,15 @@ class RegistrationForm extends Component {
   formHasInvalidData = () => {
     const { login, password } = this.state;
 
-    let allErrorMessages = {};
+    const errorMessages = authDataValidation(login, password);
 
-    const loginErrorMessage = validation('login', login);
-    const passwordErrorMessage = validation('password', password);
-
-    allErrorMessages = {
-      ...loginErrorMessage,
-      ...passwordErrorMessage,
-    };
-
-    if (Object.keys(allErrorMessages).length === 0) {
+    if (Object.keys(errorMessages).length === 0) {
       console.log('NIE MA BLEDOW, MOZNA WYSYLAC');
-      this.setState({ errorMessages: allErrorMessages });
+      this.setState({ errorMessages });
       return false;
     } else {
       console.log('SA BLEDY, TRZEBA ZATRZYMAC!!!!!!!');
-      this.setState({ errorMessages: allErrorMessages });
+      this.setState({ errorMessages });
       return true;
     }
   };

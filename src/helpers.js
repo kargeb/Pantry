@@ -106,3 +106,17 @@ export const isEmailValid = email => {
   console.log('Email:', email, ' JEST INVALID');
   return false;
 };
+
+export const authDataValidation = (login, password) => {
+  let errorMessages = {};
+
+  const loginErrors = validation('login', login);
+  const passwordErrors = validation('password', password);
+
+  errorMessages = {
+    ...loginErrors,
+    ...passwordErrors,
+  };
+
+  return errorMessages;
+};
