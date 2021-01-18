@@ -28,7 +28,6 @@ const Logo = styled.div`
   left: calc(50% - 50px);
   width: 100px;
   height: 100px;
-  /* background-color: red; */
 `;
 
 class RegistrationForm extends Component {
@@ -48,75 +47,91 @@ class RegistrationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { login, password } = this.state;
-    // prettier-ignore
-    let errorMessages = {};
 
-    const emptyFieldsNames = checkForEmptyValues({ login, password });
+    if (this.formHasInvalidData()) {
+      return;
+    }
+
+    this.registerUser();
+  };
+
+  formHasInvalidData = () => {
+    const { login, password } = this.state;
+
+    let allErrorMessages = {};
+    let invalidEmailError = {};
+    let weakPasswordError = {};
+    let emptyFieldsErrors = {};
 
     if (!isEmailValid(login)) {
-      const newErrorMessages = setErrorMessages(
+      invalidEmailError = setErrorMessages(
         'Nieprawidłowy adres email',
         'login',
       );
-
-      errorMessages = { ...errorMessages, ...newErrorMessages };
-      // this.setState({ errorMessages });
-      // return false;
     }
 
     if (!isPasswordStrong(password)) {
-      const newErrorMessages = setErrorMessages('Zbyt słabe haslo', 'password');
-
-      // this.setState({ errorMessages });
-      // return false;
-      errorMessages = { ...errorMessages, ...newErrorMessages };
+      weakPasswordError = setErrorMessages('Zbyt słabe haslo', 'password');
     }
 
+    const emptyFieldsNames = checkForEmptyValues({ login, password });
     if (emptyFieldsNames.length !== 0) {
-      const newErrorMessages = setErrorMessages(
+      emptyFieldsErrors = setErrorMessages(
         'Nie moze byc puste!',
         ...emptyFieldsNames,
       );
-
-      errorMessages = { ...errorMessages, ...newErrorMessages };
-
-      // this.setState({ errorMessages });
-      // return false;
     }
 
-    console.log('ERROS MESSAGES:', errorMessages);
+    allErrorMessages = {
+      ...invalidEmailError,
+      ...weakPasswordError,
+      ...emptyFieldsErrors,
+    };
 
-    this.setState({ errorMessages });
-    return false;
-    // this.setState({
-    //   errorMessages: {
-    //     login: '',
-    //     password: '',
-    //   },
-    // });
+    if (Object.keys(allErrorMessages).length === 0) {
+      this.setState({ errorMessages: allErrorMessages });
+      return false;
+    } else {
+      this.setState({ errorMessages: allErrorMessages });
+      return true;
+    }
+  };
 
-    // const { setRegistrationStatus } = this.props;
-    // let newUserId = null;
+  registerUser = () => {
+    const { login, password } = this.state;
+    const { setRegistrationStatus } = this.props;
+    let newUserId = null;
 
-    // setRegistrationStatus(true);
+    setRegistrationStatus(true);
 
-    // registerUserInUsersDatabase(login, password)
-    //   .then(idObtainedFromDatabase => {
-    //     newUserId = idObtainedFromDatabase;
-    //     return newUserId;
-    //   })
-    //   .then(() => {
-    //     //  new user registration in ProductsDatabase is done by adding first product
-    //     return addInitialProductToDatabase(newUserId);
-    //   })
-    //   .then(() => {
-    //     return addInitialCategoryToDatabase(newUserId);
-    //   })
-    //   .then(() => {
-    //     console.log('Registration succeeded');
-    //     setRegistrationStatus(false);
-    //   });
+    registerUserInUsersDatabase(login, password)
+      .then(idObtainedFromDatabase => {
+        console.log(
+          'COS DOTSOŁ TUATJ <CZU BLON TEZ WIDAC?',
+          idObtainedFromDatabase,
+        );
+        if (idObtainedFromDatabase.code) {
+          console.log('CODE:', idObtainedFromDatabase.code);
+        }
+
+        newUserId = idObtainedFromDatabase;
+        return newUserId;
+      })
+      .then(() => {
+        //  new user registration in ProductsDatabase is done by adding first product
+        return addInitialProductToDatabase(newUserId);
+      })
+      .then(() => {
+        return addInitialCategoryToDatabase(newUserId);
+      })
+      .then(() => {
+        console.log('Registration succeeded');
+        setRegistrationStatus(false);
+      })
+      .catch(err => {
+        const errorMessages = setErrorMessages(err.message, 'login');
+        this.setState({ errorMessages });
+      });
   };
 
   render() {
@@ -156,7 +171,6 @@ class RegistrationForm extends Component {
             value={password}
             onChange={this.handleForm}
           />
-          {/* <br /> */}
           {errorMessages.password ? (
             <P error>{errorMessages.password}</P>
           ) : (
@@ -169,7 +183,6 @@ class RegistrationForm extends Component {
           >
             Register
           </ButtonRectangle>
-          {/* <br /> */}
           <Link to="/login">
             <P padding="20px">
               or <SpanLink>login on existing account</SpanLink>

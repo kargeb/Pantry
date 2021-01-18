@@ -11,43 +11,6 @@ export const addNewProductToDatabase = product => {
     .set(product);
 };
 
-export const addInitialProductToDatabase = userId => {
-  const initialProduct = {
-    id: '9bb55edg-23d2-228f-bb04-f71dr231e57c',
-    name: 'Your first product',
-    quantity: 2,
-    unit: 'kg',
-    category: 'others',
-    min: 2,
-    onShoppingList: false,
-  };
-
-  console.log('w addinitialProducts To database MAMU USERA O ID:', userId);
-
-  return db
-    .collection('users')
-    .doc(userId)
-    .collection('products')
-    .doc(initialProduct.id)
-    .set(initialProduct)
-    .then(data => {
-      console.log('Zarejestrowalismy: ', data);
-      return data;
-    })
-    .catch(err => {
-      console.log('BŁONT!: ', err);
-      return err;
-    });
-};
-
-// TypeError: downloadedCategories is not iterable
-// |    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(downloadedCategories => {
-//   23 |      this.setState({
-// > 24 |        allCategories: [...downloadedCategories],
-//      | ^  25 |      });
-//   26 |    });
-//   27 |
-
 export const setCategoriesDatabaseListener = callback => {
   return db
     .collection('users')
@@ -238,6 +201,35 @@ export const uploadSampleProductsAndCategories = () => {
   batch.commit().then(() => console.log('zaladowalismy batcha'));
 };
 
+export const addInitialProductToDatabase = userId => {
+  const initialProduct = {
+    id: '9bb55edg-23d2-228f-bb04-f71dr231e57c',
+    name: 'Your first product',
+    quantity: 2,
+    unit: 'kg',
+    category: 'others',
+    min: 2,
+    onShoppingList: false,
+  };
+
+  console.log('w addinitialProducts To database MAMU USERA O ID:', userId);
+
+  return db
+    .collection('users')
+    .doc(userId)
+    .collection('products')
+    .doc(initialProduct.id)
+    .set(initialProduct)
+    .then(data => {
+      console.log('Zarejestrowalismy: ', data);
+      return data;
+    });
+  // .catch(err => {
+  //   console.log('BŁONT!: ', err);
+  //   return err;
+  // });
+};
+
 export const addInitialCategoryToDatabase = userId => {
   const initialCategory = { categories: ['others'] };
 
@@ -251,10 +243,10 @@ export const addInitialCategoryToDatabase = userId => {
     .then(res => {
       console.log('DODALISMY KATEGORIE :', res);
       return res;
-    })
-    .catch(error => {
-      console.error('Sth wrong with new category ', error);
     });
+  // .catch(error => {
+  //   console.error('Sth wrong with new category ', error);
+  // });
 };
 
 export const removeCategoryfromDatabase = categoryToRemove => {
@@ -296,11 +288,11 @@ export const registerUserInUsersDatabase = (userName, userPassword) => {
       console.log('I MA ON UID: ', cred.user.uid);
       // console.log(cred);
       return cred.user.uid;
-    })
-    .catch(err => {
-      console.log('BŁONT!: ', err);
-      return err;
     });
+  // .catch(err => {
+  //   console.log('BŁONT!: ', err);
+  //   return err;
+  // });
 };
 
 export const registerUserInProductDatabase = id => {
