@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Modal from '../../../templates/Modal';
-import H1 from '../../../atoms/texts/H1';
-import Button from '../../../atoms/buttons/Button';
-import Label from '../../../atoms/formElements/Label';
-import Input from '../../../atoms/formElements/Input';
+import styled from 'styled-components';
+import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
+import LogoForms from '../../../../images/logoForms.svg';
+import Input from '../../../styledComponents/atoms/formElements/Input';
+import Label from '../../../styledComponents/atoms/formElements/Label';
+import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
+import P from '../../../styledComponents/atoms/typography/P';
+import Modal from '../../../styledComponents/molecules/Modal';
+import Form from '../../../styledComponents/molecules/Form';
 import { logIn, logOut } from '../../../../data/handlers';
 import { checkForEmptyValues, setErrorMessages } from '../../../../helpers';
 
-class LoginForm extends Component {
+// import A from "../../../styledComponents/atoms/typography/A"
+
+const Logo = styled.div`
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  width: 100px;
+  height: 100px;
+  /* background-color: red; */
+`;
+
+class AnotherLoginForm extends Component {
   state = {
     login: 'test@test.p',
     password: 'testtest',
@@ -21,6 +35,7 @@ class LoginForm extends Component {
       login: '',
       password: '',
     },
+    // error: false,
   };
 
   handleForm = e => {
@@ -63,50 +78,74 @@ class LoginForm extends Component {
 
     return (
       <Modal>
-        <H1 marginBottomDouble>Logowanie</H1>
-        <Label htmlFor="login" alignLeft>
-          Email
-        </Label>
-        <Input
-          type="text"
-          id="login"
-          name="login"
-          value={login}
-          onChange={this.handleForm}
-        />
-        {errorMessages.login && <p>{errorMessages.login}</p>}
-        <Label htmlFor="password" alignLeft>
-          Hasło
-        </Label>
-        <Input
-          type="text"
-          id="password"
-          name="password"
-          value={password}
-          onChange={this.handleForm}
-        />
-        {errorMessages.password && <p>{errorMessages.password}</p>}
-        <br />
-        <Button type="submit" onClick={this.handleSubmit}>
-          Login
-        </Button>
-        <br />
-        <Button type="submit" onClick={this.logInAsTestUser}>
-          Login as Test User
-        </Button>
-        <br />
-        <Link to="/register">
-          <Button type="button" onClick={() => {}}>
-            Rejestracja
-          </Button>
-        </Link>
-        <br />
-        <Button type="submit" onClick={this.handleLogout}>
-          Wyloguj
-        </Button>
+        <Form paddingTop="60px">
+          <Logo>
+            <img src={LogoForms} alt="pantry application logo" width="100%" />
+          </Logo>
+          {/* <H1 marginBottomDouble>Logowaniiiie</H1> */}
+          <P padding="20px" center>
+            logging as guest
+          </P>
+          <ButtonRectangle type="button" onClick={this.logInAsTestUser}>
+            Guest login
+          </ButtonRectangle>
+          <P padding="20px" center>
+            or logging on your account
+          </P>
+
+          <Label htmlFor="login" left>
+            Email
+          </Label>
+          <Input
+            type="text"
+            id="login"
+            name="login"
+            value={login}
+            onChange={this.handleForm}
+          />
+          {errorMessages.login ? (
+            <P error>{errorMessages.login}</P>
+          ) : (
+            <P error>&nbsp;</P>
+          )}
+          <Label htmlFor="password" left top="10px">
+            Password
+          </Label>
+          <Input
+            type="text"
+            id="password"
+            name="password"
+            value={password}
+            onChange={this.handleForm}
+          />
+          {errorMessages.password ? (
+            <P error>{errorMessages.password}</P>
+          ) : (
+            <P error>&nbsp;</P>
+          )}
+          <ButtonRectangle
+            marginTop="20px"
+            type="button"
+            onClick={this.handleSubmit}
+          >
+            Login
+          </ButtonRectangle>
+          <Link to="/register">
+            <P padding="20px">
+              or <SpanLink>create ow account</SpanLink>
+            </P>
+          </Link>
+          <ButtonRectangle
+            marginTop="20px"
+            type="button"
+            onClick={this.handleLogout}
+          >
+            Logout
+          </ButtonRectangle>
+        </Form>
       </Modal>
     );
   }
 }
 
-export default LoginForm;
+export default AnotherLoginForm;
