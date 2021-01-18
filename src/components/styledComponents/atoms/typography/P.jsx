@@ -16,7 +16,7 @@ const P = styled.p`
     css`
       width: 100%;
       text-align: left;
-      padding: 0px;
+      padding: 5px 0px;
       color: #ff2e00;
     `};
 `;

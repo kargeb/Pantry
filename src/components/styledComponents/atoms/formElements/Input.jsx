@@ -5,7 +5,7 @@ const Input = styled.input`
   width: 100%;
   height: 55px;
   /* padding-top: 20px; */
-  /* padding-left: 5px; */
+  padding-left: 5px;
   /* margin-top: ${props => props.top || '0px'}; */
   font-size: 18px;
   line-height: 55px;

@@ -33,6 +33,7 @@ class AnotherLoginForm extends Component {
       login: '',
       password: '',
     },
+    error: false,
   };
 
   // handleForm = e => {
@@ -71,6 +72,7 @@ class AnotherLoginForm extends Component {
   // };
 
   render() {
+    const { error } = this.state;
     // const { login, password, errorMessages } = this.state;
 
     return (
@@ -83,7 +85,9 @@ class AnotherLoginForm extends Component {
           <P padding="20px" center>
             logging as guest
           </P>
-          <ButtonRectangle type="submit">Guest login</ButtonRectangle>
+          <ButtonRectangle type="submit" onClick={e => e.preventDefault()}>
+            Guest login
+          </ButtonRectangle>
           <P padding="20px" center>
             or logging on your account
           </P>
@@ -98,8 +102,12 @@ class AnotherLoginForm extends Component {
             // value={login}
             // onChange={this.handleForm}
           />
-          {/* {errorMessages.login && <p>{errorMessages.login}</p>} */}
-          <Label htmlFor="password" left top="20px">
+          {error ? (
+            <P error>Password has to have at least 6 characters</P>
+          ) : (
+            <P error>&nbsp;</P>
+          )}
+          <Label htmlFor="password" left top="10px">
             Password
           </Label>
           <Input
@@ -109,23 +117,22 @@ class AnotherLoginForm extends Component {
             // value={password}
             // onChange={this.handleForm}
           />
-          <P error>Password has to have at least 6 characters</P>
-          {/* {errorMessages.password && <p>{errorMessages.password}</p>} */}
-          {/* <br /> */}
-          <ButtonRectangle type="submit">Login</ButtonRectangle>
-          {/* <Button type="submit">Login</Button> */}
-          {/* <br />
-        <Button type="submit">Login as Test User</Button>
-        <br /> */}
-          {/* <Button type="button" onClick={() => {}}>
-          Rejestracja
-        </Button> */}
-          {/* <br /> */}
+          {error ? (
+            <P error>Password has to have at least 6 characters</P>
+          ) : (
+            <P error>&nbsp;</P>
+          )}
+          <ButtonRectangle
+            marginTop="20px"
+            type="submit"
+            onClick={e => e.preventDefault()}
+          >
+            Login
+          </ButtonRectangle>
           <Link to="/register">
-            <P>
+            <P padding="20px">
               or <A>create ow account</A>
             </P>
-            {/* <Button type="submit">Wyloguj</Button> */}
           </Link>
         </Form>
       </Modal>
