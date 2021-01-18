@@ -10,9 +10,12 @@ import P from '../../../styledComponents/atoms/typography/P';
 import Modal from '../../../styledComponents/molecules/Modal';
 import Form from '../../../styledComponents/molecules/Form';
 import { logIn, logOut } from '../../../../data/handlers';
-import { checkForEmptyValues, setErrorMessages } from '../../../../helpers';
-
-// import A from "../../../styledComponents/atoms/typography/A"
+import {
+  authDataValidation,
+  checkForEmptyValues,
+  setErrorMessages,
+  validation,
+} from '../../../../helpers';
 
 const Logo = styled.div`
   position: absolute;
@@ -35,7 +38,6 @@ class AnotherLoginForm extends Component {
       login: '',
       password: '',
     },
-    // error: false,
   };
 
   handleForm = e => {
@@ -47,19 +49,16 @@ class AnotherLoginForm extends Component {
     e.preventDefault();
     const { login, password } = this.state;
 
-    const emptyFieldsNames = checkForEmptyValues({ login, password });
-
-    if (emptyFieldsNames.length !== 0) {
-      const errorMessages = setErrorMessages(
-        'Nie moze byc puste!',
-        ...emptyFieldsNames,
-      );
-
-      this.setState({ errorMessages });
-      return false;
+    if (this.formHasInvalidData()) {
+      return;
     }
 
-    logIn(login, password).then(resoult => console.log(resoult));
+    logIn(login, password)
+      .then(resoult => console.log(resoult))
+      .catch(err => {
+        const errorMessages = setErrorMessages(err.message, 'login');
+        this.setState({ errorMessages });
+      });
   };
 
   logInAsTestUser = e => {
@@ -73,6 +72,22 @@ class AnotherLoginForm extends Component {
     logOut();
   };
 
+  formHasInvalidData = () => {
+    const { login, password } = this.state;
+
+    const errorMessages = authDataValidation(login, password);
+
+    if (Object.keys(errorMessages).length === 0) {
+      console.log('NIE MA BLEDOW, MOZNA WYSYLAC');
+      this.setState({ errorMessages });
+      return false;
+    } else {
+      console.log('SA BLEDY, TRZEBA ZATRZYMAC!!!!!!!');
+      this.setState({ errorMessages });
+      return true;
+    }
+  };
+
   render() {
     const { login, password, errorMessages } = this.state;
 
@@ -82,7 +97,6 @@ class AnotherLoginForm extends Component {
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
-          {/* <H1 marginBottomDouble>Logowaniiiie</H1> */}
           <P padding="20px" center>
             logging as guest
           </P>
@@ -97,6 +111,7 @@ class AnotherLoginForm extends Component {
             Email
           </Label>
           <Input
+            errorBorder={errorMessages.login}
             type="text"
             id="login"
             name="login"
@@ -112,6 +127,7 @@ class AnotherLoginForm extends Component {
             Password
           </Label>
           <Input
+            errorBorder={errorMessages.password}
             type="text"
             id="password"
             name="password"

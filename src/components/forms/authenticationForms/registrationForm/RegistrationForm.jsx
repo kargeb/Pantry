@@ -7,10 +7,9 @@ import {
   addInitialProductToDatabase,
 } from '../../../../data/handlers';
 import {
-  checkForEmptyValues,
-  isEmailValid,
-  isPasswordStrong,
+  validation,
   setErrorMessages,
+  authDataValidation,
 } from '../../../../helpers';
 
 import LogoForms from '../../../../images/logoForms.svg';
@@ -28,7 +27,6 @@ const Logo = styled.div`
   left: calc(50% - 50px);
   width: 100px;
   height: 100px;
-  /* background-color: red; */
 `;
 
 class RegistrationForm extends Component {
@@ -48,43 +46,32 @@ class RegistrationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    if (this.formHasInvalidData()) {
+      return;
+    }
+
+    this.registerUser();
+  };
+
+  formHasInvalidData = () => {
     const { login, password } = this.state;
 
-    const emptyFieldsNames = checkForEmptyValues({ login, password });
+    const errorMessages = authDataValidation(login, password);
 
-    if (emptyFieldsNames.length !== 0) {
-      const errorMessages = setErrorMessages(
-        'Nie moze byc puste!',
-        ...emptyFieldsNames,
-      );
-
+    if (Object.keys(errorMessages).length === 0) {
+      console.log('NIE MA BLEDOW, MOZNA WYSYLAC');
       this.setState({ errorMessages });
       return false;
-    }
-
-    if (!isEmailValid(login)) {
-      const errorMessages = setErrorMessages(
-        'Nieprawidłowy adres email',
-        'login',
-      );
-
+    } else {
+      console.log('SA BLEDY, TRZEBA ZATRZYMAC!!!!!!!');
       this.setState({ errorMessages });
-      return false;
+      return true;
     }
+  };
 
-    if (!isPasswordStrong(password)) {
-      const errorMessages = setErrorMessages('Zbyt słabe haslo', 'password');
-
-      this.setState({ errorMessages });
-      return false;
-    }
-
-    this.setState({
-      errorMessages: {
-        login: '',
-        password: '',
-      },
-    });
+  registerUser = () => {
+    const { login, password } = this.state;
     const { setRegistrationStatus } = this.props;
     let newUserId = null;
 
@@ -105,6 +92,10 @@ class RegistrationForm extends Component {
       .then(() => {
         console.log('Registration succeeded');
         setRegistrationStatus(false);
+      })
+      .catch(err => {
+        const errorMessages = setErrorMessages(err.message, 'login');
+        this.setState({ errorMessages });
       });
   };
 
@@ -124,6 +115,7 @@ class RegistrationForm extends Component {
             Email
           </Label>
           <Input
+            errorBorder={errorMessages.login}
             type="email"
             id="login"
             name="login"
@@ -139,13 +131,13 @@ class RegistrationForm extends Component {
             Hasło
           </Label>
           <Input
+            errorBorder={errorMessages.password}
             type="text"
             id="password"
             name="password"
             value={password}
             onChange={this.handleForm}
           />
-          {/* <br /> */}
           {errorMessages.password ? (
             <P error>{errorMessages.password}</P>
           ) : (
@@ -158,7 +150,6 @@ class RegistrationForm extends Component {
           >
             Register
           </ButtonRectangle>
-          {/* <br /> */}
           <Link to="/login">
             <P padding="20px">
               or <SpanLink>login on existing account</SpanLink>
