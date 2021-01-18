@@ -17,7 +17,7 @@ import LogoForms from '../../../../images/logoForms.svg';
 import Modal from '../../../styledComponents/molecules/Modal';
 import Form from '../../../styledComponents/molecules/Form';
 import P from '../../../styledComponents/atoms/typography/P';
-import A from '../../../styledComponents/atoms/typography/A';
+import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
 import Input from '../../../styledComponents/atoms/formElements/Input';
 import Label from '../../../styledComponents/atoms/formElements/Label';
 import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
@@ -161,7 +161,7 @@ class RegistrationForm extends Component {
           {/* <br /> */}
           <Link to="/login">
             <P padding="20px">
-              or <A>login on existing account</A>
+              or <SpanLink>login on existing account</SpanLink>
             </P>
           </Link>
         </Form>

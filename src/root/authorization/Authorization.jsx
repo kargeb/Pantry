@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
-import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
+import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginFormOld';
 import LoginFormNew from '../../components/forms/authenticationForms/loginForm/LoginFormNew';
 import RegistrationForm from '../../components/forms/authenticationForms/registrationForm/RegistrationForm';
 import Loading from '../../views/Loading';
-import AnotherLoginForm from '../../components/forms/authenticationForms/loginForm/AnotherLoginForm';
+import AnotherLoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
 
 const StyledMain = styled.div`
   height: 100vh;
