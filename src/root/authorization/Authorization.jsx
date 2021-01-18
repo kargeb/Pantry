@@ -7,6 +7,7 @@ import LoginForm from '../../components/forms/authenticationForms/loginForm/Logi
 import LoginFormNew from '../../components/forms/authenticationForms/loginForm/LoginFormNew';
 import RegistrationForm from '../../components/forms/authenticationForms/registrationForm/RegistrationForm';
 import Loading from '../../views/Loading';
+import AnotherLoginForm from '../../components/forms/authenticationForms/loginForm/AnotherLoginForm';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -38,8 +39,10 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
               <Switch>
                 {/* <Route exact path="/" component={LoginForm} /> */}
                 {/* <Route path="/pantry" component={LoginForm} /> */}
-                <Route exact path="/" component={LoginFormNew} />
-                <Route path="/pantry" component={LoginFormNew} />
+                {/* <Route exact path="/" component={LoginFormNew} />
+                <Route path="/pantry" component={LoginFormNew} /> */}
+                <Route exact path="/" component={AnotherLoginForm} />
+                <Route path="/pantry" component={AnotherLoginForm} />
                 {/* <Route path="/register" component={RegistrationForm} /> */}
                 <Route
                   path="/register"
@@ -50,8 +53,9 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
                     />
                   )}
                 />
+                <Route component={AnotherLoginForm} />
                 {/* <Route component={LoginForm} /> */}
-                <Route component={LoginFormNew} />
+                {/* <Route component={LoginFormNew} /> */}
               </Switch>
             )}
           </StyledMain>
