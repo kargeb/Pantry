@@ -49,63 +49,74 @@ class RegistrationForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { login, password } = this.state;
+    // prettier-ignore
+    let errorMessages = {};
 
     const emptyFieldsNames = checkForEmptyValues({ login, password });
 
-    if (emptyFieldsNames.length !== 0) {
-      const errorMessages = setErrorMessages(
-        'Nie moze byc puste!',
-        ...emptyFieldsNames,
-      );
-
-      this.setState({ errorMessages });
-      return false;
-    }
-
     if (!isEmailValid(login)) {
-      const errorMessages = setErrorMessages(
+      const newErrorMessages = setErrorMessages(
         'Nieprawidłowy adres email',
         'login',
       );
 
-      this.setState({ errorMessages });
-      return false;
+      errorMessages = { ...errorMessages, ...newErrorMessages };
+      // this.setState({ errorMessages });
+      // return false;
     }
 
     if (!isPasswordStrong(password)) {
-      const errorMessages = setErrorMessages('Zbyt słabe haslo', 'password');
+      const newErrorMessages = setErrorMessages('Zbyt słabe haslo', 'password');
 
-      this.setState({ errorMessages });
-      return false;
+      // this.setState({ errorMessages });
+      // return false;
+      errorMessages = { ...errorMessages, ...newErrorMessages };
     }
 
-    this.setState({
-      errorMessages: {
-        login: '',
-        password: '',
-      },
-    });
-    const { setRegistrationStatus } = this.props;
-    let newUserId = null;
+    if (emptyFieldsNames.length !== 0) {
+      const newErrorMessages = setErrorMessages(
+        'Nie moze byc puste!',
+        ...emptyFieldsNames,
+      );
 
-    setRegistrationStatus(true);
+      errorMessages = { ...errorMessages, ...newErrorMessages };
 
-    registerUserInUsersDatabase(login, password)
-      .then(idObtainedFromDatabase => {
-        newUserId = idObtainedFromDatabase;
-        return newUserId;
-      })
-      .then(() => {
-        //  new user registration in ProductsDatabase is done by adding first product
-        return addInitialProductToDatabase(newUserId);
-      })
-      .then(() => {
-        return addInitialCategoryToDatabase(newUserId);
-      })
-      .then(() => {
-        console.log('Registration succeeded');
-        setRegistrationStatus(false);
-      });
+      // this.setState({ errorMessages });
+      // return false;
+    }
+
+    console.log('ERROS MESSAGES:', errorMessages);
+
+    this.setState({ errorMessages });
+    return false;
+    // this.setState({
+    //   errorMessages: {
+    //     login: '',
+    //     password: '',
+    //   },
+    // });
+
+    // const { setRegistrationStatus } = this.props;
+    // let newUserId = null;
+
+    // setRegistrationStatus(true);
+
+    // registerUserInUsersDatabase(login, password)
+    //   .then(idObtainedFromDatabase => {
+    //     newUserId = idObtainedFromDatabase;
+    //     return newUserId;
+    //   })
+    //   .then(() => {
+    //     //  new user registration in ProductsDatabase is done by adding first product
+    //     return addInitialProductToDatabase(newUserId);
+    //   })
+    //   .then(() => {
+    //     return addInitialCategoryToDatabase(newUserId);
+    //   })
+    //   .then(() => {
+    //     console.log('Registration succeeded');
+    //     setRegistrationStatus(false);
+    //   });
   };
 
   render() {
