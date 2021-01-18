@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../../../templates/Modal';
-import H1 from '../../../atoms/texts/H1';
-import Button from '../../../atoms/buttons/Button';
-import Label from '../../../atoms/formElements/Label';
-import Input from '../../../atoms/formElements/Input';
+import styled from 'styled-components';
 import {
   registerUserInUsersDatabase,
   addInitialCategoryToDatabase,
@@ -17,11 +13,28 @@ import {
   setErrorMessages,
 } from '../../../../helpers';
 
+import LogoForms from '../../../../images/logoForms.svg';
+import Modal from '../../../styledComponents/molecules/Modal';
+import Form from '../../../styledComponents/molecules/Form';
+import P from '../../../styledComponents/atoms/typography/P';
+import A from '../../../styledComponents/atoms/typography/A';
+import Input from '../../../styledComponents/atoms/formElements/Input';
+import Label from '../../../styledComponents/atoms/formElements/Label';
+import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
+
+const Logo = styled.div`
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  width: 100px;
+  height: 100px;
+  /* background-color: red; */
+`;
+
 class RegistrationForm extends Component {
   state = {
     login: '',
     password: '',
-    isAlertVisible: false,
     errorMessages: {
       login: '',
       password: '',
@@ -100,39 +113,58 @@ class RegistrationForm extends Component {
 
     return (
       <Modal>
-        <H1 marginBottomDouble>Rejestracja</H1>
-        <Label htmlFor="login" alignLeft>
-          Email
-        </Label>
-        <Input
-          type="email"
-          id="login"
-          name="login"
-          value={login}
-          onChange={this.handleForm}
-        />
-        {errorMessages.login && <p>{errorMessages.login}</p>}
-        <Label htmlFor="password" alignLeft>
-          Hasło
-        </Label>
-        <Input
-          type="text"
-          id="password"
-          name="password"
-          value={password}
-          onChange={this.handleForm}
-        />
-        <br />
-        {errorMessages.password && <p>{errorMessages.password}</p>}
-        <Button type="submit" onClick={this.handleSubmit}>
-          Zarejestruj
-        </Button>
-        <br />
-        <Link to="/login">
-          <Button type="button" onClick={this.handleLogout}>
-            Powrót do logowania
-          </Button>
-        </Link>
+        <Form paddingTop="60px">
+          <Logo>
+            <img src={LogoForms} alt="pantry application logo" width="100%" />
+          </Logo>
+          <P padding="20px" center>
+            create your account
+          </P>
+          <Label htmlFor="login" left>
+            Email
+          </Label>
+          <Input
+            type="email"
+            id="login"
+            name="login"
+            value={login}
+            onChange={this.handleForm}
+          />
+          {errorMessages.login ? (
+            <P error>{errorMessages.login}</P>
+          ) : (
+            <P error>&nbsp;</P>
+          )}
+          <Label htmlFor="password" left top="10px">
+            Hasło
+          </Label>
+          <Input
+            type="text"
+            id="password"
+            name="password"
+            value={password}
+            onChange={this.handleForm}
+          />
+          {/* <br /> */}
+          {errorMessages.password ? (
+            <P error>{errorMessages.password}</P>
+          ) : (
+            <P error>&nbsp;</P>
+          )}
+          <ButtonRectangle
+            marginTop="20px"
+            type="submit"
+            onClick={this.handleSubmit}
+          >
+            Register
+          </ButtonRectangle>
+          {/* <br /> */}
+          <Link to="/login">
+            <P padding="20px">
+              or <A>login on existing account</A>
+            </P>
+          </Link>
+        </Form>
       </Modal>
     );
   }

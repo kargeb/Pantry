@@ -79,7 +79,7 @@ class AnotherLoginForm extends Component {
       <Modal>
         <Form paddingTop="60px">
           <Logo>
-            <img src={LogoForms} width="100%" />
+            <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
           {/* <H1 marginBottomDouble>Logowaniiiie</H1> */}
           <P padding="20px" center>
