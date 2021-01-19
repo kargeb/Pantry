@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Input = styled.input`
   width: 100%;
-  height: 45px;
+  height: 38px;
   padding-left: 5px;
   font-size: 14px;
   /* line-height: 45px; */
@@ -22,6 +22,10 @@ const Input = styled.input`
     css`
       border: 1px solid #ff2e00;
     `}
+
+    @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+height: 45px;
+  }
 `;
 
 export default Input;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ButtonRectangle = styled.button`
 /* display: flex; */
-height: 50px;
+height: 35px;
 width: 100%;
 border: none;
 /* width: 250px; */
@@ -12,6 +12,10 @@ margin-top: ${props => props.marginTop || '0px'};
 /* font-weight: ${({ theme }) => theme.bold}; */
 /* letter-spacing: 0.15px; */
 color: ${({ theme }) => theme.textSecondary};
+
+@media (min-width: ${({ theme }) => theme.mediumScreen}) {
+height: 50px;
+  }
 `;
 
 export default ButtonRectangle;

@@ -20,12 +20,20 @@ import H1 from '../../../styledComponents/atoms/typography/H1';
 
 const Logo = styled.div`
   position: fixed;
-  top: 40px;
-  left: 40px;
-  width: 200px;
+  top: 5px;
+  left: 5px;
+  /* position: static; */
+  width: 140px;
+
   /* height: 100px; */
   /* z-index: 99999; */
   /* background-color: red; */
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    width: 140px;
+    top: 40px;
+    left: 40px;
+    width: 200px;
+  }
 `;
 
 const TempLogoutButton = styled(ButtonRectangle)`
@@ -109,12 +117,12 @@ class AnotherLoginForm extends Component {
         <TempLogoutButton type="button" onClick={this.handleLogout}>
           Logout
         </TempLogoutButton>
+        <Logo>
+          <img src={LogoForms} alt="pantry application logo" width="100%" />
+        </Logo>
         <Form>
           <H1>Login</H1>
           {/* <Form paddingTop="60px"> */}
-          <Logo>
-            <img src={LogoForms} alt="pantry application logo" width="100%" />
-          </Logo>
           <P padding="20px" center>
             as guest
           </P>
