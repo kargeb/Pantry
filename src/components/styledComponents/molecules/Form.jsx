@@ -18,7 +18,7 @@ const Form = styled.form`
   /* height: 700px; */
   /* min-height: 500px; */
   overflow: auto;
-  border: 3px solid green;
+  /* border: 3px solid green; */
   padding: 2% 30px;
   /* padding-top: ${props => props.paddingTop || '0px'}; */
   /* overflow: auto; */
@@ -26,6 +26,16 @@ const Form = styled.form`
   background-color: rgba(0,0,0,0.5);
   /* background-color: ${props => props.theme.background}; */
   /* border: solid 3px #999; */
+
+
+  /* hiding scrollbar */
+  /* &::-webkit-scrollbar {
+    display: none
+  }
+
+  --ms-overflow-style: none;
+  scrollbar-width: none; */
+
 `;
 
 export default Form;

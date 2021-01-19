@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
-import LogoForms from '../../../../images/logoForm2.svg';
+import LogoForms from '../../../../images/logoPantry.svg';
 import Input from '../../../styledComponents/atoms/authFormsElements/Input';
 import Label from '../../../styledComponents/atoms/authFormsElements/Label';
 import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
@@ -16,20 +16,21 @@ import {
   setErrorMessages,
   validation,
 } from '../../../../helpers';
+import H1 from '../../../styledComponents/atoms/typography/H1';
 
 const Logo = styled.div`
-  position: relative;
-  top: -70px;
-  /* left: calc(50% - 50px); */
-  width: 100px;
-  height: 100px;
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 200px;
+  /* height: 100px; */
   /* z-index: 99999; */
   /* background-color: red; */
 `;
 
 const TempLogoutButton = styled(ButtonRectangle)`
   position: fixed;
-  top: 10px;
+  top: 300px;
   left: 10px;
   width: 100px;
   /* height: 50px; */
@@ -109,18 +110,19 @@ class AnotherLoginForm extends Component {
           Logout
         </TempLogoutButton>
         <Form>
+          <H1>Login</H1>
           {/* <Form paddingTop="60px"> */}
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
           <P padding="20px" center>
-            logging as guest
+            as guest
           </P>
           <ButtonRectangle type="button" onClick={this.logInAsTestUser}>
             Guest login
           </ButtonRectangle>
           <P padding="20px" center>
-            or logging on your account
+            or on your account
           </P>
 
           <Label htmlFor="login" left>
@@ -163,7 +165,7 @@ class AnotherLoginForm extends Component {
             Login
           </ButtonRectangle>
           <Link to="/register">
-            <P padding="20px">
+            <P center padding="30px">
               or <SpanLink>create your account</SpanLink>
             </P>
           </Link>
