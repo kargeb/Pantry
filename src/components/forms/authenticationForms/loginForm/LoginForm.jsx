@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
-import LogoForms from '../../../../images/logoForms.svg';
+import LogoForms from '../../../../images/logoForm2.svg';
 import Input from '../../../styledComponents/atoms/formElements/Input';
 import Label from '../../../styledComponents/atoms/formElements/Label';
 import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
@@ -23,6 +23,17 @@ const Logo = styled.div`
   left: calc(50% - 50px);
   width: 100px;
   height: 100px;
+  /* background-color: red; */
+`;
+
+const TempLogoutButton = styled(ButtonRectangle)`
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  /* height: 50px; */
+  z-index: 9999999;
+  border: none;
   /* background-color: red; */
 `;
 
@@ -93,6 +104,9 @@ class AnotherLoginForm extends Component {
 
     return (
       <Modal>
+        <TempLogoutButton type="button" onClick={this.handleLogout}>
+          Logout
+        </TempLogoutButton>
         <Form paddingTop="60px">
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
@@ -148,16 +162,9 @@ class AnotherLoginForm extends Component {
           </ButtonRectangle>
           <Link to="/register">
             <P padding="20px">
-              or <SpanLink>create ow account</SpanLink>
+              or <SpanLink>create your account</SpanLink>
             </P>
           </Link>
-          <ButtonRectangle
-            marginTop="20px"
-            type="button"
-            onClick={this.handleLogout}
-          >
-            Logout
-          </ButtonRectangle>
         </Form>
       </Modal>
     );
