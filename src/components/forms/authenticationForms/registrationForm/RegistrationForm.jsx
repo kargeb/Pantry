@@ -17,9 +17,9 @@ import Modal from '../../../styledComponents/molecules/Modal';
 import Form from '../../../styledComponents/molecules/Form';
 import P from '../../../styledComponents/atoms/typography/P';
 import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
-import Input from '../../../styledComponents/atoms/formElements/Input';
-import Label from '../../../styledComponents/atoms/formElements/Label';
-import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
+import Input from '../../../styledComponents/atoms/authFormsElements/Input';
+import Label from '../../../styledComponents/atoms/authFormsElements/Label';
+import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
 
 const Logo = styled.div`
   position: absolute;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ButtonRectangle = styled.button`
+/* display: flex; */
 height: 50px;
 width: 100%;
 border: none;

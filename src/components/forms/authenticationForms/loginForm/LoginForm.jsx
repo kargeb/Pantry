@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
+import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
 import LogoForms from '../../../../images/logoForm2.svg';
-import Input from '../../../styledComponents/atoms/formElements/Input';
-import Label from '../../../styledComponents/atoms/formElements/Label';
+import Input from '../../../styledComponents/atoms/authFormsElements/Input';
+import Label from '../../../styledComponents/atoms/authFormsElements/Label';
 import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
 import P from '../../../styledComponents/atoms/typography/P';
 import Modal from '../../../styledComponents/molecules/Modal';
@@ -18,11 +18,12 @@ import {
 } from '../../../../helpers';
 
 const Logo = styled.div`
-  position: absolute;
-  top: -50px;
-  left: calc(50% - 50px);
+  position: relative;
+  top: -70px;
+  /* left: calc(50% - 50px); */
   width: 100px;
   height: 100px;
+  /* z-index: 99999; */
   /* background-color: red; */
 `;
 
@@ -107,7 +108,8 @@ class AnotherLoginForm extends Component {
         <TempLogoutButton type="button" onClick={this.handleLogout}>
           Logout
         </TempLogoutButton>
-        <Form paddingTop="60px">
+        <Form>
+          {/* <Form paddingTop="60px"> */}
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
