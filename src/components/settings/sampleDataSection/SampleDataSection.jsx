@@ -5,9 +5,14 @@ import Button from '../../atoms/buttons/Button';
 import InsertSampleDataModal from './ModalInsertSampleData';
 
 const Section = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
   @media (min-width: 1024px) {
     height: 100%;
     /* display: flex; */
@@ -26,6 +31,7 @@ const Header = styled.div`
   }
 `;
 const WrapperButton = styled.div`
+  align-self: flex-end;
   padding: 20px 0;
 
   @media (min-width: 1024px) {

@@ -7,9 +7,14 @@ import Label from '../../atoms/formElements/Label';
 import ButtonIconSwitch from '../../atoms/buttons/ButtonIconSwitch';
 
 const Section = styled.section`
+  width: 100%;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: flex-start;
+
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
 
   @media (min-width: 1024px) {
     height: 100%;
@@ -26,6 +31,8 @@ const Header = styled.div`
 `;
 
 const WrapperToggleButton = styled.div`
+  align-self: flex-end;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,7 +53,10 @@ const DarkModeSection = () => {
           </Header>
           <WrapperToggleButton>
             <Label>Off</Label>
-            <ButtonIconSwitch onClick={context.changeTheme} themeName={context.currentTheme.name} />
+            <ButtonIconSwitch
+              onClick={context.changeTheme}
+              themeName={context.currentTheme.name}
+            />
             <Label>On</Label>
           </WrapperToggleButton>
         </Section>

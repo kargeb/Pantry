@@ -10,9 +10,10 @@ import { auth } from '../../../fbase';
 import ConfirmLogoutModal from './ConfirmLogoutModal';
 
 const Section = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   /* overflow: hidden; */
   @media (min-width: 1024px) {
     height: 100%;
@@ -20,6 +21,12 @@ const Section = styled.section`
     /* flex-direction: column; */
     margin: 0 20px;
   }
+`;
+
+const StyledH2 = styled(H2)`
+  width: 100%;
+  text-align: left;
+  margin-bottom: 5px;
 `;
 
 const UserContainer = styled.div`
@@ -48,6 +55,7 @@ const Header = styled.div`
   }
 `;
 const WrapperButton = styled.div`
+  align-self: flex-end;
   padding: 20px 0;
 
   @media (min-width: 1024px) {
@@ -75,6 +83,7 @@ class LogoutSection extends React.Component {
 
     return (
       <Section>
+        <StyledH2>User name:</StyledH2>
         <UserContainer>
           <UserIcon>
             <FontAwesomeIcon icon={faUserCircle} />
@@ -84,7 +93,6 @@ class LogoutSection extends React.Component {
           </Header>
         </UserContainer>
         <WrapperButton>
-          {/* <Button type="button" onClick={this.toggleConfirmLogoutModal}> */}
           <Button type="button" onClick={this.toggleConfirmLogoutModal}>
             Wyloguj
           </Button>

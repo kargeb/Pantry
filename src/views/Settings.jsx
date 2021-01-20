@@ -9,6 +9,10 @@ import LogoutSection from '../components/settings/logoutSection/LogoutSection';
 
 const Wrapper = styled.div`
   display: flex;
+  padding: 0 10px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -17,6 +21,8 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     height: 250px;
+    width: 100%;
+    max-width: 100%;
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
@@ -27,11 +33,11 @@ const Settings = () => (
   <Wrapper>
     <LogoutSection />
     <Divider />
-    <DarkModeSection />
+    <CategoriesSection />
     <Divider />
     <InsertSampleData />
     <Divider />
-    <CategoriesSection />
+    <DarkModeSection />
   </Wrapper>
 );
 export default Settings;
