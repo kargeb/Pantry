@@ -14,7 +14,10 @@ const Section = styled.section`
   flex-direction: column;
   align-items: center; */
   @media (min-width: 1024px) {
-    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    /* height: 100%; */
+    /* height: 100%; */
     /* display: flex; */
     /* flex-direction: column; */
     margin: 0 20px;

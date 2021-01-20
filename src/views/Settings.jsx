@@ -14,18 +14,20 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 350px;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
   padding-top: 30px;
   overflow: auto;
 
   @media (min-width: 1024px) {
-    height: 250px;
-    width: 100%;
-    max-width: 100%;
+    /* height: 250px; */
+    /* max-width: 400px; */
+    /* width: 100%; */
+    /* max-width: 100%;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    flex-direction: row;
+    flex-direction: row; */
   }
 `;
 

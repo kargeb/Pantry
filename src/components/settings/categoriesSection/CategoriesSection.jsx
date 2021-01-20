@@ -14,13 +14,6 @@ const Header = styled.div`
   }
 `;
 
-const StyledH2 = styled(H2)`
-  padding: 15px 0;
-  width: 100%;
-  text-align: left;
-  margin-bottom: 5px;
-`;
-
 const Section = styled.section`
   width: 100%;
   display: flex;
@@ -28,11 +21,22 @@ const Section = styled.section`
   align-items: flex-start;
 
   @media (min-width: 1024px) {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 100%; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* margin: 0 20px; */
   }
+`;
+
+const StyledH2 = styled(H2)`
+  padding: 15px 0;
+  /* width: 100%; */
+  text-align: left;
+  margin-bottom: 5px;
+  margin: 0;
 `;
 
 const WrapperButton = styled.div`
@@ -44,6 +48,10 @@ const WrapperButton = styled.div`
   align-items: center; */
   @media (min-width: 1024px) {
     height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
