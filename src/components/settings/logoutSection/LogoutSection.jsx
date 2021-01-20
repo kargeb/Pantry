@@ -13,6 +13,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* overflow: hidden; */
   @media (min-width: 1024px) {
     height: 100%;
     /* display: flex; */
@@ -25,6 +26,7 @@ const UserContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  /* overflow: hidden; */
   /* width: 100%; */
   div {
     margin: 0 10px;
