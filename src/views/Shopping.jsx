@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ShoppingList from '../components/shopping/listShoppingProducts/ShoppingList';
 import ShadowScrollbar from '../components/ShadowScrollbar/ShadowScrollbar';
 import { AppContext } from '../context';
+import loadingGif from '../images/loading_dots.gif';
 
 const StyledMain = styled.main`
   height: calc(100vh - 70px);
@@ -13,12 +14,15 @@ const StyledMain = styled.main`
 const Shopping = () => {
   return (
     <AppContext.Consumer>
-      {({ products }) => (
+      {({ products, downloadInProgress }) => (
         <StyledMain>
-          {/* <ShadowScrollbar style={{ height: 'calc(100vh - 70px)' }}> */}
-          <ShadowScrollbar style={{ height: '100%' }}>
-            <ShoppingList products={products} />
-          </ShadowScrollbar>
+          {downloadInProgress ? (
+            <img src={loadingGif} alt="Loading gif" />
+          ) : (
+            <ShadowScrollbar style={{ height: '100%' }}>
+              <ShoppingList products={products} />
+            </ShadowScrollbar>
+          )}
         </StyledMain>
       )}
     </AppContext.Consumer>

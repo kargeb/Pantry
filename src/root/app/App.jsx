@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
@@ -9,28 +14,37 @@ import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';
 import Settings from '../../views/Settings';
 import Navigation from '../../components/navigation/Navigation';
-import { setProductsDatabaseListener, setCategoriesDatabaseListener } from '../../data/handlers';
+import {
+  setProductsDatabaseListener,
+  setCategoriesDatabaseListener,
+} from '../../data/handlers';
 
 class App extends React.Component {
   state = {
     products: [],
     allCategories: [],
     currentTheme: lightTheme,
+    downloadInProgress: true,
   };
 
   componentDidMount() {
-    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(downloadedCategories => {
-      this.setState({
-        allCategories: [...downloadedCategories],
-      });
-    });
+    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(
+      downloadedCategories => {
+        this.setState({
+          allCategories: [...downloadedCategories],
+          downloadInProgress: false,
+        });
+      },
+    );
 
-    this.unsubscribeProductsListener = setProductsDatabaseListener(downloadedProducts => {
-      this.setState({
-        products: [...downloadedProducts],
-        isLoading: false,
-      });
-    });
+    this.unsubscribeProductsListener = setProductsDatabaseListener(
+      downloadedProducts => {
+        this.setState({
+          products: [...downloadedProducts],
+          isLoading: false,
+        });
+      },
+    );
   }
 
   componentWillUnmount() {

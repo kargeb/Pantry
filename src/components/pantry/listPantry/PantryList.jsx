@@ -27,10 +27,10 @@ const PantryList = () => {
 
   return (
     <AppContext.Consumer>
-      {({ products }) => (
+      {({ products, downloadInProgress }) => (
         <div>
           {console.log('Z CONTEXU:', products)}
-          {!products.length ? (
+          {downloadInProgress ? (
             <img src={loadingGif} alt="Loading gif" />
           ) : (
             <div>
