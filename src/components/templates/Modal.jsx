@@ -11,7 +11,7 @@ const Background = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(1px);
@@ -20,10 +20,12 @@ const Background = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
+  /* margin: 0 auto; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+  overflow: auto;
 
   padding: 2% 4%;
   color: ${props => props.theme.textPrimary};
