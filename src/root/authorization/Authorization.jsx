@@ -18,9 +18,12 @@ const StyledMain = styled.div`
 
 const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
   const imageBackgroundStyles = {
-    backgroundImage: `url(${`${process.env.PUBLIC_URL}/pantry.jpg`})`,
+    // backgroundImage: `url(${`${process.env.PUBLIC_URL}/pantry.jpg`})`,
+    backgroundImage: `url(${`${process.env.PUBLIC_URL}/loginBackgroundMirror.jpg`})`,
+
     backgroundSize: 'cover',
-    backgroundPosition: 'bottom',
+    backgroundPosition: 'center 40%',
+    // transform: 'scaleX(-1)',
   };
 
   return (
