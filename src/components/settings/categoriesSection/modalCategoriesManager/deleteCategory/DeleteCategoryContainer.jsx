@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ModalConfirmDeletion from '../../../../molecules/ModalConfirmDeletion';
-import Alert from '../../../../molecules/Alert';
+// import Alert from '../../../../molecules/Alert';
 import { removeCategoryfromDatabase } from '../../../../../data/handlers';
 import DeleteCategory from './DeleteCategory';
 
@@ -10,7 +10,7 @@ class DeleteCategoryContainer extends React.Component {
     namesOfAllCategories: this.props.allCategories,
     NamesOfCategoriesContainingProducts: [],
     categoryToDelete: '',
-    alertMessage: '',
+    // alertMessage: '',
     isConfirmationModalVisible: false,
     errorMessage: '',
   };
@@ -54,12 +54,11 @@ class DeleteCategoryContainer extends React.Component {
     if (this.categoryContainsProducts()) {
       return;
     }
+    if (this.onlyOneCategoryLeft()) {
+      return;
+    }
 
     this.toggleConfirmationModal();
-  };
-
-  setAlertMessage = message => {
-    this.setState({ alertMessage: message });
   };
 
   noCategorySelected = () => {
@@ -74,11 +73,15 @@ class DeleteCategoryContainer extends React.Component {
       categoryIsNotSelected = true;
     }
 
-    console.log('namesOfAllCategories: ', this.state.namesOfAllCategories);
-
-    console.log('PREVENT TO DELETE LAST CATEGORY');
-
     return categoryIsNotSelected;
+  };
+
+  onlyOneCategoryLeft = () => {
+    if (this.props.allCategories.length === 1) {
+      this.setState({ errorMessage: 'There must be at least one category' });
+      return true;
+    }
+    return false;
   };
 
   categoryContainsProducts = () => {
@@ -99,7 +102,7 @@ class DeleteCategoryContainer extends React.Component {
     return categoryHasProducts;
   };
 
-  handleDeleteCategory = () => {
+  deleteCategory = () => {
     const { categoryToDelete } = this.state;
 
     removeCategoryfromDatabase(categoryToDelete);
@@ -112,7 +115,6 @@ class DeleteCategoryContainer extends React.Component {
 
   render() {
     const {
-      alertMessage,
       isConfirmationModalVisible,
       categoryToDelete,
       NamesOfCategoriesContainingProducts,
@@ -122,7 +124,6 @@ class DeleteCategoryContainer extends React.Component {
     return (
       <>
         <DeleteCategory
-          setAlertMessage={this.setAlertMessage}
           handleSubmit={this.handleSubmit}
           NamesOfCategoriesContainingProducts={
             NamesOfCategoriesContainingProducts
@@ -136,12 +137,10 @@ class DeleteCategoryContainer extends React.Component {
           <ModalConfirmDeletion
             heading="Confirm deletion of:"
             name={categoryToDelete}
-            // toggleDeleteModal={this.toggleDeleteModal}
             toggleConfirmationModal={this.toggleConfirmationModal}
-            handleDeleteCategory={this.handleDeleteCategory}
+            deleteCategory={this.deleteCategory}
           />
         )}
-        {alertMessage && <Alert>{alertMessage}</Alert>}
       </>
     );
   }
