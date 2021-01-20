@@ -19,20 +19,27 @@ import {
 import H1 from '../../../styledComponents/atoms/typography/H1';
 
 const Logo = styled.div`
-  position: fixed;
-  top: 5px;
-  left: 5px;
-  /* position: static; */
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 140px;
 
-  /* height: 100px; */
-  /* z-index: 99999; */
-  /* background-color: red; */
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    position: fixed;
     width: 140px;
     top: 40px;
     left: 40px;
     width: 200px;
+    transform: translateX(0);
+  }
+`;
+
+const StyledH1 = styled(H1)`
+  margin-top: 55px;
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    margin-top: 10px;
   }
 `;
 
@@ -41,10 +48,8 @@ const TempLogoutButton = styled(ButtonRectangle)`
   top: 300px;
   left: 10px;
   width: 100px;
-  /* height: 50px; */
   z-index: 9999999;
   border: none;
-  /* background-color: red; */
 `;
 
 class AnotherLoginForm extends Component {
@@ -117,11 +122,11 @@ class AnotherLoginForm extends Component {
         <TempLogoutButton type="button" onClick={this.handleLogout}>
           Logout
         </TempLogoutButton>
-        <Logo>
-          <img src={LogoForms} alt="pantry application logo" width="100%" />
-        </Logo>
         <Form>
-          <H1>Login</H1>
+          <Logo>
+            <img src={LogoForms} alt="pantry application logo" width="100%" />
+          </Logo>
+          <StyledH1>Login</StyledH1>
           {/* <Form paddingTop="60px"> */}
           <P padding="20px" center>
             as guest
