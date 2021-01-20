@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
-import LogoForms from '../../../../images/logoForm2.svg';
-import Input from '../../../styledComponents/atoms/formElements/Input';
-import Label from '../../../styledComponents/atoms/formElements/Label';
+import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
+import LogoForms from '../../../../images/logoPantry.svg';
+import Input from '../../../styledComponents/atoms/authFormsElements/Input';
+import Label from '../../../styledComponents/atoms/authFormsElements/Label';
 import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
 import P from '../../../styledComponents/atoms/typography/P';
 import Modal from '../../../styledComponents/molecules/Modal';
@@ -16,25 +16,40 @@ import {
   setErrorMessages,
   validation,
 } from '../../../../helpers';
+import H1 from '../../../styledComponents/atoms/typography/H1';
 
 const Logo = styled.div`
   position: absolute;
-  top: -50px;
-  left: calc(50% - 50px);
-  width: 100px;
-  height: 100px;
-  /* background-color: red; */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    position: fixed;
+    width: 140px;
+    top: 40px;
+    left: 40px;
+    width: 200px;
+    transform: translateX(0);
+  }
+`;
+
+const StyledH1 = styled(H1)`
+  margin-top: 55px;
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    margin-top: 10px;
+  }
 `;
 
 const TempLogoutButton = styled(ButtonRectangle)`
   position: fixed;
-  top: 10px;
+  top: 300px;
   left: 10px;
   width: 100px;
-  /* height: 50px; */
   z-index: 9999999;
   border: none;
-  /* background-color: red; */
 `;
 
 class AnotherLoginForm extends Component {
@@ -107,18 +122,20 @@ class AnotherLoginForm extends Component {
         <TempLogoutButton type="button" onClick={this.handleLogout}>
           Logout
         </TempLogoutButton>
-        <Form paddingTop="60px">
+        <Form>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
+          <StyledH1>Login</StyledH1>
+          {/* <Form paddingTop="60px"> */}
           <P padding="20px" center>
-            logging as guest
+            as guest
           </P>
           <ButtonRectangle type="button" onClick={this.logInAsTestUser}>
             Guest login
           </ButtonRectangle>
           <P padding="20px" center>
-            or logging on your account
+            or on your account
           </P>
 
           <Label htmlFor="login" left>
@@ -161,7 +178,7 @@ class AnotherLoginForm extends Component {
             Login
           </ButtonRectangle>
           <Link to="/register">
-            <P padding="20px">
+            <P center padding="30px">
               or <SpanLink>create your account</SpanLink>
             </P>
           </Link>

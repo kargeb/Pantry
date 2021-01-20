@@ -12,21 +12,39 @@ import {
   authDataValidation,
 } from '../../../../helpers';
 
-import LogoForms from '../../../../images/logoForms.svg';
+import LogoForms from '../../../../images/logoPantry.svg';
 import Modal from '../../../styledComponents/molecules/Modal';
 import Form from '../../../styledComponents/molecules/Form';
 import P from '../../../styledComponents/atoms/typography/P';
 import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
-import Input from '../../../styledComponents/atoms/formElements/Input';
-import Label from '../../../styledComponents/atoms/formElements/Label';
-import ButtonRectangle from '../../../styledComponents/atoms/buttons/ButtonRectangle';
+import Input from '../../../styledComponents/atoms/authFormsElements/Input';
+import Label from '../../../styledComponents/atoms/authFormsElements/Label';
+import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
+import H1 from '../../../styledComponents/atoms/typography/H1';
 
 const Logo = styled.div`
   position: absolute;
-  top: -50px;
-  left: calc(50% - 50px);
-  width: 100px;
-  height: 100px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    position: fixed;
+    width: 140px;
+    top: 40px;
+    left: 40px;
+    width: 200px;
+    transform: translateX(0);
+  }
+`;
+
+const StyledH1 = styled(H1)`
+  margin-top: 55px;
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    margin-top: 10px;
+  }
 `;
 
 class RegistrationForm extends Component {
@@ -108,8 +126,9 @@ class RegistrationForm extends Component {
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
+          <StyledH1>Register</StyledH1>
           <P padding="20px" center>
-            create your account
+            new account
           </P>
           <Label htmlFor="login" left>
             Email
@@ -151,7 +170,7 @@ class RegistrationForm extends Component {
             Register
           </ButtonRectangle>
           <Link to="/login">
-            <P padding="20px">
+            <P center padding="20px">
               or <SpanLink>login on existing account</SpanLink>
             </P>
           </Link>

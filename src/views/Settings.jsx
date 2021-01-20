@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   padding-top: 30px;
+  overflow: auto;
 
   @media (min-width: 1024px) {
     height: 250px;

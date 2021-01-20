@@ -5,6 +5,7 @@ const Divider = styled.div`
   width: 300px;
   margin: 10px 0;
   background-color: ${({ theme }) => theme.primary};
+  /* overflow: hidden; */
 
   @media (min-width: 1024px) {
     height: 100%;

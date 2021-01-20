@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components';
 
 const Input = styled.input`
   width: 100%;
-  height: 55px;
+  height: 38px;
   padding-left: 5px;
-  font-size: 18px;
-  line-height: 55px;
+  font-size: 14px;
+  /* line-height: 45px; */
   border: none;
   border-bottom: solid 2px #fff;
   background-color: rgba(0, 0, 0, 0.2);
@@ -22,6 +22,10 @@ const Input = styled.input`
     css`
       border: 1px solid #ff2e00;
     `}
+
+    @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+height: 45px;
+  }
 `;
 
 export default Input;

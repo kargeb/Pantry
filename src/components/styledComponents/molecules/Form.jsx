@@ -4,18 +4,24 @@ import styled from 'styled-components';
 
 const Form = styled.form`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 350px;
+  overflow: auto;
+  margin: 0 10px;
   padding: 2% 30px;
-  padding-top: ${props => props.paddingTop || '0px'};
-
   color: ${props => props.theme.textPrimary};
-  background-color: rgba(0,0,0,0.5);
-  /* background-color: ${props => props.theme.background}; */
-  /* border: solid 3px #999; */
+  background-color: rgba(0, 0, 0, 0.5);
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    width: 350px;
+    margin: 0;
+  }
+
+  /* hiding scrollbar */
+  /* &::-webkit-scrollbar {
+    display: none
+  }
+
+  --ms-overflow-style: none;
+  scrollbar-width: none; */
 `;
 
 export default Form;
