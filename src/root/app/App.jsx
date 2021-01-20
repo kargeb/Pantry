@@ -32,7 +32,7 @@ class App extends React.Component {
       downloadedCategories => {
         this.setState({
           allCategories: [...downloadedCategories],
-          // downloadInProgress: false,
+          downloadInProgress: false,
         });
       },
     );

@@ -33,7 +33,7 @@ const Loader = styled.div`
     position: relative;
     text-indent: -9999em;
     border-top: 1.1em solid rgba(255, 255, 255, 0.2);
-    border-right: 1.1em solid #ffbc66;
+    border-right: 1.1em solid #fff;
     border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
     /* border-bottom: 1.1em solid #ffffff; */
     border-left: 1.1em solid #fff;
