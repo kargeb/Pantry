@@ -63,7 +63,7 @@ class SampleDataSection extends React.Component {
     return (
       <Section>
         <Header>
-          <H2>Sample Data</H2>
+          <H2>Sample data</H2>
         </Header>
         <WrapperButton>
           <Button type="button" onClick={this.toggleInsertModal}>

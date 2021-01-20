@@ -51,7 +51,7 @@ const DarkModeSection = () => {
       {context => (
         <Section>
           <Header>
-            <H2>Dark Mode</H2>
+            <H2>Dark mode</H2>
           </Header>
           <WrapperToggleButton>
             <Label>Off</Label>

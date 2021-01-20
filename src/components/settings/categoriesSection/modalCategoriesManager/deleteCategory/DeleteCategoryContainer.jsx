@@ -135,7 +135,7 @@ class DeleteCategoryContainer extends React.Component {
         />
         {isConfirmationModalVisible && (
           <ModalConfirmDeletion
-            heading="Confirm deletion of:"
+            heading="Confirm remove"
             name={categoryToDelete}
             toggleConfirmationModal={this.toggleConfirmationModal}
             deleteCategory={this.deleteCategory}

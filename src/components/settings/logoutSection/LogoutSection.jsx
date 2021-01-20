@@ -94,7 +94,7 @@ class LogoutSection extends React.Component {
         </UserContainer>
         <WrapperButton>
           <Button type="button" onClick={this.toggleConfirmLogoutModal}>
-            Wyloguj
+            Logout
           </Button>
         </WrapperButton>
         {isConfirmLogoutModalVisible && (
