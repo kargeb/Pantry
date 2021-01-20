@@ -8,7 +8,6 @@ import {
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
-import sampleData from '../../data/db.json';
 import { AppContext } from '../../context';
 import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';

@@ -89,7 +89,9 @@ class LogoutSection extends React.Component {
             <FontAwesomeIcon icon={faUserCircle} />
           </UserIcon>
           <Header>
-            <H2>{auth.currentUser && auth.currentUser.email}</H2>
+            <StyledH2 lowercase italic>
+              {auth.currentUser && auth.currentUser.email}
+            </StyledH2>
           </Header>
         </UserContainer>
         <WrapperButton>

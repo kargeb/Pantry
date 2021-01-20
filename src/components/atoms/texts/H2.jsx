@@ -5,6 +5,20 @@ const H2 = styled.h2`
   font-weight: ${({ theme }) => theme.medium};
   margin: 0 auto;
 
+  :first-letter {
+    text-transform: uppercase;
+  }
+
+
+
+  ${({ lowercase }) =>
+    lowercase &&
+    css`
+      :first-letter {
+        text-transform: lowercase;
+      }
+    `}
+
   ${({ italic }) =>
     italic &&
     css`
@@ -14,6 +28,11 @@ const H2 = styled.h2`
     marginBottom &&
     css`
       margin-bottom: 15px;
+    `};
+  ${({ marginTop }) =>
+    marginTop &&
+    css`
+      margin-top: 15px;
     `};
 `;
 

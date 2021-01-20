@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../templates/Modal';
-import sampleData from '../../../data/db.json';
 
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import H1 from '../../atoms/texts/H1';

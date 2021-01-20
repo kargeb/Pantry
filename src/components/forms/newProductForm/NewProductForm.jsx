@@ -161,7 +161,10 @@ class NewProductForm extends React.Component {
 
     return (
       <Modal>
-        <H1 marginBottomDouble>New product</H1>
+        {/* <H1 marginBottomDouble>New product</H1> */}
+        <H1 marginBottomDouble>
+          {this.props.name ? 'Edit product' : 'New product'}
+        </H1>
         <InputName
           handleForm={this.handleForm}
           name={name}
