@@ -18,16 +18,17 @@ const Wrapper = styled.div`
   padding: 0 10px;
   margin: 0 auto;
   /* width: 100%; */
+  padding-top: 15px;
   max-width: 350px;
   flex-direction: column;
   /* justify-content: space-around; */
   align-items: center;
-  padding-top: 30px;
   overflow: auto;
   color: ${props => props.theme.textPrimary};
   background-color: ${props => props.theme.background};
 
   @media (min-width: 1024px) {
+    padding-top: 25px;
     /* height: 250px; */
     /* max-width: 400px; */
     /* width: 100%; */

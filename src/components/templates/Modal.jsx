@@ -20,10 +20,8 @@ const Background = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  /* margin: 0 auto; */
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   overflow: auto;
 

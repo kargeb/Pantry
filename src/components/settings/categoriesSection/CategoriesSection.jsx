@@ -32,7 +32,7 @@ const Section = styled.section`
 `;
 
 const StyledH2 = styled(H2)`
-  padding: 15px 0;
+  padding: 5px 0;
   /* width: 100%; */
   text-align: left;
   margin-bottom: 5px;
@@ -41,7 +41,7 @@ const StyledH2 = styled(H2)`
 
 const WrapperButton = styled.div`
   align-self: flex-end;
-  padding: 20px 0;
+  padding: 10px 0;
   /*display: flex;
   flex-direction: column;
   justify-content: center;

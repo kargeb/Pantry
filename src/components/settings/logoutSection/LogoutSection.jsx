@@ -26,15 +26,16 @@ const Section = styled.section`
 const StyledH2 = styled(H2)`
   width: 100%;
   text-align: left;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 `;
 
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   /* overflow: hidden; */
   /* width: 100%; */
+  margin: 10px 0 0 0;
   div {
     margin: 0 10px;
   }
@@ -46,19 +47,21 @@ const UserIcon = styled.div`
 `;
 
 const Header = styled.div`
-  padding: 15px 0;
+  padding: 5px 0;
 
   @media (min-width: 1024px) {
-    height: 100px;
+    /* height: 100px; */
+    /* margin: 15px 0 5px 0; */
     display: flex;
     align-items: center;
   }
 `;
 const WrapperButton = styled.div`
   align-self: flex-end;
-  padding: 20px 0;
+  padding: 10px 0;
 
   @media (min-width: 1024px) {
+    /* padding: 20px 0; */
     height: 90px;
     display: flex;
     flex-direction: column;

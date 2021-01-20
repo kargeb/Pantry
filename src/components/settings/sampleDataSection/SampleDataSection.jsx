@@ -25,7 +25,7 @@ const Section = styled.section`
 `;
 
 const Header = styled.div`
-  padding: 15px 0;
+  padding: 5px 0;
 
   @media (min-width: 1024px) {
     height: 100px;
@@ -35,7 +35,7 @@ const Header = styled.div`
 `;
 const WrapperButton = styled.div`
   align-self: flex-end;
-  padding: 20px 0;
+  padding: 10px 0;
 
   @media (min-width: 1024px) {
     height: 90px;

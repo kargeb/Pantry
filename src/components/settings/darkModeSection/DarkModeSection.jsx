@@ -39,7 +39,7 @@ const WrapperToggleButton = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 120px;
-  padding: 20px 0;
+  padding: 10px 0;
   @media (min-width: 1024px) {
     height: 90px;
   }
