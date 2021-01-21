@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 const P = styled.p`
   font-size: 14px;
   color: #fff;
-  padding: ${props => props.padding || '5px'};
 
   ${({ center }) =>
     center &&
@@ -19,6 +18,8 @@ const P = styled.p`
       padding: 5px 0px;
       color: #ff2e00;
     `};
+
+  padding: ${props => props.padding || '5px'};
 `;
 
 export default P;

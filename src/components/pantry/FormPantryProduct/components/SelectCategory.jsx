@@ -4,11 +4,18 @@ import PropTypes from 'prop-types';
 import Label from '../../../atoms/formElements/Label';
 import Select from '../../../atoms/formElements/Select';
 import { AppContext } from '../../../../context';
+import P from '../../../styledComponents/atoms/typography/P';
 
 const InputVerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+`;
+
+const StyledP = styled(P)`
+  margin-top: -15px;
+  padding: 0 0 5px 0;
+  color: ${props => props.theme.primary};
 `;
 
 const SelectCategory = ({ handleForm, errorMessage, category }) => (
@@ -26,7 +33,7 @@ const SelectCategory = ({ handleForm, errorMessage, category }) => (
             ))}
           </Select>
         </InputVerticalWrapper>
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <StyledP>{errorMessage}</StyledP>}
       </>
     )}
   </AppContext.Consumer>
