@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Label from '../../../atoms/formElements/Label';
 import Input from '../../../atoms/formElements/Input';
+import P from '../../../styledComponents/atoms/typography/P';
 
 const InputHorizontalWrapper = styled.div`
   display: flex;
@@ -14,7 +15,18 @@ const InputHorizontalWrapper = styled.div`
   align-items: baseline;
 `;
 
-const InputMin = ({ handleForm, min, preventProhibitedCharacters, errorMessage }) => {
+const StyledP = styled(P)`
+  margin-top: -10px;
+  padding: 0 0 5px 0;
+  color: ${props => props.theme.primary};
+`;
+
+const InputMin = ({
+  handleForm,
+  min,
+  preventProhibitedCharacters,
+  errorMessage,
+}) => {
   return (
     <>
       <InputHorizontalWrapper>
@@ -31,7 +43,7 @@ const InputMin = ({ handleForm, min, preventProhibitedCharacters, errorMessage }
         />
         {console.log('ERRORS MIN:', errorMessage)}
       </InputHorizontalWrapper>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <StyledP>{errorMessage}</StyledP>}
     </>
   );
 };
