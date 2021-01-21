@@ -37,7 +37,10 @@ const Icon = styled.div`
   line-height: 30px;
   text-align: center;
   user-select: none;
-  animation: zoomInOut 1.5s linear infinite;
+
+  /* Animation is disabled because of GPU overload.
+  It happens when modal with blurred background is appearing. */
+  /* animation: zoomInOut 1.5s linear infinite; */
 
   @keyframes zoomInOut {
     0% {
