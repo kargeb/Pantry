@@ -55,21 +55,25 @@ const Name = styled.div`
 const QuantityWrapper = styled.div`
   display: flex;
   flex: 1;
+  justify-content: center;
 `;
 
 const Quantity = styled.div`
   font-weight: 900;
   text-align: center;
+  font-size: 18px;
 `;
 
 const Unit = styled.div`
   margin-left: 5px;
+  font-size: 12px;
   /* text-transform: capitalize; */
 `;
 
 const Min = styled.div`
   flex: 1;
   text-align: center;
+  color: #808080;
 `;
 
 class PantryProduct extends React.Component {
@@ -101,11 +105,11 @@ class PantryProduct extends React.Component {
           </CartIconWrapper>
 
           <Name>{name}</Name>
+          <Min>({min})</Min>
           <QuantityWrapper>
             <Quantity>{quantity}</Quantity>
             <Unit>{unit}</Unit>
           </QuantityWrapper>
-          <Min>({min})</Min>
           <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
         </Wrapper>
         {isFormChangeQuantityContainerVisible && (
