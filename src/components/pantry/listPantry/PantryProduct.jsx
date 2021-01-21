@@ -37,6 +37,19 @@ const Icon = styled.div`
   line-height: 30px;
   text-align: center;
   user-select: none;
+  animation: zoomInOut 1.5s linear infinite;
+
+  @keyframes zoomInOut {
+    0% {
+      transform: scale(0.8, 0.8);
+    }
+    50% {
+      transform: scale(1, 1);
+    }
+    100% {
+      transform: scale(0.8, 0.8);
+    }
+  }
 `;
 
 const Name = styled.div`
