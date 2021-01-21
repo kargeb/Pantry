@@ -16,6 +16,8 @@ import {
   checkForNonPositiveIntegers,
 } from '../../../helpers';
 
+import StyledModal from '../../templates/StyledModal';
+
 class NewProductForm extends React.Component {
   constructor(props) {
     super(props);
@@ -160,8 +162,8 @@ class NewProductForm extends React.Component {
     const { name, quantity, unit, min, category, errorMessages } = this.state;
 
     return (
-      <Modal>
-        {/* <H1 marginBottomDouble>New product</H1> */}
+      // <Modal>
+      <StyledModal>
         <H1 marginBottomDouble>
           {this.props.name ? 'Edit product' : 'New product'}
         </H1>
@@ -196,7 +198,8 @@ class NewProductForm extends React.Component {
           cancelOnClick={toggleFormVisibility}
           confirmOnClick={this.handleSubmit}
         />
-      </Modal>
+      </StyledModal>
+      // </Modal>
     );
   }
 }

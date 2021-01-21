@@ -18,6 +18,9 @@ import {
 } from '../../../../helpers';
 import H1 from '../../../styledComponents/atoms/typography/H1';
 
+import StyledModal from '../../../templates/StyledModal';
+import StyledAuthForm from './../../../templates/StyledAuthForm';
+
 const Logo = styled.div`
   position: absolute;
   top: 20px;
@@ -43,7 +46,7 @@ const StyledH1 = styled(H1)`
   }
 `;
 
-class AnotherLoginForm extends Component {
+class LoginForm extends Component {
   state = {
     login: 'test@test.p',
     password: 'testtest',
@@ -99,12 +102,14 @@ class AnotherLoginForm extends Component {
     }
   };
 
+  StyledAuthForm;
+
   render() {
     const { login, password, errorMessages } = this.state;
 
     return (
-      <Modal>
-        <Form>
+      <StyledModal>
+        <StyledAuthForm>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
@@ -165,10 +170,10 @@ class AnotherLoginForm extends Component {
               or <SpanLink>create your account</SpanLink>
             </P>
           </Link>
-        </Form>
-      </Modal>
+        </StyledAuthForm>
+      </StyledModal>
     );
   }
 }
 
-export default AnotherLoginForm;
+export default LoginForm;

@@ -21,6 +21,8 @@ import Input from '../../../styledComponents/atoms/authFormsElements/Input';
 import Label from '../../../styledComponents/atoms/authFormsElements/Label';
 import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
 import H1 from '../../../styledComponents/atoms/typography/H1';
+import StyledModal from '../../../templates/StyledModal';
+import StyledAuthForm from '../../../templates/StyledAuthForm';
 
 const Logo = styled.div`
   position: absolute;
@@ -121,8 +123,8 @@ class RegistrationForm extends Component {
     const { login, password, errorMessages } = this.state;
 
     return (
-      <Modal>
-        <Form paddingTop="60px">
+      <StyledModal>
+        <StyledAuthForm>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
@@ -174,8 +176,8 @@ class RegistrationForm extends Component {
               or <SpanLink>login on existing account</SpanLink>
             </P>
           </Link>
-        </Form>
-      </Modal>
+        </StyledAuthForm>
+      </StyledModal>
     );
   }
 }
