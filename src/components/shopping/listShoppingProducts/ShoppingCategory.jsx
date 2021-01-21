@@ -29,6 +29,7 @@ const ShoppingCategory = ({ currentCategory, productsInCurrentCategory }) => (
       {productsInCurrentCategory.map(currentProduct => (
         <ListItem key={currentProduct.id}>
           <ShoppingProduct
+            unit={currentProduct.unit}
             name={currentProduct.name}
             id={currentProduct.id}
             quantity={currentProduct.quantity}

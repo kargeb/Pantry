@@ -118,7 +118,7 @@ class PantryProduct extends React.Component {
           </CartIconWrapper>
 
           <Name>{name}</Name>
-          <Min>({min})</Min>
+          <Min>{min}</Min>
           <QuantityWrapper>
             <Quantity>{quantity}</Quantity>
             <Unit>{unit}</Unit>

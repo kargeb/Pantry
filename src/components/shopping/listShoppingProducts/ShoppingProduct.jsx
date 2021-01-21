@@ -30,6 +30,13 @@ const Lack = styled.div`
   font-size: 18px;
 `;
 
+const Unit = styled.span`
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 400;
+  /* text-transform: capitalize; */
+`;
+
 class ShoppingProduct extends React.Component {
   state = {
     isBuyProductModalVisible: false,
@@ -42,7 +49,7 @@ class ShoppingProduct extends React.Component {
   };
 
   render() {
-    const { name, id, quantity, min } = this.props;
+    const { name, id, quantity, min, unit } = this.props;
     const { isBuyProductModalVisible } = this.state;
     const toBuy = min - quantity;
 
@@ -50,7 +57,10 @@ class ShoppingProduct extends React.Component {
       <StyledWrapper>
         <NameW>{name}</NameW>
         <CurrentQuantity>{quantity}</CurrentQuantity>
-        <Lack>{toBuy}</Lack>
+        <Lack>
+          {toBuy}
+          <Unit>{unit}</Unit>
+        </Lack>
         <ButtonIconBuy onClick={this.toggleBuyProductModal} />
         {isBuyProductModalVisible && (
           <ContainerBuyProduct
