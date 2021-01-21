@@ -29,6 +29,7 @@ const ChangeQuantityInputAndButtons = ({
   handleInput,
   addQuantity,
   subtractQuantity,
+  preventProhibitedCharacters,
 }) => {
   return (
     <WrapperChangeQuantity>
@@ -36,6 +37,7 @@ const ChangeQuantityInputAndButtons = ({
 
       <InputNumber
         short
+        onKeyDown={preventProhibitedCharacters}
         className="withoutSpinButtons"
         type="number"
         id="currentQuantity"

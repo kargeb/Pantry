@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import DeleteProductModal from '../components/DeleteProductModal';
 import Modal from '../../../templates/Modal';
 import H1 from '../../../atoms/texts/H1';
@@ -9,6 +10,14 @@ import H2 from '../../../atoms/texts/H2';
 import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
 import NewProductForm from '../../../forms/newProductForm/NewProductForm';
 import { updateProductQuantityInDatabase } from '../../../../data/handlers';
+import P from '../../../styledComponents/atoms/typography/P';
+
+const StyledP = styled(P)`
+  /* margin-top: -10px; */
+  padding: 10px 0 0 0;
+  font-weight: bold;
+  color: #ff2e00;
+`;
 
 class FormChangeQuantityContainer extends React.Component {
   constructor(props) {
@@ -16,16 +25,34 @@ class FormChangeQuantityContainer extends React.Component {
     const { quantity } = props.product;
 
     this.state = {
-      quantity: Number(quantity),
+      quantity: quantity,
       isProductPropertiesForm: false,
       isDeleteModalVisible: false,
+      errorMessage: '',
     };
   }
 
+  // for Inputs type="number"
+  preventProhibitedCharacters = e => {
+    const prohibitedCharacters = ['e', '-', '+', '.', ','];
+
+    if (prohibitedCharacters.includes(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   handleInput = e => {
     let { value } = e.target;
-    value = parseInt(value, 10);
+
+    // if (value.length === 0) {
+    //   this.setState({ quantity: value });
+    //   return;
+    // }
+
+    // value = Number(value);
+    console.log('VALUE przed sprawdzaczka:', value);
     if (value < 0) {
+      console.log('JESTEM W SPRAWDZACZE!!');
       value = 0;
     }
     this.setState({ quantity: value });
@@ -33,20 +60,31 @@ class FormChangeQuantityContainer extends React.Component {
 
   addQuantity = () => {
     const { quantity } = this.state;
-    this.setState({ quantity: quantity + 1 });
+
+    this.setState({ quantity: Number(quantity) + 1 });
   };
 
   subtractQuantity = () => {
     const { quantity } = this.state;
-    if (quantity === 0) {
+    if (quantity <= 0) {
       return;
     }
-    this.setState({ quantity: quantity - 1 });
+    this.setState({ quantity: Number(quantity) - 1 });
   };
 
   updateProductQuantity = () => {
     const { quantity } = this.state;
     const { toggleChangeQuantityModal, id, min } = this.props;
+
+    console.log('dlugosc znakow w QUANITTY:', String(quantity).trim().length);
+    console.log('QUNAITTY:', quantity);
+
+    if (String(quantity).trim().length === 0) {
+      this.setState({ errorMessage: 'Can not be empty!' });
+      return;
+    } else {
+      this.setState({ errorMessage: '' });
+    }
 
     const onShoppingList = Boolean(quantity < min);
 
@@ -68,7 +106,12 @@ class FormChangeQuantityContainer extends React.Component {
   };
 
   render() {
-    const { isDeleteModalVisible, isProductPropertiesForm, quantity } = this.state;
+    const {
+      isDeleteModalVisible,
+      isProductPropertiesForm,
+      quantity,
+      errorMessage,
+    } = this.state;
     const { toggleChangeQuantityModal, product } = this.props;
     const { unit, category, id, name, min } = product;
 
@@ -79,11 +122,13 @@ class FormChangeQuantityContainer extends React.Component {
           Change quantity
         </H2>
         <ChangeQuantityInputAndButtons
+          preventProhibitedCharacters={this.preventProhibitedCharacters}
           quantity={quantity}
           handleInput={this.handleInput}
           subtractQuantity={this.subtractQuantity}
           addQuantity={this.addQuantity}
         />
+        {errorMessage && <StyledP>{errorMessage}</StyledP>}
         <EditDeleteButtonsSection
           toggleEditProductForm={this.toggleEditProductForm}
           toggleDeleteModal={this.toggleDeleteModal}
@@ -94,7 +139,11 @@ class FormChangeQuantityContainer extends React.Component {
         />
 
         {isDeleteModalVisible && (
-          <DeleteProductModal id={id} name={name} toggleDeleteModal={this.toggleDeleteModal} />
+          <DeleteProductModal
+            id={id}
+            name={name}
+            toggleDeleteModal={this.toggleDeleteModal}
+          />
         )}
 
         {isProductPropertiesForm && (

@@ -43,15 +43,6 @@ const StyledH1 = styled(H1)`
   }
 `;
 
-const TempLogoutButton = styled(ButtonRectangle)`
-  position: fixed;
-  top: 300px;
-  left: 10px;
-  width: 100px;
-  z-index: 9999999;
-  border: none;
-`;
-
 class AnotherLoginForm extends Component {
   state = {
     login: 'test@test.p',
@@ -94,22 +85,16 @@ class AnotherLoginForm extends Component {
     logIn(testLogin, testPassword).then(resoult => console.log(resoult));
   };
 
-  handleLogout = e => {
-    logOut();
-  };
-
   formHasInvalidData = () => {
     const { login, password } = this.state;
 
     const errorMessages = authDataValidation(login, password);
 
+    this.setState({ errorMessages });
+
     if (Object.keys(errorMessages).length === 0) {
-      console.log('NIE MA BLEDOW, MOZNA WYSYLAC');
-      this.setState({ errorMessages });
       return false;
     } else {
-      console.log('SA BLEDY, TRZEBA ZATRZYMAC!!!!!!!');
-      this.setState({ errorMessages });
       return true;
     }
   };
@@ -119,15 +104,11 @@ class AnotherLoginForm extends Component {
 
     return (
       <Modal>
-        <TempLogoutButton type="button" onClick={this.handleLogout}>
-          Logout
-        </TempLogoutButton>
         <Form>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
           </Logo>
           <StyledH1>Login</StyledH1>
-          {/* <Form paddingTop="60px"> */}
           <P padding="20px" center>
             as guest
           </P>
@@ -147,6 +128,7 @@ class AnotherLoginForm extends Component {
             id="login"
             name="login"
             value={login}
+            placeholder="test@test.pl"
             onChange={this.handleForm}
           />
           {errorMessages.login ? (
@@ -159,9 +141,10 @@ class AnotherLoginForm extends Component {
           </Label>
           <Input
             errorBorder={errorMessages.password}
-            type="text"
+            type="password"
             id="password"
             name="password"
+            placeholder="123456"
             value={password}
             onChange={this.handleForm}
           />
