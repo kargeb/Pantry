@@ -8,7 +8,7 @@ import DeleteCategory from './DeleteCategory';
 class DeleteCategoryContainer extends React.Component {
   state = {
     namesOfAllCategories: this.props.allCategories,
-    NamesOfCategoriesContainingProducts: [],
+    categoriesWithProducts: [],
     categoryToDelete: '',
     // alertMessage: '',
     isConfirmationModalVisible: false,
@@ -17,11 +17,9 @@ class DeleteCategoryContainer extends React.Component {
 
   componentDidMount() {
     const { products } = this.props;
-    const NamesOfCategoriesContainingProducts = this.SelectNamesOfCategoriesContainingProducts(
-      products,
-    );
+    const categoriesWithProducts = this.pickCategoriesWithProducts(products);
 
-    this.setState({ NamesOfCategoriesContainingProducts });
+    this.setState({ categoriesWithProducts });
   }
 
   toggleConfirmationModal = () => {
@@ -30,16 +28,16 @@ class DeleteCategoryContainer extends React.Component {
     }));
   };
 
-  SelectNamesOfCategoriesContainingProducts = products => {
-    const NamesOfCategoriesContainingProducts = [];
+  pickCategoriesWithProducts = products => {
+    const categoriesWithProducts = [];
 
     products.forEach(product => {
-      if (!NamesOfCategoriesContainingProducts.includes(product.category)) {
-        NamesOfCategoriesContainingProducts.push(product.category);
+      if (!categoriesWithProducts.includes(product.category)) {
+        categoriesWithProducts.push(product.category);
       }
     });
 
-    return NamesOfCategoriesContainingProducts;
+    return categoriesWithProducts;
   };
 
   handleForm = e => {
@@ -85,14 +83,11 @@ class DeleteCategoryContainer extends React.Component {
   };
 
   categoryContainsProducts = () => {
-    const {
-      categoryToDelete,
-      NamesOfCategoriesContainingProducts,
-    } = this.state;
+    const { categoryToDelete, categoriesWithProducts } = this.state;
 
     let categoryHasProducts = false;
 
-    if (NamesOfCategoriesContainingProducts.includes(categoryToDelete)) {
+    if (categoriesWithProducts.includes(categoryToDelete)) {
       categoryHasProducts = true;
       this.setState({ errorMessage: "You can't remove this category" });
     } else {
@@ -117,7 +112,7 @@ class DeleteCategoryContainer extends React.Component {
     const {
       isConfirmationModalVisible,
       categoryToDelete,
-      NamesOfCategoriesContainingProducts,
+      categoriesWithProducts,
       errorMessage,
     } = this.state;
 
@@ -125,9 +120,7 @@ class DeleteCategoryContainer extends React.Component {
       <>
         <DeleteCategory
           handleSubmit={this.handleSubmit}
-          NamesOfCategoriesContainingProducts={
-            NamesOfCategoriesContainingProducts
-          }
+          categoriesWithProducts={categoriesWithProducts}
           namesOfAllCategories={this.props.allCategories}
           categoryToDelete={categoryToDelete}
           handleForm={this.handleForm}
@@ -135,7 +128,7 @@ class DeleteCategoryContainer extends React.Component {
         />
         {isConfirmationModalVisible && (
           <ModalConfirmDeletion
-            heading="Confirm deletion of:"
+            heading="Confirm remove"
             name={categoryToDelete}
             toggleConfirmationModal={this.toggleConfirmationModal}
             deleteCategory={this.deleteCategory}

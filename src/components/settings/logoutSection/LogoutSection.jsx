@@ -10,9 +10,10 @@ import { auth } from '../../../fbase';
 import ConfirmLogoutModal from './ConfirmLogoutModal';
 
 const Section = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   /* overflow: hidden; */
   @media (min-width: 1024px) {
     height: 100%;
@@ -22,12 +23,19 @@ const Section = styled.section`
   }
 `;
 
+const StyledH2 = styled(H2)`
+  width: 100%;
+  text-align: left;
+  /* margin-bottom: 5px; */
+`;
+
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   /* overflow: hidden; */
   /* width: 100%; */
+  margin: 10px 0 0 0;
   div {
     margin: 0 10px;
   }
@@ -39,18 +47,21 @@ const UserIcon = styled.div`
 `;
 
 const Header = styled.div`
-  padding: 15px 0;
+  padding: 5px 0;
 
   @media (min-width: 1024px) {
-    height: 100px;
+    /* height: 100px; */
+    /* margin: 15px 0 5px 0; */
     display: flex;
     align-items: center;
   }
 `;
 const WrapperButton = styled.div`
-  padding: 20px 0;
+  align-self: flex-end;
+  padding: 10px 0;
 
   @media (min-width: 1024px) {
+    /* padding: 20px 0; */
     height: 90px;
     display: flex;
     flex-direction: column;
@@ -75,18 +86,20 @@ class LogoutSection extends React.Component {
 
     return (
       <Section>
+        <StyledH2>User name:</StyledH2>
         <UserContainer>
           <UserIcon>
             <FontAwesomeIcon icon={faUserCircle} />
           </UserIcon>
           <Header>
-            <H2>{auth.currentUser && auth.currentUser.email}</H2>
+            <StyledH2 lowercase italic>
+              {auth.currentUser && auth.currentUser.email}
+            </StyledH2>
           </Header>
         </UserContainer>
         <WrapperButton>
-          {/* <Button type="button" onClick={this.toggleConfirmLogoutModal}> */}
           <Button type="button" onClick={this.toggleConfirmLogoutModal}>
-            Wyloguj
+            Logout
           </Button>
         </WrapperButton>
         {isConfirmLogoutModalVisible && (

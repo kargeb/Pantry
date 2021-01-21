@@ -14,6 +14,19 @@ const AboveCartIcon = styled.div`
 const AboveName = styled.div`
   flex: 3;
   display: flex;
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    flex: none;
+    display: block;
+    width: 184px;
+  }
+`;
+
+const AboveMin = styled.div`
+  font-size: 13px;
+  flex: 1;
+  font-style: italic;
+  text-align: center;
+  color: ${({ theme }) => theme.minQuantityColor};
 `;
 
 const Description = styled.div`
@@ -46,10 +59,8 @@ const HeaderPantryCategory = () => {
     <Wrapper>
       <AboveCartIcon />
       <AboveName />
-      <Description bold left>
-        Quantity
-      </Description>
-      <Description>Min</Description>
+      <AboveMin>Min</AboveMin>
+      <Description bold>Now</Description>
       <AboveButtonEditProduct />
     </Wrapper>
   );

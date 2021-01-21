@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../templates/Modal';
-import sampleData from '../../../data/db.json';
 
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import H1 from '../../atoms/texts/H1';
@@ -17,7 +16,7 @@ const ConfirmLogoutModal = ({ toggleConfirmLogoutModal }) => {
   return (
     <Modal>
       <div style={{ textAlign: 'center' }}>
-        <H1 marginBottomDouble>Are you sure to log out?</H1>
+        <H1 marginBottomDouble>Are you sure to logout?</H1>
       </div>
       <WrapperButtonsConfirmAndCancel
         cancelOnClick={toggleConfirmLogoutModal}

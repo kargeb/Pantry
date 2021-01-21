@@ -8,7 +8,7 @@ const InputNumber = styled(Input)`
   border: none;
   color: ${props => props.theme.textPrimary};
   text-align: center;
-  width: 44px;
+  width: 80px;
   height: 44px;
   padding: 0;
   margin: 0;

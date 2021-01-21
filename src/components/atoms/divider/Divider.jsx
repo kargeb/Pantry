@@ -2,15 +2,16 @@ import styled, { css } from 'styled-components';
 
 const Divider = styled.div`
   height: 1px;
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
   margin: 10px 0;
   background-color: ${({ theme }) => theme.primary};
   /* overflow: hidden; */
 
-  @media (min-width: 1024px) {
+  /* @media (min-width: 1024px) {
     height: 100%;
     width: 1px;
-  }
+  } */
 
   ${({ horizontal }) =>
     horizontal &&

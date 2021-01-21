@@ -19,6 +19,12 @@ const Select = styled.select`
     border: solid 1.5px rgba(251, 142, 1, 0.7);
     box-shadow: 0px 0px 2px #ffc52f;
   }
+
+  ${({ noMarginBottom }) =>
+    noMarginBottom &&
+    css`
+      margin-bottom: 0px;
+    `}
 `;
 
 export default Select;

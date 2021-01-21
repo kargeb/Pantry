@@ -9,7 +9,8 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.background};
   transition: all 0.1s;
   font-size: 45px;
-  color: rgba(0, 0, 0, 0.4);
+  /* color: rgba(0, 0, 0, 0.4); */
+  color: ${({ theme }) => theme.cancelButton};
 
   &:hover {
     transform: scale(1.2);

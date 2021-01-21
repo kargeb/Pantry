@@ -5,7 +5,7 @@ import ShoppingCategory from './ShoppingCategory';
 const Categories = styled.ul`
   padding: 0px 5px;
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
-    width: 600px;
+    width: 500px;
     margin: 0 auto;
   }
 `;
@@ -35,7 +35,9 @@ const CategoriesList = ({ productsOnShoppingList }) => {
   return (
     <Categories>
       {shoppingCategories.map(currentCategory => {
-        const productsInCurrentCategory = findProductsInCategory(currentCategory);
+        const productsInCurrentCategory = findProductsInCategory(
+          currentCategory,
+        );
         return (
           <li key={currentCategory}>
             <ShoppingCategory

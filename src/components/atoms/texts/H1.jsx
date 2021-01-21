@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
 
 const H1 = styled.h1`
-  text-transform: capitalize;
+  /* text-transform: uppercase; */
 
   font-size: ${({ theme }) => theme.heading1};
   font-weight: ${({ theme }) => theme.medium};
+
+  :first-letter {text-transform: uppercase}
 
   ${({ marginBottomDouble }) =>
     marginBottomDouble &&

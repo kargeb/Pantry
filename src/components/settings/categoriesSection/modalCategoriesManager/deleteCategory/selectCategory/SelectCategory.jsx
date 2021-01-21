@@ -43,16 +43,21 @@ const SelectCategory = ({
   categoryToDelete,
   handleForm,
   namesOfAllCategories,
-  NamesOfCategoriesContainingProducts,
+  categoriesWithProducts,
 }) => {
   return (
     <Wrapper>
-      <CustomSelect id="categoryToDelete" onChange={handleForm} value={categoryToDelete} size="5">
+      <CustomSelect
+        id="categoryToDelete"
+        onChange={handleForm}
+        value={categoryToDelete}
+        size="5"
+      >
         <option aria-label="disable option" value="" disabled hidden />
         {namesOfAllCategories &&
           namesOfAllCategories.sort().map(category => (
             <Option
-              disabled={NamesOfCategoriesContainingProducts.includes(category)}
+              disabled={categoriesWithProducts.includes(category)}
               key={category}
               value={category}
             >
@@ -65,7 +70,7 @@ const SelectCategory = ({
 };
 
 SelectCategory.propTypes = {
-  NamesOfCategoriesContainingProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  categoriesWithProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default SelectCategory;

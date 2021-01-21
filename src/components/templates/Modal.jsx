@@ -11,7 +11,7 @@ const Background = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(1px);
@@ -22,13 +22,18 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  overflow: auto;
 
-  padding: 2% 4%;
+  /* padding: 2% 4%; */
+  padding: 30px 30px;
   color: ${props => props.theme.textPrimary};
   background-color: ${props => props.theme.background};
-  border: solid 3px #999;
+  border: solid 2px #999;
+
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    padding: 30px 60px;
+  }
 `;
 
 const Modal = ({ children }) => (

@@ -1,4 +1,5 @@
 import db, { auth, arrayUnion, arrayRemove } from '../fbase';
+import { sampleCategories, sampleProducts } from './sampleData';
 
 /* *************************************************** */
 // PRODUCTS AND CATEGORIES
@@ -19,17 +20,12 @@ export const setCategoriesDatabaseListener = callback => {
     .onSnapshot(querySnapshot => {
       let categoriesFromDatabase = null;
 
-      console.log('WYPISALES PRZED BLEDE M?');
-      console.log('querySnapshot', querySnapshot[0]);
-
       querySnapshot.forEach(doc => {
         categoriesFromDatabase = [...doc.data().categories];
       });
 
       if (categoriesFromDatabase) {
         callback(categoriesFromDatabase);
-      } else {
-        console.log('nie pobrano zanydhc kategori');
       }
     });
 };
@@ -49,11 +45,7 @@ export const setProductsDatabaseListener = callback => {
 
       if (downloadedProducts) {
         callback(downloadedProducts);
-      } else {
-        console.log('nie pobrano zadnych produktow');
       }
-
-      // callback(downloadedProducts);
     });
 };
 
@@ -75,11 +67,8 @@ export const removeProductFromDatabase = id => {
     .collection('products')
     .doc(id)
     .delete()
-    .then(() => {
-      console.log('Document successfully deleted!');
-    })
     .catch(error => {
-      console.error('Error removing document: ', error);
+      console.error(error);
     });
 };
 
@@ -92,87 +81,11 @@ export const addCategoryToDatabase = newCategory => {
       categories: arrayUnion(newCategory),
     })
     .catch(error => {
-      console.error('Sth wrong with new category ', error);
+      console.error(error);
     });
 };
 
 export const uploadSampleProductsAndCategories = () => {
-  const sampleCategories = [
-    'sweets',
-    'fruits',
-    'vegetables',
-    'cosmetics',
-    'sweets',
-    'food',
-    'beverages/spirits',
-  ];
-
-  const sampleProducts = [
-    {
-      id: 'fb583f-3ee5-474e-9bba-14098213bc4f',
-      name: 'Coca-cola',
-      quantity: 3,
-      unit: 'l',
-      category: 'beverages/spirits',
-      min: 2,
-      onShoppingList: false,
-    },
-    {
-      id: 'fb23383f-3e95-477e-9bba-1408213bc4f',
-      name: 'Jack Daniels',
-      quantity: 0,
-      unit: 'l',
-      category: 'beverages/spirits',
-      min: 1,
-      onShoppingList: true,
-    },
-    {
-      id: 'fb5d38weq3f-3e95-477e-9bba-1403bc4f',
-      name: 'Carlsberg',
-      quantity: 3,
-      unit: 'l',
-      category: 'beverages/spirits',
-      min: 4,
-      onShoppingList: true,
-    },
-    {
-      id: 'fb5dwe383f-3e95-477e-9bba-140ewewq98213bc4f',
-      name: 'Kitkat',
-      quantity: 1,
-      unit: 'item',
-      category: 'sweets',
-      min: 3,
-      onShoppingList: true,
-    },
-    {
-      id: 'fb5d35-477e-9bba-1409fdfdf8213bc4f',
-      name: 'rice',
-      quantity: 2,
-      unit: 'kg',
-      category: 'food',
-      min: 3,
-      onShoppingList: true,
-    },
-    {
-      id: 'fb5sdfdfd383f-3e95-47ba-14098213bc4f',
-      name: 'bananas',
-      quantity: 5,
-      unit: 'item',
-      category: 'fruits',
-      min: 3,
-      onShoppingList: false,
-    },
-    {
-      id: 'fb5d383f-3e95-bba-1409ddddd8213bc4f',
-      name: 'apples',
-      quantity: 8,
-      unit: 'kg',
-      category: 'fruits',
-      min: 4,
-      onShoppingList: false,
-    },
-  ];
-
   db.collection('users')
     .doc(auth.currentUser.uid)
     .collection('categories')
@@ -180,9 +93,8 @@ export const uploadSampleProductsAndCategories = () => {
     .update({
       categories: arrayUnion(...sampleCategories),
     })
-    .then(() => console.log('DDOANO SAMPLE CATEGORIES'))
     .catch(error => {
-      console.error('Sth wrong with SAMPLE new category ', error);
+      console.error(error);
     });
 
   const batch = db.batch();
@@ -198,7 +110,7 @@ export const uploadSampleProductsAndCategories = () => {
     );
   });
 
-  batch.commit().then(() => console.log('zaladowalismy batcha'));
+  batch.commit();
 };
 
 export const addInitialProductToDatabase = userId => {
@@ -212,8 +124,6 @@ export const addInitialProductToDatabase = userId => {
     onShoppingList: false,
   };
 
-  console.log('w addinitialProducts To database MAMU USERA O ID:', userId);
-
   return db
     .collection('users')
     .doc(userId)
@@ -221,19 +131,13 @@ export const addInitialProductToDatabase = userId => {
     .doc(initialProduct.id)
     .set(initialProduct)
     .then(data => {
-      console.log('Zarejestrowalismy: ', data);
       return data;
     });
-  // .catch(err => {
-  //   console.log('BŁONT!: ', err);
-  //   return err;
-  // });
 };
 
 export const addInitialCategoryToDatabase = userId => {
   const initialCategory = { categories: ['others'] };
 
-  console.log('DDOAJEMY KATEGORIES JAKO: ', userId);
   return db
     .collection('users')
     .doc(userId)
@@ -241,12 +145,8 @@ export const addInitialCategoryToDatabase = userId => {
     .doc('category')
     .set(initialCategory)
     .then(res => {
-      console.log('DODALISMY KATEGORIE :', res);
       return res;
     });
-  // .catch(error => {
-  //   console.error('Sth wrong with new category ', error);
-  // });
 };
 
 export const removeCategoryfromDatabase = categoryToRemove => {
@@ -258,7 +158,7 @@ export const removeCategoryfromDatabase = categoryToRemove => {
       categories: arrayRemove(categoryToRemove),
     })
     .catch(error => {
-      console.error('Sth wrong with new category ', error);
+      console.error(error);
     });
 };
 
@@ -267,30 +167,16 @@ export const removeCategoryfromDatabase = categoryToRemove => {
 
 export const logIn = (userName, userPassword) => {
   return auth.signInWithEmailAndPassword(userName, userPassword).then(user => {
-    console.log('JESTEM ZALOGOWANY! ', user);
-    console.log('USER EMAIL: ', user.user.email);
     return user.user.email;
   });
-  // .catch(error => {
-  //   console.log('BLAD LOGOWANIA:');
-  //   console.log(error.code, error.message);
-  //   return error.message;
-  // });
 };
 
 export const registerUserInUsersDatabase = (userName, userPassword) => {
   return auth
     .createUserWithEmailAndPassword(userName, userPassword)
     .then(cred => {
-      console.log('STWORZYLEM UZYTKONIWKA', cred);
-      console.log('I MA ON UID: ', cred.user.uid);
-      // console.log(cred);
       return cred.user.uid;
     });
-  // .catch(err => {
-  //   console.log('BŁONT!: ', err);
-  //   return err;
-  // });
 };
 
 export const registerUserInProductDatabase = id => {
@@ -298,11 +184,10 @@ export const registerUserInProductDatabase = id => {
     .collection('users')
     .doc(id)
     .then(data => {
-      console.log('Zarejestrowalismy: ', data);
       return data;
     })
     .catch(err => {
-      console.log('BŁONT!: ', err);
+      console.log(err);
       return err;
     });
 };
@@ -310,11 +195,8 @@ export const registerUserInProductDatabase = id => {
 export const logOut = () => {
   auth
     .signOut()
-    .then(() => {
-      console.log('WYLOGOWANO');
-    })
+    .then(() => {})
     .catch(error => {
-      console.log('Jakis blad');
       console.log(error);
     });
 };

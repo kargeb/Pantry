@@ -55,6 +55,16 @@ const ProductItem = styled.li`
   }
 `;
 
+const sortByIsOnShoppingList = (a, b) => {
+  if (a.onShoppingList < b.onShoppingList) {
+    return 1;
+  }
+  if (a.onShoppingList > b.onShoppingList) {
+    return -1;
+  }
+  return 0;
+};
+
 class PantryCategory extends React.Component {
   state = {
     isProductPropertiesForm: false,
@@ -77,15 +87,20 @@ class PantryCategory extends React.Component {
         </TableHeader>
         <ul>
           <HeaderPantryCategory />
-          {productsInCurrentCategory.map(currentProduct => (
-            <ProductItem key={currentProduct.id}>
-              <PantryProduct product={currentProduct} />
-            </ProductItem>
-          ))}
+          {productsInCurrentCategory
+            .sort(sortByIsOnShoppingList)
+            .map(currentProduct => (
+              <ProductItem key={currentProduct.id}>
+                <PantryProduct product={currentProduct} />
+              </ProductItem>
+            ))}
         </ul>
 
         {isProductPropertiesForm && (
-          <NewProductForm category={currentCategory} toggleFormVisibility={this.handleClick} />
+          <NewProductForm
+            category={currentCategory}
+            toggleFormVisibility={this.handleClick}
+          />
         )}
       </CategoriesItem>
     );

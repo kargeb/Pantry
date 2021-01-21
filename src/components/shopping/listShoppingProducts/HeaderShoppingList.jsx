@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   justify-content: center;
 
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
-    width: 600px;
+    width: 500px;
     margin: 0 auto;
   }
 `;
@@ -39,7 +39,7 @@ const HeaderShoppingList = () => {
   return (
     <Wrapper>
       <AboveName />
-      <Description>Qty</Description>
+      <Description>Now</Description>
       <Description bold>Lack</Description>
       <AboveCartIcon />
     </Wrapper>

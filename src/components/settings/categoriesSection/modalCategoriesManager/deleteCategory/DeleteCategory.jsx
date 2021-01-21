@@ -16,7 +16,7 @@ const StyledLabel = styled(Label)`
 const DeleteCategory = ({
   categoryToDelete,
   handleSubmit,
-  NamesOfCategoriesContainingProducts,
+  categoriesWithProducts,
   namesOfAllCategories,
   handleForm,
   errorMessage,
@@ -30,7 +30,7 @@ const DeleteCategory = ({
       categoryToDelete={categoryToDelete}
       handleForm={handleForm}
       namesOfAllCategories={namesOfAllCategories}
-      NamesOfCategoriesContainingProducts={NamesOfCategoriesContainingProducts}
+      categoriesWithProducts={categoriesWithProducts}
     />
     {errorMessage && <p>{errorMessage}</p>}
     <Button type="button" onClick={() => handleSubmit()}>
@@ -45,7 +45,7 @@ DeleteCategory.propTypes = {
   namesOfAllCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleForm: PropTypes.func.isRequired,
   errorMessage: PropTypes.string.isRequired,
-  NamesOfCategoriesContainingProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  categoriesWithProducts: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default DeleteCategory;

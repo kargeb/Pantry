@@ -37,6 +37,19 @@ const Icon = styled.div`
   line-height: 30px;
   text-align: center;
   user-select: none;
+  animation: zoomInOut 1.5s linear infinite;
+
+  @keyframes zoomInOut {
+    0% {
+      transform: scale(0.8, 0.8);
+    }
+    50% {
+      transform: scale(1, 1);
+    }
+    100% {
+      transform: scale(0.8, 0.8);
+    }
+  }
 `;
 
 const Name = styled.div`
@@ -55,21 +68,25 @@ const Name = styled.div`
 const QuantityWrapper = styled.div`
   display: flex;
   flex: 1;
+  justify-content: center;
 `;
 
 const Quantity = styled.div`
   font-weight: 900;
   text-align: center;
+  font-size: 18px;
 `;
 
 const Unit = styled.div`
   margin-left: 5px;
+  font-size: 12px;
   /* text-transform: capitalize; */
 `;
 
 const Min = styled.div`
   flex: 1;
   text-align: center;
+  color: ${({ theme }) => theme.minQuantityColor};
 `;
 
 class PantryProduct extends React.Component {
@@ -101,11 +118,11 @@ class PantryProduct extends React.Component {
           </CartIconWrapper>
 
           <Name>{name}</Name>
+          <Min>{min}</Min>
           <QuantityWrapper>
             <Quantity>{quantity}</Quantity>
             <Unit>{unit}</Unit>
           </QuantityWrapper>
-          <Min>({min})</Min>
           <ButtonIconEditProduct onClick={this.toggleChangeQuantityModal} />
         </Wrapper>
         {isFormChangeQuantityContainerVisible && (
