@@ -31,6 +31,7 @@ export const lightTheme = {
   wideScreenBackground: defaultTheme.grey10,
   buttonPrimary: defaultTheme.grey60,
   cancelButton: 'rgba(0, 0, 0, 0.4);',
+  minQuantityColor: '#808080',
 };
 
 export const darkTheme = {
@@ -43,4 +44,5 @@ export const darkTheme = {
   wideScreenBackground: '#202020',
   buttonPrimary: defaultTheme.grey10,
   cancelButton: 'rgba(0, 0, 0, 0.8);',
+  minQuantityColor: '#eee',
 };

@@ -8,7 +8,7 @@ import InsertSampleData from '../components/settings/sampleDataSection/SampleDat
 import LogoutSection from '../components/settings/logoutSection/LogoutSection';
 
 const StyledMain = styled.main`
-  height: calc(100vh - 70px);
+  height: calc(100% - 70px);
   color: ${props => props.theme.textPrimary};
   background-color: ${props => props.theme.background};
 `;
@@ -17,11 +17,9 @@ const Wrapper = styled.div`
   display: flex;
   padding: 0 10px;
   margin: 0 auto;
-  /* width: 100%; */
   padding-top: 15px;
   max-width: 350px;
   flex-direction: column;
-  /* justify-content: space-around; */
   align-items: center;
   overflow: auto;
   color: ${props => props.theme.textPrimary};
@@ -29,14 +27,6 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     padding-top: 25px;
-    /* height: 250px; */
-    /* max-width: 400px; */
-    /* width: 100%; */
-    /* max-width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: row; */
   }
 `;
 

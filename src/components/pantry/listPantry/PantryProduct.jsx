@@ -86,7 +86,7 @@ const Unit = styled.div`
 const Min = styled.div`
   flex: 1;
   text-align: center;
-  color: #808080;
+  color: ${({ theme }) => theme.minQuantityColor};
 `;
 
 class PantryProduct extends React.Component {

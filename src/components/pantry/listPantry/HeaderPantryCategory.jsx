@@ -26,7 +26,7 @@ const AboveMin = styled.div`
   flex: 1;
   font-style: italic;
   text-align: center;
-  color: #808080;
+  color: ${({ theme }) => theme.minQuantityColor};
 `;
 
 const Description = styled.div`
