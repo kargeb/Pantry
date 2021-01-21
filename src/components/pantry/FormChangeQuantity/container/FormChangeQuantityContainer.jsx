@@ -73,7 +73,7 @@ class FormChangeQuantityContainer extends React.Component {
   };
 
   updateProductQuantity = () => {
-    const { quantity } = this.state;
+    let { quantity } = this.state;
     const { toggleChangeQuantityModal, id, min } = this.props;
 
     console.log('dlugosc znakow w QUANITTY:', String(quantity).trim().length);
@@ -87,6 +87,7 @@ class FormChangeQuantityContainer extends React.Component {
     }
 
     const onShoppingList = Boolean(quantity < min);
+    quantity = Number(quantity);
 
     updateProductQuantityInDatabase(quantity, onShoppingList, id);
 
