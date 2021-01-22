@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Label = styled.label`
+const StyledProductLabel = styled.label`
   margin-bottom: 4px;
   font-size: 13px;
   color: ${props => props.theme.textPrimary};
@@ -13,4 +13,4 @@ const Label = styled.label`
     `}
 `;
 
-export default Label;
+export default StyledProductLabel;

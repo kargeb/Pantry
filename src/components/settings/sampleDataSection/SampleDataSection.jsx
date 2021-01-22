@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import H2 from '../../atoms/texts/H2';
+import H2 from '../../styledComponents/typography/H2';
 import Button from '../../atoms/buttons/Button';
 import InsertSampleDataModal from './ModalInsertSampleData';
 

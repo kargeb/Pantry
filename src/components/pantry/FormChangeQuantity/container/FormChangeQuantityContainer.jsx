@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DeleteProductModal from '../components/DeleteProductModal';
-import Modal from '../../../templates/Modal';
-import H1 from '../../../atoms/texts/H1';
+import StyledModal from '../../../styledComponents/modal/StyledModal';
+import H1 from '../../../styledComponents/typography/H1';
 import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
-import H2 from '../../../atoms/texts/H2';
+import H2 from '../../../styledComponents/typography/H2';
 import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
 import NewProductForm from '../../../forms/newProductForm/NewProductForm';
 import { updateProductQuantityInDatabase } from '../../../../data/handlers';
@@ -117,7 +117,7 @@ class FormChangeQuantityContainer extends React.Component {
     const { unit, category, id, name, min } = product;
 
     return (
-      <Modal>
+      <StyledModal>
         <H1 marginBottom>{name}</H1>
         <H2 italic marginBottom>
           Change quantity
@@ -160,7 +160,7 @@ class FormChangeQuantityContainer extends React.Component {
             toggleChangeQuantityModal={toggleChangeQuantityModal}
           />
         )}
-      </Modal>
+      </StyledModal>
     );
   }
 }

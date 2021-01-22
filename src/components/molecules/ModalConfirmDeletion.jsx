@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../templates/Modal';
-import H1 from '../atoms/texts/H1';
-import H2 from '../atoms/texts/H2';
+import StyledModal from '../styledComponents/modal/StyledModal';
+import H1 from '../styledComponents/typography/H1';
+import H2 from '../styledComponents/typography/H2';
 import WrapperButtonsConfirmAndCancel from './WrapperButtonsConfirmAndCancel';
 
 const ModalConfirmDeletion = ({
@@ -18,7 +18,7 @@ const ModalConfirmDeletion = ({
   };
 
   return (
-    <Modal>
+    <StyledModal>
       <H1 marginBottomDouble>{heading}</H1>
       <H2 italic marginBottom>
         {name}
@@ -27,7 +27,7 @@ const ModalConfirmDeletion = ({
         cancelOnClick={toggleConfirmationModal}
         confirmOnClick={confirmDeletion}
       />
-    </Modal>
+    </StyledModal>
   );
 };
 

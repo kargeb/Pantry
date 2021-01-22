@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import StyledModalBody from './StyledModalBody';
-import StyledModalBackground from './StyledModalBackground';
+import StyledModalBody from './elements/StyledModalBody';
+import StyledModalBackground from './elements/StyledModalBackground';
 
-const Modal = ({ children }) => (
+const StyledModal = ({ children }) => (
   <StyledModalBackground blurBackground>
     <StyledModalBody>{children}</StyledModalBody>
   </StyledModalBackground>
 );
 
-Modal.propTypes = {
+StyledModal.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Modal;
+export default StyledModal;

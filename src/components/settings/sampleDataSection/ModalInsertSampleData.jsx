@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Modal from '../../templates/Modal';
+import StyledModal from '../../styledComponents/modal/StyledModal';
 
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
-import H1 from '../../atoms/texts/H1';
-import H2 from '../../atoms/texts/H2';
+import H1 from '../../styledComponents/typography/H1';
+import H2 from '../../styledComponents/typography/H2';
 import { uploadSampleProductsAndCategories } from '../../../data/handlers';
 import { sampleProducts, sampleCategories } from '../../../data/sampleData';
 
@@ -24,7 +24,7 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
   };
 
   return (
-    <Modal>
+    <StyledModal>
       <H1 marginBottomDouble>Will be downloaded:</H1>
       <H2 marginBottom>Products:</H2>
       <StyledUl>
@@ -55,7 +55,7 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
         cancelOnClick={toggleInsertModal}
         confirmOnClick={insertDataAndCloseModal}
       />
-    </Modal>
+    </StyledModal>
   );
 };
 

@@ -15,12 +15,12 @@ import {
 import LogoForms from '../../../../images/logoPantry.svg';
 import P from '../../../styledComponents/atoms/typography/P';
 import StyledAuthLink from '../../../styledComponents/atoms/typography/StyledAuthLink';
-import StyledAuthInput from '../../../styledComponents/atoms/authFormsElements/StyledAuthInput';
-import StyledAuthLabel from '../../../styledComponents/atoms/authFormsElements/StyledAuthLabel';
-import StyledAuthButton from '../../../styledComponents/atoms/buttonsNew/StyledAuthButton';
+import StyledAuthInput from '../../../styledComponents/formElements/inputs/StyledAuthInput';
+import StyledAuthLabel from '../../../styledComponents/formElements/labels/StyledAuthLabel';
+import StyledAuthButton from '../../../styledComponents/buttons/StyledAuthButton';
 import H1 from '../../../styledComponents/atoms/typography/H1';
-import StyledModalBackground from '../../../templates/StyledModalBackground';
-import StyledAuthForm from '../../../templates/StyledAuthForm';
+import StyledModalBackground from '../../../styledComponents/modal/elements/StyledModalBackground';
+import StyledAuthForm from '../../../styledComponents/formElements/authForm/StyledAuthForm';
 
 const Logo = styled.div`
   position: absolute;

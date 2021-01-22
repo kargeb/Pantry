@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import StyledSelect from '../../../atoms/formElements/StyledSelect';
-import Label from '../../../atoms/formElements/Label';
+import StyledSelect from '../../../styledComponents/formElements/StyledSelect';
+import StyledProductLabel from '../../../styledComponents/formElements/labels/StyledProductLabel';
 
 const InputHorizontalWrapper = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const SelectUnit = ({ handleForm, unit, errorMessage }) => {
   return (
     <>
       <InputHorizontalWrapper>
-        <Label htmlFor="unit">Unit</Label>
+        <StyledProductLabel htmlFor="unit">Unit</StyledProductLabel>
         <StyledSelect short id="unit" onChange={handleForm} value={unit}>
           <option value="item">item</option>
           <option value="btl.">btl.</option>

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import Modal from '../../templates/Modal';
-import H1 from '../../atoms/texts/H1';
-import InputName from '../../pantry/FormPantryProduct/components/InputName';
-import SelectCategory from '../../pantry/FormPantryProduct/components/SelectCategory';
-import SelectUnit from '../../pantry/FormPantryProduct/components/SelectUnit';
-import InputMin from '../../pantry/FormPantryProduct/components/InputMin';
-import InputQuantity from '../../pantry/FormPantryProduct/components/InputQuantity';
+
+import H1 from '../../styledComponents/typography/H1';
+import InputName from './elements/InputName';
+import SelectCategory from './elements/SelectCategory';
+import SelectUnit from './elements/SelectUnit';
+import InputMin from './elements/InputMin';
+import InputQuantity from './elements/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
 import { addNewProductToDatabase } from '../../../data/handlers';
 import {
@@ -16,8 +16,8 @@ import {
   checkForNonPositiveIntegers,
 } from '../../../helpers';
 
-import StyledModal from '../../templates/StyledModalBackground';
-import StyledProductForm from '../../templates/StyledModalBody';
+import StyledModalBody from '../../styledComponents/modal/elements/StyledModalBody';
+import StyledModalBackground from '../../styledComponents/modal/elements/StyledModalBackground';
 
 class NewProductForm extends React.Component {
   constructor(props) {
@@ -163,10 +163,8 @@ class NewProductForm extends React.Component {
     const { name, quantity, unit, min, category, errorMessages } = this.state;
 
     return (
-      // <Modal>
-      <StyledModal blurBackground>
-        {/* <StyledModal> */}
-        <StyledProductForm as="form">
+      <StyledModalBackground blurBackground>
+        <StyledModalBody as="form">
           <H1 marginBottomDouble>
             {this.props.name ? 'Edit product' : 'New product'}
           </H1>
@@ -201,9 +199,8 @@ class NewProductForm extends React.Component {
             cancelOnClick={toggleFormVisibility}
             confirmOnClick={this.handleSubmit}
           />
-        </StyledProductForm>
-      </StyledModal>
-      // </Modal>
+        </StyledModalBody>
+      </StyledModalBackground>
     );
   }
 }

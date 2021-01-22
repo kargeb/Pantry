@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../templates/Modal';
+import StyledModal from '../../styledComponents/modal/StyledModal';
 
 import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
-import H1 from '../../atoms/texts/H1';
-import H2 from '../../atoms/texts/H2';
+import H1 from '../../styledComponents/typography/H1';
+import H2 from '../../styledComponents/typography/H2';
 import { logOut } from '../../../data/handlers';
 
 const ConfirmLogoutModal = ({ toggleConfirmLogoutModal }) => {
@@ -14,7 +14,7 @@ const ConfirmLogoutModal = ({ toggleConfirmLogoutModal }) => {
   };
 
   return (
-    <Modal>
+    <StyledModal>
       <div style={{ textAlign: 'center' }}>
         <H1 marginBottomDouble>Are you sure to logout?</H1>
       </div>
@@ -22,7 +22,7 @@ const ConfirmLogoutModal = ({ toggleConfirmLogoutModal }) => {
         cancelOnClick={toggleConfirmLogoutModal}
         confirmOnClick={insertDataAndCloseModal}
       />
-    </Modal>
+    </StyledModal>
   );
 };
 

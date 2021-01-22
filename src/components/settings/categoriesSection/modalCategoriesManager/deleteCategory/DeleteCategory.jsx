@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import H1 from '../../../../atoms/texts/H1';
-import Label from '../../../../atoms/formElements/Label';
+import H1 from '../../../../styledComponents/typography/H1';
+import StyledProductLabel from '../../../../styledComponents/formElements/labels/StyledProductLabel';
 import Button from '../../../../atoms/buttons/Button';
 
 import SelectCategory from './selectCategory/SelectCategory';
 
-const StyledLabel = styled(Label)`
+const StyledLabel = styled(StyledProductLabel)`
   width: 155px;
   /* color: ${({ theme }) => theme.grey60}; */
   text-align: center;

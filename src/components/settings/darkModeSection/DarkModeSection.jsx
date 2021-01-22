@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { AppContext } from '../../../context';
-import H2 from '../../atoms/texts/H2';
-import Label from '../../atoms/formElements/Label';
+import H2 from '../../styledComponents/typography/H2';
+import StyledProductLabel from '../../styledComponents/formElements/labels/StyledProductLabel';
 import ButtonIconSwitch from '../../atoms/buttons/ButtonIconSwitch';
 
 const Section = styled.section`
@@ -54,12 +54,12 @@ const DarkModeSection = () => {
             <H2>Dark mode</H2>
           </Header>
           <WrapperToggleButton>
-            <Label>Off</Label>
+            <StyledProductLabel>Off</StyledProductLabel>
             <ButtonIconSwitch
               onClick={context.changeTheme}
               themeName={context.currentTheme.name}
             />
-            <Label>On</Label>
+            <StyledProductLabel>On</StyledProductLabel>
           </WrapperToggleButton>
         </Section>
       )}

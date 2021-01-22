@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Label from '../../../atoms/formElements/Label';
-import StyledProductInput from '../../../atoms/formElements/StyledProductInput';
+import StyledProductLabel from '../../../styledComponents/formElements/labels/StyledProductLabel';
+import StyledProductInput from '../../../styledComponents/formElements/inputs/StyledProductInput';
 import P from '../../../styledComponents/atoms/typography/P';
 
 const InputHorizontalWrapper = styled.div`
@@ -31,7 +31,7 @@ const InputMin = ({
     <>
       <InputHorizontalWrapper>
         {console.log('ERRORS Z INPUT MIN:', errorMessage)}
-        <Label htmlFor="min">Min</Label>
+        <StyledProductLabel htmlFor="min">Min</StyledProductLabel>
         <StyledProductInput
           short
           id="min"

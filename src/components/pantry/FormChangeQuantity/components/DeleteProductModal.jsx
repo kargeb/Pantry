@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../../templates/Modal';
-import H1 from '../../../atoms/texts/H1';
+import StyledModal from '../../../styledComponents/modal/StyledModal';
+import H1 from '../../../styledComponents/typography/H1';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
-import H2 from '../../../atoms/texts/H2';
+import H2 from '../../../styledComponents/typography/H2';
 import { removeProductFromDatabase } from '../../../../data/handlers';
 
 const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
@@ -12,7 +12,7 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   };
 
   return (
-    <Modal>
+    <StyledModal>
       <H1 marginBottomDouble>Confirm remove</H1>
       <H2 italic marginBottom>
         {name}
@@ -21,7 +21,7 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
         cancelOnClick={toggleDeleteModal}
         confirmOnClick={deleteProduct}
       />
-    </Modal>
+    </StyledModal>
   );
 };
 

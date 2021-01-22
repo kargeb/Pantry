@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Label from '../../../atoms/formElements/Label';
-import StyledSelect from '../../../atoms/formElements/StyledSelect';
+import StyledProductLabel from '../../../styledComponents/formElements/labels/StyledProductLabel';
+import StyledSelect from '../../../styledComponents/formElements/StyledSelect';
 import { AppContext } from '../../../../context';
 import P from '../../../styledComponents/atoms/typography/P';
 
@@ -23,7 +23,7 @@ const SelectCategory = ({ handleForm, errorMessage, category }) => (
     {({ allCategories }) => (
       <>
         <InputVerticalWrapper>
-          <Label htmlFor="category">Category</Label>
+          <StyledProductLabel htmlFor="category">Category</StyledProductLabel>
           <StyledSelect id="category" onChange={handleForm} value={category}>
             <option aria-label="disable option" value="" disabled hidden />
             {allCategories.map(categoryItem => (

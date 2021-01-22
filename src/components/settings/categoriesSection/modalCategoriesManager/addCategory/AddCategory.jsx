@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import H1 from '../../../../atoms/texts/H1';
-import StyledProductInput from '../../../../atoms/formElements/StyledProductInput';
+import H1 from '../../../../styledComponents/typography/H1';
+import StyledProductInput from '../../../../styledComponents/formElements/inputs/StyledProductInput';
 import Button from '../../../../atoms/buttons/Button';
 
 const AddCategory = ({
