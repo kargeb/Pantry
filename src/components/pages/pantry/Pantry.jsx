@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ShadowScrollbar from '../../../components/ShadowScrollbar/ShadowScrollbar';
 import PantryList from './pantryList/PantryList';
-import ButtonAddProductSection from '../../../components/pantry/ButtonAddProductSection/ButtonAddProductSection';
+import ButtonAddProductSection from './ButtonAddProductSection/ButtonAddProductSection';
 
 const Main = styled.main`
   display: flex;
