@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PantryProduct from './pantryProduct/PantryProduct';
 import ButtonAddProduct from '../../../../styled/buttons/ButtonAddProduct';
 import HeaderPantryCategory from './HeaderPantryCategory';
-import NewProductForm from '../../../../forms/newProductForm/NewProductForm';
+import NewProductForm from '../../newProductWrapper/newProductForm/NewProductForm';
 
 const CategoriesItem = styled.li`
   background-color: ${props => props.theme.background};

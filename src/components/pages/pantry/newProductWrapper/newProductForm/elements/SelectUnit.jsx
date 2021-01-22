@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import StyledSelect from '../../../styled/formElements/StyledSelect';
-import StyledProductLabel from '../../../styled/formElements/labels/StyledProductLabel';
+import StyledSelect from '../../../../../styled/formElements/StyledSelect';
+import StyledProductLabel from '../../../../../styled/formElements/labels/StyledProductLabel';
 
 const InputHorizontalWrapper = styled.div`
   display: flex;

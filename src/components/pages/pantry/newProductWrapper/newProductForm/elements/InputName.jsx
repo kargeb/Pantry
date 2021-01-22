@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import StyledProductLabel from '../../../styled/formElements/labels/StyledProductLabel';
-import StyledProductInput from '../../../styled/formElements/inputs/StyledProductInput';
-import P from '../../../styled/typography/StyledP';
+import StyledProductLabel from '../../../../../styled/formElements/labels/StyledProductLabel';
+import StyledProductInput from '../../../../../styled/formElements/inputs/StyledProductInput';
+import P from '../../../../../styled/typography/StyledP';
 
 const InputVerticalWrapper = styled.div`
   display: flex;

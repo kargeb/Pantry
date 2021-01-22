@@ -8,7 +8,7 @@ import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
 import WrapperButtonsConfirmAndCancel from '../../../../../../../molecules/WrapperButtonsConfirmAndCancel';
 import H2 from '../../../../../../../styled/typography/H2';
 import ChangeQuantityInputAndButtons from '../../../../../../../molecules/ChangeQuantityInputAndButtons';
-import NewProductForm from '../../../../../../../forms/newProductForm/NewProductForm';
+import NewProductForm from '../../../../../newProductWrapper/newProductForm/NewProductForm';
 import { updateProductQuantityInDatabase } from '../../../../../../../../data/handlers';
 import P from '../../../../../../../styled/typography/StyledP';
 
