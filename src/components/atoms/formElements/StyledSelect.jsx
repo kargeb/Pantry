@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Select = styled.select`
+const StyledSelect = styled.select`
   width: 155px;
   height: 27px;
   margin-bottom: 20px;
@@ -27,4 +27,4 @@ const Select = styled.select`
     `}
 `;
 
-export default Select;
+export default StyledSelect;

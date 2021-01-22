@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonRectangle = styled.button`
+const StyledAuthButton = styled.button`
 /* display: flex; */
 height: 35px;
 width: 100%;
@@ -18,4 +18,4 @@ height: 50px;
   }
 `;
 
-export default ButtonRectangle;
+export default StyledAuthButton;

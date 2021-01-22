@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Label from '../../../atoms/formElements/Label';
-import Select from '../../../atoms/formElements/Select';
+import StyledSelect from '../../../atoms/formElements/StyledSelect';
 import { AppContext } from '../../../../context';
 import P from '../../../styledComponents/atoms/typography/P';
 
@@ -24,14 +24,14 @@ const SelectCategory = ({ handleForm, errorMessage, category }) => (
       <>
         <InputVerticalWrapper>
           <Label htmlFor="category">Category</Label>
-          <Select id="category" onChange={handleForm} value={category}>
+          <StyledSelect id="category" onChange={handleForm} value={category}>
             <option aria-label="disable option" value="" disabled hidden />
             {allCategories.map(categoryItem => (
               <option key={categoryItem} value={categoryItem}>
                 {categoryItem}
               </option>
             ))}
-          </Select>
+          </StyledSelect>
         </InputVerticalWrapper>
         {errorMessage && <StyledP>{errorMessage}</StyledP>}
       </>

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Input = styled.input`
+const StyledProductInput = styled.input`
   width: 155px;
   height: 27px;
   padding-left: 5px;
@@ -35,4 +35,4 @@ const Input = styled.input`
   }
 `;
 
-export default Input;
+export default StyledProductInput;

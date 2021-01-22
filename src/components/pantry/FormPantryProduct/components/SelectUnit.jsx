@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Select from '../../../atoms/formElements/Select';
+import StyledSelect from '../../../atoms/formElements/StyledSelect';
 import Label from '../../../atoms/formElements/Label';
 
 const InputHorizontalWrapper = styled.div`
@@ -19,7 +19,7 @@ const SelectUnit = ({ handleForm, unit, errorMessage }) => {
     <>
       <InputHorizontalWrapper>
         <Label htmlFor="unit">Unit</Label>
-        <Select short id="unit" onChange={handleForm} value={unit}>
+        <StyledSelect short id="unit" onChange={handleForm} value={unit}>
           <option value="item">item</option>
           <option value="btl.">btl.</option>
           <option value="pack">pack</option>
@@ -27,7 +27,7 @@ const SelectUnit = ({ handleForm, unit, errorMessage }) => {
           <option value="ml">ml</option>
           <option value="kg">kg</option>
           <option value="g">g</option>
-        </Select>
+        </StyledSelect>
       </InputHorizontalWrapper>
       {/* {errorMessage.length !== 0 && <p>{errorMessage}</p>} */}
       {errorMessage && <p>{errorMessage}</p>}

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Label from '../../../atoms/formElements/Label';
-import Input from '../../../atoms/formElements/Input';
+import StyledProductInput from '../../../atoms/formElements/StyledProductInput';
 import P from '../../../styledComponents/atoms/typography/P';
 
 const InputVerticalWrapper = styled.div`
@@ -22,7 +22,12 @@ const InputName = ({ handleForm, name, errorMessage }) => {
     <>
       <InputVerticalWrapper>
         <Label htmlFor="name">Name</Label>
-        <Input id="name" type="text" onChange={handleForm} value={name} />
+        <StyledProductInput
+          id="name"
+          type="text"
+          onChange={handleForm}
+          value={name}
+        />
       </InputVerticalWrapper>
       {errorMessage && <StyledP>{errorMessage}</StyledP>}
     </>

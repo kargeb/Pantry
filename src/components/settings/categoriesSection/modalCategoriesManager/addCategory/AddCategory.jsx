@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import H1 from '../../../../atoms/texts/H1';
-import Input from '../../../../atoms/formElements/Input';
+import StyledProductInput from '../../../../atoms/formElements/StyledProductInput';
 import Button from '../../../../atoms/buttons/Button';
 
-const AddCategory = ({ handleAddCategory, errorMessage, newCategory, handleForm }) => (
+const AddCategory = ({
+  handleAddCategory,
+  errorMessage,
+  newCategory,
+  handleForm,
+}) => (
   <>
     <H1 marginBottom as="h2">
       Add category:
     </H1>
-    <Input
+    <StyledProductInput
       id="newCategory"
       type="text"
       onChange={handleForm}

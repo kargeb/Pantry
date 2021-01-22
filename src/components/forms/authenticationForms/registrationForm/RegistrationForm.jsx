@@ -13,13 +13,11 @@ import {
 } from '../../../../helpers';
 
 import LogoForms from '../../../../images/logoPantry.svg';
-import Modal from '../../../styledComponents/molecules/Modal';
-import Form from '../../../styledComponents/molecules/Form';
 import P from '../../../styledComponents/atoms/typography/P';
-import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
-import Input from '../../../styledComponents/atoms/authFormsElements/Input';
-import Label from '../../../styledComponents/atoms/authFormsElements/Label';
-import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
+import StyledAuthLink from '../../../styledComponents/atoms/typography/StyledAuthLink';
+import StyledAuthInput from '../../../styledComponents/atoms/authFormsElements/StyledAuthInput';
+import StyledAuthLabel from '../../../styledComponents/atoms/authFormsElements/StyledAuthLabel';
+import StyledAuthButton from '../../../styledComponents/atoms/buttonsNew/StyledAuthButton';
 import H1 from '../../../styledComponents/atoms/typography/H1';
 import StyledModalBackground from '../../../templates/StyledModalBackground';
 import StyledAuthForm from '../../../templates/StyledAuthForm';
@@ -132,10 +130,8 @@ class RegistrationForm extends Component {
           <P padding="20px" center>
             new account
           </P>
-          <Label htmlFor="login" left>
-            Email
-          </Label>
-          <Input
+          <StyledAuthLabel htmlFor="login">Email</StyledAuthLabel>
+          <StyledAuthInput
             errorBorder={errorMessages.login}
             type="email"
             id="login"
@@ -148,10 +144,10 @@ class RegistrationForm extends Component {
           ) : (
             <P error>&nbsp;</P>
           )}
-          <Label htmlFor="password" left top="10px">
+          <StyledAuthLabel htmlFor="password" top="10px">
             Hasło
-          </Label>
-          <Input
+          </StyledAuthLabel>
+          <StyledAuthInput
             errorBorder={errorMessages.password}
             type="text"
             id="password"
@@ -164,16 +160,16 @@ class RegistrationForm extends Component {
           ) : (
             <P error>&nbsp;</P>
           )}
-          <ButtonRectangle
+          <StyledAuthButton
             marginTop="20px"
             type="submit"
             onClick={this.handleSubmit}
           >
             Register
-          </ButtonRectangle>
+          </StyledAuthButton>
           <Link to="/login">
             <P center padding="20px">
-              or <SpanLink>login on existing account</SpanLink>
+              or <StyledAuthLink>login on existing account</StyledAuthLink>
             </P>
           </Link>
         </StyledAuthForm>

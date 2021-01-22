@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ButtonQuantity from '../atoms/buttons/ButtonQuantity';
-import Input from '../atoms/formElements/Input';
+import StyledProductInput from '../atoms/formElements/StyledProductInput';
 
-const InputNumber = styled(Input)`
+const InputNumber = styled(StyledProductInput)`
   border: none;
   color: ${props => props.theme.textPrimary};
   text-align: center;

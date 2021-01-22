@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Select from '../../../../../atoms/formElements/Select';
+import StyledSelect from '../../../../../atoms/formElements/StyledSelect';
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   margin-top: 5px;
 `;
 
-const CustomSelect = styled(Select)`
+const CustomSelect = styled(StyledSelect)`
   font-size: 15px;
   height: 100px;
   padding: 2px;

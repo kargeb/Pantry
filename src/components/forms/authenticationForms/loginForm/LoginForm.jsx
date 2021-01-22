@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
+import StyledAuthButton from '../../../styledComponents/atoms/buttonsNew/StyledAuthButton';
 import LogoForms from '../../../../images/logoPantry.svg';
-import Input from '../../../styledComponents/atoms/authFormsElements/Input';
-import Label from '../../../styledComponents/atoms/authFormsElements/Label';
-import SpanLink from '../../../styledComponents/atoms/typography/SpanLink';
+import StyledAuthInput from '../../../styledComponents/atoms/authFormsElements/StyledAuthInput';
+import StyledAuthLabel from '../../../styledComponents/atoms/authFormsElements/StyledAuthLabel';
+import StyledAuthLink from '../../../styledComponents/atoms/typography/StyledAuthLink';
 import P from '../../../styledComponents/atoms/typography/P';
 import Modal from '../../../styledComponents/molecules/Modal';
-import Form from '../../../styledComponents/molecules/Form';
 import { logIn, logOut } from '../../../../data/handlers';
 import {
   authDataValidation,
@@ -117,17 +116,15 @@ class LoginForm extends Component {
           <P padding="20px" center>
             as guest
           </P>
-          <ButtonRectangle type="button" onClick={this.logInAsTestUser}>
+          <StyledAuthButton type="button" onClick={this.logInAsTestUser}>
             Guest login
-          </ButtonRectangle>
+          </StyledAuthButton>
           <P padding="20px" center>
             or on your account
           </P>
 
-          <Label htmlFor="login" left>
-            Email
-          </Label>
-          <Input
+          <StyledAuthLabel htmlFor="login">Email</StyledAuthLabel>
+          <StyledAuthInput
             errorBorder={errorMessages.login}
             type="text"
             id="login"
@@ -141,10 +138,10 @@ class LoginForm extends Component {
           ) : (
             <P error>&nbsp;</P>
           )}
-          <Label htmlFor="password" left top="10px">
+          <StyledAuthLabel htmlFor="password" top="10px">
             Password
-          </Label>
-          <Input
+          </StyledAuthLabel>
+          <StyledAuthInput
             errorBorder={errorMessages.password}
             type="password"
             id="password"
@@ -158,16 +155,16 @@ class LoginForm extends Component {
           ) : (
             <P error>&nbsp;</P>
           )}
-          <ButtonRectangle
+          <StyledAuthButton
             marginTop="20px"
             type="button"
             onClick={this.handleSubmit}
           >
             Login
-          </ButtonRectangle>
+          </StyledAuthButton>
           <Link to="/register">
             <P center padding="30px">
-              or <SpanLink>create your account</SpanLink>
+              or <StyledAuthLink>create your account</StyledAuthLink>
             </P>
           </Link>
         </StyledAuthForm>

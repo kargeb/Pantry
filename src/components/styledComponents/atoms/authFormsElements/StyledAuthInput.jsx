@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Input = styled.input`
+const StyledAuthInput = styled.input`
   width: 100%;
   height: 38px;
   padding-left: 5px;
@@ -28,4 +28,4 @@ height: 45px;
   }
 `;
 
-export default Input;
+export default StyledAuthInput;
