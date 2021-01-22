@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PantryCategory from './PantryCategory';
+import PantryCategory from './pantryCategory/PantryCategory';
 import { AppContext } from '../../../../context';
 
 const CategoriesList = styled.ul`
