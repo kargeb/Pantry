@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShadowScrollbar from '../../../components/ShadowScrollbar/ShadowScrollbar';
+import ShadowScrollbar from '../../shared/ShadowScrollbar/ShadowScrollbar';
 import PantryList from './pantryList/PantryList';
 import ButtonAddProductSection from './ButtonAddProductSection/ButtonAddProductSection';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ShoppingList from './shoppingList/ShoppingList';
-import ShadowScrollbar from '../../ShadowScrollbar/ShadowScrollbar';
+import ShadowScrollbar from '../../shared/ShadowScrollbar/ShadowScrollbar';
 import { AppContext } from '../../../context';
 
 const StyledMain = styled.main`
