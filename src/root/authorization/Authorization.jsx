@@ -39,7 +39,7 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
             ) : (
               <Switch>
                 <Route exact path="/" component={LoginForm} />
-                <Route path="/pantry" component={LoginForm} />
+                {/* <Route path="/pantry" component={LoginForm} /> */}
                 <Route
                   path="/register"
                   render={props => (

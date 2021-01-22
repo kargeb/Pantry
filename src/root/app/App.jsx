@@ -78,7 +78,7 @@ class App extends React.Component {
               <Route path="/pantry" component={Pantry} />
               <Route path="/shopping" component={Shopping} />
               <Route path="/settings" component={Settings} />
-              <Redirect to="/pantry" />
+              <Redirect to="/" />
             </Switch>
           </AppContext.Provider>
         </ThemeProvider>
