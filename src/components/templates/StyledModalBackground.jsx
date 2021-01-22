@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-const StyledModal = styled.div`
+const StyledModalBackground = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -23,4 +23,4 @@ const StyledModal = styled.div`
     `}
 `;
 
-export default StyledModal;
+export default StyledModalBackground;

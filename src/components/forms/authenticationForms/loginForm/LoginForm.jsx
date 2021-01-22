@@ -18,7 +18,7 @@ import {
 } from '../../../../helpers';
 import H1 from '../../../styledComponents/atoms/typography/H1';
 
-import StyledModal from '../../../templates/StyledModal';
+import StyledModalBackground from '../../../templates/StyledModalBackground';
 import StyledAuthForm from './../../../templates/StyledAuthForm';
 
 const Logo = styled.div`
@@ -108,7 +108,7 @@ class LoginForm extends Component {
     const { login, password, errorMessages } = this.state;
 
     return (
-      <StyledModal>
+      <StyledModalBackground>
         <StyledAuthForm>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
@@ -171,7 +171,7 @@ class LoginForm extends Component {
             </P>
           </Link>
         </StyledAuthForm>
-      </StyledModal>
+      </StyledModalBackground>
     );
   }
 }

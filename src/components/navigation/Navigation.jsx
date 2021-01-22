@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faList, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCogs,
+  faList,
+  faShoppingCart,
+} from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../../context';
 
@@ -80,7 +84,9 @@ const NavLinkWrapper = styled(NavLink)`
 
 const Navigation = () => {
   const numberOfProductsOnShoppingList = products => {
-    const productsOnShoppingList = products.filter(product => product.onShoppingList);
+    const productsOnShoppingList = products.filter(
+      product => product.onShoppingList,
+    );
     return productsOnShoppingList.length;
   };
 
@@ -93,7 +99,7 @@ const Navigation = () => {
               <Icon icon={faCogs} />
               <p>Settings</p>
             </NavLinkWrapper>
-            <NavLinkWrapper to="/" exact>
+            <NavLinkWrapper to="/pantry" exact>
               <Icon icon={faList} />
               <p>Pantry</p>
             </NavLinkWrapper>
@@ -101,7 +107,9 @@ const Navigation = () => {
               <IconWithCounterWrapper>
                 <Icon icon={faShoppingCart} />
                 <ShoppingListCounter>
-                  <span>{numberOfProductsOnShoppingList(context.products)}</span>
+                  <span>
+                    {numberOfProductsOnShoppingList(context.products)}
+                  </span>
                 </ShoppingListCounter>
               </IconWithCounterWrapper>
               <p>Shopping</p>

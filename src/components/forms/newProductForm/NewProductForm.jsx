@@ -16,7 +16,8 @@ import {
   checkForNonPositiveIntegers,
 } from '../../../helpers';
 
-import StyledModal from '../../templates/StyledModal';
+import StyledModal from '../../templates/StyledModalBackground';
+import StyledProductForm from '../../templates/StyledModalBody';
 
 class NewProductForm extends React.Component {
   constructor(props) {
@@ -163,41 +164,44 @@ class NewProductForm extends React.Component {
 
     return (
       // <Modal>
-      <StyledModal>
-        <H1 marginBottomDouble>
-          {this.props.name ? 'Edit product' : 'New product'}
-        </H1>
-        <InputName
-          handleForm={this.handleForm}
-          name={name}
-          errorMessage={errorMessages.name}
-        />
-        <SelectCategory
-          handleForm={this.handleForm}
-          category={category}
-          errorMessage={errorMessages.category}
-        />
-        <SelectUnit
-          handleForm={this.handleForm}
-          unit={unit}
-          errorMessage={errorMessages.unit}
-        />
-        <InputMin
-          handleForm={this.handleForm}
-          min={min}
-          preventProhibitedCharacters={this.preventProhibitedCharacters}
-          errorMessage={errorMessages.min}
-        />
-        <InputQuantity
-          handleForm={this.handleForm}
-          preventProhibitedCharacters={this.preventProhibitedCharacters}
-          quantity={quantity}
-          errorMessage={errorMessages.quantity}
-        />
-        <WrapperButtonsConfirmAndCancel
-          cancelOnClick={toggleFormVisibility}
-          confirmOnClick={this.handleSubmit}
-        />
+      <StyledModal blurBackground>
+        {/* <StyledModal> */}
+        <StyledProductForm as="form">
+          <H1 marginBottomDouble>
+            {this.props.name ? 'Edit product' : 'New product'}
+          </H1>
+          <InputName
+            handleForm={this.handleForm}
+            name={name}
+            errorMessage={errorMessages.name}
+          />
+          <SelectCategory
+            handleForm={this.handleForm}
+            category={category}
+            errorMessage={errorMessages.category}
+          />
+          <SelectUnit
+            handleForm={this.handleForm}
+            unit={unit}
+            errorMessage={errorMessages.unit}
+          />
+          <InputMin
+            handleForm={this.handleForm}
+            min={min}
+            preventProhibitedCharacters={this.preventProhibitedCharacters}
+            errorMessage={errorMessages.min}
+          />
+          <InputQuantity
+            handleForm={this.handleForm}
+            preventProhibitedCharacters={this.preventProhibitedCharacters}
+            quantity={quantity}
+            errorMessage={errorMessages.quantity}
+          />
+          <WrapperButtonsConfirmAndCancel
+            cancelOnClick={toggleFormVisibility}
+            confirmOnClick={this.handleSubmit}
+          />
+        </StyledProductForm>
       </StyledModal>
       // </Modal>
     );

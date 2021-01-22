@@ -21,7 +21,7 @@ import Input from '../../../styledComponents/atoms/authFormsElements/Input';
 import Label from '../../../styledComponents/atoms/authFormsElements/Label';
 import ButtonRectangle from '../../../styledComponents/atoms/buttonsNew/ButtonRectangle';
 import H1 from '../../../styledComponents/atoms/typography/H1';
-import StyledModal from '../../../templates/StyledModal';
+import StyledModalBackground from '../../../templates/StyledModalBackground';
 import StyledAuthForm from '../../../templates/StyledAuthForm';
 
 const Logo = styled.div`
@@ -123,7 +123,7 @@ class RegistrationForm extends Component {
     const { login, password, errorMessages } = this.state;
 
     return (
-      <StyledModal>
+      <StyledModalBackground>
         <StyledAuthForm>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
@@ -177,7 +177,7 @@ class RegistrationForm extends Component {
             </P>
           </Link>
         </StyledAuthForm>
-      </StyledModal>
+      </StyledModalBackground>
     );
   }
 }

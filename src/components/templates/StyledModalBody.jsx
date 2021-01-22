@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledProductForm = styled.div`
+const StyledModalBody = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -18,4 +18,4 @@ const StyledProductForm = styled.div`
   }
 `;
 
-export default StyledProductForm;
+export default StyledModalBody;
