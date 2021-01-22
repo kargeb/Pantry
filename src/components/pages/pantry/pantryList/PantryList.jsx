@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import loadingGif from '../../../images/loading_dots.gif';
 import PantryCategory from './PantryCategory';
-import { AppContext } from '../../../context';
+import { AppContext } from '../../../../context';
 
 const CategoriesList = styled.ul`
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
@@ -81,7 +80,6 @@ const PantryList = () => {
     <AppContext.Consumer>
       {({ products, downloadInProgress }) => (
         <div>
-          {/* <img src={loadingGif} alt="Loading gif" /> */}
           {console.log('Z CONTEXU:', products)}
           {downloadInProgress ? (
             <Spinner>
