@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
 import { AppContext } from '../../context';
-import Pantry from '../../views/Pantry';
+import Pantry from '../../components/pages/pantry/Pantry';
 import Shopping from '../../components/pages/shopping/Shopping';
 import Settings from '../../components/pages/settings/Settings';
 import Navigation from '../../components/navigation/Navigation';
