@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalBuyProduct from './ModalBuyProduct';
-import { updateProductQuantityInDatabase } from '../../../data/handlers';
+import { updateProductQuantityInDatabase } from '../../../../data/handlers';
 
 class ContainerBuyProduct extends React.Component {
   constructor(props) {

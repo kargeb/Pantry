@@ -10,7 +10,7 @@ import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
 import { AppContext } from '../../context';
 import Pantry from '../../views/Pantry';
-import Shopping from '../../views/Shopping';
+import Shopping from '../../components/pages/shopping/Shopping';
 import Settings from '../../components/pages/settings/Settings';
 import Navigation from '../../components/navigation/Navigation';
 import {

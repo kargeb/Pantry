@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ContainerBuyProduct from '../buyProductModal/ContainerBuyProduct';
-import ButtonIconBuy from '../../styledComponents/buttons/ButtonIconBuy';
+// import ButtonIconBuy from '../../styledComponents/buttons/ButtonIconBuy';
+import ButtonIconBuy from '../../../styledComponents/buttons/ButtonIconBuy';
 
 const StyledWrapper = styled.div`
   padding: 0 10px;
