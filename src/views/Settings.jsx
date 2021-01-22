@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import DarkModeSection from '../components/settings/darkModeSection/DarkModeSection';
 import CategoriesSection from '../components/settings/categoriesSection/CategoriesSection';
-import Divider from '../components/atoms/divider/Divider';
+import Divider from '../components/styledComponents/divider/Divider';
 import InsertSampleData from '../components/settings/sampleDataSection/SampleDataSection';
 import LogoutSection from '../components/settings/logoutSection/LogoutSection';
 
