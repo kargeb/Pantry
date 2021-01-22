@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import StyledAuthButton from '../../../styledComponents/buttons/StyledAuthButton';
-import LogoForms from '../../../../images/logoPantry.svg';
-import StyledAuthInput from '../../../styledComponents/formElements/inputs/StyledAuthInput';
-import StyledAuthLabel from '../../../styledComponents/formElements/labels/StyledAuthLabel';
-import StyledAuthLink from '../../../styledComponents/typography/StyledAuthLink';
-import P from '../../../styledComponents/typography/StyledP';
-import { logIn, logOut } from '../../../../data/handlers';
+import StyledAuthButton from '../../styledComponents/buttons/StyledAuthButton';
+import LogoForms from '../../../images/logoPantry.svg';
+import StyledAuthInput from '../../styledComponents/formElements/inputs/StyledAuthInput';
+import StyledAuthLabel from '../../styledComponents/formElements/labels/StyledAuthLabel';
+import StyledAuthLink from '../../styledComponents/typography/StyledAuthLink';
+import P from '../../styledComponents/typography/StyledP';
+import { logIn, logOut } from '../../../data/handlers';
 import {
   authDataValidation,
   checkForEmptyValues,
   setErrorMessages,
   validation,
-} from '../../../../helpers';
-import H1 from '../../../styledComponents/typography/StyledAuthH1';
+} from '../../../helpers';
+import H1 from '../../styledComponents/typography/StyledAuthH1';
 
-import StyledModalBackground from '../../../styledComponents/modal/elements/StyledModalBackground';
-import StyledAuthForm from '../../../styledComponents/formElements/authForm/StyledAuthForm';
+import StyledModalBackground from '../../styledComponents/modal/elements/StyledModalBackground';
+import StyledAuthForm from '../../styledComponents/formElements/authForm/StyledAuthForm';
 
 const Logo = styled.div`
   position: absolute;

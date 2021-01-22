@@ -5,7 +5,8 @@ import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
 import RegistrationForm from '../../components/forms/authenticationForms/registrationForm/RegistrationForm';
 import Loading from '../../views/Loading';
-import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
+// import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
+import LoginForm from '../../components/pages/login/LoginForm';
 
 const StyledMain = styled.div`
   height: 100vh;
