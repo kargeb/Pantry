@@ -12,7 +12,8 @@ import { AppContext } from '../../context';
 import Pantry from '../../components/pages/pantry/Pantry';
 import Shopping from '../../components/pages/shopping/Shopping';
 import Settings from '../../components/pages/settings/Settings';
-import Navigation from '../../components/navigation/Navigation';
+// import Navigation from '../../components/navigation/Navigation';
+import Navigation from '../../components/shared/navigation/Navigation';
 import {
   setProductsDatabaseListener,
   setCategoriesDatabaseListener,
@@ -74,7 +75,8 @@ class App extends React.Component {
           <AppContext.Provider value={contextElements}>
             <Navigation />
             <Switch>
-              <Route exact path="/" component={Pantry} />
+              <Redirect exact from="/" to="/pantry" />
+              {/* <Route exact path="/" component={Pantry} /> */}
               <Route path="/pantry" component={Pantry} />
               <Route path="/shopping" component={Shopping} />
               <Route path="/settings" component={Settings} />
