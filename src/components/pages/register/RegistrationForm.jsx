@@ -5,22 +5,22 @@ import {
   registerUserInUsersDatabase,
   addInitialCategoryToDatabase,
   addInitialProductToDatabase,
-} from '../../../../data/handlers';
+} from '../../../data/handlers';
 import {
   validation,
   setErrorMessages,
   authDataValidation,
-} from '../../../../helpers';
+} from '../../../helpers';
 
-import LogoForms from '../../../../images/logoPantry.svg';
-import P from '../../../styledComponents/typography/StyledP';
-import StyledAuthLink from '../../../styledComponents/typography/StyledAuthLink';
-import StyledAuthInput from '../../../styledComponents/formElements/inputs/StyledAuthInput';
-import StyledAuthLabel from '../../../styledComponents/formElements/labels/StyledAuthLabel';
-import StyledAuthButton from '../../../styledComponents/buttons/StyledAuthButton';
-import H1 from '../../../styledComponents/typography/StyledAuthH1';
-import StyledModalBackground from '../../../styledComponents/modal/elements/StyledModalBackground';
-import StyledAuthForm from '../../../styledComponents/formElements/authForm/StyledAuthForm';
+import LogoForms from '../../../images/logoPantry.svg';
+import P from '../../styledComponents/typography/StyledP';
+import StyledAuthLink from '../../styledComponents/typography/StyledAuthLink';
+import StyledAuthInput from '../../styledComponents/formElements/inputs/StyledAuthInput';
+import StyledAuthLabel from '../../styledComponents/formElements/labels/StyledAuthLabel';
+import StyledAuthButton from '../../styledComponents/buttons/StyledAuthButton';
+import H1 from '../../styledComponents/typography/StyledAuthH1';
+import StyledModalBackground from '../../styledComponents/modal/elements/StyledModalBackground';
+import StyledAuthForm from '../../styledComponents/formElements/authForm/StyledAuthForm';
 
 const Logo = styled.div`
   position: absolute;

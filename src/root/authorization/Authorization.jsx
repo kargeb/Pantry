@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
-import RegistrationForm from '../../components/forms/authenticationForms/registrationForm/RegistrationForm';
+import RegistrationForm from '../../components/pages/register/RegistrationForm';
 import Loading from '../../views/Loading';
 // import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
 import LoginForm from '../../components/pages/login/LoginForm';
