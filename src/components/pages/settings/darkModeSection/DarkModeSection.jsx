@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { AppContext } from '../../../../context';
-import H2 from '../../../styledComponents/typography/H2';
-import StyledProductLabel from '../../../styledComponents/formElements/labels/StyledProductLabel';
-import ButtonIconSwitch from '../../../styledComponents/buttons/ButtonIconSwitch';
+import H2 from '../../../styled/typography/H2';
+import StyledProductLabel from '../../../styled/formElements/labels/StyledProductLabel';
+import ButtonIconSwitch from '../../../styled/buttons/ButtonIconSwitch';
 
 const Section = styled.section`
   width: 100%;

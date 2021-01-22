@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import H1 from '../../../../../styledComponents/typography/H1';
-import StyledProductInput from '../../../../../styledComponents/formElements/inputs/StyledProductInput';
+import H1 from '../../../../../styled/typography/H1';
+import StyledProductInput from '../../../../../styled/formElements/inputs/StyledProductInput';
 // import Button from '../../../../styledComponents/buttons/Button';
-import Button from '../../../../../styledComponents/buttons/Button';
+import Button from '../../../../../styled/buttons/Button';
 
 const AddCategory = ({
   handleAddCategory,

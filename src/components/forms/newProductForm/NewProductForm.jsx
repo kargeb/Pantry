@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
-import H1 from '../../styledComponents/typography/H1';
+import H1 from '../../styled/typography/H1';
 import InputName from './elements/InputName';
 import SelectCategory from './elements/SelectCategory';
 import SelectUnit from './elements/SelectUnit';
@@ -16,8 +16,8 @@ import {
   checkForNonPositiveIntegers,
 } from '../../../helpers';
 
-import StyledModalBody from '../../styledComponents/modal/elements/StyledModalBody';
-import StyledModalBackground from '../../styledComponents/modal/elements/StyledModalBackground';
+import StyledModalBody from '../../styled/modal/elements/StyledModalBody';
+import StyledModalBackground from '../../styled/modal/elements/StyledModalBackground';
 
 class NewProductForm extends React.Component {
   constructor(props) {

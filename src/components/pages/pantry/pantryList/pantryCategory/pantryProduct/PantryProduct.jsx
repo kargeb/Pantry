@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import FormChangeQuantityContainer from './FormChangeQuantity/container/FormChangeQuantityContainer';
-import ButtonIconEditProduct from '../../../../../styledComponents/buttons/ButtonIconEditProduct';
+import ButtonIconEditProduct from '../../../../../styled/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
   display: flex;

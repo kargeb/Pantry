@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import H2 from '../../../styledComponents/typography/H2';
-import Button from '../../../styledComponents/buttons/Button';
+import H2 from '../../../styled/typography/H2';
+import Button from '../../../styled/buttons/Button';
 import InsertSampleDataModal from './ModalInsertSampleData';
 
 const Section = styled.section`

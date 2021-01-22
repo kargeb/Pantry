@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import StyledAuthButton from '../../styledComponents/buttons/StyledAuthButton';
+import StyledAuthButton from '../../styled/buttons/StyledAuthButton';
 import LogoForms from '../../../images/logoPantry.svg';
-import StyledAuthInput from '../../styledComponents/formElements/inputs/StyledAuthInput';
-import StyledAuthLabel from '../../styledComponents/formElements/labels/StyledAuthLabel';
-import StyledAuthLink from '../../styledComponents/typography/StyledAuthLink';
-import P from '../../styledComponents/typography/StyledP';
+import StyledAuthInput from '../../styled/formElements/inputs/StyledAuthInput';
+import StyledAuthLabel from '../../styled/formElements/labels/StyledAuthLabel';
+import StyledAuthLink from '../../styled/typography/StyledAuthLink';
+import P from '../../styled/typography/StyledP';
 import { logIn, logOut } from '../../../data/handlers';
 import {
   authDataValidation,
@@ -14,10 +14,10 @@ import {
   setErrorMessages,
   validation,
 } from '../../../helpers';
-import H1 from '../../styledComponents/typography/StyledAuthH1';
+import H1 from '../../styled/typography/StyledAuthH1';
 
-import StyledModalBackground from '../../styledComponents/modal/elements/StyledModalBackground';
-import StyledAuthForm from '../../styledComponents/formElements/authForm/StyledAuthForm';
+import StyledModalBackground from '../../styled/modal/elements/StyledModalBackground';
+import StyledAuthForm from '../../styled/formElements/authForm/StyledAuthForm';
 
 const Logo = styled.div`
   position: absolute;

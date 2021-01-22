@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import StyledModal from '../../../styledComponents/modal/StyledModal';
+import StyledModal from '../../../styled/modal/StyledModal';
 
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
-import H1 from '../../../styledComponents/typography/H1';
-import H2 from '../../../styledComponents/typography/H2';
+import H1 from '../../../styled/typography/H1';
+import H2 from '../../../styled/typography/H2';
 import { uploadSampleProductsAndCategories } from '../../../../data/handlers';
 import { sampleProducts, sampleCategories } from '../../../../data/sampleData';
 

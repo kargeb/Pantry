@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 // import H2 from '../../../../../../styledComponents/typography/H2';
-import H2 from '../../../styledComponents/typography/H2';
+import H2 from '../../../styled/typography/H2';
 // import Button from '../../../styledComponents/buttons/Button';
-import Button from '../../../styledComponents/buttons/Button';
+import Button from '../../../styled/buttons/Button';
 import ModalCategoriesManager from './modalCategoriesManager/ModalCategoriesManager';
 
 const Header = styled.div`

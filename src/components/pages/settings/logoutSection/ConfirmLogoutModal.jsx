@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StyledModal from '../../../styledComponents/modal/StyledModal';
+import StyledModal from '../../../styled/modal/StyledModal';
 
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
-import H1 from '../../../styledComponents/typography/H1';
+import H1 from '../../../styled/typography/H1';
 
 import { logOut } from '../../../../data/handlers';
 

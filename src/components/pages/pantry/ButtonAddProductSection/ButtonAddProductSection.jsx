@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 // import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
 import NewProductForm from '../../../forms/newProductForm/NewProductForm';
-import ButtonAddProduct from '../../../styledComponents/buttons/ButtonAddProduct';
+import ButtonAddProduct from '../../../styled/buttons/ButtonAddProduct';
 
 const Wrapper = styled.div`
   height: 71px;

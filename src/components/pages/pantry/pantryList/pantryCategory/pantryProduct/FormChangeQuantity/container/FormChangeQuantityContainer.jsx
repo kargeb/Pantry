@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DeleteProductModal from '../components/DeleteProductModal';
-import StyledModal from '../../../../../../../styledComponents/modal/StyledModal';
-import H1 from '../../../../../../../styledComponents/typography/H1';
+import StyledModal from '../../../../../../../styled/modal/StyledModal';
+import H1 from '../../../../../../../styled/typography/H1';
 import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
 import WrapperButtonsConfirmAndCancel from '../../../../../../../molecules/WrapperButtonsConfirmAndCancel';
-import H2 from '../../../../../../../styledComponents/typography/H2';
+import H2 from '../../../../../../../styled/typography/H2';
 import ChangeQuantityInputAndButtons from '../../../../../../../molecules/ChangeQuantityInputAndButtons';
 import NewProductForm from '../../../../../../../forms/newProductForm/NewProductForm';
 import { updateProductQuantityInDatabase } from '../../../../../../../../data/handlers';
-import P from '../../../../../../../styledComponents/typography/StyledP';
+import P from '../../../../../../../styled/typography/StyledP';
 
 const StyledP = styled(P)`
   /* margin-top: -10px; */

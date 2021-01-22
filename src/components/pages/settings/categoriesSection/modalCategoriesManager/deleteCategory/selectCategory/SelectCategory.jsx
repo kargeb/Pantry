@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import StyledSelect from '../../../../../../styledComponents/formElements/StyledSelect';
+import StyledSelect from '../../../../../../styled/formElements/StyledSelect';
 
 const Wrapper = styled.div`
   display: flex;

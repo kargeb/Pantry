@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ButtonQuantity from '../styledComponents/buttons/ButtonQuantity';
-import StyledProductInput from '../styledComponents/formElements/inputs/StyledProductInput';
+import ButtonQuantity from '../styled/buttons/ButtonQuantity';
+import StyledProductInput from '../styled/formElements/inputs/StyledProductInput';
 
 const InputNumber = styled(StyledProductInput)`
   border: none;
