@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
-import NewProductForm from '../newProductWrapper/newProductForm/NewProductForm';
+import NewProductForm from './newProductForm/NewProductForm';
 import ButtonAddProduct from '../../../styled/buttons/ButtonAddProduct';
 
 const Wrapper = styled.div`
@@ -33,7 +33,7 @@ const ButtonAdd = styled(ButtonAddProduct)`
   }
 `;
 
-class ButtonAddProductSection extends React.Component {
+class NewProductWrapper extends React.Component {
   state = {
     isFormVisible: false,
   };
@@ -57,4 +57,4 @@ class ButtonAddProductSection extends React.Component {
   }
 }
 
-export default ButtonAddProductSection;
+export default NewProductWrapper;

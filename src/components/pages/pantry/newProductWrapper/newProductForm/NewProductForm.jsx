@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
 import H1 from '../../../../styled/typography/H1';
-import InputName from './elements/InputName';
-import SelectCategory from './elements/SelectCategory';
-import SelectUnit from './elements/SelectUnit';
-import InputMin from './elements/InputMin';
-import InputQuantity from './elements/InputQuantity';
+import InputName from './formElements/InputName';
+import SelectCategory from './formElements/SelectCategory';
+import SelectUnit from './formElements/SelectUnit';
+import InputMin from './formElements/InputMin';
+import InputQuantity from './formElements/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../../../molecules/WrapperButtonsConfirmAndCancel';
 import { addNewProductToDatabase } from '../../../../../data/handlers';
 import {
