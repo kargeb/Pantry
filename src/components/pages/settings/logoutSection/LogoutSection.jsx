@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import H2 from '../../styledComponents/typography/H2';
-import Button from '../../styledComponents/buttons/Button';
-import { auth } from '../../../fbase';
+import H2 from '../../../styledComponents/typography/H2';
+import Button from '../../../styledComponents/buttons/Button';
+import { auth } from '../../../../fbase';
 
 // import InsertSampleDataModal from './ModalInsertSampleData';
 import ConfirmLogoutModal from './ConfirmLogoutModal';

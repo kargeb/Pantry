@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StyledModal from '../../styledComponents/modal/StyledModal';
+import StyledModal from '../../../styledComponents/modal/StyledModal';
 
-import WrapperButtonsConfirmAndCancel from '../../molecules/WrapperButtonsConfirmAndCancel';
-import H1 from '../../styledComponents/typography/H1';
-import H2 from '../../styledComponents/typography/H2';
-import { logOut } from '../../../data/handlers';
+import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
+import H1 from '../../../styledComponents/typography/H1';
+
+import { logOut } from '../../../../data/handlers';
 
 const ConfirmLogoutModal = ({ toggleConfirmLogoutModal }) => {
   const insertDataAndCloseModal = () => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import DarkModeSection from '../components/settings/darkModeSection/DarkModeSection';
-import CategoriesSection from '../components/settings/categoriesSection/CategoriesSection';
-import Divider from '../components/styledComponents/divider/Divider';
-import InsertSampleData from '../components/settings/sampleDataSection/SampleDataSection';
-import LogoutSection from '../components/settings/logoutSection/LogoutSection';
+import DarkModeSection from './darkModeSection/DarkModeSection';
+import CategoriesSection from './categoriesSection/CategoriesSection';
+import Divider from '../../styledComponents/divider/Divider';
+import InsertSampleData from './sampleDataSection/SampleDataSection';
+import LogoutSection from './logoutSection/LogoutSection';
 
 const StyledMain = styled.main`
   height: calc(100% - 70px);

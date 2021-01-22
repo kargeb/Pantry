@@ -11,7 +11,7 @@ import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
 import { AppContext } from '../../context';
 import Pantry from '../../views/Pantry';
 import Shopping from '../../views/Shopping';
-import Settings from '../../views/Settings';
+import Settings from '../../components/pages/settings/Settings';
 import Navigation from '../../components/navigation/Navigation';
 import {
   setProductsDatabaseListener,

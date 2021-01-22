@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import H1 from '../../../../styledComponents/typography/H1';
-import StyledProductLabel from '../../../../styledComponents/formElements/labels/StyledProductLabel';
-import Button from '../../../../styledComponents/buttons/Button';
+import H1 from '../../../../../styledComponents/typography/H1';
+import StyledProductLabel from '../../../../../styledComponents/formElements/labels/StyledProductLabel';
+import Button from '../../../../../styledComponents/buttons/Button';
 
 import SelectCategory from './selectCategory/SelectCategory';
 
