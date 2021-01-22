@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import ButtonIconConfirm from '../atoms/buttons/ButtonIconConfirm';
-import ButtonIconCancel from '../atoms/buttons/ButtonIconCancel';
+import ButtonIconConfirm from '../styledComponents/buttons/ButtonIconConfirm';
+import ButtonIconCancel from '../styledComponents/buttons/ButtonIconCancel';
 
 const StyledButtonsWrapper = styled.div`
   display: flex;

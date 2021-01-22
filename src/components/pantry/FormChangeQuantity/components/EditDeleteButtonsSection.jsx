@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Button from '../../../atoms/buttons/Button';
+import Button from '../../../styledComponents/buttons/Button';
 
 const WrapperEditDeleteButtons = styled.div`
   margin-top: 30px;
@@ -11,7 +11,10 @@ const WrapperEditDeleteButtons = styled.div`
   justify-content: space-between;
 `;
 
-const EditDeleteButtonsSection = ({ toggleDeleteModal, toggleEditProductForm }) => {
+const EditDeleteButtonsSection = ({
+  toggleDeleteModal,
+  toggleEditProductForm,
+}) => {
   return (
     <WrapperEditDeleteButtons>
       <Button

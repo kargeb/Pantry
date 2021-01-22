@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import H1 from '../../../../styledComponents/typography/H1';
 import StyledProductInput from '../../../../styledComponents/formElements/inputs/StyledProductInput';
-import Button from '../../../../atoms/buttons/Button';
+import Button from '../../../../styledComponents/buttons/Button';
 
 const AddCategory = ({
   handleAddCategory,

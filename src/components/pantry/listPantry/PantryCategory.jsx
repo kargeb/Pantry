@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PantryProduct from './PantryProduct';
-import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
+// import ButtonAddProduct from '../../atoms/buttons/ButtonAddProduct';
+import ButtonAddProduct from '../../styledComponents/buttons/ButtonAddProduct';
 import HeaderPantryCategory from './HeaderPantryCategory';
 import NewProductForm from '../../forms/newProductForm/NewProductForm';
 

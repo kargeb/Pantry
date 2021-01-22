@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StyledModal from '../../../styledComponents/modal/StyledModal';
-import ButtonIconCancel from '../../../atoms/buttons/ButtonIconCancel';
+import ButtonIconCancel from '../../../styledComponents/buttons/ButtonIconCancel';
 import Divider from '../../../styledComponents/divider/Divider';
 import { AppContext } from '../../../../context';
 import AddCategoryContainer from './addCategory/AddCategoryContainer';
