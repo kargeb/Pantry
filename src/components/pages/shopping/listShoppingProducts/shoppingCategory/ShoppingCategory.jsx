@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import ShoppingProduct from './ShoppingProduct';
+import ShoppingProduct from './shoppingProduct/ShoppingProduct';
 
 const CategoryLabel = styled.div`
   padding: 10px 0 5px 0px;
