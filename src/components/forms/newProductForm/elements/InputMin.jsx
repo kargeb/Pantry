@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import StyledProductLabel from '../../../styledComponents/formElements/labels/StyledProductLabel';
 import StyledProductInput from '../../../styledComponents/formElements/inputs/StyledProductInput';
-import P from '../../../styledComponents/atoms/typography/P';
+import P from '../../../styledComponents/typography/StyledP';
 
 const InputHorizontalWrapper = styled.div`
   display: flex;

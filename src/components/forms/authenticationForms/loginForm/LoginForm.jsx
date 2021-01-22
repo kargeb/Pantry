@@ -5,8 +5,8 @@ import StyledAuthButton from '../../../styledComponents/buttons/StyledAuthButton
 import LogoForms from '../../../../images/logoPantry.svg';
 import StyledAuthInput from '../../../styledComponents/formElements/inputs/StyledAuthInput';
 import StyledAuthLabel from '../../../styledComponents/formElements/labels/StyledAuthLabel';
-import StyledAuthLink from '../../../styledComponents/atoms/typography/StyledAuthLink';
-import P from '../../../styledComponents/atoms/typography/P';
+import StyledAuthLink from '../../../styledComponents/typography/StyledAuthLink';
+import P from '../../../styledComponents/typography/StyledP';
 import { logIn, logOut } from '../../../../data/handlers';
 import {
   authDataValidation,
@@ -14,7 +14,7 @@ import {
   setErrorMessages,
   validation,
 } from '../../../../helpers';
-import H1 from '../../../styledComponents/atoms/typography/H1';
+import H1 from '../../../styledComponents/typography/StyledAuthH1';
 
 import StyledModalBackground from '../../../styledComponents/modal/elements/StyledModalBackground';
 import StyledAuthForm from '../../../styledComponents/formElements/authForm/StyledAuthForm';

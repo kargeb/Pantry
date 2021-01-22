@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import StyledProductLabel from '../../../styledComponents/formElements/labels/StyledProductLabel';
 import StyledSelect from '../../../styledComponents/formElements/StyledSelect';
 import { AppContext } from '../../../../context';
-import P from '../../../styledComponents/atoms/typography/P';
+import P from '../../../styledComponents/typography/StyledP';
 
 const InputVerticalWrapper = styled.div`
   display: flex;

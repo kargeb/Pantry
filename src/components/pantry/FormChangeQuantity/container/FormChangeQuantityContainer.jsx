@@ -10,7 +10,7 @@ import H2 from '../../../styledComponents/typography/H2';
 import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
 import NewProductForm from '../../../forms/newProductForm/NewProductForm';
 import { updateProductQuantityInDatabase } from '../../../../data/handlers';
-import P from '../../../styledComponents/atoms/typography/P';
+import P from '../../../styledComponents/typography/StyledP';
 
 const StyledP = styled(P)`
   /* margin-top: -10px; */
