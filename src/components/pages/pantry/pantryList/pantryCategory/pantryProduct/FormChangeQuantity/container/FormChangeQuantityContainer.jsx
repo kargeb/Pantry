@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DeleteProductModal from '../components/DeleteProductModal';
-import StyledModal from '../../../styledComponents/modal/StyledModal';
-import H1 from '../../../styledComponents/typography/H1';
+import StyledModal from '../../../../../../../styledComponents/modal/StyledModal';
+import H1 from '../../../../../../../styledComponents/typography/H1';
 import EditDeleteButtonsSection from '../components/EditDeleteButtonsSection';
-import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
-import H2 from '../../../styledComponents/typography/H2';
-import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
-import NewProductForm from '../../../forms/newProductForm/NewProductForm';
-import { updateProductQuantityInDatabase } from '../../../../data/handlers';
-import P from '../../../styledComponents/typography/StyledP';
+import WrapperButtonsConfirmAndCancel from '../../../../../../../molecules/WrapperButtonsConfirmAndCancel';
+import H2 from '../../../../../../../styledComponents/typography/H2';
+import ChangeQuantityInputAndButtons from '../../../../../../../molecules/ChangeQuantityInputAndButtons';
+import NewProductForm from '../../../../../../../forms/newProductForm/NewProductForm';
+import { updateProductQuantityInDatabase } from '../../../../../../../../data/handlers';
+import P from '../../../../../../../styledComponents/typography/StyledP';
 
 const StyledP = styled(P)`
   /* margin-top: -10px; */
@@ -44,15 +44,7 @@ class FormChangeQuantityContainer extends React.Component {
   handleInput = e => {
     let { value } = e.target;
 
-    // if (value.length === 0) {
-    //   this.setState({ quantity: value });
-    //   return;
-    // }
-
-    // value = Number(value);
-    console.log('VALUE przed sprawdzaczka:', value);
     if (value < 0) {
-      console.log('JESTEM W SPRAWDZACZE!!');
       value = 0;
     }
     this.setState({ quantity: value });
@@ -75,9 +67,6 @@ class FormChangeQuantityContainer extends React.Component {
   updateProductQuantity = () => {
     let { quantity } = this.state;
     const { toggleChangeQuantityModal, id, min } = this.props;
-
-    console.log('dlugosc znakow w QUANITTY:', String(quantity).trim().length);
-    console.log('QUNAITTY:', quantity);
 
     if (String(quantity).trim().length === 0) {
       this.setState({ errorMessage: 'Can not be empty!' });
@@ -150,7 +139,7 @@ class FormChangeQuantityContainer extends React.Component {
         {isProductPropertiesForm && (
           <NewProductForm
             id={id}
-            // to ensure that quantity is from state, not from props
+            // to be sure that quantity is from state, not from props
             quantity={this.state.quantity}
             unit={unit}
             name={name}

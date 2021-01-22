@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Button from '../../../styledComponents/buttons/Button';
+import Button from '../../../../../../../styledComponents/buttons/Button';
 
 const WrapperEditDeleteButtons = styled.div`
   margin-top: 30px;

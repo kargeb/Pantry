@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import FormChangeQuantityContainer from '../../../../../pantry/FormChangeQuantity/container/FormChangeQuantityContainer';
+import FormChangeQuantityContainer from './FormChangeQuantity/container/FormChangeQuantityContainer';
 import ButtonIconEditProduct from '../../../../../styledComponents/buttons/ButtonIconEditProduct';
 
 const Wrapper = styled.div`
