@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShoppingList from './listShoppingProducts/ShoppingList';
+import ShoppingList from './shoppingList/ShoppingList';
 import ShadowScrollbar from '../../ShadowScrollbar/ShadowScrollbar';
 import { AppContext } from '../../../context';
 

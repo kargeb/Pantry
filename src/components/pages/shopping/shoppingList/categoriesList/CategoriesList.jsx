@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShoppingCategory from '../shoppingCategory/ShoppingCategory';
+import ShoppingCategory from './shoppingCategory/ShoppingCategory';
 
 const Categories = styled.ul`
   padding: 0px 5px;

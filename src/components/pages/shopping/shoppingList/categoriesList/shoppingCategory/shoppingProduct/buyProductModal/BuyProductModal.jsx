@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StyledModal from '../../../styledComponents/modal/StyledModal';
-import H1 from '../../../styledComponents/typography/H1';
-import H2 from '../../../styledComponents/typography/H2';
-import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
-import ChangeQuantityInputAndButtons from '../../../molecules/ChangeQuantityInputAndButtons';
+import StyledModal from '../../../../../../../styledComponents/modal/StyledModal';
+import H1 from '../../../../../../../styledComponents/typography/H1';
+import H2 from '../../../../../../../styledComponents/typography/H2';
+import WrapperButtonsConfirmAndCancel from '../../../../../../../molecules/WrapperButtonsConfirmAndCancel';
+import ChangeQuantityInputAndButtons from '../../../../../../../molecules/ChangeQuantityInputAndButtons';
 
 const ModalBuyProduct = ({
   name,
