@@ -7,6 +7,7 @@ import RegistrationForm from '../../components/pages/register/RegistrationForm';
 import Loading from '../../views/Loading';
 // import LoginForm from '../../components/forms/authenticationForms/loginForm/LoginForm';
 import LoginForm from '../../components/pages/login/LoginForm';
+import StyledContactButton from '../../components/styled/buttons/StyledContactButton';
 
 const StyledMain = styled.div`
   height: 100vh;
@@ -54,6 +55,7 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
               </Switch>
             )}
           </StyledMain>
+          <StyledContactButton auth>Contact me</StyledContactButton>
         </ThemeProvider>
       </div>
     </Router>

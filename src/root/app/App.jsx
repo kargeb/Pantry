@@ -18,6 +18,7 @@ import {
   setProductsDatabaseListener,
   setCategoriesDatabaseListener,
 } from '../../data/handlers';
+import StyledContactButton from '../../components/styled/buttons/StyledContactButton';
 
 class App extends React.Component {
   state = {
@@ -83,6 +84,7 @@ class App extends React.Component {
               <Redirect to="/" />
             </Switch>
           </AppContext.Provider>
+          <StyledContactButton>Contact me</StyledContactButton>
         </ThemeProvider>
       </Router>
     );
