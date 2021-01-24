@@ -26,11 +26,8 @@ const StyledP = styled.p`
     `}
 `;
 
-// const Styled
-
 const StyledLinksWrapper = styled.div`
-  /* background-color: plum; */
-  /* text-align: left; */
+  margin-bottom: 35px;
 `;
 
 const StyledLink = styled.a`
@@ -39,6 +36,11 @@ const StyledLink = styled.a`
   font-size: 16px;
   margin-top: ${props => props.marginTop || '20px'};
   margin-bottom: ${props => props.marginBottom || '0px'};
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+  }
 `;
 
 const StyledIcon = styled.span`
@@ -71,19 +73,28 @@ class Contact extends React.Component {
               <StyledP marginBottom="10px">+48 889 229 439</StyledP>
               <Divider />
               <StyledLinksWrapper>
-                <StyledLink>
+                <StyledLink
+                  href="https://www.linkedin.com/in/karol-gebarowski/"
+                  target="_blank"
+                >
                   <StyledIcon>
                     <FontAwesomeIcon icon={faLinkedin} />
                   </StyledIcon>
                   LinkedIn
                 </StyledLink>
-                <StyledLink>
+                <StyledLink
+                  href="https://github.com/kargeb/Pantry"
+                  target="_blank"
+                >
                   <StyledIcon>
                     <FontAwesomeIcon icon={faGithubSquare} />
                   </StyledIcon>
                   Github
                 </StyledLink>
-                <StyledLink>
+                <StyledLink
+                  href="https://drive.google.com/file/d/1Ng80HcCKeoyuj-EW9JwlSz-QRUO5pauP/view?usp=sharing"
+                  target="_blank"
+                >
                   <StyledIcon>
                     <FontAwesomeIcon icon={faFilePdf} />
                   </StyledIcon>

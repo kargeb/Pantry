@@ -42,10 +42,39 @@ const StyledContactButton = styled.button`
 
 
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
-    font-size: 18px;
+    bottom: 25px;
+    left: 15px;
+    text-align: left;
+    padding-left: 20px;
+    border-radius: 50px;
+    font-size: 26px;
+    width: 200px;
+    height: 64px;
+    line-height: 64px;
+
+    &:after{
+      content: 'Contact me';
+      position: absolute;
+      top: 0;
+      font-size: 20px;
+      left: 64px;
+    }
+
+    /* text-align: left;
+    padding-left: 20px;
+    border-radius: 50px;
+    font-size: 26px;
     width: 200px;
     height: 50px;
     line-height: 50px;
+
+    &:after{
+      content: 'Contact me';
+      position: absolute;
+      top: 0;
+      font-size: 20px;
+      left: 64px;
+    } */
   }
 `;
 

@@ -12,7 +12,8 @@ const Wrapper = styled.div`
   padding-right: 8px;
   background-color: ${props => props.theme.background};
 
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+  /* @media (min-width: ${({ theme }) => theme.smallScreen}) { */
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     text-align: center;
     height: 110px;
     padding: 15px 0;
@@ -20,7 +21,8 @@ const Wrapper = styled.div`
 `;
 
 const ButtonAdd = styled(ButtonAddProduct)`
-  @media (min-width: ${({ theme }) => theme.smallScreen}) {
+  /* @media (min-width: ${({ theme }) => theme.smallScreen}) { */
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     width: 80px;
     height: 80px;
     line-height: 80px;
