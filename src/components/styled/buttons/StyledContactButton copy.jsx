@@ -3,23 +3,23 @@ import styled, { css } from 'styled-components';
 const StyledContactButton = styled.button`
   position: fixed;
   z-index: 99999999;
-  bottom: 8px;
-  left: 8px;
+  bottom: 18px;
+  left: 18px;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 12px;
   
-    width: 56px;
-    height: 56px;
-    line-height: 56px;
+    width: 130px;
+    height: 36px;
+    line-height: 36px;
  
   /* background-color: ${({ theme }) => theme.primary}; */
-  background-color: #fff;
+  background-color: #fff9f2;
 
   font-weight: ${({ theme }) => theme.medium};
   color: ${({ theme }) => theme.primary};
   border: 2px solid ${({ theme }) => theme.primary};
-  border-radius: 50%;
-  /* letter-spacing: 1px; */
+  border-radius: 8px;
+  letter-spacing: 1px;
   transition: transform 0.1s;
 
   &:hover {

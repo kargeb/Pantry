@@ -6,7 +6,7 @@ import ButtonAddProduct from '../../../styled/buttons/ButtonAddProduct';
 
 const Wrapper = styled.div`
   height: 72px;
-  text-align: right;
+  text-align: center;
   /* box-sizing: border-box; */
   padding: 8px 0;
   padding-right: 8px;

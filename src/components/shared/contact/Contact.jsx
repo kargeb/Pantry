@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import StyledModalBackground from '../../styled/modal/elements/StyledModalBackground';
 import StyledModalBody from '../../styled/modal/elements/StyledModalBody';
@@ -87,7 +87,7 @@ class Contact extends React.Component {
                   <StyledIcon>
                     <FontAwesomeIcon icon={faFilePdf} />
                   </StyledIcon>
-                  Resume
+                  resume
                 </StyledLink>
               </StyledLinksWrapper>
               <ButtonIconConfirm onClick={this.toggleContactModal} />
@@ -95,7 +95,7 @@ class Contact extends React.Component {
           </StyledModalBackground>
         ) : (
           <StyledContactButton onClick={this.toggleContactModal}>
-            Contact me
+            <FontAwesomeIcon icon={faPhoneAlt} />
           </StyledContactButton>
         )}
       </>
