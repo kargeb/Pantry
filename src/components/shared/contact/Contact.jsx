@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faLinkedIn } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedIn } from '@fortawesome/free-brands-svg-icons';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import StyledModalBackground from '../../styled/modal/elements/StyledModalBackground';
 import StyledModalBody from '../../styled/modal/elements/StyledModalBody';
 import H2 from '../../styled/typography/H2';
@@ -73,16 +73,22 @@ class Contact extends React.Component {
               <StyledLinksWrapper>
                 <StyledLink>
                   <StyledIcon>
-                    <FontAwesomeIcon icon={faLinkedIn} />
+                    <FontAwesomeIcon icon={faLinkedin} />
                   </StyledIcon>
-                  {/* <StyledP marginTop="10px" alignLeft> */}
                   LinkedIn
-                  {/* </StyledP> */}
                 </StyledLink>
-                <StyledP alignLeft>Github</StyledP>
-                <StyledP marginBottom="40px" alignLeft>
+                <StyledLink>
+                  <StyledIcon>
+                    <FontAwesomeIcon icon={faGithubSquare} />
+                  </StyledIcon>
+                  Github
+                </StyledLink>
+                <StyledLink>
+                  <StyledIcon>
+                    <FontAwesomeIcon icon={faFilePdf} />
+                  </StyledIcon>
                   Resume
-                </StyledP>
+                </StyledLink>
               </StyledLinksWrapper>
               <ButtonIconConfirm onClick={this.toggleContactModal} />
             </StyledModalBody>
