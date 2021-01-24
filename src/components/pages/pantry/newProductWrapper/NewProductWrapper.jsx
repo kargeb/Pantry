@@ -6,12 +6,14 @@ import ButtonAddProduct from '../../../styled/buttons/ButtonAddProduct';
 
 const Wrapper = styled.div`
   height: 71px;
-  box-sizing: border-box;
-  text-align: center;
+  text-align: right;
+  /* box-sizing: border-box; */
   padding: 8px 0;
+  padding-right: 8px;
   background-color: ${props => props.theme.background};
 
   @media (min-width: ${({ theme }) => theme.smallScreen}) {
+    text-align: center;
     height: 110px;
     padding: 15px 0;
   }
