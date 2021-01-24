@@ -3,14 +3,14 @@ import styled, { css } from 'styled-components';
 const StyledContactButton = styled.button`
   position: fixed;
   z-index: 99999999;
-  bottom: 8px;
-  left: 25px;
+  bottom: 18px;
+  left: 18px;
   font-family: inherit;
   font-size: 12px;
   
     width: 130px;
-    height: 35px;
-    line-height: 35px;
+    height: 36px;
+    line-height: 36px;
  
   /* background-color: ${({ theme }) => theme.primary}; */
   background-color: #fff9f2;
