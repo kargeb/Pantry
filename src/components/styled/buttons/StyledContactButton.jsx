@@ -26,21 +26,6 @@ const StyledContactButton = styled.button`
     transform: scale(1.1);
   }
 
-  ${({ auth }) =>
-    auth &&
-    css`
-      width: 200px;
-      height: 60px;
-      line-height: 60px;
-      font-size: 24px;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 0;
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(50px);
-    `}
-
-
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     bottom: 25px;
     left: 15px;
@@ -60,22 +45,46 @@ const StyledContactButton = styled.button`
       left: 64px;
     }
 
-    /* text-align: left;
-    padding-left: 20px;
-    border-radius: 50px;
-    font-size: 26px;
-    width: 200px;
-    height: 50px;
-    line-height: 50px;
-
-    &:after{
-      content: 'Contact me';
-      position: absolute;
-      top: 0;
-      font-size: 20px;
-      left: 64px;
-    } */
   }
+
+  ${({ auth }) =>
+    auth &&
+    css`
+      font-size: 30px;
+
+      width: 56px;
+      height: 56px;
+      line-height: 56px;
+
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(50px);
+
+      @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+        bottom: 25px;
+        left: 15px;
+        text-align: left;
+        padding-left: 20px;
+        ${'' /* border-radius: 50px; */}
+        border-radius: 0;
+        font-size: 26px;
+        width: 200px;
+        height: 64px;
+        line-height: 64px;
+
+        &:after {
+          content: 'Contact me';
+          position: absolute;
+          top: 0;
+          font-size: 20px;
+          left: 64px;
+        }
+      }
+    `}
+
+
 `;
 
 export default StyledContactButton;

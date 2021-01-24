@@ -105,7 +105,10 @@ class Contact extends React.Component {
             </StyledModalBody>
           </StyledModalBackground>
         ) : (
-          <StyledContactButton onClick={this.toggleContactModal}>
+          <StyledContactButton
+            auth={this.props.auth}
+            onClick={this.toggleContactModal}
+          >
             <FontAwesomeIcon icon={faPhoneAlt} />
           </StyledContactButton>
         )}

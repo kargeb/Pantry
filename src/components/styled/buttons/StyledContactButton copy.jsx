@@ -26,6 +26,13 @@ const StyledContactButton = styled.button`
     transform: scale(1.1);
   }
 
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+  }
+
   ${({ auth }) =>
     auth &&
     css`
@@ -38,15 +45,17 @@ const StyledContactButton = styled.button`
       border-radius: 0;
       background-color: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(50px);
+
+      @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+        font-size: 18px;
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+      }
     `}
 
 
-  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
-    font-size: 18px;
-    width: 200px;
-    height: 50px;
-    line-height: 50px;
-  }
+ 
 `;
 
 export default StyledContactButton;
