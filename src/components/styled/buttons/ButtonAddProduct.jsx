@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 const ButtonAddProduct = styled.button`
   border: none;
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
+  width: 56px;
+  height: 56px;
+  line-height: 56px;
   background: ${({ theme }) => theme.primary};
   border-radius: 50%;
   color: ${({ theme }) => theme.textSecondary};

@@ -3,13 +3,14 @@ import styled, { css } from 'styled-components';
 const StyledContactButton = styled.button`
   position: fixed;
   z-index: 99999999;
-  bottom: 25px;
+  bottom: 8px;
   left: 25px;
   font-family: inherit;
-  font-size: 18px;
-    width: 200px;
-    height: 50px;
-    line-height: 50px;
+  font-size: 12px;
+  
+    width: 130px;
+    height: 35px;
+    line-height: 35px;
  
   /* background-color: ${({ theme }) => theme.primary}; */
   background-color: #fff9f2;
@@ -40,12 +41,12 @@ const StyledContactButton = styled.button`
     `}
 
 
-  /* @media (min-width: ${({ theme }) => theme.mediumScreen}) {
+  @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     font-size: 18px;
     width: 200px;
     height: 50px;
     line-height: 50px;
-  } */
+  }
 `;
 
 export default StyledContactButton;

@@ -5,7 +5,7 @@ import NewProductForm from './newProductForm/NewProductForm';
 import ButtonAddProduct from '../../../styled/buttons/ButtonAddProduct';
 
 const Wrapper = styled.div`
-  height: 71px;
+  height: 72px;
   text-align: right;
   /* box-sizing: border-box; */
   padding: 8px 0;
