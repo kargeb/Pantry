@@ -6,19 +6,20 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
-import { AppContext } from '../../context';
-import Pantry from '../../components/pages/pantry/Pantry';
-import Shopping from '../../components/pages/shopping/Shopping';
-import Settings from '../../components/pages/settings/Settings';
-// import Navigation from '../../components/navigation/Navigation';
-import Navigation from '../../components/shared/navigation/Navigation';
 import {
   setProductsDatabaseListener,
   setCategoriesDatabaseListener,
 } from '../../data/handlers';
-import StyledContactButton from '../../components/styled/buttons/StyledContactButton';
+import { AppContext } from '../../context';
+
+import Pantry from '../../components/pages/pantry/Pantry';
+import Shopping from '../../components/pages/shopping/Shopping';
+import Settings from '../../components/pages/settings/Settings';
+import Navigation from '../../components/shared/navigation/Navigation';
+import Contact from '../../components/shared/contact/Contact';
 
 class App extends React.Component {
   state = {
@@ -61,7 +62,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { currentTheme } = this.state;
+    const { currentTheme, contactModalIsVisible } = this.state;
     const contextElements = {
       ...this.state,
       changeTheme: this.changeTheme,
@@ -75,6 +76,7 @@ class App extends React.Component {
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
             <Navigation />
+            <Contact app />
             <Switch>
               <Redirect exact from="/" to="/pantry" />
               {/* <Route exact path="/" component={Pantry} /> */}
@@ -84,7 +86,6 @@ class App extends React.Component {
               <Redirect to="/" />
             </Switch>
           </AppContext.Provider>
-          <StyledContactButton>Contact me</StyledContactButton>
         </ThemeProvider>
       </Router>
     );
