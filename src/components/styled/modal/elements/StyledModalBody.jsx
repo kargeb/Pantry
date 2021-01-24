@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledModalBody = styled.div`
   position: relative;
@@ -16,6 +16,14 @@ const StyledModalBody = styled.div`
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     padding: 30px 60px;
   }
+
+  ${({ auth }) =>
+    auth &&
+    css`
+      background-color: rgba(0, 0, 0, 0.9);
+      color: ${props => props.theme.textSecondary};
+      border: solid 2px #999;
+    `}
 `;
 
 export default StyledModalBody;

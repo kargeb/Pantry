@@ -57,7 +57,7 @@ const Authorization = ({ userDataLoading, setRegistrationStatus }) => {
             )}
           </StyledMain>
           {/* <StyledContactButton auth>Contact me</StyledContactButton> */}
-          <Contact auth />
+          <Contact auth blur />
         </ThemeProvider>
       </div>
     </Router>

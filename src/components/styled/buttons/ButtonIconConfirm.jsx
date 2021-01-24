@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,10 +14,16 @@ const Button = styled.button`
   &:hover {
     transform: scale(1.2);
   }
+
+  ${({ auth }) =>
+    auth &&
+    css`
+      background-color: #111;
+    `};
 `;
 
-const ButtonIconConfirm = ({ onClick }) => (
-  <Button onClick={onClick}>
+const ButtonIconConfirm = ({ onClick, auth }) => (
+  <Button auth={auth} onClick={onClick}>
     <FontAwesomeIcon icon={faCheckCircle} />
   </Button>
 );

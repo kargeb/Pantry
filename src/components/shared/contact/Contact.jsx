@@ -66,8 +66,11 @@ class Contact extends React.Component {
     return (
       <>
         {contactModalIsVisible ? (
-          <StyledModalBackground blurBackground={this.props.app}>
-            <StyledModalBody>
+          <StyledModalBackground
+            blurBackground={this.props.app}
+            blur={this.props.blur}
+          >
+            <StyledModalBody auth={this.props.auth}>
               <H2>Karol Gębarowski</H2>
               <StyledP>karol.gebarowski@gmail.com</StyledP>
               <StyledP marginBottom="10px">+48 889 229 439</StyledP>
@@ -101,7 +104,10 @@ class Contact extends React.Component {
                   resume
                 </StyledLink>
               </StyledLinksWrapper>
-              <ButtonIconConfirm onClick={this.toggleContactModal} />
+              <ButtonIconConfirm
+                auth={this.props.auth}
+                onClick={this.toggleContactModal}
+              />
             </StyledModalBody>
           </StyledModalBackground>
         ) : (

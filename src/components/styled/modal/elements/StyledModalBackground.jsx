@@ -21,6 +21,13 @@ const StyledModalBackground = styled.div`
       background-color: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(1px);
     `}
+
+  ${({ blur }) =>
+    blur &&
+    css`
+      ${'' /* background-color: rgba(0, 0, 0, 0.3); */}
+      backdrop-filter: blur(5px);
+    `}
 `;
 
 export default StyledModalBackground;
