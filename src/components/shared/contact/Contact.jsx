@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +9,6 @@ import H2 from '../../styled/typography/H2';
 import StyledContactButton from './../../styled/buttons/StyledContactButton';
 import ButtonIconConfirm from './../../styled/buttons/ButtonIconConfirm';
 import Divider from '../../styled/divider/Divider';
-import StyledAuthLink from '../../styled/typography/StyledAuthLink';
 
 const StyledP = styled.p`
   font-size: 16px;
@@ -72,8 +70,10 @@ class Contact extends React.Component {
           >
             <StyledModalBody auth={this.props.auth}>
               <H2>Karol Gębarowski</H2>
-              <StyledP>karol.gebarowski@gmail.com</StyledP>
-              <StyledP marginBottom="10px">+48 889 229 439</StyledP>
+              <StyledP>{process.env.REACT_APP_EMAIL}</StyledP>
+              <StyledP marginBottom="10px">
+                {process.env.REACT_APP_PHONE}
+              </StyledP>
               <Divider />
               <StyledLinksWrapper>
                 <StyledLink
