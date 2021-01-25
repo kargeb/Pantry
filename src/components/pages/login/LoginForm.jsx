@@ -7,13 +7,8 @@ import StyledAuthInput from '../../styled/formElements/inputs/StyledAuthInput';
 import StyledAuthLabel from '../../styled/formElements/labels/StyledAuthLabel';
 import StyledAuthLink from '../../styled/typography/StyledAuthLink';
 import P from '../../styled/typography/StyledP';
-import { logIn, logOut } from '../../../database/controller';
-import {
-  authDataValidation,
-  checkForEmptyValues,
-  setErrorMessages,
-  validation,
-} from '../../../helpers';
+import { logIn } from '../../../database/controller';
+import { authDataValidation, setErrorMessages } from '../../../helpers';
 import H1 from '../../styled/typography/StyledAuthH1';
 
 import StyledModalBackground from '../../styled/modal/elements/StyledModalBackground';

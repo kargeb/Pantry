@@ -62,7 +62,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { currentTheme, contactModalIsVisible } = this.state;
+    const { currentTheme } = this.state;
     const contextElements = {
       ...this.state,
       changeTheme: this.changeTheme,
@@ -79,7 +79,6 @@ class App extends React.Component {
             <Contact app />
             <Switch>
               <Redirect exact from="/" to="/pantry" />
-              {/* <Route exact path="/" component={Pantry} /> */}
               <Route path="/pantry" component={Pantry} />
               <Route path="/shopping" component={Shopping} />
               <Route path="/settings" component={Settings} />

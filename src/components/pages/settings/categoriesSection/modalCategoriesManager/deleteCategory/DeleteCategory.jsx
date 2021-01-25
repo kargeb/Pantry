@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import H1 from '../../../../../styled/typography/H1';
 import StyledProductLabel from '../../../../../styled/formElements/labels/StyledProductLabel';

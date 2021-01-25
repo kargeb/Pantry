@@ -6,11 +6,7 @@ import {
   addInitialCategoryToDatabase,
   addInitialProductToDatabase,
 } from '../../../database/controller';
-import {
-  validation,
-  setErrorMessages,
-  authDataValidation,
-} from '../../../helpers';
+import { setErrorMessages, authDataValidation } from '../../../helpers';
 
 import LogoForms from '../../../images/logoPantry.svg';
 import P from '../../styled/typography/StyledP';

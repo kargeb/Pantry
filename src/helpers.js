@@ -75,6 +75,9 @@ export const validation = (fieldName, value) => {
         return errorMessage;
       }
       return errorMessage;
+
+    default:
+      return;
   }
 };
 

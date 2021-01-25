@@ -60,7 +60,8 @@ class NewProductForm extends React.Component {
     this.setState({ [id]: value });
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     const { name, quantity, category, min, unit, id } = this.state;
 
     if (this.formHasEmptyFields()) {

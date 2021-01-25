@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import StyledModalBody from './elements/StyledModalBody';
 import StyledModalBackground from './elements/StyledModalBackground';
 
