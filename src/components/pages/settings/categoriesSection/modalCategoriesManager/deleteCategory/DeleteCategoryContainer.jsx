@@ -1,8 +1,19 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import H1 from '../../../../../styled/typography/H1';
+import StyledProductLabel from '../../../../../styled/formElements/labels/StyledProductLabel';
+import Button from '../../../../../styled/buttons/Button';
+import SelectCategory from './selectCategory/SelectCategory';
 import ModalConfirmDeletion from './ModalConfirmDeletion';
 import { removeCategoryfromDatabase } from '../../../../../../database/controller';
 import DeleteCategory from './DeleteCategory';
+
+const StyledLabel = styled(StyledProductLabel)`
+  width: 155px;
+  /* color: ${({ theme }) => theme.grey60}; */
+  text-align: center;
+`;
 
 class DeleteCategoryContainer extends React.Component {
   state = {
@@ -117,14 +128,22 @@ class DeleteCategoryContainer extends React.Component {
 
     return (
       <>
-        <DeleteCategory
-          handleSubmit={this.handleSubmit}
-          categoriesWithProducts={categoriesWithProducts}
-          namesOfAllCategories={this.props.allCategories}
+        <H1 marginBottom as="h2">
+          Remove category:
+        </H1>
+        <StyledLabel>
+          Only categories without products can be removed
+        </StyledLabel>
+        <SelectCategory
           categoryToDelete={categoryToDelete}
           handleForm={this.handleForm}
-          errorMessage={errorMessage}
+          namesOfAllCategories={this.props.allCategories}
+          categoriesWithProducts={categoriesWithProducts}
         />
+        {errorMessage && <p>{errorMessage}</p>}
+        <Button type="button" onClick={() => this.handleSubmit()}>
+          Remove
+        </Button>
         {isConfirmationModalVisible && (
           <ModalConfirmDeletion
             heading="Confirm remove"

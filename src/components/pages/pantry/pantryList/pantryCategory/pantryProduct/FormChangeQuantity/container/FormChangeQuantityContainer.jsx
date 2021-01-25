@@ -106,7 +106,7 @@ class FormChangeQuantityContainer extends React.Component {
     const { unit, category, id, name, min } = product;
 
     return (
-      <StyledModal>
+      <StyledModal toggleModal={this.props.toggleChangeQuantityModal}>
         <H1 marginBottom>{name}</H1>
         <H2 italic marginBottom>
           Change quantity

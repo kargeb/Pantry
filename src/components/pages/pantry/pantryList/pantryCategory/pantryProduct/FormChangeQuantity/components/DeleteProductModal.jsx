@@ -15,7 +15,7 @@ const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   };
 
   return (
-    <StyledModal>
+    <StyledModal toggleModal={toggleDeleteModal}>
       <H1 marginBottomDouble>Confirm remove</H1>
       <H2 italic marginBottom>
         {name}
