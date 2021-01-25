@@ -6,17 +6,20 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
-import { AppContext } from '../../context';
-import Pantry from '../../views/Pantry';
-import Shopping from '../../views/Shopping';
-import Settings from '../../views/Settings';
-import Navigation from '../../components/navigation/Navigation';
 import {
   setProductsDatabaseListener,
   setCategoriesDatabaseListener,
-} from '../../data/handlers';
+} from '../../database/controller';
+import { AppContext } from '../../context';
+
+import Pantry from '../../components/pages/pantry/Pantry';
+import Shopping from '../../components/pages/shopping/Shopping';
+import Settings from '../../components/pages/settings/Settings';
+import Navigation from '../../components/shared/navigation/Navigation';
+import Contact from '../../components/shared/contact/Contact';
 
 class App extends React.Component {
   state = {
@@ -73,12 +76,13 @@ class App extends React.Component {
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
             <Navigation />
+            <Contact app />
             <Switch>
-              <Route exact path="/" component={Pantry} />
+              <Redirect exact from="/" to="/pantry" />
               <Route path="/pantry" component={Pantry} />
               <Route path="/shopping" component={Shopping} />
               <Route path="/settings" component={Settings} />
-              <Redirect to="/pantry" />
+              <Redirect to="/" />
             </Switch>
           </AppContext.Provider>
         </ThemeProvider>
