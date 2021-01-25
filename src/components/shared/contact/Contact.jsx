@@ -58,6 +58,12 @@ class Contact extends React.Component {
     }));
   };
 
+  closeModalOnBackgroundClick = e => {
+    if (e.target.dataset.background) {
+      this.toggleContactModal();
+    }
+  };
+
   render() {
     const { contactModalIsVisible } = this.state;
 
@@ -67,6 +73,8 @@ class Contact extends React.Component {
           <StyledModalBackground
             blurBackground={this.props.app}
             blur={this.props.blur}
+            data-background
+            onClick={this.closeModalOnBackgroundClick}
           >
             <StyledModalBody auth={this.props.auth}>
               <H2>Karol Gębarowski</H2>
