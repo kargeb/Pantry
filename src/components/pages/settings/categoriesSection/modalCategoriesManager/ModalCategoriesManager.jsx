@@ -5,7 +5,7 @@ import ButtonIconCancel from '../../../../styled/buttons/ButtonIconCancel';
 import Divider from '../../../../styled/divider/Divider';
 import { AppContext } from '../../../../../context';
 import AddCategoryContainer from './addCategory/AddCategoryContainer';
-import DeleteCategoryContainer from './deleteCategory/DeleteCategoryContainer';
+import DeleteCategory from './deleteCategory/DeleteCategory';
 
 const ModalCategoriesManager = ({ toggleCategoriesContainer }) => (
   <AppContext.Consumer>
@@ -14,10 +14,7 @@ const ModalCategoriesManager = ({ toggleCategoriesContainer }) => (
         <AddCategoryContainer allCategories={allCategories} />
         <br />
         <Divider horizontal />
-        <DeleteCategoryContainer
-          products={products}
-          allCategories={allCategories}
-        />
+        <DeleteCategory products={products} allCategories={allCategories} />
         <br />
         <ButtonIconCancel onClick={toggleCategoriesContainer} />
       </StyledModal>

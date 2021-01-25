@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import StyledSelect from '../../../../../../styled/formElements/StyledSelect';
+import StyledProductLabel from '../../../../../../styled/formElements/labels/StyledProductLabel';
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,6 +48,9 @@ const SelectCategory = ({
 }) => {
   return (
     <Wrapper>
+      {/* <StyledProductLabel>
+        Only categories without products can be removed
+      </StyledProductLabel> */}
       <CustomSelect
         id="categoryToDelete"
         onChange={handleForm}
