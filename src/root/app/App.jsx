@@ -1,36 +1,52 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+
 import GlobalStyle from '../../themes/GlobalStyle';
 import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
-import sampleData from '../../data/db.json';
+import {
+  setProductsDatabaseListener,
+  setCategoriesDatabaseListener,
+} from '../../database/controller';
 import { AppContext } from '../../context';
-import Pantry from '../../views/Pantry';
-import Shopping from '../../views/Shopping';
-import Settings from '../../views/Settings';
-import Navigation from '../../components/navigation/Navigation';
-import { setProductsDatabaseListener, setCategoriesDatabaseListener } from '../../data/handlers';
+
+import Pantry from '../../components/pages/pantry/Pantry';
+import Shopping from '../../components/pages/shopping/Shopping';
+import Settings from '../../components/pages/settings/Settings';
+import Navigation from '../../components/shared/navigation/Navigation';
+import Contact from '../../components/shared/contact/Contact';
 
 class App extends React.Component {
   state = {
     products: [],
     allCategories: [],
     currentTheme: lightTheme,
+    downloadInProgress: true,
   };
 
   componentDidMount() {
-    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(downloadedCategories => {
-      this.setState({
-        allCategories: [...downloadedCategories],
-      });
-    });
+    this.unsubscribeCategoriesListener = setCategoriesDatabaseListener(
+      downloadedCategories => {
+        this.setState({
+          allCategories: [...downloadedCategories],
+          downloadInProgress: false,
+        });
+      },
+    );
 
-    this.unsubscribeProductsListener = setProductsDatabaseListener(downloadedProducts => {
-      this.setState({
-        products: [...downloadedProducts],
-        isLoading: false,
-      });
-    });
+    this.unsubscribeProductsListener = setProductsDatabaseListener(
+      downloadedProducts => {
+        this.setState({
+          products: [...downloadedProducts],
+          isLoading: false,
+        });
+      },
+    );
   }
 
   componentWillUnmount() {
@@ -60,12 +76,13 @@ class App extends React.Component {
           <GlobalStyle />
           <AppContext.Provider value={contextElements}>
             <Navigation />
+            <Contact app />
             <Switch>
-              <Route exact path="/" component={Pantry} />
+              <Redirect exact from="/" to="/pantry" />
               <Route path="/pantry" component={Pantry} />
               <Route path="/shopping" component={Shopping} />
               <Route path="/settings" component={Settings} />
-              <Redirect to="/pantry" />
+              <Redirect to="/" />
             </Switch>
           </AppContext.Provider>
         </ThemeProvider>

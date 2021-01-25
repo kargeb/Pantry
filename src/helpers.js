@@ -1,19 +1,3 @@
-export const SelectNamesOfCategoriesContainingProducts = products => {
-  const NamesOfCategoriesContainingProducts = [];
-
-  console.log('JESTEM W funkcji, products:', products);
-  products.forEach(product => {
-    if (!NamesOfCategoriesContainingProducts.includes(product.category)) {
-      console.log('JESTEM W PETLI');
-      NamesOfCategoriesContainingProducts.push(product.category);
-    }
-  });
-
-  console.log('koniec petli: categories:', NamesOfCategoriesContainingProducts);
-
-  return NamesOfCategoriesContainingProducts;
-};
-
 export const checkForEmptyValues = objectToCheck => {
   const emptyProperties = [];
 
@@ -53,6 +37,50 @@ export const setErrorMessages = (message, ...properties) => {
   return errorMessages;
 };
 
+export const isPasswordStrong = password => {
+  if (password.length >= 7) {
+    console.log('password is OK');
+    return true;
+  }
+
+  console.log('Password is too weak');
+  return false;
+};
+
+export const validation = (fieldName, value) => {
+  let errorMessage = {};
+
+  switch (fieldName) {
+    case 'login':
+      const loginValue = String(value).trim();
+
+      if (loginValue.length === 0) {
+        errorMessage[fieldName] = 'Filed can not be empty';
+        return errorMessage;
+      } else if (!isEmailValid(loginValue)) {
+        errorMessage[fieldName] = 'Invalid email address';
+        return errorMessage;
+      }
+      return errorMessage;
+
+    case 'password':
+      const passwordValue = String(value).trim();
+
+      if (passwordValue.length === 0) {
+        errorMessage[fieldName] = 'Filed can not be empty';
+        return errorMessage;
+      } else if (passwordValue.length <= 5) {
+        errorMessage[fieldName] =
+          'Password is too weak (at least 6 characters)';
+        return errorMessage;
+      }
+      return errorMessage;
+
+    default:
+      return;
+  }
+};
+
 export const isEmailValid = email => {
   const pattern = new RegExp(
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i,
@@ -66,12 +94,16 @@ export const isEmailValid = email => {
   return false;
 };
 
-export const isPasswordStrong = password => {
-  if (password.length >= 7) {
-    console.log('password is OK');
-    return true;
-  }
+export const authDataValidation = (login, password) => {
+  let errorMessages = {};
 
-  console.log('Password is too weak');
-  return false;
+  const loginErrors = validation('login', login);
+  const passwordErrors = validation('password', password);
+
+  errorMessages = {
+    ...loginErrors,
+    ...passwordErrors,
+  };
+
+  return errorMessages;
 };

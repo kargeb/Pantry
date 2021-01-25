@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../fbase';
+import { auth } from '../database/firebaseConfig';
 import App from './app/App';
 import Authorization from './authorization/Authorization';
 
@@ -12,8 +12,6 @@ class Root extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = auth.onAuthStateChanged(() => {
-      // console.log('USER z LISTENERA:', user);
-
       this.setState({ userDataLoading: false }, () =>
         this.checkAuthentication(),
       );
@@ -25,7 +23,6 @@ class Root extends React.Component {
   }
 
   setRegistrationStatus = isPending => {
-    // console.log('JESTEM W REGISTRATION I MAM STATUS:', isPending);
     this.setState({ registrationIsPending: isPending }, () =>
       this.checkAuthentication(),
     );
@@ -35,13 +32,8 @@ class Root extends React.Component {
     const { registrationIsPending } = this.state;
 
     if (auth.currentUser && !registrationIsPending) {
-      // console.log('auth.currentUser z AUHENITE: ', auth.currentUser);
-      // console.log('!registrationIsPending z AUHENITE', !registrationIsPending);
       this.setState({ authenticationConfirmed: true });
     } else {
-      // console.log('NIE JESTEM SPOELNIONYM ATHENITACTEM');
-      // console.log('auth.currentUser z AUHENITE: ', auth.currentUser);
-      // console.log('!registrationIsPending z AUHENITE', !registrationIsPending);
       this.setState({ authenticationConfirmed: false });
     }
   }
