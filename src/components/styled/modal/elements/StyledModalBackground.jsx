@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const StyledModalBackground = styled.div`
@@ -25,7 +23,6 @@ const StyledModalBackground = styled.div`
   ${({ blur }) =>
     blur &&
     css`
-      ${'' /* background-color: rgba(0, 0, 0, 0.3); */}
       backdrop-filter: blur(5px);
     `}
 `;

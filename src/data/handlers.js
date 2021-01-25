@@ -1,8 +1,49 @@
 import db, { auth, arrayUnion, arrayRemove } from '../fbase';
 import { sampleCategories, sampleProducts } from './sampleData';
 
-/* *************************************************** */
+// ***************************************************
+// USER AUTHENTICATION
+// ***************************************************
+
+export const logIn = (userName, userPassword) => {
+  return auth.signInWithEmailAndPassword(userName, userPassword).then(user => {
+    return user.user.email;
+  });
+};
+
+export const registerUserInUsersDatabase = (userName, userPassword) => {
+  return auth
+    .createUserWithEmailAndPassword(userName, userPassword)
+    .then(cred => {
+      return cred.user.uid;
+    });
+};
+
+export const registerUserInProductDatabase = id => {
+  return db
+    .collection('users')
+    .doc(id)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      console.log(err);
+      return err;
+    });
+};
+
+export const logOut = () => {
+  auth
+    .signOut()
+    .then(() => {})
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+//* ***************************************************
 // PRODUCTS AND CATEGORIES
+//* ***************************************************
 
 export const addNewProductToDatabase = product => {
   db.collection('users')
@@ -159,44 +200,5 @@ export const removeCategoryfromDatabase = categoryToRemove => {
     })
     .catch(error => {
       console.error(error);
-    });
-};
-
-/* *************************************************** */
-// USER AUTHENTICATION
-
-export const logIn = (userName, userPassword) => {
-  return auth.signInWithEmailAndPassword(userName, userPassword).then(user => {
-    return user.user.email;
-  });
-};
-
-export const registerUserInUsersDatabase = (userName, userPassword) => {
-  return auth
-    .createUserWithEmailAndPassword(userName, userPassword)
-    .then(cred => {
-      return cred.user.uid;
-    });
-};
-
-export const registerUserInProductDatabase = id => {
-  return db
-    .collection('users')
-    .doc(id)
-    .then(data => {
-      return data;
-    })
-    .catch(err => {
-      console.log(err);
-      return err;
-    });
-};
-
-export const logOut = () => {
-  auth
-    .signOut()
-    .then(() => {})
-    .catch(error => {
-      console.log(error);
     });
 };

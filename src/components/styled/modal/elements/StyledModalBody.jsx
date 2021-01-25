@@ -7,7 +7,6 @@ const StyledModalBody = styled.div`
   align-items: center;
   overflow: auto;
 
-  /* padding: 2% 4%; */
   padding: 30px 30px;
   color: ${props => props.theme.textPrimary};
   background-color: ${props => props.theme.background};

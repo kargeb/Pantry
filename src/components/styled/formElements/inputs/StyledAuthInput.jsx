@@ -5,7 +5,6 @@ const StyledAuthInput = styled.input`
   height: 38px;
   padding-left: 5px;
   font-size: 14px;
-  /* line-height: 45px; */
   border: none;
   border-bottom: solid 2px #fff;
   background-color: rgba(0, 0, 0, 0.2);
@@ -14,7 +13,6 @@ const StyledAuthInput = styled.input`
 
   &:focus {
     border: solid 1.5px rgba(251, 142, 1, 0.7);
-    /* box-shadow: 0px 0px 2px #ffc52f; */
   }
 
   ${({ errorBorder }) =>

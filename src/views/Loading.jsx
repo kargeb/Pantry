@@ -7,10 +7,9 @@ const Background = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;  
+  height: 100vh;
   width: 100vw;
   background-color: transparent;
-  /* color: ${props => props.theme.textPrimary}; */
 `;
 
 const Wrapper = styled.div`
@@ -41,7 +40,6 @@ const Loader = styled.div`
     border-top: 1.1em solid rgba(255, 255, 255, 0.2);
     border-right: 1.1em solid #ffffff;
     border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-    /* border-bottom: 1.1em solid #ffffff; */
     border-left: 1.1em solid #ffffff;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
