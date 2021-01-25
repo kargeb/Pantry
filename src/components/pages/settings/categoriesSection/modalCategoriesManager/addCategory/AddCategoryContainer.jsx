@@ -23,7 +23,7 @@ class AddCategoryContainer extends React.Component {
       emptyInput = false;
       this.setState({ errorMessage: '' });
     } else {
-      this.setState({ errorMessage: 'Wpisz nazwę kategorii' });
+      this.setState({ errorMessage: 'Enter category name' });
       emptyInput = true;
     }
 
@@ -37,7 +37,7 @@ class AddCategoryContainer extends React.Component {
     const categoryExists = allCategories.includes(newCategory);
 
     if (categoryExists) {
-      this.setState({ errorMessage: 'Taka kategoria juz istnieje' });
+      this.setState({ errorMessage: 'Such category already exists' });
     } else {
       this.setState({ errorMessage: '' });
     }

@@ -190,7 +190,7 @@ export const addInitialCategoryToDatabase = userId => {
     });
 };
 
-export const removeCategoryfromDatabase = categoryToRemove => {
+export const removeCategoryFromDatabase = categoryToRemove => {
   db.collection('users')
     .doc(auth.currentUser.uid)
     .collection('categories')

@@ -103,7 +103,7 @@ class NewProductForm extends React.Component {
     }
 
     const errorMessages = setErrorMessages(
-      'Nie moze byc puste!',
+      'Can not be empty!',
       ...emptyFieldsNames,
     );
 
@@ -121,7 +121,7 @@ class NewProductForm extends React.Component {
     }
 
     const errorMessages = setErrorMessages(
-      'LICZBA MUSI BYC DODATNIA!',
+      'Number must be positive',
       ...nonPositiveIntegers,
     );
 

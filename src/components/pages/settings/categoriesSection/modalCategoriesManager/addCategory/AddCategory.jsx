@@ -1,9 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import H1 from '../../../../../styled/typography/H1';
 import StyledProductInput from '../../../../../styled/formElements/inputs/StyledProductInput';
 // import Button from '../../../../styledComponents/buttons/Button';
 import Button from '../../../../../styled/buttons/Button';
+import P from '../../../../../styled/typography/StyledP';
+
+const StyledP = styled(P)`
+  margin-top: -15px;
+  padding: 10px 0 10px 0;
+  color: ${props => props.theme.primary};
+`;
 
 const AddCategory = ({
   handleAddCategory,
@@ -22,7 +30,7 @@ const AddCategory = ({
       value={newCategory}
       placeholder="Name"
     />
-    {errorMessage && <p>{errorMessage}</p>}
+    {errorMessage && <StyledP>{errorMessage}</StyledP>}
     <Button type="button" onClick={handleAddCategory}>
       Add
     </Button>

@@ -5,11 +5,18 @@ import StyledProductLabel from '../../../../../styled/formElements/labels/Styled
 import Button from '../../../../../styled/buttons/Button';
 import SelectCategory from './selectCategory/SelectCategory';
 import ModalConfirmDeletion from './ModalConfirmDeletion';
-import { removeCategoryfromDatabase } from '../../../../../../database/controller';
+import { removeCategoryFromDatabase } from '../../../../../../database/controller';
+import P from '../../../../../styled/typography/StyledP';
 
 const StyledLabel = styled(StyledProductLabel)`
   width: 155px;
   text-align: center;
+`;
+
+const StyledP = styled(P)`
+  margin-top: -15px;
+  padding: 5px 0 10px 0;
+  color: ${props => props.theme.primary};
 `;
 
 class DeleteCategoryContainer extends React.Component {
@@ -106,7 +113,7 @@ class DeleteCategoryContainer extends React.Component {
   deleteCategory = () => {
     const { categoryToDelete } = this.state;
 
-    removeCategoryfromDatabase(categoryToDelete);
+    removeCategoryFromDatabase(categoryToDelete);
 
     this.setState({
       categoryToDelete: '',
@@ -136,7 +143,7 @@ class DeleteCategoryContainer extends React.Component {
           namesOfAllCategories={this.props.allCategories}
           categoriesWithProducts={categoriesWithProducts}
         />
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <StyledP>{errorMessage}</StyledP>}
         <Button type="button" onClick={() => this.handleSubmit()}>
           Remove
         </Button>
