@@ -7,13 +7,13 @@ const StyledContactButton = styled.button`
   left: 8px;
   font-family: inherit;
   font-size: 30px;
-  
-    width: 56px;
-    height: 56px;
-    line-height: 56px;
- 
-  /* background-color: ${({ theme }) => theme.primary}; */
-  background-color: #fff;
+
+  width: 56px;
+  height: 56px;
+  line-height: 56px;
+
+  background-color: ${({ theme }) => theme.textSecondary};
+  /* background-color: #fff; */
 
   font-weight: ${({ theme }) => theme.medium};
   color: ${({ theme }) => theme.primary};
@@ -37,14 +37,13 @@ const StyledContactButton = styled.button`
     height: 64px;
     line-height: 64px;
 
-    &:after{
+    &:after {
       content: 'Contact me';
       position: absolute;
       top: 0;
       font-size: 20px;
       left: 64px;
     }
-
   }
 
   ${({ auth }) =>
@@ -83,8 +82,6 @@ const StyledContactButton = styled.button`
         }
       }
     `}
-
-
 `;
 
 export default StyledContactButton;
