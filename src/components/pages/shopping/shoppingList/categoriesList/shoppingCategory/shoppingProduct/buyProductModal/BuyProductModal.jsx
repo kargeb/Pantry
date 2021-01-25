@@ -16,7 +16,7 @@ const ModalBuyProduct = ({
   handleInput,
 }) => {
   return (
-    <StyledModal>
+    <StyledModal toggleModal={toggleBuyProductModal}>
       <H1 marginBottomDouble>{name}</H1>
       <H2 italic marginBottom>
         Quantity bought

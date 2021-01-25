@@ -27,7 +27,7 @@ const InsertSampleDataModal = ({ toggleInsertModal }) => {
   };
 
   return (
-    <StyledModal>
+    <StyledModal toggleModal={toggleInsertModal}>
       <H1 marginBottomDouble>Will be downloaded:</H1>
       <H2 marginBottom>Products:</H2>
       <StyledUl>

@@ -15,7 +15,6 @@ const StyledModalBody = styled.div`
   @media (min-width: ${({ theme }) => theme.mediumScreen}) {
     padding: 30px 60px;
   }
-
   ${({ auth }) =>
     auth &&
     css`

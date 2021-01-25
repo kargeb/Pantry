@@ -10,7 +10,7 @@ import DeleteCategoryContainer from './deleteCategory/DeleteCategoryContainer';
 const ModalCategoriesManager = ({ toggleCategoriesContainer }) => (
   <AppContext.Consumer>
     {({ products, allCategories }) => (
-      <StyledModal>
+      <StyledModal toggleModal={toggleCategoriesContainer}>
         <AddCategoryContainer allCategories={allCategories} />
         <br />
         <Divider horizontal />

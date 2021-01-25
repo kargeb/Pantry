@@ -14,7 +14,7 @@ const ConfirmLogoutModal = ({ toggleConfirmLogoutModal }) => {
   };
 
   return (
-    <StyledModal>
+    <StyledModal toggleModal={toggleConfirmLogoutModal}>
       <div style={{ textAlign: 'center' }}>
         <H1 marginBottomDouble>Are you sure to logout?</H1>
       </div>
