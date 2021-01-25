@@ -14,25 +14,26 @@ class ContainerBuyProduct extends React.Component {
       currentQuantity,
       toBuy,
       id,
+      errorMessage: '',
     };
   }
 
   addQuantity = () => {
     const { toBuy } = this.state;
-    this.setState({ toBuy: toBuy + 1 });
+    this.setState({ toBuy: Number(toBuy) + 1 });
   };
 
   subtractQuantity = () => {
     const { toBuy } = this.state;
-    if (toBuy === 0) {
+    if (toBuy <= 0) {
       return;
     }
-    this.setState({ toBuy: toBuy - 1 });
+    this.setState({ toBuy: Number(toBuy) - 1 });
   };
 
   handleInput = e => {
     let { value } = e.target;
-    value = parseInt(value, 10);
+    // value = parseInt(value, 10);
     if (value < 0) {
       value = 0;
     }
@@ -41,6 +42,13 @@ class ContainerBuyProduct extends React.Component {
 
   updateProductQuantity = toggleBuyProductModal => {
     const { currentQuantity, id, toBuy, min } = this.state;
+
+    if (String(toBuy).trim().length === 0) {
+      this.setState({ errorMessage: 'Can not be empty!' });
+      return;
+    } else {
+      this.setState({ errorMessage: '' });
+    }
 
     const quantityAfterShopping = Number(currentQuantity) + Number(toBuy);
 
@@ -54,10 +62,11 @@ class ContainerBuyProduct extends React.Component {
 
   render() {
     const { name, toggleBuyProductModal } = this.props;
-    const { toBuy } = this.state;
+    const { toBuy, errorMessage } = this.state;
 
     return (
       <ModalBuyProduct
+        errorMessage={errorMessage}
         handleInput={this.handleInput}
         addQuantity={this.addQuantity}
         subtractQuantity={this.subtractQuantity}
