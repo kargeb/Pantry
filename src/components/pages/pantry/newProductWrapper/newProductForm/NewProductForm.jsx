@@ -136,12 +136,22 @@ class NewProductForm extends React.Component {
     }
   };
 
+  closeModalOnBackgroundClick = e => {
+    if (e.target.dataset.background) {
+      this.closeFormModal();
+    }
+  };
+
   render() {
     const { toggleFormVisibility } = this.props;
     const { name, quantity, unit, min, category, errorMessages } = this.state;
 
     return (
-      <StyledModalBackground blurBackground>
+      <StyledModalBackground
+        blurBackground
+        data-background
+        onClick={this.closeModalOnBackgroundClick}
+      >
         <StyledModalBody as="form">
           <H1 marginBottomDouble>
             {this.props.name ? 'Edit product' : 'New product'}
