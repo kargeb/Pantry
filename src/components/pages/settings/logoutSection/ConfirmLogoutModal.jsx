@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StyledModal from '../../../styled/modal/StyledModal';
 
-import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
+import WrapperButtonsConfirmAndCancel from '../../../shared/confirmCancelButtonsWrapper/ConfirmCancelButtonsWrapper';
 import H1 from '../../../styled/typography/H1';
 
 import { logOut } from '../../../../database/controller';

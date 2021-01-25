@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import StyledModal from '../styled/modal/StyledModal';
-import H1 from '../styled/typography/H1';
-import H2 from '../styled/typography/H2';
-import WrapperButtonsConfirmAndCancel from './WrapperButtonsConfirmAndCancel';
+import StyledModal from '../../../../../styled/modal/StyledModal';
+import H1 from '../../../../../styled/typography/H1';
+import H2 from '../../../../../styled/typography/H2';
+import WrapperButtonsConfirmAndCancel from '../../../../../shared/confirmCancelButtonsWrapper/ConfirmCancelButtonsWrapper';
 
 const ModalConfirmDeletion = ({
   name,

@@ -8,7 +8,7 @@ import SelectCategory from './formElements/SelectCategory';
 import SelectUnit from './formElements/SelectUnit';
 import InputMin from './formElements/InputMin';
 import InputQuantity from './formElements/InputQuantity';
-import WrapperButtonsConfirmAndCancel from '../../../../molecules/WrapperButtonsConfirmAndCancel';
+import WrapperButtonsConfirmAndCancel from '../../../../shared/confirmCancelButtonsWrapper/ConfirmCancelButtonsWrapper';
 import { addNewProductToDatabase } from '../../../../../database/controller';
 import {
   checkForEmptyValues,

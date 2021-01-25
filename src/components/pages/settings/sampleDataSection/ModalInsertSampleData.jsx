@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import StyledModal from '../../../styled/modal/StyledModal';
 
-import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
+import WrapperButtonsConfirmAndCancel from '../../../shared/confirmCancelButtonsWrapper/ConfirmCancelButtonsWrapper';
 import H1 from '../../../styled/typography/H1';
 import H2 from '../../../styled/typography/H2';
 import { uploadSampleProductsAndCategories } from '../../../../database/controller';
