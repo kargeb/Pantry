@@ -9,7 +9,7 @@ import WrapperButtonsConfirmAndCancel from '../../../../../../../molecules/Wrapp
 import H2 from '../../../../../../../styled/typography/H2';
 import ChangeQuantityInputAndButtons from '../../../../../../../molecules/ChangeQuantityInputAndButtons';
 import NewProductForm from '../../../../../newProductWrapper/newProductForm/NewProductForm';
-import { updateProductQuantityInDatabase } from '../../../../../../../../data/handlers';
+import { updateProductQuantityInDatabase } from '../../../../../../../../database/controller';
 import P from '../../../../../../../styled/typography/StyledP';
 
 const StyledP = styled(P)`

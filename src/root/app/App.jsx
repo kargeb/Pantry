@@ -12,7 +12,7 @@ import { defaultTheme, darkTheme, lightTheme } from '../../themes/themes';
 import {
   setProductsDatabaseListener,
   setCategoriesDatabaseListener,
-} from '../../data/handlers';
+} from '../../database/controller';
 import { AppContext } from '../../context';
 
 import Pantry from '../../components/pages/pantry/Pantry';

@@ -7,7 +7,7 @@ import H1 from '../../../../../../../styled/typography/H1';
 import WrapperButtonsConfirmAndCancel from '../../../../../../../molecules/WrapperButtonsConfirmAndCancel';
 import H2 from '../../../../../../../styled/typography/H2';
 // import { removeProductFromDatabase } from '../../../../../../../../../data/handlers';
-import { removeProductFromDatabase } from '../../../../../../../../data/handlers';
+import { removeProductFromDatabase } from '../../../../../../../../database/controller';
 
 const DeleteProductModal = ({ id, name, toggleDeleteModal }) => {
   const deleteProduct = () => {

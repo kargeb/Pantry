@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../fbase';
+import { auth } from '../database/firebaseConfig';
 import App from './app/App';
 import Authorization from './authorization/Authorization';
 

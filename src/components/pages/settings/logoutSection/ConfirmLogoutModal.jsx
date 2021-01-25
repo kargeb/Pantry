@@ -5,7 +5,7 @@ import StyledModal from '../../../styled/modal/StyledModal';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
 import H1 from '../../../styled/typography/H1';
 
-import { logOut } from '../../../../data/handlers';
+import { logOut } from '../../../../database/controller';
 
 const ConfirmLogoutModal = ({ toggleConfirmLogoutModal }) => {
   const insertDataAndCloseModal = () => {

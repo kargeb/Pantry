@@ -7,7 +7,7 @@ import StyledAuthInput from '../../styled/formElements/inputs/StyledAuthInput';
 import StyledAuthLabel from '../../styled/formElements/labels/StyledAuthLabel';
 import StyledAuthLink from '../../styled/typography/StyledAuthLink';
 import P from '../../styled/typography/StyledP';
-import { logIn, logOut } from '../../../data/handlers';
+import { logIn, logOut } from '../../../database/controller';
 import {
   authDataValidation,
   checkForEmptyValues,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { addCategoryToDatabase } from '../../../../../../data/handlers';
+import { addCategoryToDatabase } from '../../../../../../database/controller';
 import AddCategory from './AddCategory';
 
 class AddCategoryContainer extends React.Component {

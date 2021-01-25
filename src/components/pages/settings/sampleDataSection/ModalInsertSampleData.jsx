@@ -6,8 +6,11 @@ import StyledModal from '../../../styled/modal/StyledModal';
 import WrapperButtonsConfirmAndCancel from '../../../molecules/WrapperButtonsConfirmAndCancel';
 import H1 from '../../../styled/typography/H1';
 import H2 from '../../../styled/typography/H2';
-import { uploadSampleProductsAndCategories } from '../../../../data/handlers';
-import { sampleProducts, sampleCategories } from '../../../../data/sampleData';
+import { uploadSampleProductsAndCategories } from '../../../../database/controller';
+import {
+  sampleProducts,
+  sampleCategories,
+} from '../../../../database/sampleData';
 
 const StyledUl = styled.ul`
   list-style-type: circle;

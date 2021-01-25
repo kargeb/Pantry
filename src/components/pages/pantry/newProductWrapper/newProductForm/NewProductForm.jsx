@@ -9,7 +9,7 @@ import SelectUnit from './formElements/SelectUnit';
 import InputMin from './formElements/InputMin';
 import InputQuantity from './formElements/InputQuantity';
 import WrapperButtonsConfirmAndCancel from '../../../../molecules/WrapperButtonsConfirmAndCancel';
-import { addNewProductToDatabase } from '../../../../../data/handlers';
+import { addNewProductToDatabase } from '../../../../../database/controller';
 import {
   checkForEmptyValues,
   setErrorMessages,
@@ -134,28 +134,6 @@ class NewProductForm extends React.Component {
     if (toggleChangeQuantityModal) {
       toggleChangeQuantityModal();
     }
-  };
-
-  resetState = () => {
-    this.setState({
-      name: '',
-      quantity: 0,
-      category: '',
-      min: 1,
-      unit: 'item',
-      id: null,
-    });
-  };
-
-  resetErrorMessages = () => {
-    const errorMessages = {
-      min: '',
-      unit: '',
-      name: '',
-      quantity: '',
-      category: '',
-    };
-    return { ...errorMessages };
   };
 
   render() {

@@ -1,4 +1,4 @@
-import db, { auth, arrayUnion, arrayRemove } from '../fbase';
+import db, { auth, arrayUnion, arrayRemove } from './firebaseConfig';
 import { sampleCategories, sampleProducts } from './sampleData';
 
 // ***************************************************

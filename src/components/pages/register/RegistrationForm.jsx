@@ -5,7 +5,7 @@ import {
   registerUserInUsersDatabase,
   addInitialCategoryToDatabase,
   addInitialProductToDatabase,
-} from '../../../data/handlers';
+} from '../../../database/controller';
 import {
   validation,
   setErrorMessages,

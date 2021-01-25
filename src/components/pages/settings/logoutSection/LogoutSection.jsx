@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import H2 from '../../../styled/typography/H2';
 import Button from '../../../styled/buttons/Button';
-import { auth } from '../../../../fbase';
+import { auth } from '../../../../database/firebaseConfig';
 
 // import InsertSampleDataModal from './ModalInsertSampleData';
 import ConfirmLogoutModal from './ConfirmLogoutModal';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ModalConfirmDeletion from '../../../../../molecules/ModalConfirmDeletion';
-import { removeCategoryfromDatabase } from '../../../../../../data/handlers';
+import { removeCategoryfromDatabase } from '../../../../../../database/controller';
 import DeleteCategory from './DeleteCategory';
 
 class DeleteCategoryContainer extends React.Component {

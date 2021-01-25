@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme, lightTheme } from '../../themes/themes';
 import GlobalStyle from '../../themes/GlobalStyle';
 import RegistrationForm from '../../components/pages/register/RegistrationForm';
-import Loading from '../../views/Loading';
+import Loading from './loading/Loading';
 import LoginForm from '../../components/pages/login/LoginForm';
 import Contact from '../../components/shared/contact/Contact';
 
