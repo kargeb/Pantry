@@ -1,7 +1,6 @@
 {
   "name": "pantry",
   "version": "0.1.0",
-  "homepage": "https://kargeb.github.io/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",

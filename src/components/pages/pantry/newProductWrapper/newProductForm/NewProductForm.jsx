@@ -55,9 +55,11 @@ class NewProductForm extends React.Component {
   };
 
   handleForm = e => {
-    // all validation is in handleSubmit
     const { value, id } = e.target;
-    this.setState({ [id]: value });
+
+    if (this.maxInputsLengthIsCorrect(value, id)) {
+      this.setState({ [id]: value });
+    }
   };
 
   handleSubmit = e => {
@@ -85,6 +87,26 @@ class NewProductForm extends React.Component {
     addNewProductToDatabase(newProduct);
 
     this.closeFormModal();
+  };
+
+  maxInputsLengthIsCorrect = (value, id) => {
+    let errorMessages = {};
+    if (id === 'quantity' || id === 'min') {
+      if (String(value).length > 4) {
+        errorMessages = setErrorMessages('Max 4 digits', id);
+        this.setState({ errorMessages });
+        return false;
+      }
+    } else {
+      if (String(value).length > 20) {
+        errorMessages = setErrorMessages('Max 20 characters', id);
+        this.setState({ errorMessages });
+        return false;
+      }
+    }
+
+    this.setState({ errorMessages });
+    return true;
   };
 
   formHasEmptyFields = () => {

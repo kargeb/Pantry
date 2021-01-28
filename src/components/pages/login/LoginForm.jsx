@@ -41,11 +41,11 @@ const StyledH1 = styled(H1)`
 
 class LoginForm extends Component {
   state = {
-    login: 'test@test.p',
-    password: 'testtest',
+    login: '',
+    password: '',
     testUser: {
-      testLogin: 'test@test.pl',
-      testPassword: 'testtest',
+      testLogin: 'guest@guest.pl',
+      testPassword: 'guestguest',
     },
     errorMessages: {
       login: '',
@@ -66,19 +66,17 @@ class LoginForm extends Component {
       return;
     }
 
-    logIn(login, password)
-      .then(resoult => console.log(resoult))
-      .catch(err => {
-        const errorMessages = setErrorMessages(err.message, 'login');
-        this.setState({ errorMessages });
-      });
+    logIn(login, password).catch(err => {
+      const errorMessages = setErrorMessages(err.message, 'login');
+      this.setState({ errorMessages });
+    });
   };
 
   logInAsTestUser = e => {
     e.preventDefault();
     const { testLogin, testPassword } = this.state.testUser;
 
-    logIn(testLogin, testPassword).then(resoult => console.log(resoult));
+    logIn(testLogin, testPassword);
   };
 
   formHasInvalidData = () => {
