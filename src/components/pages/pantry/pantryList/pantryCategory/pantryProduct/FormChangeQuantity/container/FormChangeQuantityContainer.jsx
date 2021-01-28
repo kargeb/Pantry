@@ -44,6 +44,13 @@ class FormChangeQuantityContainer extends React.Component {
   handleInput = e => {
     let { value } = e.target;
 
+    if (String(value).trim().length > 4) {
+      this.setState({ errorMessage: 'Max 4 digits' });
+      return;
+    } else {
+      this.setState({ errorMessage: '' });
+    }
+
     if (value < 0) {
       value = 0;
     }
@@ -52,6 +59,13 @@ class FormChangeQuantityContainer extends React.Component {
 
   addQuantity = () => {
     const { quantity } = this.state;
+
+    if (quantity == 9999) {
+      this.setState({ errorMessage: 'Max 4 digits' });
+      return;
+    } else {
+      this.setState({ errorMessage: '' });
+    }
 
     this.setState({ quantity: Number(quantity) + 1 });
   };
