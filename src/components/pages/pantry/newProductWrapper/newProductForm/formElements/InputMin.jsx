@@ -30,7 +30,6 @@ const InputMin = ({
   return (
     <>
       <InputHorizontalWrapper>
-        {console.log('ERRORS Z INPUT MIN:', errorMessage)}
         <StyledProductLabel htmlFor="min">Min</StyledProductLabel>
         <StyledProductInput
           short
@@ -41,7 +40,6 @@ const InputMin = ({
           value={min}
           min="0"
         />
-        {console.log('ERRORS MIN:', errorMessage)}
       </InputHorizontalWrapper>
       {errorMessage && <StyledP>{errorMessage}</StyledP>}
     </>

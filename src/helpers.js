@@ -39,11 +39,9 @@ export const setErrorMessages = (message, ...properties) => {
 
 export const isPasswordStrong = password => {
   if (password.length >= 7) {
-    console.log('password is OK');
     return true;
   }
 
-  console.log('Password is too weak');
   return false;
 };
 
@@ -87,10 +85,8 @@ export const isEmailValid = email => {
   );
 
   if (pattern.test(email)) {
-    console.log('Email:', email, ' is valid');
     return true;
   }
-  console.log('Email:', email, ' JEST INVALID');
   return false;
 };
 

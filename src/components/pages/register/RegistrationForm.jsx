@@ -74,11 +74,9 @@ class RegistrationForm extends Component {
     const errorMessages = authDataValidation(login, password);
 
     if (Object.keys(errorMessages).length === 0) {
-      console.log('NIE MA BLEDOW, MOZNA WYSYLAC');
       this.setState({ errorMessages });
       return false;
     } else {
-      console.log('SA BLEDY, TRZEBA ZATRZYMAC!!!!!!!');
       this.setState({ errorMessages });
       return true;
     }
@@ -104,7 +102,6 @@ class RegistrationForm extends Component {
         return addInitialCategoryToDatabase(newUserId);
       })
       .then(() => {
-        console.log('Registration succeeded');
         setRegistrationStatus(false);
       })
       .catch(err => {
