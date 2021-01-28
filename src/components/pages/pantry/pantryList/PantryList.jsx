@@ -80,7 +80,6 @@ const PantryList = () => {
     <AppContext.Consumer>
       {({ products, downloadInProgress }) => (
         <div>
-          {console.log('Z CONTEXU:', products)}
           {downloadInProgress ? (
             <Spinner>
               <Loader>
