@@ -145,7 +145,7 @@ class RegistrationForm extends Component {
           </StyledAuthLabel>
           <StyledAuthInput
             errorBorder={errorMessages.password}
-            type="text"
+            type="password"
             id="password"
             name="password"
             value={password}
