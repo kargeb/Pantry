@@ -103,7 +103,7 @@ class Contact extends React.Component {
                   Github
                 </StyledLink>
                 <StyledLink
-                  href="https://drive.google.com/file/d/1Ng80HcCKeoyuj-EW9JwlSz-QRUO5pauP/view?usp=sharing"
+                  href="https://drive.google.com/drive/folders/17ZXpckC3FTaH0azKkl0T_43vnK_sypcK?usp=sharing"
                   target="_blank"
                 >
                   <StyledIcon>
