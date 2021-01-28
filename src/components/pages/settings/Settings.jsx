@@ -13,6 +13,11 @@ const StyledMain = styled.main`
   background-color: ${props => props.theme.background};
 `;
 
+const StyledContainer = styled.div`
+  color: ${props => props.theme.textPrimary};
+  background-color: ${props => props.theme.background};
+`;
+
 const Wrapper = styled.div`
   display: flex;
   padding: 0 10px;
@@ -32,15 +37,17 @@ const Wrapper = styled.div`
 
 const Settings = () => (
   <StyledMain>
-    <Wrapper>
-      <LogoutSection />
-      <Divider />
-      <CategoriesSection />
-      <Divider />
-      <InsertSampleData />
-      <Divider />
-      <DarkModeSection />
-    </Wrapper>
+    <StyledContainer>
+      <Wrapper>
+        <LogoutSection />
+        <Divider />
+        <CategoriesSection />
+        <Divider />
+        <InsertSampleData />
+        <Divider />
+        <DarkModeSection />
+      </Wrapper>
+    </StyledContainer>
   </StyledMain>
 );
 export default Settings;
