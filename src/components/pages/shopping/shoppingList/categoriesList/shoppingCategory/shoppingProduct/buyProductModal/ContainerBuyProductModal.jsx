@@ -20,6 +20,14 @@ class ContainerBuyProduct extends React.Component {
 
   addQuantity = () => {
     const { toBuy } = this.state;
+
+    if (toBuy == 9999) {
+      this.setState({ errorMessage: 'Max 4 digits' });
+      return;
+    } else {
+      this.setState({ errorMessage: '' });
+    }
+
     this.setState({ toBuy: Number(toBuy) + 1 });
   };
 
@@ -34,6 +42,14 @@ class ContainerBuyProduct extends React.Component {
   handleInput = e => {
     let { value } = e.target;
     // value = parseInt(value, 10);
+
+    if (String(value).trim().length > 4) {
+      this.setState({ errorMessage: 'Max 4 digits' });
+      return;
+    } else {
+      this.setState({ errorMessage: '' });
+    }
+
     if (value < 0) {
       value = 0;
     }
