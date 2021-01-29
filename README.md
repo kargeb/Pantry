@@ -5,17 +5,19 @@
 
 <!-- ![Multiple devices](https://i.ibb.co/NFHqnHC/Multiple-Device-latest-without-bg-edited.png) -->
 
-## Demo
+## Application
 
 [https://pantry.pl/](https://pantry.pl/)
 
 ## General info
 
-Application allows you control number of any kind of stuff in your pantry/stock/office or any place you need.
+The application allows to control the number of products in your home pantry.
 
+- create your own account and use application from any devices
 - add and delete products and categories
-- you can set the minimum quantity of each product and when it is exceeded this item will be added automatically to the shopping list
-- all data is stored in the cloud.
+- set the minimum quantity of each product and when it is exceeded this item will be added automatically to the shopping list
+
+All data and users accounts are stored in the cloud.
 
 <!-- ## Table of contents
 
@@ -29,26 +31,27 @@ Application allows you control number of any kind of stuff in your pantry/stock/
 
 ## Inspiration
 
-Application idea was born during the online event called "React 10days challenge" witch was organized by eduweb.pl website. It was one of the project proposals that participants had to pick and develop within 10 days.
+The idea of the application was born during the online event called "React 10days challenge" which was organized by eduweb.pl website. It was one of the project proposals that participants had to pick and develop within 10 days.
 
-At the end of the event, first version of this app got very good reviews, which motivated me to keep improving it. Finally, after a few months of works, I think it's worth to show it to the world and You :)
+At the end of the event, first version of this app got very good reviews, which motivated me to keep improving it. Finally, after a few months of work, I think it's worth to show it to the world and you :)
 
-## Main application requirements:
+## Main features required by the application specification:
 
-- add, delete and edit products that is their names, units, and current and minimum quantity
-- amount of products should be easily seen and has easy to way to modify it
-- when quantity of specific product will be lower than it's minimum, this item should be automatically added to the shopping list
-- separate view for the shopping list, where you can also change products quantity and thus make them disappear from it
+- adds, deletes and edits products - their names, units, and current and minimum quantity
+- the amount of products is easily seen and there is an easy to way to modify it
+- when quantity of specific product is lower than the required minimum (set by you), this item is automatically added to the shopping list
+- separate view for the shopping list, where you can also change quantity of products and thus make them disappear from it
 
-## Additional features
+## Additional features introduced by me:
 
+- **users authentication**
 - product categories
 - saving all data in the cloud (Firestore)
-- responsibility
-- settings view including:
+- responsiveness
+- settings including:
   - dark mode
-  - insert sample data
-  - category manager where you can add and remove them
+  - downloading sample data
+  - add/remove categories
 
 ## Screenshots
 
@@ -67,9 +70,12 @@ At the end of the event, first version of this app got very good reviews, which 
 
 ## Technologies
 
-- React - version 1.0
-- Firebase: Cloud Firestore
-- Styled-components - version 2.0
+- React
+- Firebase: Cloud Firestore, Authentication
+- Styled-components
+
+I made a goal for myself to write this application without hooks, state management tools and as little as possible usage of external libraries.
+My second project [Focus-player](https://github.com/kargeb/focus-player) is the one where I use hooks, redux, formik etc. and I encourage you to check it out too :)
 
 ## Setup
 
@@ -81,7 +87,7 @@ Instructions how to run this application using your own database:
 1. Update your database credentials in `.env`
 1. Run: `npm install`
 1. Run: `npm start`
-1. Enjoy my app at [http://localhost:3000](http://localhost:3000) :)
+1. Enjoy at [http://localhost:3000](http://localhost:3000)
 
 <!-- ## Status
 
