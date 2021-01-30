@@ -74,7 +74,7 @@ At the end of the event, first version of this app got very good reviews, which 
 - Firebase: Cloud Firestore, Authentication
 - Styled-components
 
-I made a goal for myself to write this application without hooks, state management tools and as little as possible usage of external libraries.
+I made a goal for myself to write this application without using hooks, state management tools and as little as possible usage of external libraries.
 My second project [Focus-player](https://github.com/kargeb/focus-player) is the one where I use hooks, redux, formik etc. and I encourage you to check it out too :)
 
 ## Setup
