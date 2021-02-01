@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   registerUserInUsersDatabase,
   addInitialCategoryToDatabase,
@@ -43,6 +43,14 @@ const StyledH1 = styled(H1)`
   }
 `;
 
+const ModalBackground = styled(StyledModalBackground)`
+  ${({ cursorTypeWait }) =>
+    cursorTypeWait &&
+    css`
+      cursor: wait;
+    `}
+`;
+
 class RegistrationForm extends Component {
   state = {
     login: '',
@@ -51,6 +59,7 @@ class RegistrationForm extends Component {
       login: '',
       password: '',
     },
+    cursorTypeWait: false,
   };
 
   handleForm = e => {
@@ -88,6 +97,7 @@ class RegistrationForm extends Component {
     let newUserId = null;
 
     setRegistrationStatus(true);
+    this.setState({ cursorTypeWait: true });
 
     registerUserInUsersDatabase(login, password)
       .then(idObtainedFromDatabase => {
@@ -103,18 +113,19 @@ class RegistrationForm extends Component {
       })
       .then(() => {
         setRegistrationStatus(false);
+        this.setState({ cursorTypeWait: false });
       })
       .catch(err => {
         const errorMessages = setErrorMessages(err.message, 'login');
-        this.setState({ errorMessages });
+        this.setState({ errorMessages, cursorTypeWait: false });
       });
   };
 
   render() {
-    const { login, password, errorMessages } = this.state;
+    const { login, password, errorMessages, cursorTypeWait } = this.state;
 
     return (
-      <StyledModalBackground>
+      <ModalBackground cursorTypeWait={cursorTypeWait}>
         <StyledAuthForm>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
@@ -166,7 +177,7 @@ class RegistrationForm extends Component {
             </P>
           </Link>
         </StyledAuthForm>
-      </StyledModalBackground>
+      </ModalBackground>
     );
   }
 }

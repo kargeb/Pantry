@@ -14,6 +14,7 @@ const StyledMain = styled.div`
   color: ${props => props.theme.textPrimary};
   background-size: cover;
   background-position: bottom;
+  /* cursor: wait; */
 `;
 
 const Authorization = ({ userDataLoading, setRegistrationStatus }) => {

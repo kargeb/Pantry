@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import StyledAuthButton from '../../styled/buttons/StyledAuthButton';
 import LogoForms from '../../../images/logoPantry.svg';
 import StyledAuthInput from '../../styled/formElements/inputs/StyledAuthInput';
@@ -39,6 +39,14 @@ const StyledH1 = styled(H1)`
   }
 `;
 
+const ModalBackground = styled(StyledModalBackground)`
+  ${({ cursorTypeWait }) =>
+    cursorTypeWait &&
+    css`
+      cursor: wait;
+    `}
+`;
+
 class LoginForm extends Component {
   state = {
     login: '',
@@ -51,6 +59,7 @@ class LoginForm extends Component {
       login: '',
       password: '',
     },
+    cursorTypeWait: false,
   };
 
   handleForm = e => {
@@ -66,17 +75,27 @@ class LoginForm extends Component {
       return;
     }
 
-    logIn(login, password).catch(err => {
-      const errorMessages = setErrorMessages(err.message, 'login');
-      this.setState({ errorMessages });
-    });
+    this.setState({ cursorTypeWait: true });
+
+    logIn(login, password)
+      .then(() => {
+        this.setState({ cursorTypeWait: false });
+      })
+      .catch(err => {
+        const errorMessages = setErrorMessages(err.message, 'login');
+        this.setState({ errorMessages, cursorTypeWait: false });
+      });
   };
 
   logInAsTestUser = e => {
     e.preventDefault();
     const { testLogin, testPassword } = this.state.testUser;
 
-    logIn(testLogin, testPassword);
+    this.setState({ cursorTypeWait: true });
+
+    logIn(testLogin, testPassword).then(() => {
+      this.setState({ cursorTypeWait: false });
+    });
   };
 
   formHasInvalidData = () => {
@@ -93,13 +112,13 @@ class LoginForm extends Component {
     }
   };
 
-  StyledAuthForm;
+  // StyledAuthForm;
 
   render() {
-    const { login, password, errorMessages } = this.state;
+    const { login, password, errorMessages, cursorTypeWait } = this.state;
 
     return (
-      <StyledModalBackground>
+      <ModalBackground cursorTypeWait={cursorTypeWait}>
         <StyledAuthForm>
           <Logo>
             <img src={LogoForms} alt="pantry application logo" width="100%" />
@@ -160,7 +179,7 @@ class LoginForm extends Component {
             </P>
           </Link>
         </StyledAuthForm>
-      </StyledModalBackground>
+      </ModalBackground>
     );
   }
 }
